@@ -2,6 +2,10 @@ package Day01;
 
 public class Day01_6 {
 	
+	
+	
+	
+	
 	/*
 	문제2 : 하나의 방문록 
 	[입력변수]
