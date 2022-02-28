@@ -15,6 +15,8 @@ public class Day01_2 { // c s
 			// 제어문자 [ \ : 엔터위에 원화기호 ]
 				// \n : 줄바꿈
 				// \t : 들여쓰기[5칸]
+				// \\ : \
+				// \" : "
 	
 	// 1. System : 시스템 클래스 [ 입출력 관련 만들어진 코드 제공 ] 
 	// 2. out : 출력 스트림
@@ -56,14 +58,25 @@ public class Day01_2 { // c s
 		System.out.printf("--------------------------------------------\n");
 		
 		// 문제1 : 고양이
+		System.out.println("\\    /\\");
+		System.out.println(" )  ( ')");
+		System.out.println("(  /  )");
+		System.out.println(" \\(__)|"); // | : shift + \
+
+		 // 문제2 : 강아지 
+		System.out.println("|\\_/|");		// \ 출력시 -> \\
+		System.out.println("|q p|   /}");
+		System.out.println("( 0 )\"\"\"\\");// " 출력시 -> \"
+		System.out.println("|\"^\"`");
+		System.out.println("||_/=\\\\__|");
+		
 		
 		/*		\    /\
 				 )  ( ')
 				(  /  )
 				 \(__)|
 		*/ 
-		
-		 // 문제2 : 강아지 
+
 		/*
 				|\_/|
 				|q p|   /}
@@ -71,6 +84,8 @@ public class Day01_2 { // c s
 				|"^"`    |
 				||_/=\\__|
 		*/	
+		
+		
 	} // m e 
 
 
