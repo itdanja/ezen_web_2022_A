@@ -1,6 +1,6 @@
 package Day01;
 
-import java.util.Scanner;import javax.swing.border.EmptyBorder;
+import java.util.Scanner;
 
 public class Day01_5 { // c s 
 	
@@ -21,7 +21,6 @@ public class Day01_5 { // c s
 		
 	} // m e 
 } // c e 
-
 
 	/*
 	문제1 : 회원가입 표 작성
