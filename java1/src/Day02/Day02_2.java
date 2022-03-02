@@ -71,6 +71,33 @@ public class Day02_2 { // c s
 				// (변경할자료형)변수명
 			short 쇼트 = (short)인트;	// int형 변수를 short로 변환하는데 데이터 잘림
 			
+			
+			// p.60 연습문제 
+				// 1. 4
+				// 2. 1 4 5 [ 변수는 숫자로 시작할수 없다 , 예약어[미리 만들어진 단어 ] 불가 ] 
+				// 3. byte	short	int		long
+				//			char
+				//					float	double
+				//	  boolean
+				// 4.  타입 : int , dobule 
+				//		이름 : age , price 
+				//		리터럴(값)  : 10 , 3.14
+				// 5. : 3
+				// 6. : 4    char(문자) = String(문자열) [ x ] 
+					// 기본자료형(래퍼클래스) 사용한 메모리는 변수 	-> 메모리할당 / new x 
+					// 클래스를 사용한 메모리는 객체 				-> 메모리할당	/ new o 
+				// 7. : 3 
+				// 8. : 1 [ 자료형 연산시 기본타입(정수가 있을경우 int , 실수끼리 double 으로 변환  ]
+					// 1. byte + byte -> int => byte [ x ] 
+					// 2. int + byte -> int => int  [ 자동형변환 ] 
+					// 3. int + float -> int => float  [ 자동형변환 ]  
+					// 4. int + double -> int => folat  [ 자동형변환 ] 
+				
+			
+				
+			
+				
+			
 	} // m e 
 }//  c e 
 
