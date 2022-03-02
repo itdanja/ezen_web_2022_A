@@ -1,5 +1,7 @@
 package Day02;
 
+import java.util.Scanner;
+
 public class Day02_5_문제2_문제14 {
 	
 	public static void main(String[] args) {
@@ -16,8 +18,28 @@ public class Day02_5_문제2_문제14 {
 		 * 		만원 5장
 		 * 		천원 6장 
 		 * 		백원 7개
-		 * 
 		 */
+		
+		// 1. 입력객체 
+		Scanner scanner = new Scanner(System.in);
+		// 2. 입력받은 데이터 -> 변수로 이동 
+		System.out.println("금액 : ");	int 금액 = scanner.nextInt();
+		// 3. 연산 
+		System.out.println(" 입력한 금액 : " + 금액 );
+		System.out.println(" 십만원  : " + (금액/100000) + "장" );
+			
+		//금액 = 금액 - ( 금액/100000 )*100000 ; // 금액에서 십만원 단위 제거
+		금액 -= ( 금액/100000 )*100000 ;
+		System.out.println(" 십만원 제외 : " + 금액 );
+		System.out.println(" 만원 : " + (금액/10000) + "장");
+		
+		금액 -= (금액/10000) * 10000; // 금액에서 만원 단위 제거 
+		System.out.println(" 천원 : " + (금액/1000) + "장");
+		
+		금액 -= (금액/1000) * 1000; // 금액에서 천원 단위 제거 
+		System.out.println(" 백원 : " + (금액/100) + "개");
+		
+		// 4. 출력 
 		
 		//문제3 : 하나의 정수를 입력받아 7의 배수인지 출력[ true , false ]
 		
