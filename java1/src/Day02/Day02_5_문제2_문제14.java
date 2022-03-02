@@ -83,7 +83,7 @@ public class Day02_5_문제2_문제14 {
 //		//문제9 : 사다리꼴 넓이 구하기[윗변과 밑변 높이를 입력받아 출력하기]
 //				//사다리꼴 계산식 = > (윗변 * 밑변) * 높이 / 2
 //		System.out.print(" 문제9) 윗변 : ");	double 윗변 = scanner.nextDouble();
-//		System.out.print(" 문제9) 밑변 : ");	double 밑변 = scanner.nextDouble();
+//		System.out.print(" 문제9) 밑변 : ");	doub밑le 변 = scanner.nextDouble();
 //		System.out.print(" 문제9) 높이 : ");  double 높이 = scanner.nextDouble();
 //		System.out.println(" 사다리꼴 넓이 : " + ( 윗변 * 밑변 ) * 높이 / 2 );
 //		
@@ -96,7 +96,7 @@ public class Day02_5_문제2_문제14 {
 				//BMI 계산식 = > 몸무게 / ((키 / 100) * (키 / 100))
 		System.out.print(" 문제11) 키 : "); 	int 키2 =scanner.nextInt();
 		System.out.print(" 문제11) 몸무게 : "); int 몸무게 = scanner.nextInt();
-		System.out.println(" BMI : " + ( 몸무게/ ((키2/100) * (키2/100 ) ) ) );
+		System.out.printf(" BMI : %.2f \n" , ( 몸무게/ ( (키2/100.0) * (키2/100.0 ) ) ) );
 		
 		//문제12: inch 를 입력받아 cm 로 변환하기 [ 1 inch -> 2.54cm ] 
 		System.out.print(" 문제12) inch : "); int 인치 = scanner.nextInt();
@@ -127,6 +127,26 @@ public class Day02_5_문제2_문제14 {
 		//문제17 : 4개의 정수를 입력받아 내림차순으로 정렬 
 		
 		// p. 102 확인문제
+			// 1. : 3
+			// 2. :  ++10  +  20--   => 11 + 20 -> 31 	
+					// ++10 : 더하기 전에 증가 
+					// 20-- : 더하기 후에 증가 
+			// 3. : 점수>90 ? "가" : "나"
+			//		80>90 -> false -> ! -> true -> 가
+		
+			// 4. (1) : 연필수/학생수 -> 몫		pencils / students
+			//    (2) : 연필수%학생수 -> 나머지	pencils % students
+		
+			// 5. 10의 자리 버리기 
+				// 예) 356 일때 56(나머지) 제거 [ - ]  356 - 56 => 300
+				// value - ( value % 100 )
+			// 6. 윗변 * 밑변 * 높이 / 2 
+				// (lenthTop * lengthBottom) * height / 2
+			// 7
+				// 10 > 7   &&  5<=5    	true && true => 결과 true
+				// 10%3 == 2 || 5%2 != 1 	false || false => 결과 false
+		
+		
 	}
 
 }
