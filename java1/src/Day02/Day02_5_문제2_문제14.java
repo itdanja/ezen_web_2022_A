@@ -68,45 +68,57 @@ public class Day02_5_문제2_문제14 {
 //		System.out.print(" 문제7) 반지름 입력 : "); 	int 문제7 = scanner.nextInt();
 //		System.out.println(" 원 넓이 : " + (문제7*문제7*3.14) );
 //		
-		//문제8 : 두 실수를 입력받아 앞실수의 값이 뒤의 값의 몇% 인지 출력하기
-				// 예) 54.5   84.3 이면    64.285714%
-		System.out.print(" 문제8) 실수1 입력 : ");		double 문제8_1 = scanner.nextDouble();
-		System.out.print(" 문제8) 실수2 입력 : "); 	double 문제8_2 = scanner.nextDouble();
-		
-		double 비율 = ( 문제8_1/문제8_2 )*100;
-		System.out.println(" 실수1의 실수2 백분율 : " + 비율 + "%");
-		System.out.printf(" 실수1의 실수2 백분율 : %.1f %% \n" , 비율 );
-				// %f : 실수 표현
-					// %.숫자f		// %.2f : 소수 2자리 까지 표현 
-									// %.5f : 소수 5자리 까지 표현 
-		
-		//문제9 : 사다리꼴 넓이 구하기[윗변과 밑변 높이를 입력받아 출력하기]
-				//사다리꼴 계산식 = > (윗변 * 밑변) * 높이 / 2
-		System.out.print(" 문제9) 윗변 : ");	double 윗변 = scanner.nextDouble();
-		System.out.print(" 문제9) 밑변 : ");	double 밑변 = scanner.nextDouble();
-		System.out.print(" 문제9) 높이 : ");  double 높이 = scanner.nextDouble();
-		System.out.println(" 사다리꼴 넓이 : " + ( 윗변 * 밑변 ) * 높이 / 2 );
-		
-		//문제10: 키를 정수를 입력받아 표준체중 출력하기
-				// 표준체중 계산식 = > (키 - 100) * 0.9
-		System.out.print(" 문제10) 키 : "); 	int 키 = scanner.nextInt();
-		System.out.println(" 표준체중 : " + ( 키-100 ) * 0.9 );
+//		//문제8 : 두 실수를 입력받아 앞실수의 값이 뒤의 값의 몇% 인지 출력하기
+//				// 예) 54.5   84.3 이면    64.285714%
+//		System.out.print(" 문제8) 실수1 입력 : ");		double 문제8_1 = scanner.nextDouble();
+//		System.out.print(" 문제8) 실수2 입력 : "); 	double 문제8_2 = scanner.nextDouble();
+//		
+//		double 비율 = ( 문제8_1/문제8_2 )*100;
+//		System.out.println(" 실수1의 실수2 백분율 : " + 비율 + "%");
+//		System.out.printf(" 실수1의 실수2 백분율 : %.1f %% \n" , 비율 );
+//				// %f : 실수 표현
+//					// %.숫자f		// %.2f : 소수 2자리 까지 표현 
+//									// %.5f : 소수 5자리 까지 표현 
+//		
+//		//문제9 : 사다리꼴 넓이 구하기[윗변과 밑변 높이를 입력받아 출력하기]
+//				//사다리꼴 계산식 = > (윗변 * 밑변) * 높이 / 2
+//		System.out.print(" 문제9) 윗변 : ");	double 윗변 = scanner.nextDouble();
+//		System.out.print(" 문제9) 밑변 : ");	double 밑변 = scanner.nextDouble();
+//		System.out.print(" 문제9) 높이 : ");  double 높이 = scanner.nextDouble();
+//		System.out.println(" 사다리꼴 넓이 : " + ( 윗변 * 밑변 ) * 높이 / 2 );
+//		
+//		//문제10: 키를 정수를 입력받아 표준체중 출력하기
+//				// 표준체중 계산식 = > (키 - 100) * 0.9
+//		System.out.print(" 문제10) 키 : "); 	int 키 = scanner.nextInt();
+//		System.out.println(" 표준체중 : " + ( 키-100 ) * 0.9 );
 		
 		//문제11: 키와 몸무게를 입력받아 BMI 출력하기
 				//BMI 계산식 = > 몸무게 / ((키 / 100) * (키 / 100))
+		System.out.print(" 문제11) 키 : "); 	int 키2 =scanner.nextInt();
+		System.out.print(" 문제11) 몸무게 : "); int 몸무게 = scanner.nextInt();
+		System.out.println(" BMI : " + ( 몸무게/ ((키2/100) * (키2/100 ) ) ) );
 		
 		//문제12: inch 를 입력받아 cm 로 변환하기 [ 1 inch -> 2.54cm ] 
+		System.out.print(" 문제12) inch : "); int 인치 = scanner.nextInt();
+		System.out.println("inch -> cm : " + ( 인치*2.54)  );
 		
 		//문제13:  중간고사, 기말고사, 수행평가를 입력받아 반영비율별 계산하기
 				//소수 둘째 자리 까지 점수 출력하기
-				//중간고사 반영비율 => 30 %
-				//기말고사 반영비율 => 30 %
-				//수행평가 반영비율 => 40 %
-		
+				//중간고사 반영비율 => 30 %	 //기말고사 반영비율 => 30 %   //수행평가 반영비율 => 40 %
+		System.out.print(" 문제13) 중간고사 : ");	double 중간고사 = scanner.nextDouble();
+		System.out.print(" 문제13) 기말고사 : ");  	double 기말고사 = scanner.nextDouble();
+		System.out.print(" 문제13) 수행평가 : "); 	double 수행평가 = scanner.nextDouble();
+		중간고사 = 중간고사 * 0.3;	기말고사 *= 0.3;	수행평가 *= 0.4;
+		System.out.printf(" 반영비율별 총점 : %.2f \n" , (중간고사+기말고사+수행평가) );
+
 		//문제14 :  연산 순서 나열 하고 x와 y값 예측하기
 		 	//int x = 10;
 			//int y = x-- + 5 + --x;
 			//printf(" x의 값 : %d , y의값 :  %d ", x, y)
+				// 1. x-- + 5 => 10+5 => 15
+				// 2. x-- 는 감소 => [ x = 9 ]
+				// 3. 15 + --x => [ x = 8 ] 
+				// 4 . 15 + 8 => y : 23
 		
 		//문제15 : 나이를 입력받아 나이가 10세이상이면 학생 , 20세이상이면 성인 , 40세이상이면 중년 으로 출력하기
 		
