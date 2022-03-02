@@ -19,7 +19,6 @@ public class Day02_5_문제2_문제14 {
 		 * 		천원 6장 
 		 * 		백원 7개
 		 */
-		
 		// 1. 입력객체 
 		Scanner scanner = new Scanner(System.in);
 		// 2. 입력받은 데이터 -> 변수로 이동 
@@ -39,11 +38,18 @@ public class Day02_5_문제2_문제14 {
 		금액 -= (금액/1000) * 1000; // 금액에서 천원 단위 제거 
 		System.out.println(" 백원 : " + (금액/100) + "개");
 		
-		// 4. 출력 
-		
 		//문제3 : 하나의 정수를 입력받아 7의 배수인지 출력[ true , false ]
+			// 배수찾기 
+				// 값 % 수 했을때 나머지가 0 이면 값은 그 수의 배수 
+		System.out.println(" 문제3) 정수 입력:"); 	int 문제3 = scanner.nextInt(); // 하나의 정수를 입력받기 
+		System.out.println(" 입력한 정수는 7의 배수 판단 : " + ( 문제3%7 == 0 ) );
 		
 		//문제4 : 하나의 정수를 입력받아 홀수 인지 확인 [ true , false ]
+			// 홀짝 찾기 
+				// 홀수 : 값 % 2 했을때 나머지가 1 이면 값은 홀수 
+				// 짝수 : 값 % 2 했을때 나머지가 0 이면 값은 짝수 
+		System.out.print(" 문제4) 정수 입력 : ");	int 문제4 = scanner.nextInt();
+		System.out.println(" 입력한 정수는 홀수 판단 : " + ( 문제4%2 == 1 ) );
 		
 		//문제5 : 하나의 정수를 입력받아 7의 배수 이면서 짝수 인지 확인 [ true , false ]
 		
