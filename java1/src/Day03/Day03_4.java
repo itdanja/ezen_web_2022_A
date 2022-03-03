@@ -1,5 +1,7 @@
 package Day03;
 
+import java.util.Scanner;
+
 public class Day03_4 { // c s 
 
 	public static void main(String[] args) { // m s 
@@ -66,7 +68,18 @@ public class Day03_4 { // c s
  		
  		// 문제1 ) 국어,영어,수학 점수를 입력받아  
  			// 	평균이 90점이상이면 A등급
- 			//  80점이상이면 B등급 나머지 탈락
+ 			//  평균이 80점이상이면 B등급 나머지 탈락
+ 		Scanner scanner = new Scanner(System.in);
+ 		System.out.print(" 국어 : "); int 국어 = scanner.nextInt();
+ 		System.out.print(" 영어 : "); int 영어 = scanner.nextInt();
+ 		System.out.print(" 수학 : "); int 수학 = scanner.nextInt();
+ 		int 평균 = (국어+영어+수학)/3; 
+ 		System.out.println(" 평균 : " + 평균  + " 나누기/10 : "+평균/10 );
+ 		switch( 평균/10 ) { // 1자리 제외 
+ 			case 9 : System.out.println("A등급"); 	break;
+ 			case 8 : System.out.println("B등급");	break;
+ 			default : System.out.println("탈락");		
+ 		}
 	}// me 
 	
 }// c e 
