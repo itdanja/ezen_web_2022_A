@@ -60,8 +60,9 @@ public class Day03_6 {
 		
 		System.out.println("\n-----------------------------------------");
 		
-		// 별문제3 : 입력받은 줄 수 만큼 출력
-		System.out.print("문제3) 줄수 : "); int line4 = scanner.nextInt();
+		// 별문제4 : 입력받은 줄 수 만큼 출력
+		System.out.print("문제3) 줄수 : "); 
+		int line4 = scanner.nextInt();
 		
 		for( int i = 1 ; i<=line4 ; i++ ) {
 			// 1.별찍기
@@ -71,7 +72,24 @@ public class Day03_6 {
 			// 2.줄바꿈
 			System.out.println();
 		}
+		System.out.println("\n-----------------------------------------");
+		
+		// 별문제5 : 입력받은 줄 수 만큼 출력 
+		System.out.print("문제3) 줄수 : "); 
+		int line5 = scanner.nextInt();
 	
+		for( int i = 1 ; i<=line5 ; i++ ) {
+			//1.공백찍기
+			for( int b = 1 ; b<=line5-i ; b++ ) { 
+				System.out.print(" "); // 공백 => 스페이바 
+			}
+			//2.별찍기
+			for( int s = 1 ; s<=i ; s++ ) {
+				System.out.print("*");
+			}
+			//3. 줄바꿈
+			System.out.println();
+		}
 		
 	}
 }
