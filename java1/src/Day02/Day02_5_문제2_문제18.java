@@ -2,7 +2,7 @@ package Day02;
 
 import java.util.Scanner;
 
-public class Day02_5_巩力2_巩力14 {
+public class Day02_5_巩力2_巩力18 {
 	
 	public static void main(String[] args) {
 		

@@ -2,7 +2,7 @@ package Day03;
 
 import java.util.Scanner;
 
-public class Day03_2 { // cs
+public class Day03_2_문제1_문제5 { // cs
 	
 	public static void main(String[] args) { // ms
 		
@@ -60,8 +60,24 @@ public class Day03_2 { // cs
 		System.out.println(" 입력한 값 오름차순 : " + 정수10 +" "+ 정수11 +" "+ 정수12 );
 		
 		// 문제5 : 4개의 정수를 입력받아서 오름차순 / 내림차순 
+		System.out.print("정수1입력: ");  int 정수13 = scanner.nextInt(); // 변수명 중복x 
+		System.out.print("정수2입력: ");  int 정수14 = scanner.nextInt();
+		System.out.print("정수3입력: ");  int 정수15 = scanner.nextInt();
+		System.out.print("정수4입력: ");  int 정수16 = scanner.nextInt();
 		
-		
+		// 첫번째 값 기준 으로 비교 
+		if( 정수13 > 정수14 ) { int temp = 정수13 ; 정수13 = 정수14; 정수14 = temp; }
+		if( 정수13 > 정수15 ) { int temp = 정수13 ; 정수13 = 정수15; 정수15 = temp; }
+		if( 정수13 > 정수16 ) { int temp = 정수13 ; 정수13 = 정수16; 정수16 = temp; }
+		// 두번째 값 기준 으로 비교 
+		if( 정수14 > 정수15 ) { int temp = 정수14 ; 정수14 = 정수15; 정수15 = temp; }
+		if( 정수14 > 정수16 ) { int temp = 정수14 ; 정수14 = 정수16; 정수16 = temp; }
+		// 세번째 값 기준 으로 비교 
+		if( 정수15 > 정수16 ) { int temp = 정수15 ; 정수15 = 정수16; 정수16 = temp; }
+		// 네번째 값 기준 으로 비교 x 
+		System.out.printf(" 오름차순 : %d %d %d %d " , 정수13 , 정수14 , 정수15 , 정수16 );
+			
+			
 		
 		
 		
