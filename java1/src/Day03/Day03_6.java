@@ -25,6 +25,41 @@ public class Day03_6 {
 			// 5개마다 줄바꿈 -> 5배수마다 -> 배수찾기 
 			if( i%5 == 0 ) System.out.println(); // 줄바꿈처리 
 		}
+		
+		System.out.println("\n-----------------------------------------");
+		
+		// 별문제3 : 입력받은 줄 수 만큼 출력
+		System.out.print("문제3) 줄수 : "); int line3 = scanner.nextInt();
+		for( int i = 1 ; i<=line3 ; i++  ) {
+			// * i는 1부터 입력받은 줄 수까지 1씩증가
+			// 1. 별찍기 
+			for( int s = 1 ; s<=i ; s++ ) {
+				System.out.print("*");
+			}
+			// 2. 줄바꿈처리
+			System.out.println(); // 줄 바꿈
+		}
+			// 순서도 
+				// 사용자가 3을 입력했을때 
+				// i = 1  i<=3 [true] -> i++
+					// s = 1	s<=1 [true] -> * -> s++
+					// s = 2 	s<=1 [false] -> for2 반복문종료
+				// 줄바꿈
+				// i = 2  i<=3 [ true ] -> i++
+					// s = 1	s<=2 [true] -> * -> s++
+					// s = 2 	s<=2 [true] -> * -> s++
+					// s = 3 	s<=2 [false] -> for2 반복문종료 
+				// 줄바꿈
+				// i = 3  i<=3 [ true ] -> i++
+					// s = 1	s<=3 [ true ] -> * -> s++
+					// s = 2    s<=3 [ true ] -> * -> s++
+					// s = 3 	s<=3 [ true ] -> * -> s++
+					// s = 4	s<=3 [ false] -> for2 반복문종료
+				// 줄바꿈
+				// i = 4 	i<=3 [false ] for1 반복문종료
+		
+	
+		
 	}
 }
 
