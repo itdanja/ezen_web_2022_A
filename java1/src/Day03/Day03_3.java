@@ -52,7 +52,7 @@ public class Day03_3 {
 			if( pw == 1234 ) { // pw 는 자료형 변수이기 때문에 == 가능  
 				// 입력한 pw 1234 이면 
 				System.out.println(" 알림) 로그인 성공 ");
-				로그인성공 = true; // id , pw 가 모두 동일하면 변수값 변경 [
+				로그인성공 = true; // id , pw 가 모두 동일하면 로그인성공 변수를 true 변경
 			}
 			else { // 입력한 pw 1234 아니면 
 				System.out.println(" 알림) 비밀번호 틀렸습니다. ");
