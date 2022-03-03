@@ -2,7 +2,7 @@ package Day03;
 
 import java.util.Scanner;
 
-public class Day03_6 {
+public class Day03_6_º°Âï±â {
 	
 	public static void main(String[] args) {
 		
@@ -125,6 +125,7 @@ public class Day03_6 {
 			// 3. ÁÙ¹Ù²Ş
 			System.out.println();
 		}
+		
 		
 		
 	}
