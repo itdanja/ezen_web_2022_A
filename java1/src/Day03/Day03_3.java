@@ -72,11 +72,45 @@ public class Day03_3 {
 					영어점수 100점 이면 '영어우수' 출력
 					수학점수 100점 이면 '수학우수' 출력
 				평균이 80점 이상이면서 
-					국어점수 90점 이면 '국어장려' 출력
-					영어점수 90점 이면 '영어정려' 출력
-					수학점수 90점 이면 '수학장려' 출력
+					국어점수 90점이상 이면 '국어장려' 출력
+					영어점수 90점이상 이면 '영어정려' 출력
+					수학점수 90점이상 이면 '수학장려' 출력
 				그외 재시험 
 		 */
+		
+		System.out.print( "국어점수 : "); int 국어 = scanner.nextInt();
+		System.out.print( "영어점수 : "); int 영어 = scanner.nextInt();
+		System.out.print( "수학점수 : "); int 수학 = scanner.nextInt();
+		int 평균 = (국어+영어+수학)/3; // 평균 구하기 
+		
+		if( 평균>=90 ) { // 평균 90점 이상이면 
+			// if중첩
+			if( 국어 == 100 ) System.out.println(" 결과 : 국어우수");
+			if( 영어 == 100 ) System.out.println(" 결과 : 영어우수");
+			if( 수학 == 100 ) System.out.println(" 결과 : 수학우수");
+		} // if e
+		else if( 평균>=80) { // 평균 80점 이상이면 
+			if( 국어 >= 90 ) System.out.println(" 결과 : 국어장려");
+			if( 영어 >= 90 ) System.out.println(" 결과 : 영어장려");
+			if( 수학 >= 90 ) System.out.println(" 결과 : 수학장려");
+		} // elseif e
+		else { // 그외 이면
+			System.out.println("재시험"); 
+		} // else e 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 }
