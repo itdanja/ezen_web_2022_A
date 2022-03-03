@@ -75,7 +75,7 @@ public class Day03_6 {
 		System.out.println("\n-----------------------------------------");
 		
 		// 별문제5 : 입력받은 줄 수 만큼 출력 
-		System.out.print("문제3) 줄수 : "); 
+		System.out.print("문제5) 줄수 : "); 
 		int line5 = scanner.nextInt();
 	
 		for( int i = 1 ; i<=line5 ; i++ ) {
@@ -91,8 +91,62 @@ public class Day03_6 {
 			System.out.println();
 		}
 		
+		// 별문제6 : 입력받은 줄 수 만큼 출력 
+		System.out.print("문제6) 줄수 : "); 
+		int line6 = scanner.nextInt();
+		
+		for( int i =1 ; i<=line6 ; i++ ) {
+			// 1. 공백찍기
+			for( int b = 1 ; b<=i-1 ; b++ ) {
+				System.out.print(" ");
+			}
+			// 2. 별찍기 
+			for( int s = 1 ; s<=line6-i+1; s++ ) {
+				System.out.print("*");
+			}
+			// 3. 줄바꿈
+			System.out.println();
+		}
+		
+		// 별문제7~8 : 입력받은 줄 수 만큼 출력 
+		System.out.print("문제7) 줄수 : "); 
+		int line7 = scanner.nextInt();
+		
+		for( int i = 1 ; i<=line7 ; i++ ) {
+			// 1. 공백찍기
+			for( int b= 1 ; b<=line7-i ; b++) {
+				System.out.print(" ");
+			}
+			// 2. 별찍기
+			for( int s= 1; s<=i*2-1; s++ ) {
+				System.out.print("*");
+				// System.out.print(i); // 문제8
+			}
+			// 3. 줄바꿈
+			System.out.println();
+		}
+		
+		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
