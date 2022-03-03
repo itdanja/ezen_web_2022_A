@@ -39,7 +39,7 @@ public class Day03_6 {
 			// 2. 줄바꿈처리
 			System.out.println(); // 줄 바꿈
 		}
-			// 순서도 
+			// 문제3 순서도 
 				// 사용자가 3을 입력했을때 
 				// i = 1  i<=3 [true] -> i++
 					// s = 1	s<=1 [true] -> * -> s++
@@ -56,8 +56,21 @@ public class Day03_6 {
 					// s = 3 	s<=3 [ true ] -> * -> s++
 					// s = 4	s<=3 [ false] -> for2 반복문종료
 				// 줄바꿈
-				// i = 4 	i<=3 [false ] for1 반복문종료
+				// i = 4  i<=3 [false ] for1 반복문종료
 		
+		System.out.println("\n-----------------------------------------");
+		
+		// 별문제3 : 입력받은 줄 수 만큼 출력
+		System.out.print("문제3) 줄수 : "); int line4 = scanner.nextInt();
+		
+		for( int i = 1 ; i<=line4 ; i++ ) {
+			// 1.별찍기
+			for( int s = 1 ; s<=line4-i+1 ; s++ ) {
+				System.out.print("*");
+			}
+			// 2.줄바꿈
+			System.out.println();
+		}
 	
 		
 	}
