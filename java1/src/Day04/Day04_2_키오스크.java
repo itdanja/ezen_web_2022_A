@@ -2,7 +2,7 @@ package Day04;
 
 import java.util.Scanner;
 
-public class Day04_2 {
+public class Day04_2_키오스크 {
 	
 	// Day01 : 입출력
 	// Day02 : 변수[저장] 연산[계산]
