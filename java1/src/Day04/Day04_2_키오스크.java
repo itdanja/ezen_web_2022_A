@@ -22,7 +22,7 @@ public class Day04_2_키오스크 {
 		// 공통변수[ 모든 괄호내에서 사용하는 변수들 ]
 		Scanner scanner = new Scanner(System.in); 			// 1. 입력객체
 		int 콜라재고 =10; int 환타재고 =10; 	int 사이다재고=10; // 2. 재고변수
-		int 콜라구매수=0;	int 환타구매수 = 0;int 사이다구매수=0;	// 3. 장바구니 
+		int 콜라구매수=0;	int 환타구매수 = 0;	int 사이다구매수=0;	// 3. 장바구니 
 		
 		while(true) { // 프로그램 시작 [ 무한루프 ]
 			System.out.println("------------- 메뉴 ------------");
