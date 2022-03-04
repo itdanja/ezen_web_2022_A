@@ -1,5 +1,6 @@
 package Day04;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Day04_5 {// cs
@@ -57,6 +58,24 @@ public class Day04_5 {// cs
 		}
 		
 		// 2. 컴퓨터가 난수생성 
+		for( int i =0 ; i<6 ; i++) {
+			Random random = new Random(); // 1. 난수객체
+			int 추첨 = random.nextInt(45)+1; // 2. 난수를 int형으로 1~45 사이 난수 가져오기
+			// 조건1 : 중복체크
+			boolean 통과 = true;
+			for( int temp : 추첨번호 ) {
+				if( 추첨 == temp ) {
+					i--; // 중복이 있을경우 현재 i 예외
+					통과 = false; // 저장 x 
+				}
+			}
+			if( 통과 ) 추첨번호[i] = 추첨;
+		}
+		System.out.print("\n \t추첨번호\t: ");
+		// * 배열내 모든 인덱스 출력 
+		for( int temp : 추첨번호 ) {
+			System.out.print( temp +"\t");
+		}
 		
 		// 3. 비교 = 두 배열간 동일한 수 찾기 
 		
