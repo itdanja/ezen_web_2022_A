@@ -84,7 +84,23 @@ public class Day05_3_확인문제 {
 				}
 			}
 			else if( selectNo == 4 ) {
-				// 작성위치
+				int 최고점수 = 0;
+				int 총합계 = 0;
+				double 평균점수 = 0.0;
+				
+				for( int i = 0 ; i<scores.length ; i++ ) {
+					
+					// 최고점수 구하기 
+					if( 최고점수 < scores[i] ) 최고점수 = scores[i]; // i번째 인덱스에 데이터 대입 
+					// 누적합계 
+					총합계 += scores[i];
+				}
+				
+				// 평균점수 구하기 
+				평균점수 =  (double)총합계 / scores.length;
+				
+				System.out.println("최고 점수 : " + 최고점수 );
+				System.out.println("평균 점수 : " + 평균점수 );
 			}
 			else if( selectNo == 5 ) {
 				run = false; // break; // 반복문 탈출
