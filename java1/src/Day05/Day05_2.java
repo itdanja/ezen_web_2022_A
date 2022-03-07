@@ -36,6 +36,7 @@ public class Day05_2 {
 					// 1. 빈 공간[ 정수=0 , 객체(문자열) = null  ]을 찾아서 저장 [ 만약에 빈공간이 없으면 회원 100명 초과 ]
 					// 2. 아이디 중복체크 
 				
+				// 아이디 중복체크 
 				
 				// 저장부분
 				for( int i =0 ; i<memberlist.length ; i++ ) {
@@ -46,29 +47,22 @@ public class Day05_2 {
 						break; // 저장했으면 끝 [ 1번만 저장 ]
 					}
 				}
-				
  			} // if end 
 			else if( ch == 2 ) {
-				
 				System.out.println("-------- 로그인 페이지 ---------");
 				System.out.print(" MEMBER ID : "); 			String id = scanner.next();
 				System.out.print(" MEMBER PASSWORD : "); 	String password = scanner.next();
 				
-				// 배열내 데이터가 입력받은 id와 password가 동일하면 로그인처리
-				for( int i =0 ; i<memberlist.length ; i++ ) {
+				for( int i =0 ; i<memberlist.length ; i++ ) { // 배열내 데이터가 입력받은 id와 password가 동일하면 로그인처리
 					if( memberlist[i][0] !=null && memberlist[i][0].equals( id ) &&
-							memberlist[i][1].equals(password) ) {
-						// i번째 행에 id와 password 가 입력받은 값과 equals 같으면
+							memberlist[i][1].equals(password) ) { // i번째 행에 id와 password 가 입력받은 값과 equals 같으면
 							// null 은 객체가 아니기 때문에 equals 가 불가능 => == 가능
 						System.err.println(" 알림]] 로그인 성공 ");
 					}
 				}
-				
 			}
 			else { System.err.println(" 알림]] 알수 없는 번호입니다.!!"); }
-			
 		} // while 1 end 
-		
 	} // m e 
 } // c e 
 
