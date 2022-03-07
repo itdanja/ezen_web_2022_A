@@ -92,24 +92,24 @@ public class Day02_5_문제2_문제17 {
 //		System.out.print(" 문제10) 키 : "); 	int 키 = scanner.nextInt();
 //		System.out.println(" 표준체중 : " + ( 키-100 ) * 0.9 );
 		
-		//문제11: 키와 몸무게를 입력받아 BMI 출력하기
-				//BMI 계산식 = > 몸무게 / ((키 / 100) * (키 / 100))
-		System.out.print(" 문제11) 키 : "); 	int 키2 =scanner.nextInt();
-		System.out.print(" 문제11) 몸무게 : "); int 몸무게 = scanner.nextInt();
-		System.out.printf(" BMI : %.2f \n" , ( 몸무게/ ( (키2/100.0) * (키2/100.0 ) ) ) );
-		
-		//문제12: inch 를 입력받아 cm 로 변환하기 [ 1 inch -> 2.54cm ] 
-		System.out.print(" 문제12) inch : "); int 인치 = scanner.nextInt();
-		System.out.println("inch -> cm : " + ( 인치*2.54)  );
-		
-		//문제13:  중간고사, 기말고사, 수행평가를 입력받아 반영비율별 계산하기
-				//소수 둘째 자리 까지 점수 출력하기
-				//중간고사 반영비율 => 30 %	 //기말고사 반영비율 => 30 %   //수행평가 반영비율 => 40 %
-		System.out.print(" 문제13) 중간고사 : ");	double 중간고사 = scanner.nextDouble();
-		System.out.print(" 문제13) 기말고사 : ");  	double 기말고사 = scanner.nextDouble();
-		System.out.print(" 문제13) 수행평가 : "); 	double 수행평가 = scanner.nextDouble();
-		중간고사 = 중간고사 * 0.3;	기말고사 *= 0.3;	수행평가 *= 0.4;
-		System.out.printf(" 반영비율별 총점 : %.2f \n" , (중간고사+기말고사+수행평가) );
+//		//문제11: 키와 몸무게를 입력받아 BMI 출력하기
+//				//BMI 계산식 = > 몸무게 / ((키 / 100) * (키 / 100))
+//		System.out.print(" 문제11) 키 : "); 	int 키2 =scanner.nextInt();
+//		System.out.print(" 문제11) 몸무게 : "); int 몸무게 = scanner.nextInt();
+//		System.out.printf(" BMI : %.2f \n" , ( 몸무게/ ( (키2/100.0) * (키2/100.0 ) ) ) );
+//		
+//		//문제12: inch 를 입력받아 cm 로 변환하기 [ 1 inch -> 2.54cm ] 
+//		System.out.print(" 문제12) inch : "); int 인치 = scanner.nextInt();
+//		System.out.println("inch -> cm : " + ( 인치*2.54)  );
+//		
+//		//문제13:  중간고사, 기말고사, 수행평가를 입력받아 반영비율별 계산하기
+//				//소수 둘째 자리 까지 점수 출력하기
+//				//중간고사 반영비율 => 30 %	 //기말고사 반영비율 => 30 %   //수행평가 반영비율 => 40 %
+//		System.out.print(" 문제13) 중간고사 : ");	double 중간고사 = scanner.nextDouble();
+//		System.out.print(" 문제13) 기말고사 : ");  	double 기말고사 = scanner.nextDouble();
+//		System.out.print(" 문제13) 수행평가 : "); 	double 수행평가 = scanner.nextDouble();
+//		중간고사 = 중간고사 * 0.3;	기말고사 *= 0.3;	수행평가 *= 0.4;
+//		System.out.printf(" 반영비율별 총점 : %.2f \n" , (중간고사+기말고사+수행평가) );
 
 		//문제14 :  연산 순서 나열 하고 x와 y값 예측하기
 		 	//int x = 10;
@@ -121,8 +121,13 @@ public class Day02_5_문제2_문제17 {
 				// 4 . 15 + 8 => y : 23
 		
 		//문제15 : 나이를 입력받아 나이가 10세이상이면 학생 , 20세이상이면 성인 , 40세이상이면 중년 으로 출력하기
+		System.out.print("나이 입력 : "); int 나이 = scanner.nextInt();
+		String 결과 = 나이>=40 ? "중년" : 나이>=20 ? "성인" : 나이>=10 ? "학생" : "";
+		
+		System.out.println(" 결과 : " + 결과 );
 		
 		//문제16 : 3개의 정수를 입력받아 오름차순으로 정렬 
+
 		
 		//문제17 : 4개의 정수를 입력받아 내림차순으로 정렬 
 		
