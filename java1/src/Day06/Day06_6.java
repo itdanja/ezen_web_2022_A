@@ -84,17 +84,14 @@ public class Day06_6 { // c s
 					if( boardlist[bno].password.equals(password) ) { // 게시물객체내 비밀번호 == 입력한 비밀번호 
 						System.out.println(" 알림)) 삭제 성공 ");
 						boardlist[bno] = null; // 해당 게시물에 null 변경 // 삭제처리
-						
 						// 삭제후에 삭제된 인덱스 뒤로 한칸씩 앞으로 이동 
 							// 왜???  만약에 해당 코드가 없을경우 배열내 사이사이 공백 발생 
-						for( int i = bno ; i< boardlist.length ; i++ ) {
+						for( int i = bno ; i< boardlist.length ; i++ ) { // 배열길이 = 100  인덱스 : 0~99
 							// * 검색된 게시물의 인덱스부터 마지막인덱스까지 1씩증가 
-							
-							if( i == boardlist.length-1) boardlist[ boardlist.length-1 ] = null;
+							if( i == boardlist.length-1 ) boardlist[ boardlist.length-1 ] = null;
 							// i가 마지막인덱스 와 같으면 마지막인덱스에는 null 대입
 							else boardlist[i] = boardlist[i+1];// 삭제된 게시물 다음 게시물
 							// 마지막 인덱스가 아니면 인덱스 당기기 
-							
 								// *  	만약에 2번 인덱스 삭제시 
 								// 		2인덱스 = 3인덱스 
 								//	  	3인덱스 = 4인덱스 
@@ -102,9 +99,7 @@ public class Day06_6 { // c s
 								//      ~~~~~~~~~~~
 								//		98인덱스 = 99인덱스 [ 0번~99번 -> 100개 인덱스 ]
 								//		99인덱스 = null [ 99번 인덱스 : 마지막인덱스 ] 
-						
 						}
-						
 					}else {
 						System.out.println(" 알림)) 비밀번호가 다릅니다 [ 삭제실패 ]");
 					}
