@@ -46,19 +46,33 @@ public class Day06_3 {
 				member.name = name;
 				member.phone = phone;
 				
-				// 4. 여러개 객체를 저장하는 배열에 저장
-					// 1. 공백 인덱스 찾기 [ 공백이 아니면 기존회원이 존재 ]
-				int i = 0; // 인덱스 위치 변수;
-				for( Member temp  : memberlist ) { 
-					// * memberlist 배열내 member 객체 하나씩 꺼내와서 temp 저장 반복 
-					// 2. 공백에 인덱스에 객체 저장 
-					if( temp == null ) { // 만약에 해당 객체가 공백이면 
-						memberlist[i] = member;  // 해당 인덱스에 새로 만들어진 객체 저장 
-						System.err.println(" 알림)) 회원가입 성공 ");
-						break; // for 나가기 [ 안나가면 모든 공백에 동일한 객체 저장되기때문에 ]
+				// * 아이디 중복체크 
+					// 1. 배열내 객체중 입력한 아이디와 동일한 아이디 찾기
+				boolean idcheck = false;
+				for( Member temp : memberlist ) {
+					// * memberlist 배열내 객체들을 하나씩 temp에 대입 반복
+					if( temp !=null && temp.id.equals(id) ) {
+						// 만약에 해당 객체내 id 가 입력받은 id와 같으면 
+						System.out.println(" 알림)) 사용중인 아이디 입니다. [회원가입실패] ");
+						idcheck = true; // 중복이면 true로 변경 
+						break;
 					}
-					i++; // 인덱스 증가
-				} // for 문 end 
+				}
+				if( idcheck == false ) {   // 아이디 중복이 없을경우 저장 
+					// 4. 여러개 객체를 저장하는 배열에 저장
+						// 1. 공백 인덱스 찾기 [ 공백이 아니면 기존회원이 존재 ]
+					int i = 0; // 인덱스 위치 변수;
+					for( Member temp  : memberlist ) { 
+						// * memberlist 배열내 member 객체 하나씩 꺼내와서 temp 저장 반복 
+						// 2. 공백에 인덱스에 객체 저장 
+						if( temp == null ) { // 만약에 해당 객체가 공백이면 
+							memberlist[i] = member;  // 해당 인덱스에 새로 만들어진 객체 저장 
+							System.err.println(" 알림)) 회원가입 성공 ");
+							break; // for 나가기 [ 안나가면 모든 공백에 동일한 객체 저장되기때문에 ]
+						}
+						i++; // 인덱스 증가
+					} // for 문 end 
+				} // if end 
 				
 			} // 회원가입 END 
 			else if( ch==2 ) { // 로그인 
@@ -85,8 +99,51 @@ public class Day06_3 {
 				}
 				
 			} // 로그인 END 
-			else if( ch==3 ) {}// 아이디찾기
-			else if( ch==4 ) {} // 비밀번호찾기 
+			else if( ch==3 ) { // 아이디찾기
+				// 1. 이름 과 연락처를 입력받는다.
+				System.out.println(" -------------- 아이디찾기 페이지 -------------");
+				System.out.println(" 이름 : ");		String name = scanner.next();
+				System.out.println(" 연락처 : "); 	String phone = scanner.next();
+				// 2. 배열내 동일한 이름과 연락처가 있는지 확인한다. [ 로그인처리 비슷 ]
+				boolean findcheck = false;
+				for( Member temp : memberlist ) {
+					
+					if( temp != null && temp.name.equals(name) && 
+							temp.phone.equals(phone) ) { 
+						// 3. 동일한 객체가 있으면 해당 아이디출력 
+						System.out.println(" 알림)) 아이디 찾기 성공");
+						System.out.println(" 회원 ID : " + temp.id );
+						findcheck = true; // 찾았다 기록 !!!  
+						break;
+					}
+				}
+				// 4. 없으면 없다고 출력 
+				if( findcheck == false ) {
+					System.out.println(" 알림)) 동일한 회원정보가 없습니다. [ 찾기실패 ]");
+				}
+			}
+			else if( ch==4 ) { // 비밀번호찾기 
+				
+				System.out.println(" 아이디 : "); 	String id = scanner.next();
+				System.out.println(" 전화번호 : "); 	String phone = scanner.next();
+				
+				boolean findcheck = false;
+				for( Member temp : memberlist ) {
+					if( temp != null && temp.id.equals(id) && 
+							temp.phone.equals(phone) ) {
+						System.out.println(" 알림)) 비밀번호 찾기 성공");
+						System.out.println(" 회원 비밀번호 : " + temp.password );
+						findcheck = true; // 찾았으면 true 변경 
+						break;
+					}
+				}
+				
+				if( findcheck == false ) {// 못찾았으면 아래 코드 실행 
+					System.out.println(" 알림)) 동일한 회원정보가 없습니다. [ 찾기실패 ]");	
+				}
+				
+				
+			} 
 			else { System.err.println(" 알림)) 알수없는 번호입니다."); } // 그외
 			
 		} // 프로그램 실행 while end 
