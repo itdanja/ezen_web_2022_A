@@ -5,7 +5,7 @@ import java.util.Scanner;
 	// 범위 주석처리 : 범위지정 + ctrl + / 
 	//				범위지정 + ctrl+shift + /
 
-public class Day03_3 {
+public class Day03_3_문제6_문제9 {
 	
 	public static void main(String[] args) {
 		

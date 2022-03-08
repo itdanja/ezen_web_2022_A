@@ -126,8 +126,120 @@ public class Day03_6_별찍기 {
 			System.out.println();
 		}
 		
+		// 별문제9
+		System.out.print("문제9 정수 입력 : ");	int 문제9 = scanner.nextInt();
+		for( int i = 1 ; i<=문제9 ; i++ ) {
+			// 공백찍기
+			for( int b = 1 ; b<=i-1 ; b++ ) {System.out.print(" ");}
+			//별찍기
+			for( int s = 1 ; s<= 문제9*2 - (i*2-1) ; s++ ) {System.out.print("*");}
+			//줄바꿈
+			System.out.println();
+		}
 		
+		// 별문제10
 		
+		System.out.print("문제10 정수 입력 : ");	int 문제10 = scanner.nextInt();
+		for( int i = 1 ; i<=문제10/2 ; i++ ) {
+			// 1. 공백찍기
+			for( int b= 1 ; b<=문제10/2-i ; b++) {
+				System.out.print(" ");
+			}
+			// 2. 별찍기
+			for( int s= 1; s<=i*2-1; s++ ) {
+				System.out.print("*");
+				// System.out.print(i); // 문제8
+			}
+			// 3. 줄바꿈
+			System.out.println();
+		}
+		for( int i = 1 ; i<=문제10/2 ; i++ ) {
+			// 공백찍기
+			for( int b = 1 ; b<=i-1 ; b++ ) {System.out.print(" ");}
+			//별찍기
+			for( int s = 1 ; s<= 문제10/2*2 - (i*2-1) ; s++ ) {System.out.print("*");}
+			//줄바꿈
+			System.out.println();
+		}
+		
+		// 별문제11
+		System.out.print("문제11 정수 입력 : ");	int 문제11 = scanner.nextInt();
+		
+		for( int i = 1 ; i<=문제11 ; i++ ) { // i = 행 = 가로 
+			for( int j = 1 ; j<=문제11 ; j++ ) { // j = 열 = 세로 
+				if( i == j ) System.out.print("*"); // 행 = 열 동일한 경우 별찍기 
+				else if( (i+j) == (문제11+1) ) System.out.print("*"); // 행 과 열의 더한값이 최대줄수+1 과 동일한 경우 별찍기
+				else System.out.print(" ");
+			}
+			// 줄바꿈 
+			System.out.println();
+		}
+		
+		//별문제12
+		
+		System.out.print("문제12 정수 입력 : ");	int N = scanner.nextInt();
+	      int col = 0;
+	      int space = 2;
+	      
+	      for(int i=1; i<=N; i++) {
+	         for(int j=0; j<i; j++)
+	            System.out.print("*");
+	         
+	         for(int j=(i-1)*2; j<(N*2)-2; j++)
+	            System.out.print(" ");
+	         for(int j=0; j<i; j++)
+	            System.out.print("*");
+	         
+	         System.out.println();
+	      }
+	      
+	      for(int i=N; i<(N*2)-1; i++) {
+	         for(int j=col; j<N-1; j++)
+	            System.out.print("*");
+	         
+	         for(int j=0; j<space; j++)
+	            System.out.print(" ");
+	         
+	         for(int j=col; j<N-1; j++)
+	            System.out.print("*");
+	         
+	         System.out.println();
+	         col ++;
+	         space += 2;
+	      }
+		
+	      //별문제13
+	      	System.out.print("문제13 정수 입력 : "); 	 int n = scanner.nextInt();
+	         
+	        String map[] = new String[n];
+	        map[0] = "  *  ";
+	        map[1] = " * * ";
+	        map[2] = "*****";
+	         
+	        for (int k = 1; 3 * (int)Math.pow(2, k) <= n; ++k) {
+	        	
+	        	 int bottom = 3 * (int)Math.pow(2, k);
+	             int middle = bottom / 2;
+	              
+	             for (int i = middle; i < bottom; ++i) {
+	                 map[i] = map[i - middle] + " " + map[i -middle];
+	             }
+	              
+	             String space2 = "";
+	             while (space2.length() < middle) {
+	                 space2 += " ";
+	             }
+	             for (int i = 0; i < middle; ++i) {
+	                 map[i] = space2 + map[i] + space2;
+	             }
+	            
+	        }
+	         
+	        for (int i = 0; i < n; ++i) {
+	            System.out.println(map[i]);
+	        }
+	      
+	      
 	}
 }
 
