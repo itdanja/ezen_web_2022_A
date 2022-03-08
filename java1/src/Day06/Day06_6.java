@@ -15,8 +15,8 @@ public class Day06_6 { // c s
 				// 글번호는 배열에 저장되는 순서 [ 인덱스 ]
 				// 글보기 메뉴 
 		// 3. 글보기 메뉴 [ 1. 목록보기 2.삭제 3.수정 ]
-			// 1. 삭제시 : 작성자와 비밀번호 입력받아 동일하면 삭제
-			// 2. 수정시 : 작성자와 비밀번호 입력받아 동일하면 제목과 내용만 수정 
+			// 1. 삭제시 :  비밀번호 입력받아 동일하면 삭제
+			// 2. 수정시 :  비밀번호 입력받아 동일하면 제목과 내용만 수정 
 	
 	public static void main(String[] args) { // m s 
 		
@@ -36,7 +36,7 @@ public class Day06_6 { // c s
 				index++; // 인덱스 증가
 			}
 			//////////////////////////////////////////////////////////////
-			System.out.println("1.글쓰기 2.글보기 ");
+			System.out.print("1.글쓰기 2.글보기  선택 : ");
 			int ch = scanner.nextInt();
 			if( ch== 1 ) { // 1. 글쓰기 
 /////////////////////////////////////// 글쓰기 /////////////////////////////////
@@ -61,7 +61,22 @@ public class Day06_6 { // c s
 			}
 			
 			else if( ch==2 ) { // 2. 글보기 
+				System.out.print(" 게시물 번호(인덱스) 선택 : "); int bno = scanner.nextInt();
 				
+				System.out.println("------------- 게시물 상세페이지 --------------------");
+				// 반복문 사용 목적X -> 출력할위치[인덱스] 입력 받았기 때문에 -> 입력받은 인덱스 위치에 객체 출력 
+				System.out.printf("작성자: %s  제목 : %s \n" ,  
+						boardlist[bno].writer , boardlist[bno].title );
+				
+				System.out.printf("내용 : %s \n" , boardlist[bno].content );
+				System.out.println("----------------------------------------");
+				System.out.print(" 1. 목록보기(뒤로가기) 2.글삭제 3.글수정 선택 : ");
+				
+				int ch2 = scanner.nextInt();
+				if( ch2 == 1 ) {}
+				else if( ch2 == 2 ) {}
+				else if( ch2 == 3 ) {}
+				else {}
 			}
 			else {
 				System.err.println(" 알림)) 알수없는 번호입니다. ");
