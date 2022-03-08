@@ -2,7 +2,7 @@ package Day06;
 
 import java.util.Scanner;
 
-public class Day06_3 {
+public class Day06_3_회원제프로그램 {
 	
 	// 회원제 프로그램 [ 클래스 버전 ] 
 	
