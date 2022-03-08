@@ -2,7 +2,7 @@ package Day06;
 
 import java.util.Scanner;
 
-public class Day06_6 { // c s 
+public class Day06_6_비회원제게시판 { // c s 
 	
 	// 비회원제 게시판 [ 클래스 버전 ]
 		// 0. 게시물 설계 => 클래스 선언 
@@ -63,7 +63,7 @@ public class Day06_6 { // c s
 			else if( ch==2 ) { // 2. 글보기 
 //////////////////////////////////////////// 글 보기 //////////////////////////////
 				System.out.print(" 게시물 번호(인덱스) 선택 : "); int bno = scanner.nextInt();
-				
+															// bno : 현 게시물의 인덱스번호
 				System.out.println("------------- 게시물 상세페이지 --------------------");
 				// 반복문 사용 목적X -> 출력할위치[인덱스] 입력 받았기 때문에 -> 입력받은 인덱스 위치에 객체 출력 
 				System.out.printf("작성자: %s  제목 : %s \n" ,  
@@ -107,8 +107,22 @@ public class Day06_6 { // c s
 ///////////////////////////////////////////////////////////////////////////////////
 					
 				}
-				else if( ch2 == 3 ) {}
-				else {}
+				else if( ch2 == 3 ) {
+////////////////////////////////////////////글 수정 ////////////////////////////////
+					// 1. 비밀번호 입력받기 
+					System.out.print(" 알림)) 현 게시물 비밀번호 : "); String password = scanner.next();
+					// 2. bno: 현게시물(보고있는게시물)의 인덱스 객체내 비밀번호가 입력받은 비밀번호가 동일하면 
+					if( boardlist[bno].password.equals(password) ) {
+						// 해당 게시물의 제목과 내용을 새로 입력받아 현 게시물객체내 제목과 내용에 대입 .
+						System.out.print(" 수정할 제목 : "); 		boardlist[bno].title = scanner.next();
+						System.out.print(" 수정할 내용 : ");		boardlist[bno].content = scanner.next();
+						System.out.println(" 알림)) 내용이 수정되었습니다. ");
+					}else { // 만일 비밀번호가 다릅니다.
+						System.out.println(" 알림)) 비밀번호가 다릅니다 [ 수정실패 ]");
+					}
+/////////////////////////////////////////////////////////////////////////////////
+				}
+				else { System.err.println(" 알림)) 알수없는 번호입니다. "); }
 				
 			}
 			else {
