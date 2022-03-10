@@ -28,8 +28,8 @@ public class Day07_5_BookApplication {
 		// static  : 프로그램 시작시 메모리 할당 / 프로그램 종료시 메모리 초기화
 			// 프로그램 전반적으로 모든곳에 사용되는 메모리[변수]
 	
-	static Scanner scanner = new Scanner(System.in);
-	static Member[] members = new Member[100];
+	static Scanner scanner = new Scanner(System.in); // static : 모든곳에서 사용가능 
+	static Member[] members = new Member[1000]; // 모든 클래스에서 사용하는 회원목록 배열
 	
 	// 0. 코드를 읽어주는 시작 메소드 [ 스레드 ]
 	public static void main(String[] args) { // main s
@@ -52,7 +52,13 @@ public class Day07_5_BookApplication {
 			int ch = scanner.nextInt();
 			Member member = new Member(); // 1~4 {}괄호에서 사용 가능
 			if( ch == 1 ) {
-				member.회원가입();// 회원가입 메소드 호출 
+				
+				boolean result =  member.회원가입();// 회원가입 메소드 호출 
+				if( result ) 
+					System.err.println(" 알림]] 회원가입 성공 ");
+				else 
+					System.err.println(" 알림]] 회원가입 실패");
+				
 			} 
 			else if( ch ==2 ) {
 				member.로그인(); // 로그인 메소드 호출 
