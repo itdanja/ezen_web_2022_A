@@ -33,15 +33,13 @@ public class Member {
 		System.out.print(" 연락처 : ");	String phone = Day07_5_BookApplication.scanner.next();
 			// * scanner 객체가 다른 클래스내 static 선언되어있음. // * 클래스명.필드명.함수명()  
 			// * static 필드,메소드는 객체없이 호출가능 [ 클래스명.필드명/메소드명 ]
-		
 			// * 아이디중복체크 
 			for( Member temp : Day07_5_BookApplication.members ) {
 				if( temp != null && temp.id.equals(id)) { // 만약에 공백이 아니면서 배열내 id와 입력받은 id와 동일하면 
 					System.out.println(" 알림]] 현재 사용중인 아이디 입니다. ");
 					return false; // 함수종료 ---> 아이디가 중복되었기 떄문에 false[가입실패]
 				}
-			}
-			
+			} 
 			// * 회원번호 자동부여 [ 가장 최근에 가입한 회원[마지막회원]의 번호 + 1 ]
 			int bno = 0; // 회원번호 저장하는 변수 
 			int j = 0; // 반복횟수 [ 인덱스 ]
@@ -57,7 +55,6 @@ public class Member {
 				}
 				j++; // 인덱스 증가
 			}
-		
 		// 2. 4개변수 -> 객체화 -> 1개
 		Member member = new Member( bno , id, password, name, phone ); // 모든 필드 받는 생성자로 객체생성
 		
