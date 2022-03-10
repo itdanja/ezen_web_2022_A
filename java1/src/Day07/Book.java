@@ -28,6 +28,15 @@ public class Book {
 		// 2. 도서목록 메소드
 	void 도서목록() {
 		System.out.println(" ------- 도서목록 페이지 -------");
+		System.out.println("ISBN\t도서명\t작가\t대여가능여부");
+		for( Book temp : Day07_5_BookApplication.books) {
+			if( temp != null ) { // 도서가 존재하면 
+				if(  temp.brental ) // 해당도서의 도서대여여부가 true 이면 
+					System.out.println( temp.ISBN +"\t"+ temp.bname +"\t" + temp.bwriter +"\t" + "대여가능");
+				else // 해당도서의 도서대여여부가 false 
+					System.out.println( temp.ISBN +"\t"+ temp.bname +"\t" + temp.bwriter +"\t" + "대여중");
+			}
+		}
 	}
 		// 3. 도서대여 메소드
 	void 도서대여() {
@@ -41,9 +50,9 @@ public class Book {
 	void 도서등록() {
 		System.out.println(" ------- 도서등록 페이지 -------");
 		// 1. 입력받아 
-		System.out.println(" ISBN : ");	String isbn = Day07_5_BookApplication.scanner.next();
-		System.out.println(" 도서명 : ");	String bname = Day07_5_BookApplication.scanner.next();
-		System.out.println(" 작가 : ");	String bwriter = Day07_5_BookApplication.scanner.next();
+		System.out.print(" ISBN : ");	String isbn = Day07_5_BookApplication.scanner.next();
+		System.out.print(" 도서명 : ");	String bname = Day07_5_BookApplication.scanner.next();
+		System.out.print(" 작가 : ");	String bwriter = Day07_5_BookApplication.scanner.next();
 		//*중복체크[isbn]
 		for( Book temp : Day07_5_BookApplication.books ) {
 			if(  temp !=null && temp.ISBN.equals(isbn) ) {
@@ -59,6 +68,7 @@ public class Book {
 			if(temp == null ) {
 				Day07_5_BookApplication.books[i]=book;
 				System.out.println(" 알림]] 도서등록이 되었습니다. ");
+				return; // 도서등록 메소드 종료 ( 등록성공 )
 			}
 			i++; // 인덱스증가
 		}
