@@ -29,6 +29,7 @@ public class Day07_5_BookApplication {
 			// 프로그램 전반적으로 모든곳에 사용되는 메모리[변수]
 	
 	static Scanner scanner = new Scanner(System.in);
+	static Member[] members = new Member[100];
 	
 	// 0. 코드를 읽어주는 시작 메소드 [ 스레드 ]
 	public static void main(String[] args) { // main s
