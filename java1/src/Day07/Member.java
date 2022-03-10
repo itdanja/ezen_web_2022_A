@@ -88,19 +88,41 @@ public class Member {
 		}
 		// 3. 로그인 성공시 입력한 id 반환 / 실패시 null 
 		return null; // 실패시 null 반환
-		
 	}
-		// 3. 아이디찾기 메소드 [ 인수x반환x]
+		// 3. 아이디찾기 메소드 [ 인수x반환x] : 이름 , 연락처 
 	void 아이디찾기() {
 		System.out.println(" ----- 아이디찾기 페이지 ------");
+		// 1.입력받기 
+		System.out.print(" 이름 : "); String name = Day07_5_BookApplication.scanner.next();
+		System.out.print(" 연락처 : "); String phone = Day07_5_BookApplication.scanner.next();
+		// 2. 입력받은 값을 배열에 찾기 
+		for( Member temp : Day07_5_BookApplication.members ) {
+			if( temp !=null && temp.name.equals(name) && 
+					temp.phone.equals(phone) ) {
+				//* 공백이 아니면서 해당 객체내 name,phone 이 입력받은 값과 동일하면 
+				System.out.println(" 알림]] 회원님 아이디 : " + temp.id); // 찾은 id 안내
+				return; // 동일한 값을 찾았으면 해당 메소드 종료 
+			}
+		}
+		// 3. 찾았으면 찾은id 출력하고 못찾았으면 없음 출력 
+		System.out.println(" 알림]] 동일한 회원정보가 없습니다. ");
 	}
-		// 4. 비밀번찾기 메소드 [ 인수x반환x ]
+		// 4. 비밀번찾기 메소드 [ 인수x반환x ] : 아이디 , 연락처
 	void 비밀번호찾기() {
 		System.out.println(" ----- 비밀번호찾기 페이지 ------");
+		System.out.print(" 아이디 : ");	String id = Day07_5_BookApplication.scanner.next();
+		System.out.print(" 연락처 : ");	String phone = Day07_5_BookApplication.scanner.next();
+		for( Member temp : Day07_5_BookApplication.members ) {
+			if( temp != null && temp.id.equals(id) &&
+					temp.phone.equals(phone) ) {
+				System.out.println(" 알림]] 회원님 비밀번호 : " + temp.password );
+				return; // 동일한 값 찾았으면 해당 메소드 종료 
+			}
+		}
+		System.out.println(" 알림]] 동일한 회원정보가 없습니다. ");
 	}
 		// 5. 회원탈퇴 메소드 
 		// 6. 회원수정 메소드 
-	
 	
 }
 

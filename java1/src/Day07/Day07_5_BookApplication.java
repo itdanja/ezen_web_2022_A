@@ -72,9 +72,8 @@ public class Day07_5_BookApplication {
 				}else{ // 일반 
 					// 1. 일반회원 메뉴 메소드 호출
 					System.out.println(" 알림]] 안녕하세요~ "+result+"님");
-					membermeuu();
+					membermenu();
 				}
-				
 			}
 			else if( ch ==3 ) {
 				member.아이디찾기();// 아이디 찾기 메소드 호출 
@@ -82,19 +81,38 @@ public class Day07_5_BookApplication {
 			else if( ch ==4 ) {
 				member.비밀번호찾기(); // 비밀번호 찾기 메소드 소출 
 			}
-			else {
-				System.err.println(" 알림]] 알수 없는 번호입니다. ");
-			} 
+			else { System.err.println(" 알림]] 알수 없는 번호입니다. "); } 
 		}
 	} // menu end 
 	
 	// 2. 일반회원 메뉴 메소드
-	void membermeuu() {
-		
-	}
+	void membermenu() {
+		while(true) {
+			System.out.println(" --------------- 회원 메뉴 ------------------");
+			System.out.print("1.도서검색 2.도서목록 3.도서대여 4.도서반납 5.로그아웃 선택 : ");
+			int ch = scanner.nextInt();
+				Book book = new Book(); // 빈생성자로 객체 => 메소드 호출용
+			if( ch == 1 ) 		{ book.도서검색(); }
+			else if( ch ==2 ) 	{ book.도서목록(); }
+			else if( ch == 3 ) 	{ book.도서대여(); }
+			else if( ch == 4 ) 	{ book.도서반납(); }
+			else if( ch == 5 ) 	{ return; } // 일반회원메뉴 메소드 종료 [ 로그아웃 ] 
+			else { System.err.println(" 알림]] 알수 없는 번호입니다. "); }
+		}
+	} // 일반회원 메뉴 종료 
 	// 3. 관리자 메뉴 메소드 
 	void adminmenu() {
-		
+		while(true) {
+			System.out.println(" --------------- 관리자 메뉴 ------------------");
+			System.out.print("1.도서등록 2.도서목록 3.도서삭제 4.로그아웃 선택 : ");
+			int ch = scanner.nextInt();
+				Book book = new Book();
+			if( ch == 1 ) 		{ book.도서등록(); }
+			else if( ch == 2 ) 	{ book.도서목록(); }
+			else if( ch == 3 ) 	{ book.도서삭제(); }
+			else if( ch == 4 ) 	{ return; }		// 관리자메뉴 메소드 종료 
+			else { System.err.println(" 알림]] 알수 없는 번호입니다. "); }
+		}
 	}
 	
 	
