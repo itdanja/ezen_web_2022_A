@@ -72,7 +72,7 @@ public class Day07_5_BookApplication {
 				}else{ // 일반 
 					// 1. 일반회원 메뉴 메소드 호출
 					System.out.println(" 알림]] 안녕하세요~ "+result+"님");
-					membermenu();
+					membermenu( result ); // 인수1개 [ 로그인 성공한 id ] 
 				}
 			}
 			else if( ch ==3 ) {
@@ -86,7 +86,7 @@ public class Day07_5_BookApplication {
 	} // menu end 
 	
 	// 2. 일반회원 메뉴 메소드
-	void membermenu() {
+	void membermenu( String loginid ) { // 인수 변수명은 달라도 되지만 자료형 동일 
 		while(true) {
 			System.out.println(" --------------- 회원 메뉴 ------------------");
 			System.out.print("1.도서검색 2.도서목록 3.도서대여 4.도서반납 5.로그아웃 선택 : ");
@@ -94,8 +94,8 @@ public class Day07_5_BookApplication {
 				Book book = new Book(); // 빈생성자로 객체 => 메소드 호출용
 			if( ch == 1 ) 		{ book.도서검색(); }
 			else if( ch ==2 ) 	{ book.도서목록(); }
-			else if( ch == 3 ) 	{ book.도서대여(); }
-			else if( ch == 4 ) 	{ book.도서반납(); }
+			else if( ch == 3 ) 	{ book.도서대여( loginid ); }
+			else if( ch == 4 ) 	{ book.도서반납( loginid ); }
 			else if( ch == 5 ) 	{ return; } // 일반회원메뉴 메소드 종료 [ 로그아웃 ] 
 			else { System.err.println(" 알림]] 알수 없는 번호입니다. "); }
 		}
