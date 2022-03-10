@@ -30,6 +30,7 @@ public class Day07_5_BookApplication {
 	
 	static Scanner scanner = new Scanner(System.in); // static : 모든곳에서 사용가능 
 	static Member[] members = new Member[1000]; // 모든 클래스에서 사용하는 회원목록 배열
+	static Book[] books = new Book[1000];
 	
 	// 0. 코드를 읽어주는 시작 메소드 [ 스레드 ]
 	public static void main(String[] args) { // main s
