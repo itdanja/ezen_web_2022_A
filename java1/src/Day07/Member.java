@@ -75,7 +75,20 @@ public class Member {
 			// 로그인성공시 성공한 아이디반환 / 실패시 NULL 반환
 	String 로그인() {
 		System.out.println(" ----- 로그인 페이지 ------");
-		return "아이디";
+		// 1. 입력받기 
+		System.out.print(" 아이디 : ");		String id = Day07_5_BookApplication.scanner.next();
+		System.out.print(" 비밀번호 : ");	String password = Day07_5_BookApplication.scanner.next();
+		// 2. 배열내 객체 id와 password가 입력한 값과 동일하면 
+		for( Member temp : Day07_5_BookApplication.members ) {
+			if(  temp != null && temp.id.equals(id) 
+					&& temp.password.equals(password) ) {
+				// * 공백이 아니면서 id와 password가 동일하면 
+				return temp.id; // 성공한 id 반환
+			}
+		}
+		// 3. 로그인 성공시 입력한 id 반환 / 실패시 null 
+		return null; // 실패시 null 반환
+		
 	}
 		// 3. 아이디찾기 메소드 [ 인수x반환x]
 	void 아이디찾기() {
@@ -88,7 +101,19 @@ public class Member {
 		// 5. 회원탈퇴 메소드 
 		// 6. 회원수정 메소드 
 	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

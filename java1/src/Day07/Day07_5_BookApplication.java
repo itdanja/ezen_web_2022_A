@@ -61,9 +61,20 @@ public class Day07_5_BookApplication {
 				
 			} 
 			else if( ch ==2 ) {
-				member.로그인(); // 로그인 메소드 호출 
-					// 1. 일반회원 메뉴 메소드 호출 
+				String result = member.로그인(); // 로그인 메소드 호출 
+				
+				if( result == null ) { // 로그인실패 
+					System.out.println(" 알림]] 동일한 회원정보가 없습니다.");
+				}else if( result.equals("admin")) { // 관리자
 					// 2. 관리자 메뉴 메소드 호출 
+					System.out.println(" 알림]] 안녕하세요~ "+result+"님");
+					adminmenu(); // 내부 메소드 호출
+				}else{ // 일반 
+					// 1. 일반회원 메뉴 메소드 호출
+					System.out.println(" 알림]] 안녕하세요~ "+result+"님");
+					membermeuu();
+				}
+				
 			}
 			else if( ch ==3 ) {
 				member.아이디찾기();// 아이디 찾기 메소드 호출 
