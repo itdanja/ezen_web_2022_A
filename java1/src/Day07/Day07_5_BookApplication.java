@@ -1,6 +1,6 @@
 package Day07;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Day07_5_BookApplication {
 	
