@@ -74,6 +74,22 @@ public class Day09_6_은행계좌프로그램 {
 				
 			}else if( 선택 == 4 ) {
 				System.out.println("+++ 이체 페이지 +++");
+				System.out.println(" 계좌번호 : "); String 계좌번호 = scanner.next();
+				System.out.println(" 비밀번호 : "); String 비밀번호 = scanner.next();
+				System.out.println(" 이체금액 : "); int 이체금액 = scanner.nextInt();
+				System.out.println(" 이체계좌 : "); String 받는계좌 = scanner.next();
+				
+				int result =  컨트롤.이체( 계좌번호 , 비밀번호 , 이체금액 , 받는계좌 );
+				if( result == 1 ) {
+					System.out.println(" ** 잔액 부족 **");
+				}else if( result == 2 ) {
+					System.out.println(" ** 이체 성공 **");
+				}else if( result == 3 ) {
+					System.out.println(" ** 받는 계좌 정보가 없습니다. **");
+				}else if( result == 4 ) {
+					System.out.println(" ** 보내는 계좌 정보가 없습니다. **");
+				}
+				
 			}else if( 선택 == 5 ) {
 				System.out.println("+++ 내 계좌목록 페이지 +++");
 				System.out.println(" 계좌주 : "); String 계좌주 = scanner.next();
