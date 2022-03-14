@@ -53,10 +53,42 @@ public class 은행컨트롤러 { // 클래스
 		// 4. 이체 [ U ] 
 	public boolean 이체() { return false; }
 		// 5. 내계좌목록 [ R ] 
-	public boolean 계좌목록() { return false; }
+	public 은행[] 계좌목록( String 계좌주) {
+	// 입력받은 계좌주의 계좌목록 만들어서 반환
+							// 인수 : 외부로 들어오는 데이터 
+		// 동일한 계좌주의 계좌를 찾아서 배열담아 넘기기 
+		은행[] 내계좌목록 = new 은행[100]; // 1.배열 생성 
+		for( 은행 temp : Day09_6_은행계좌프로그램.계좌리스트) {
+			if( temp !=null && temp.get계좌주().equals(계좌주) ) {
+				// 해당 계좌내 계좌주와 인수의 계좌주와 동일하면
+				// 내계좌목록 배열내 빈공간을 찾아서 내계좌목록에 넣기
+				int i = 0;
+				for( 은행 temp2  : 내계좌목록 ) { 
+					if( temp2 == null ) {
+						내계좌목록[i] = temp; break;
+					}
+					i++;
+				}
+			}
+		}
+		return 내계좌목록; 
+	}
 		// 6. 대출 [ U ]
 	public boolean 대출() { return false; }
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

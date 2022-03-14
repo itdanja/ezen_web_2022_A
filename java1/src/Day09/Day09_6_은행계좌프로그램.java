@@ -44,12 +44,25 @@ public class Day09_6_은행계좌프로그램 {
 			}
 			else if( 선택 == 2 ) {
 				System.out.println("+++ 입금 페이지 +++");
+				
 			}else if( 선택 == 3 ) {
 				System.out.println("+++ 출금 페이지 +++");
 			}else if( 선택 == 4 ) {
 				System.out.println("+++ 이체 페이지 +++");
 			}else if( 선택 == 5 ) {
-				System.out.println("+++ 계좌목록 페이지 +++");
+				System.out.println("+++ 내 계좌목록 페이지 +++");
+				System.out.println(" 계좌주 : "); String 계좌주 = scanner.next();
+				은행[] 내계좌목록 = 컨트롤.계좌목록( 계좌주 );
+				
+				System.out.println(" *** 검색한 계좌주 님의 계좌목록 *** ");
+				int i = 1;
+				for( 은행 temp : 내계좌목록 ) {
+					if( temp !=null ) // 공백제외 [ 공백이면 출력오류 발생 ] 
+						System.out.println( i+"번 계좌번호 : "+temp.get계좌번호() );
+					i++;
+				}
+				
+				
 			}else if( 선택 == 6 ) {
 				System.out.println("+++ 대출 페이지 +++");
 			}else {
