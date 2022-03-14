@@ -3,7 +3,8 @@ package Day09;
 import java.util.Random;
 
 public class 은행컨트롤러 { // 클래스 
-	
+			// 입출력 기능X
+	// V[ 입출력 ] <-----> C[ 코드 ]
 	// 해당 클래스는 은행 관련 컨트롤러
 	// M : 모델 [ 데이터 ]
 	// V : 뷰 [ 입출력 ]
@@ -47,11 +48,44 @@ public class 은행컨트롤러 { // 클래스
 		return null;  // null 이면 실패했다는 의미
 	}
 		// 2. 입금 [ U ] 
-	public boolean 입금() { return false; }
+	public boolean 입금( String 계좌번호 , int 입금액) { 
+		// 1. 동일한 계좌번호를 찾아서 
+		int i = 0 ;
+		for( 은행 temp : Day09_6_은행계좌프로그램.계좌리스트  ) {
+			if( temp !=null && temp.get계좌번호().equals(계좌번호) ) {
+				// 해당 계좌가 공백이 아니고 입력한[인수]과 같으면 
+				// 2. 동일한 계좌번호가 있으면 입금 처리 
+				Day09_6_은행계좌프로그램.계좌리스트[i].set예금액( temp.get예금액()+입금액 );
+										// Setter	= 기존금액 + 새로운 입금액
+				return true;
+			}
+			i++; 
+		}
+		return false;  // 동일한 계좌번호가 없으면 입금 실패 
+	}
 		// 3. 출금 [ U ] 
-	public boolean 출금() { return false; }
-		// 4. 이체 [ U ] 
-	public boolean 이체() { return false; }
+	public int 출금( String 계좌번호 , String 비밀번호 , int 출금액  ) {
+		
+		int i = 0 ;
+		for( 은행 temp : Day09_6_은행계좌프로그램.계좌리스트 ) { // 1. 동일한 계좌번호를 찾아서
+			if( temp !=null && temp.get계좌번호().equals(계좌번호)  // 2. 해당 계좌번호와 비밀번호가 일치 확인 
+					&& temp.get비밀번호().equals(비밀번호) ) {
+				if( temp.get예금액() < 출금액 ) {
+					return 1; // 잔액부족 의미 반환 	// * 만일 예금액보다 출금액이 더 크면 잔액부족 [ 출금실패 ]
+				}else {
+					// 3. 비밀번호가 일치하면 출금처리 
+					Day09_6_은행계좌프로그램.계좌리스트[i].set예금액(temp.get예금액()-출금액);
+					return 2; // 출금 성공 의미 반환
+				}
+			}
+			i++;
+		}
+		return 3; // 동일한 정보가 아닐경우 실패 의미 반환 //    아니면 출금실패 
+	}
+		// 4. 이체 [ U ] //  본인 계좌/비밀번호/이체금액  받는사람 계좌번호
+	public boolean 이체() { 
+		return false; 
+	}
 		// 5. 내계좌목록 [ R ] 
 	public 은행[] 계좌목록( String 계좌주) {
 	// 입력받은 계좌주의 계좌목록 만들어서 반환

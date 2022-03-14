@@ -44,9 +44,34 @@ public class Day09_6_은행계좌프로그램 {
 			}
 			else if( 선택 == 2 ) {
 				System.out.println("+++ 입금 페이지 +++");
+				System.out.print(" 계좌번호 : "); String 계좌번호 = scanner.next();
+				System.out.print(" 입금액 : "); int 입금액 = scanner.nextInt();
+				
+				boolean result = 컨트롤.입금( 계좌번호 , 입금액 );
+				
+				if( result ) {
+					System.out.println(" ** 입금 성공 **");
+				}else {
+					System.out.println(" 알림]] 입금 실패 (동일한 계좌가 없습니다.)");
+				}
 				
 			}else if( 선택 == 3 ) {
 				System.out.println("+++ 출금 페이지 +++");
+				System.out.print(" 계좌번호 : "); String 계좌번호 = scanner.next();
+				System.out.print(" 비밀번호 : "); String 비밀번호 = scanner.next();
+				System.out.print(" 출금액 : "); int 출금액 = scanner.nextInt();
+				
+				int result = 컨트롤.출금( 계좌번호 , 비밀번호 , 출금액 ); // 메소드호출 : 객체명.메소드명(인수1,인수2,인수3)
+				
+				if( result == 1 ) {
+					System.out.println(" ** 잔액 부족 **");
+				}else if( result == 2 ) {
+					System.out.println(" ** 출금 성공 **");
+				}else if( result == 3) {
+					System.out.println(" ** 올바른 정보가 아닙니다. **");
+				}
+				
+				
 			}else if( 선택 == 4 ) {
 				System.out.println("+++ 이체 페이지 +++");
 			}else if( 선택 == 5 ) {
