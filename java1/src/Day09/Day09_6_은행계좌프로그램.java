@@ -22,8 +22,8 @@ public class Day09_6_은행계좌프로그램 {
 			System.out.println("----------- 계좌 시스템 --------");
 			System.out.print("1.계좌생성 2.입금 3.출금 4.이체 5.계좌목록 6.대출 선택 : ");
 			int 선택 = scanner.nextInt();
-			// 컨트롤러 메소드 호출용 객체 
-			은행컨트롤러 컨트롤 = new 은행컨트롤러();
+			
+			은행컨트롤러 컨트롤 = new 은행컨트롤러(); // 컨트롤러 메소드 호출용 객체 
 			if( 선택 == 1 ) {
 				// 입력
 				System.out.println("+++ 계좌등록 페이지 +++");
@@ -31,10 +31,13 @@ public class Day09_6_은행계좌프로그램 {
 				System.out.print("계좌주 : "); String 계좌주 = scanner.next();
 				System.out.print("은행선택 < 1.국민2.신한3.하나 > : "); int 은행번호 = scanner.nextInt();
 				// 컨트롤러 연결 
-				Boolean result =  컨트롤.계좌생성(비밀번호, 계좌주, 은행번호);
-				if( result  ) { // result  가 true 이면 
+				String 계좌번호 =  컨트롤.계좌생성(비밀번호, 계좌주, 은행번호); // 메소드 호출[ 인수3개]
+				// 메소드 반환 저장 = 계좌번호 혹은 null
+				// 메소드 실행후 메시지 출력
+				if( 계좌번호 != null  ) { // 계좌번호  가 null 아니면 
 					System.out.println(" ** 계좌 생성 ** ");
-				}else { // result 가 false 이면 
+					System.out.println(" 고객님의 계좌번호  : " + 계좌번호 );
+				}else { // 계좌번호가 null 이면
 					System.out.println(" 알림 ]] 계좌등록 실패 (관리자에게문의)");
 				}
 				
