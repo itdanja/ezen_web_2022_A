@@ -45,6 +45,7 @@ public class Day10_7_키오스크 {
 			int ch = scanner.nextInt();
 			if( ch == -1 ) {
 				롯데리아.상품추가();
+			}else {
 			}
 		}
 		
