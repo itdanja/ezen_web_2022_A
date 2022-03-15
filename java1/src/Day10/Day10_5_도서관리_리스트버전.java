@@ -32,11 +32,39 @@ public class Day10_5_도서관리_리스트버전 {
 					System.out.println(book.get도서명() +"\t"+book.get저자());
 				}
 			}
-			if( ch == 3 ) {}
-			if( ch == 4 ) {}
+			if( ch == 3 ) {
+				// 1.배열[ 삭제후에 뒤 인덱스 당기기] vs 인덱스[자동]
+				//	 1 2 3 4 [2삭제] 1 null 3 4 vs 1 2 3 [2삭제] 1 3 4
+				System.out.println("삭제할 도서명 : "); String 도서명 = scanner.next();
+				// 도서찾기
+				for( Book book : booklist ) {
+					if( book.get도서명().equals(도서명) ) { // 해당 도서명이 입력받은 도서명과 동일하면 
+						booklist.remove(book); 
+						break; // 삭제 성공했으면 반복문탈출 
+					}
+				}
+			}
+			if( ch == 4 ) {
+				System.out.println("수정할 도서명 : "); String 도서명 = scanner.next();
+				// 도서찾기 
+				for( Book book : booklist ) {
+					if( book.get도서명().equals(도서명) ) {
+						System.out.println(" 수정 저자 :"); String 저자 = scanner.next();
+						book.set저자(저자); // 수정
+					}
+				}
+			}
 		}
 	}
 }
+
+
+
+
+
+
+
+
 
 
 

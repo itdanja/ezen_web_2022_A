@@ -42,6 +42,7 @@ public class Day10_4 {
 							//  삽입 :  리스트명.add( 인덱스번호 , 값 )
 		//호출: 배열명[인덱스]		vs	리스트명.get(인덱스)
 		//삭제: null할당			vs  리스트명.remove(인덱스)
+							//	객체삭제  리스트명.remove(특정객체)
 			// 1 null 3					1 3  
 		//길이: 배열명.length		vs  리스트명.size()
 	}
