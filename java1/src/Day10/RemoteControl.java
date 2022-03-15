@@ -23,5 +23,5 @@ public interface RemoteControl { // 인터페이스 선언
 	static void changeBattery() {
 		System.out.println(" 건전지 교체합니다. ");
 	}
-
+	
 }

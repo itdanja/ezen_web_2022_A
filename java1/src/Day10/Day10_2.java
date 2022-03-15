@@ -27,6 +27,61 @@ public class Day10_2 {
 		rc.turnOff(); // tv 종료 메소드 
 		rc.setVolume(10); // tv 소음 변경 메소드
 		
+		System.out.println(" 리모컨 연결 :  TV ---> 오디오 교체");
+		
+		// 4. 인터페이스내 오디오클래스 메모리 할당 [ 교체 ]
+		rc = new Audio();
+		// 5. 인터페이스 실행 
+		rc.turnOn();
+		rc.turnOff();
+		rc.setVolume(5);
+		
+		// **** 익명구현객체 : 클래스없이 추상메소드 정의 ****
+		RemoteControl rc2 = new RemoteControl() {
+			// 인터페이스명 객체명 = new 인터페이스명
+			@Override
+			public void turnOn() {
+				System.out.println(" 리모콘 켭니다.");
+			}
+			@Override
+			public void turnOff() {
+				System.out.println(" 리모콘 끕니다.");
+			}
+			@Override
+			public void setVolume(int volume) {
+				System.out.println(" 현재 소음 : " + volume);
+			}
+		};
+		
+		rc2.turnOn();
+		rc2.turnOff();
+		rc2.setVolume(10);
+		
+		
+		// 디폴트 메소드 호출
+		rc2.setMute(true); // 인터페이스에서 이미 구현되었는 메소드 
+		
+		// 정적 메소드 호출 
+		RemoteControl.changeBattery(); // 객체없이 
+		
+		// 메모리 할당 받는 방법
+			// 메모리 할당 해야되는 이유
+				// 외부 클래스/인터페이스내 필드(저장기능),메소드(저장기능) 사용시
+			// 1. new 연산자
+			// 2. static 연산자 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 
