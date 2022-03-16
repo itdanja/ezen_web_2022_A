@@ -22,7 +22,17 @@ public class Day11_4_BoardApp {
 				Controller.boardlist(); // 객체없이 메소드호출이 되는이유 : static메소드 이기때문에
 				System.out.print("1.쓰기 2.보기 선택 : ");
 				int ch = scanner.nextInt();
-				if( ch == 1 ) {}
+				if( ch == 1 ) {
+					System.out.println(" *** 게시물 등록 ***");
+						// nextLine() : 공백포함 입력가능 [ 문제! : nextLine 앞에 일단 next 하나로 취급]
+						// 해결방법 : 일반next 와 nextLine 사이에 nextLine()
+					scanner.nextLine();
+					System.out.print(" 제목 : ");	String 제목 = scanner.nextLine();
+					System.out.print(" 내용 : ");	String 내용 = scanner.nextLine();
+					System.out.print(" 작성자 : ");	String 작성자 = scanner.next();
+					System.out.print(" 비밀번호[수정/삭제시] : "); String 비밀번호 = scanner.next();
+					Controller.write( 제목 , 내용 , 작성자 , 비밀번호 ); // 인수 전달 
+				}
 				else if( ch == 2 ) {}
 				else {}
 			}catch( Exception e ) {
