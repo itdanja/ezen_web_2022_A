@@ -20,10 +20,14 @@ public class Day11_4_BoardApp {
 		Controller.load(); // 2. 파일[ 모든 게시물] 불러오기 
 		while(true) {
 			try { // 예외발생 : 사용자가 문자입력시 예외발생!!! -> catch 이동 
-				
 				// 모든 게시물 출력 
-				System.out.printf("%s\t%s\t%s\t%s\t%s\t \n","번호","제목","작성자","작성일","조회수");
-				
+				System.out.printf("%s\t%10s\t%10s\t%10s\t%2s\t \n","번호","제목","작성자","작성일","조회수");
+				int i = 0; // 리스트내 인덱스
+				for( Board board : Controller.boadlist ) {
+					System.out.printf("%2s\t%10s\t%10s\t%10s\t%2s\t \n", i , board.getTitle() ,
+							board.getWriter() , board.getDate() , board.getViewcount() );
+					i++;
+				}
 				System.out.print("1.쓰기 2.보기 선택 : ");
 				int ch = scanner.nextInt();
 				if( ch == 1 ) {
@@ -37,7 +41,13 @@ public class Day11_4_BoardApp {
 					System.out.print(" 비밀번호[수정/삭제시] : "); String 비밀번호 = scanner.next();
 					Controller.write( 제목 , 내용 , 작성자 , 비밀번호 ); // 인수 전달 
 				}
-				else if( ch == 2 ) {}
+				else if( ch == 2 ) {
+					// 해당 게시물 번호[인덱스] 를 입력받아 게시물정보 모두 출력
+					
+					// 메뉴 
+					System.out.print("1.뒤로가기 2.수정 3.삭제 4.댓글쓰기 선택 : ");
+					
+				}
 				else {}
 			}catch( Exception e ) {
 				System.err.println(" 메시지]] 번호로 입력해주세요.");

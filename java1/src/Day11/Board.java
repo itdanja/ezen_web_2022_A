@@ -1,6 +1,8 @@
 package Day11;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Board {
 	// 1. 필드
@@ -15,12 +17,19 @@ public class Board {
 	// 2. 생성자
 		// 1. 빈생성자
 	public Board() {}
-		// 2. 게시물등록 시 사용되는 생성자
+		// 2. 게시물등록 시 사용되는 생성자 [ 날짜 자동주입 ] 
 	public Board(String title, String content, String password, String writer) {
 		this.title = title;
 		this.content = content;
 		this.password = password;
 		this.writer = writer;
+			// 날짜 클래스 : Date 클래스 ( java.util )
+		Date date = new Date(); // 날짜 객체 생성 
+			// 날짜 형식 클래스 : SimpleDateFormat 클래스 ( java.text )
+		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
+										// y:연도 M:월 d:일 h:시 m:분 s:초 
+		this.date = format.format(date);
+				// 객체명.format( 날짜 ) ; // 해당 날짜가 format 설정한 패턴으로 문자형으로 변환
 	}
 		// 3. 풀생성자
 	public Board(String title, String content, String password, String writer, int viewcount, String date,

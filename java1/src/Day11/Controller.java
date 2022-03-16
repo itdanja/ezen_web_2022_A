@@ -14,8 +14,6 @@ public class Controller {
 		boadlist.add(board); // 2. 리스트에 저장
 		save(); // 3. 파일에 저장 
 	}
-	//3.보기메소드
-	public static void view() {}
 	//4.수정메소드
 	public static void update() {}
 	//5.삭제메소드 
@@ -45,14 +43,18 @@ public class Controller {
 			inputStream.read( bytes ); // 3. 모든 바이트 읽어와서 바이트에 저장 
 			String file = new String( bytes ); // 4. 바이트 -> 문자열 변환 
 			String[] boards = file.split("\n"); // 5. 문자열 자르기 [ 한줄씩 [ \n ] -> 1개객체 ] 
+			int i = 0; // 인덱스 용 
 			for( String temp : boards ) { // 배열내 문자열 하나씩 꺼내기 
+				if( i+1 == boards.length ) break; // * 마지막 인덱스[객체] 제외
 				String[] field = temp.split(","); // 6. 문자열 자르기 [ 한줄 [,] -> 각필드 ] 
 				Board board = new Board( field[0], field[1],
 						field[2], field[3], Integer.parseInt(field[4]),field[5], null);  // 7. 객체화 
 										// 조회수는 필드는 정수형이므로 정수형으로 형변환 [ Integer.parseInt( 문자열 ) ]
 				boadlist.add(board);// 8. 리스트 담기 
+				i++; // 인덱스 증가 
 			}
-		}catch( Exception e ) { System.err.println(" 알림]] 파일로드 실패( 관리자에게문의 )"); }
+			
+		}catch( Exception e ) { System.err.println(" 알림]] 파일로드  실패( 관리자에게문의 )"+e);  }
 		
 	}
 }
