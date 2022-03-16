@@ -16,8 +16,18 @@ public class Controller {
 	}
 	//4.수정메소드
 	public static void update() {}
-	//5.삭제메소드 
-	public static void delete() {}
+	
+	//5.삭제메소드 			// 현게시물번호[인덱스] 현게시물패스워드
+	public static boolean delete( int index , String password ) {
+		if( password.equals( boadlist.get(index).getPassword() ) ) {
+		// 입력받은패스워드 와   해당 인덱스 게시물번호의 패스워드 동일하면 
+			boadlist.remove(index);	// 리스트.add(객체) : 추가    리스트.get(인덱스):호출    리스트.remove(인덱스) : 삭제
+			save(); // 파일내에서 삭제된 리스트 업데이트 
+			return true; // 삭제가 성공했으면 
+		}else {
+			return false; // 삭제가 실패했으면 
+		}
+	}
 	//6.댓글쓰기메소드 
 	public static void replywrite() {}
 	//7.게시물 저장/수정 메소드 

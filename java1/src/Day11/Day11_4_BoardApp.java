@@ -54,13 +54,16 @@ public class Day11_4_BoardApp {
 					// 메뉴 
 					System.out.print("1.뒤로가기 2.수정 3.삭제 4.댓글쓰기 선택 : "); int ch2 = scanner.nextInt();
 					if( ch2 == 1 ) { }
-					else if( ch == 2 ) { 
+					else if( ch2 == 2 ) { 
 						Controller.update(); // 수정할 인덱스번호,패스워드,수정할제목,수정할내용 =>  인수 
 					}
-					else if( ch == 3 ) { 
-						Controller.delete(); // 삭제할 인덱스번호,패스워드 => 인수
+					else if( ch2 == 3 ) { 
+						System.out.println(" 현 게시물 패스워드 : "); String password = scanner.next(); 
+						boolean result =  Controller.delete( index , password); // 삭제할 인덱스번호,패스워드 => 인수
+						if( result ) System.err.println(" 알림]] 삭제 성공 ");
+						else System.err.println(" 알림]] 삭제 실패 ( 패스워드가 다릅니다.) ");
 					}
-					else if( ch == 4 ) { 
+					else if( ch2 == 4 ) { 
 						Controller.replywrite(); // 인덱스번호, 댓글내용 , 댓글패스워드 ,댓글작성자  => 인수 
 					}
 					else { }
