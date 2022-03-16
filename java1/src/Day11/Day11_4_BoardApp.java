@@ -6,7 +6,7 @@ public class Day11_4_BoardApp {
 	/*
 	 *  비회원제 게시판/댓글 프로그램 [ 예외처리 , 파일처리 , 리스트 ]
 	 * 		// [m]게시물 클래스 
-	 * 				// 제목 , 내용 , 패스워드 , 작성자 , 작성일 , 조회수 , 댓글리스트
+	 * 				// 제목 , 내\용 , 패스워드 , 작성자 , 작성일 , 조회수 , 댓글리스트
 	 * 		// [m]댓글 클래스 
 	 * 				// 내용 , 패스워드 , 작성자 , 작성일 
 	 * 		// [c]컨트롤러 클래스
@@ -18,10 +18,12 @@ public class Day11_4_BoardApp {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in); // 1.입력객체
 		Controller.load(); // 2. 파일[ 모든 게시물] 불러오기 
-		System.out.println( "확인 : " + Controller.boadlist );
 		while(true) {
 			try { // 예외발생 : 사용자가 문자입력시 예외발생!!! -> catch 이동 
-				Controller.boardlist(); // 객체없이 메소드호출이 되는이유 : static메소드 이기때문에
+				
+				// 모든 게시물 출력 
+				System.out.printf("%s\t%s\t%s\t%s\t%s\t \n","번호","제목","작성자","작성일","조회수");
+				
 				System.out.print("1.쓰기 2.보기 선택 : ");
 				int ch = scanner.nextInt();
 				if( ch == 1 ) {

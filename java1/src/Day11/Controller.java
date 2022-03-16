@@ -8,8 +8,6 @@ public class Controller {
 	// 0. 게시물 리스트  [ 모든 게시물을 담는 리스트 ] 
 	public static ArrayList<Board> boadlist = 
 			new ArrayList<>();
-	//1.목록메소드
-	public static void boardlist() {}
 	//2.쓰기메소드 
 	public static void write(String 제목 , String 내용 , String 작성자 , String 비밀번호 ) {
 		Board board = new Board(제목, 내용, 비밀번호, 작성자); // 1. 객체화[ 변수가 4개 --> 1개 객체 ]
@@ -54,7 +52,7 @@ public class Controller {
 										// 조회수는 필드는 정수형이므로 정수형으로 형변환 [ Integer.parseInt( 문자열 ) ]
 				boadlist.add(board);// 8. 리스트 담기 
 			}
-		}catch( Exception e ) { System.err.println(" 알림]] 파일로드 실패( 관리자에게문의 )" + e); }
+		}catch( Exception e ) { System.err.println(" 알림]] 파일로드 실패( 관리자에게문의 )"); }
 		
 	}
 }
