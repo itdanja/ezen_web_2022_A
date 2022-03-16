@@ -55,7 +55,13 @@ public class Day11_4_BoardApp {
 					System.out.print("1.뒤로가기 2.수정 3.삭제 4.댓글쓰기 선택 : "); int ch2 = scanner.nextInt();
 					if( ch2 == 1 ) { }
 					else if( ch2 == 2 ) { 
-						Controller.update(); // 수정할 인덱스번호,패스워드,수정할제목,수정할내용 =>  인수 
+						System.out.print(" 현 게시물 패스워드 : ");		String password = scanner.next();
+						scanner.nextLine(); // [ 일반next 다음로 nextLine 사용하게 되면 문제발생 [ 개행 취급 ] 
+						System.out.print(" 변경 제목 : ");			String title = scanner.nextLine();
+						System.out.print(" 변경 내용 : ");			String content = scanner.nextLine();
+						boolean result =  Controller.update( index , password , title , content ); // 수정할 인덱스번호,패스워드,수정할제목,수정할내용 =>  인수 
+						if( result ) System.err.println(" 알림]] 수정 성공 ");
+						else System.err.println(" 알림]] 수정 실패[ 패스워가 다릅니다.] ");
 					}
 					else if( ch2 == 3 ) { 
 						System.out.println(" 현 게시물 패스워드 : "); String password = scanner.next(); 

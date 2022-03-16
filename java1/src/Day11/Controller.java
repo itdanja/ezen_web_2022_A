@@ -6,16 +6,27 @@ import java.util.ArrayList;
 
 public class Controller {
 	// 0. 게시물 리스트  [ 모든 게시물을 담는 리스트 ] 
-	public static ArrayList<Board> boadlist = 
-			new ArrayList<>();
+	public static ArrayList<Board> boadlist = new ArrayList<>();
+	
 	//2.쓰기메소드 
 	public static void write(String 제목 , String 내용 , String 작성자 , String 비밀번호 ) {
 		Board board = new Board(제목, 내용, 비밀번호, 작성자); // 1. 객체화[ 변수가 4개 --> 1개 객체 ]
 		boadlist.add(board); // 2. 리스트에 저장
 		save(); // 3. 파일에 저장 
 	}
+	
 	//4.수정메소드
-	public static void update() {}
+	public static boolean update( int index , String password , String title , String content ) { 
+		if( password.equals( boadlist.get(index).getPassword() )) {
+			// 패스워드가 동일하면 수정처리 
+			boadlist.get(index).setTitle(  title  );
+			boadlist.get(index).setContent( content );
+			save(); // 파일 업데이트 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	//5.삭제메소드 			// 현게시물번호[인덱스] 현게시물패스워드
 	public static boolean delete( int index , String password ) {
@@ -28,8 +39,10 @@ public class Controller {
 			return false; // 삭제가 실패했으면 
 		}
 	}
+	
 	//6.댓글쓰기메소드 
 	public static void replywrite() {}
+	
 	//7.게시물 저장/수정 메소드 
 	public static void save() { 		// 리스트내 모든 게시물을 파일에 저장
 		try {
@@ -45,6 +58,7 @@ public class Controller {
 			}
 		}catch( Exception e ) {  System.err.println(" 알림]] 파일저장 실패( 관리자에게문의 )"); }
 	}
+	
 	//8.게시물불러오기메소드 [ 프로그램 시작 ] 파일---> 리스트
 	public static void load() {
 		try {
@@ -63,9 +77,7 @@ public class Controller {
 				boadlist.add(board);// 8. 리스트 담기 
 				i++; // 인덱스 증가 
 			}
-			
 		}catch( Exception e ) { System.err.println(" 알림]] 파일로드  실패( 관리자에게문의 )"+e);  }
-		
 	}
 }
 
