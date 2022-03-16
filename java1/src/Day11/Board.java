@@ -28,8 +28,7 @@ public class Board {
 			// 날짜 형식 클래스 : SimpleDateFormat 클래스 ( java.text )
 		SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd");
 										// y:연도 M:월 d:일 h:시 m:분 s:초 
-		this.date = format.format(date);
-				// 객체명.format( 날짜 ) ; // 해당 날짜가 format 설정한 패턴으로 문자형으로 변환
+		this.date = format.format(date);// 객체명.format( 날짜 ) ; // 해당 날짜가 format 설정한 패턴으로 문자형으로 변환
 	}
 		// 3. 풀생성자
 	public Board(String title, String content, String password, String writer, int viewcount, String date,

@@ -43,14 +43,31 @@ public class Day11_4_BoardApp {
 				}
 				else if( ch == 2 ) {
 					// 해당 게시물 번호[인덱스] 를 입력받아 게시물정보 모두 출력
-					
+					System.out.print(" 게시물 번호 : "); int index = scanner.nextInt();
+					// 해당 인덱스 출력 
+					Board temp = Controller.boadlist.get(index); // 해당 인덱스의 객체를 임시 객체[ 코드 줄이기 ] 
+					System.out.println(" *** 게시물 보기 *** ");
+					System.out.println(" 제목 : " + temp.getTitle() );
+					System.out.println(" 작성자: " + temp.getWriter() + "  작성일 : "+ temp.getDate() +"   조회수 : " + temp.getViewcount() );
+					System.out.println(" 내용 : " + temp.getContent() );
+					// 댓글출력 [ 추후 ]
 					// 메뉴 
-					System.out.print("1.뒤로가기 2.수정 3.삭제 4.댓글쓰기 선택 : ");
-					
+					System.out.print("1.뒤로가기 2.수정 3.삭제 4.댓글쓰기 선택 : "); int ch2 = scanner.nextInt();
+					if( ch2 == 1 ) { }
+					else if( ch == 2 ) { 
+						Controller.update(); // 수정할 인덱스번호,패스워드,수정할제목,수정할내용 =>  인수 
+					}
+					else if( ch == 3 ) { 
+						Controller.delete(); // 삭제할 인덱스번호,패스워드 => 인수
+					}
+					else if( ch == 4 ) { 
+						Controller.replywrite(); // 인덱스번호, 댓글내용 , 댓글패스워드 ,댓글작성자  => 인수 
+					}
+					else { }
 				}
 				else {}
 			}catch( Exception e ) {
-				System.err.println(" 메시지]] 번호로 입력해주세요.");
+				System.err.println(" 메시지]] 사용할수 없는 번호 입니다. [ 다시입력 ] ");
 				scanner = new Scanner(System.in); // 다시 메모리할당[ 기존 내용물 지우기 ] 
 			}
 		}
