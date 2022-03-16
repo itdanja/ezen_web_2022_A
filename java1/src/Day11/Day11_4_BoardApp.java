@@ -16,7 +16,9 @@ public class Day11_4_BoardApp {
 	 * 				// 입출력 [ 입력받아 컨트롤러에게 입력받은 값 전달 ] 
 	 */
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in); // 1.입력객체
+		Controller.load(); // 2. 파일[ 모든 게시물] 불러오기 
+		System.out.println( "확인 : " + Controller.boadlist );
 		while(true) {
 			try { // 예외발생 : 사용자가 문자입력시 예외발생!!! -> catch 이동 
 				Controller.boardlist(); // 객체없이 메소드호출이 되는이유 : static메소드 이기때문에
