@@ -68,7 +68,8 @@ public class Day12_3_도서검색프로그램 {
 					i++;
 				}
 				// 도서번호 [ 인덱스 ] 입력받아 수정하기
-				System.out.print(" 도서번호 선택 : ");		count = System.in.read( bytes );
+				System.out.print(" 도서번호 선택 : ");		
+					count = System.in.read( bytes );
 					String ch2 = new String( bytes , 0 , count-2 );
 					int index = Integer.parseInt(ch2); 	// ch2 문자열로 입력받음 ---> 인덱스[숫자] 변환
 					
@@ -76,7 +77,8 @@ public class Day12_3_도서검색프로그램 {
 				System.out.println(" 기존 문자 : ");
 					count = System.in.read( bytes );
 					String oldstr = new String( bytes , 0 , count-2);
-				System.out.println(" 새로운 문자 : ");   	count = System.in.read(bytes);
+				System.out.println(" 새로운 문자 : ");   	
+					count = System.in.read(bytes);
 					String newstr = new String( bytes , 0 , count-2);
 					
 				// 수정처리 
