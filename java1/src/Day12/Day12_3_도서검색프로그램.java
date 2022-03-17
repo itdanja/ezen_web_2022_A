@@ -1,13 +1,13 @@
 package Day12;
 
-public class Day12_3 {
+public class Day12_3_도서검색프로그램 {
 	
 	public static void main(String[] args) {
 		
 		// 도서 검색 프로그램
 			// [조건]
 			// 1. 입력받기 [ System.in.read() ]
-			// 2. String 배열내 여러 도서가 저장 
+			// 2. String 배열내 여러 도서가 저장이 되어 있는 조건
 				//		String[] 도서목록 = {	
 				//			"된다! 네이버 블로그&포스트",
 				//			"스프링 부트 실전 활용 마스터",
