@@ -29,15 +29,24 @@ public class Day12_3_도서검색프로그램 {
 				"Tucker의 Go 언어 프로그래밍","혼자 공부하는 C 언어" };
 		
 		while( true ) {
-			System.out.println("1.검색 2.수정");
+			System.out.println("\n\n 1.검색 2.수정");
 			byte[] bytes = new byte[100];
 			int count =  System.in.read(bytes); // 키보드로부터 [스트림] 바이트를 읽어오기 // 일반예외!!!! [ 예외 떠넘기기 ]
-			// 읽어온 바이트개수 
-			
+			// count 변수 : 읽어온 바이트개수 
 			String ch = new String( bytes , 0 , count-2 ); // 바이트배열 --> 문자열 변환 [ -2 = \n\r 제거 ]
 			
 			if( ch.equals("1") ) { 
 				System.out.println(" *** 검색 *** ");
+				System.out.println(" 검색 : "); count = System.in.read( bytes );
+				String search = new String( bytes , 0 , count-2 ); // 찾을문자 
+				
+				System.out.println(" *** 검색 결과 *** ");
+				for( String temp : 도서목록 ) { // 모든 배열내 문자열을 하나씩 꺼내오기 
+					if( temp.indexOf(search) != -1 ) { // 해당 문자열내 찾을문자의 인덱스가 존재하면
+						// indexOf 메소드 -1 반환되는경우는 동일한 단어가 없을경우 [ 검색x]
+						System.out.println( temp ); // 해당 문자열내 찾을문자가 존재하면 출력 
+					}
+				}
 				
 			}else if( ch.equals("2") ) {
 				System.out.println(" *** 수정 *** ");
