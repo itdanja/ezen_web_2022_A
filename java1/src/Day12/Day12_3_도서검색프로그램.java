@@ -42,9 +42,15 @@ public class Day12_3_도서검색프로그램 {
 				
 				System.out.println(" *** 검색 결과 *** ");
 				for( String temp : 도서목록 ) { // 모든 배열내 문자열을 하나씩 꺼내오기 
-					if( temp.indexOf(search) != -1 ) { // 해당 문자열내 찾을문자의 인덱스가 존재하면
-						// indexOf 메소드 -1 반환되는경우는 동일한 단어가 없을경우 [ 검색x]
-						System.out.println( temp ); // 해당 문자열내 찾을문자가 존재하면 출력 
+					// 방법1 
+//					if( temp.indexOf(search) != -1 ) { // 해당 문자열내 찾을문자의 인덱스가 존재하면
+//						// indexOf 메소드 -1 반환되는경우는 동일한 단어가 없을경우 [ 검색x]
+//						System.out.println( temp ); // 해당 문자열내 찾을문자가 존재하면 출력 
+//					}
+					// 방법2
+					if( temp.contains(search) ) {	
+						// 문자열.contains("찾을문자") : 문자열내 찾을문자가 true[있다] / false[없다] 반환
+						System.out.println( temp );
 					}
 				}
 				
