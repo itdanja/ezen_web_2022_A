@@ -80,8 +80,8 @@ public class Day12_3_도서검색프로그램 {
 					String newstr = new String( bytes , 0 , count-2);
 					
 				// 수정처리 
-				도서목록[index].replace(oldstr, newstr);
-				
+				도서목록[index] = 도서목록[index].replace(oldstr, newstr);
+				// 배열내 도서명 = 수정된 도서명
 				System.out.println(" 변경 되었습니다. ");
 			}
 			
