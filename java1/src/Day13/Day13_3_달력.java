@@ -64,8 +64,7 @@ public class Day13_3_달력 {
 				}
 			}catch( Exception e  ) { // 만약에 try{ }에서 예외[에러] 발생하면 해당 코드가 실행
 				System.out.println(" 경고 ]] 정상적인 입력을 해주세요 [ 관리자에게문의] ");
-			}
-			
+			}// catch end 
 		}// while end 
 	} // 달력 메소드 end 
 } // class end 
