@@ -42,24 +42,24 @@ public class Day13_3_달력 {
 			try { // 만약에 try { } 안에서 예외[에러]가 발생하면 catch 이동 ( 프로그램 다운x)
 				System.out.print(" \n\n *[ 1.◀(이전달)  2.▶(다음달) 3.다시검색 4.종료 선택 :  ");
 				Scanner scanner = new Scanner( System.in ); int ch = scanner.nextInt();
-				if( ch == 1 ) { 
-					month = month -1; 
+				if( ch == 1 ) { // 이전달 
+					month = month -1;  // moth -=1 중 아무거나 사용[권장]
 					// 만약에 월이 0이 되면 연도1감소 , 월 12 값 설정 
 					if( month == 0 ) { year -=1; month = 12; }
 				}
-				else if( ch == 2 ) { 
+				else if( ch == 2 ) { // 다음달 
 					month += 1; 
 					// 만약에 월이 13월이 되면 연도1증가 , 월 다시 1 값 설정
 					if( month == 13 ) { year +=1; month = 1 ;  }
 				}
-				else if( ch == 3 ) { 
+				else if( ch == 3 ) {  // 다시검색 
 					System.out.print(" 연도 :");  year = scanner.nextInt();
 					System.out.print(" 월 :");	 month = scanner.nextInt();
 				}
-				else if( ch == 4 ) {
+				else if( ch == 4 ) { // 종료 
 					System.out.println(" 알림 ]] 달력 프로그램 종료 ");
 					break; // 무한루프 종료 
-				}else {
+				}else { // 그외 
 					System.out.println(" 알림 ]] 알수 없는 번호입니다. ");
 				}
 			}catch( Exception e  ) { // 만약에 try{ }에서 예외[에러] 발생하면 해당 코드가 실행
