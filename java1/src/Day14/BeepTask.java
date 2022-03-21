@@ -2,7 +2,7 @@ package Day14;
 
 import java.awt.Toolkit;
 
-public class BeepTask implements Runnable {
+public class BeepTask implements Runnable{
 					// 구현하다 [ Runnable ] 
 	// implements 사용시 추상메소드 꼭!!! 구현하기 
 		// ctrl+스페이바
