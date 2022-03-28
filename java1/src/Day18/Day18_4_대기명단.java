@@ -15,15 +15,16 @@ public class Day18_4_대기명단 {
 		
 		Scanner scanner = new Scanner( System.in);
 		int 대기번호 = 1; // 오늘의 대기번호
-		ArrayList<대기> 대기명단 = new ArrayList<>();
-			// 여러개의 대기 객체를 저장할수 있는 리스트객체 선언
+		ArrayList<대기> 대기명단 = new ArrayList<>(); // 여러개의 대기 객체를 저장할수 있는 리스트객체 선언
 		
 		while(true) {
 				// 반복문을 이용한 리스트내 모든 객체 호출 
 				System.out.println(" 대기번호 \t 인원수 \t 대기예약시간[인덱스]");
 				for( 대기 temp : 대기명단  ) {
-					if( 대기명단.indexOf(temp) == 0 ) System.out.println( temp.대기번호 + "\t"+ temp.인원수 +"\t 곧 입장 " );
-					else System.out.println( temp.대기번호 + "\t"+ temp.인원수 +"\t" + 대기명단.indexOf(temp)*3+"분" );
+					if( 대기명단.indexOf(temp) == 0 ) 
+						System.out.println( temp.대기번호 + "\t"+ temp.인원수 +"\t 곧 입장 " );
+					else 
+						System.out.println( temp.대기번호 + "\t"+ temp.인원수 +"\t" + 대기명단.indexOf(temp)*3+"분" );
 				}
 			System.out.println("[고객]1.대기추가 2.대기취소 [관리자] 3.대기자입장 ");
 			int ch = scanner.nextInt();
