@@ -4,10 +4,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Day19_2 {
-	
-	// set 중복불가능 
-		// 객체내 모든 필드가 동일하면 중복불가능
-	
+
 	public static void main(String[] args) {
 		
 		// 로또 프로그램 // set 컬렉션 
