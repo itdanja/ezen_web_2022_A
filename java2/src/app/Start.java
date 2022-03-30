@@ -11,7 +11,8 @@ public class Start extends Application {
 
 	@Override
 	public void start(Stage stage ) throws Exception {
-		// 5. 컨테이너 불러오기
+		
+		// 5. FXML 파일[ 컨테이너 ] 불러오기
 		Parent parent = 
 				FXMLLoader.load( getClass().getResource("/view/main.fxml"));
 																//  /패키지명(폴더)/파일명.확장자

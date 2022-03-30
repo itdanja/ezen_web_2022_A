@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,7 +57,7 @@ public class Loginpane implements Initializable {
 //    		Login login = new Login(); // 새로운 컨테이너 생성 [ x ]
 //    		login.loadpage("/view/signuppane.fxml"); // [ x ]
     	// 해결방안 : 기존 컨테이너 가져오는 방법 !!!! -> this
-    	Login.instance.loadpage("/view/signuppane.fxml");
+    	Login.instance.loadpage("/view/login/signuppane.fxml");
     }
 
     @FXML

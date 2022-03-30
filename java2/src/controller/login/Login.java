@@ -1,4 +1,4 @@
-package controller;
+package controller.login;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +40,7 @@ public class Login implements Initializable {
 			// 4. 미디어플레이어 시작
 			mediaPlayer.play();
 			
-			loadpage("/view/loginpane.fxml");
+			loadpage("/view/login/loginpane.fxml");
 			
 	}
 	

@@ -16,7 +16,7 @@ public class Main implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) { // 해당 fxml이 열렸을때 초기값 설정
-		loadpage("/view/login.fxml");	// loadpage 메소드 호출시 ( 파일경로 )
+		loadpage("/view/login/login.fxml");	// loadpage 메소드 호출시 ( 파일경로 )
 	}
 	
 	public void loadpage( String page ) { // loadpage( 파일경로 ) 
