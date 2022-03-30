@@ -52,6 +52,12 @@ public class Loginpane implements Initializable {
     @FXML
     void accsignup(ActionEvent event) {
     	System.out.println(" 회원가입 페이지로 이동 ");
+    	// *회원가입 버튼을 누르면 login컨트롤클래스 내 borderpane 컨테이너 center 페이지 변경
+    	// 문제 : 다른 클래스내 컨테이너 호출 
+//    		Login login = new Login(); // 새로운 컨테이너 생성 [ x ]
+//    		login.loadpage("/view/signuppane.fxml"); // [ x ]
+    	// 해결방안 : 기존 컨테이너 가져오는 방법 !!!! -> this
+    	Login.instance.loadpage("/view/signuppane.fxml");
     }
 
     @FXML
@@ -61,3 +67,13 @@ public class Loginpane implements Initializable {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
