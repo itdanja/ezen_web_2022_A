@@ -24,5 +24,4 @@ public class Day21_2 extends Application { // 1. Application 클래스로부터 상속
 	public static void main(String[] args) { // 3. 메인스레드 -> start메소드 호출
 		launch(args); // start 메소드 호출 
 	}
-	
 }
