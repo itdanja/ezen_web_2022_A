@@ -42,12 +42,12 @@ public class Loginpane implements Initializable {
 
     @FXML
     void accfindid(ActionEvent event) {
-    	System.out.println(" 아이디찾기 페이지로 이동 ");
+    	Login.instance.loadpage("/view/login/findidpane.fxml");
     }
 
     @FXML
     void accfindpassword(ActionEvent event) {
-    	System.out.println(" 패스워드찾기 페이지로 이동 ");
+    	Login.instance.loadpage("/view/login/findpasswordpane.fxml");
     }
 
     @FXML
