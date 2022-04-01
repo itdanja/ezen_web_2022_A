@@ -8,11 +8,11 @@ public class Member { // 데이터 모델
 	private String memail; // 이메일
 	private String maddress; // 주소 
 	private int mpoint;	// 포인트
-	private String mcince; // 가입일
+	private String msince; // 가입일
 	
 	public Member() {}
 
-	public Member(int mnum, String mid, String mpassword, String memail, String maddress, int mpoint, String mcince) {
+	public Member(int mnum, String mid, String mpassword, String memail, String maddress, int mpoint, String msince) {
 		super();
 		this.mnum = mnum;
 		this.mid = mid;
@@ -20,7 +20,7 @@ public class Member { // 데이터 모델
 		this.memail = memail;
 		this.maddress = maddress;
 		this.mpoint = mpoint;
-		this.mcince = mcince;
+		this.msince = msince;
 	}
 
 	public int getMnum() {
@@ -72,11 +72,11 @@ public class Member { // 데이터 모델
 	}
 
 	public String getMcince() {
-		return mcince;
+		return msince;
 	}
 
 	public void setMcince(String mcince) {
-		this.mcince = mcince;
+		this.msince = mcince;
 	}
 	
 }

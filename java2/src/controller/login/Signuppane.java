@@ -63,12 +63,38 @@ public class Signuppane implements Initializable {
     	String address = txtaddress.getText();
     	// 현재날짜 가져오기 [ SimpleDateFormat : 날짜 모양(형식) 변환 클래스 ]
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    	String cine = format.format( new Date() ); // 현재날짜를 형식 변환
+    	String since = format.format( new Date() ); // 현재날짜를 형식 변환
     	// * 유효성검사[ 제한 ] 
-    		// 1. id 중복 체크 // 2. id 형식 체크 // 3. 비밀번호 형식 체크// 4. 비밀번호 일치 체크 // 5. 이메일 체크 // 6. 주소 체크 
-    	// * 모든 유효성검사 통과시 DB에 저장 
-    		// 1. 객체화	[ 회원번호없음=0 , id , password, email, address, 포인트없음=0 , cine ]
-    		Member member = new Member(0, id, password, email, address, 0, cine);
+    		// 1. id 중복 체크 
+    		// 2. id 길이 체크  [ 길이가 4~10 사이 ]
+    		if( id.length() < 4 || id.length() >10 ) {
+    			lblconfirm.setText(" [ 실패 ] 아이디 4~10 사이로 입력해주세요!");
+    			return; // 가입 못하게 [ 메소드 종료 ]
+    		}
+    		// 3. 비밀번호 길이 체크 [ 문자열.length() : 문자열길이 ]  [ 길이가 4~10 사이 ]
+    		if( password.length() < 4 || password.length() > 10 
+    				|| passwordconfirm.length() < 4 || passwordconfirm.length() > 10 ) {
+    			lblconfirm.setText(" [ 실패 ] 패스워드는 4~10 사이로 입력해주세요!");
+    			return; // 가입 못하게 [ 메소드 종료 ]
+    		}
+    		// 4. 비밀번호 일치 체크 
+    		if( ! password.equals(passwordconfirm)  ) { // 패스워드랑 패스워드검사 일치하지 않으면 [ ! : 부정 (반대) ] 
+    			lblconfirm.setText(" [ 실패 ] 비밀번호가 일치하지 않습니다. ");
+    			return; // 가입 못하게 [ 메소드 종료 ]
+    		}
+    	// 5. 이메일 체크 [ 문자열.indexOf("문자") : 해당 문자열내 문자가 존재하면 해당 문자의 인덱스 호출 / 만일 없으면 -1
+    		if( email.indexOf("@") == -1 ) { // 만약에 입력한 이메일에 @ 가 없으면
+    			lblconfirm.setText(" [ 실패 ] 이메일 형식[@포함]으로 입력해주세요. ");
+    			return; // 가입 못하게 [ 메소드 종료 ]
+    		}
+    	// 6. 주소 체크 [ 문자열.contains("문자") : 해당 문자열내 문자가 존재하면 true / 없으면 false ] 
+    		if( !( address.contains("시") && address.contains("구") && address.contains("동") ) ) {
+    			lblconfirm.setText(" [ 실패 ] 주소 형식[시,구,동 포함]으로 입력해주세요 ");
+    			return; // 가입 못하게 [ 메소드 종료 ]
+    		}
+    		// * 모든 유효성검사 통과시 DB에 저장 
+    		// 1. 객체화	[ 회원번호없음=0 , id , password, email, address, 포인트없음=0 , since ]
+    		Member member = new Member(0, id, password, email, address, 0, since);
     		// 2. DB 객체내 메소드 호출 
     		boolean result = MemberDao.memberDao.signup(member);
     		// 3. 확인 
@@ -77,8 +103,6 @@ public class Signuppane implements Initializable {
     		}else {
     			System.out.println("가입실패");
     		}
-    		
-    	
     	
     }
 

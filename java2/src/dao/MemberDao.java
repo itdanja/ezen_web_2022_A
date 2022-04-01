@@ -29,7 +29,7 @@ public class MemberDao { // DB 접근객체
 	public boolean signup( Member member ) { 
 		try {
 			// 1. SQL 작성  [ 회원번호(자동번호=auto) 제외한 모든 필드 삽입 ]
-			String sql = "insert into member(mid,mpassword,memail,maddress,mpoint,mcince)values(?,?,?,?,?,?)";
+			String sql = "insert into member(mid,mpassword,memail,maddress,mpoint,msince)values(?,?,?,?,?,?)";
 			// 2. SQL 조작
 			ps = con.prepareStatement(sql); // PreparedStatement 인터페이스내 연결된 db에 sql 넣기
 			ps.setString( 1 , member.getMid() ); // 1번 ? 에 아이디 넣어주기
