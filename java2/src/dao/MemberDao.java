@@ -25,6 +25,25 @@ public class MemberDao { // DB 접근객체
 		catch(Exception e ) { System.out.println( "[DB 연동 오류]"+e  ); }
 	}
 	// 메소드 
+		// * 아이디 중복체크 메소드 ( 인수 : 아이디를 인수로 받아 db에 존재하는지 체크 )
+	public boolean idcheck( String id) {
+		try {
+			// 1. SQL 작성
+				// 검색 : select * from 테이블명 where 조건( 필드명=값 )
+			String sql = "select * from member where mid=?";
+			// 2. SQL 조작 
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			// 3. SQL 실행 
+			rs = ps.executeQuery(); // select 실행 -> 검색은 결과물 존재 -> resultset O
+			// resultset 처음 기본 값은 : null ---next()---> 결과 레코드
+			// 4. SQL 결과
+			if( rs.next() ){ // 만약에 다음 결과물이 존재하면 => 해당 아이디가 존재 -> 중복O 
+				return true; // 해당 아이디는 중복이 존재
+			}
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false; // 해당 아이디는 중복이 없음 
+	}
 		// 1. 회원가입 메소드 ( 인수 : db에 넣을 아이디,비밀번호,이메일,주소 )
 	public boolean signup( Member member ) { 
 		try {
@@ -39,7 +58,7 @@ public class MemberDao { // DB 접근객체
 			ps.setInt( 5 , member.getMpoint() ); // 5번 ? 에 포인트 넣어주기
 			ps.setString( 6 , member.getMcince() ); // 6번 ? 에 가입일 넣어주기
 			// 3. SQL 실행 
-			ps.executeUpdate(); // insert 실행
+			ps.executeUpdate(); // insert 실행 -> 삽입 결과물 X -> resultset X
 			return true; // * 성공시 
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return false; // * 실패시
