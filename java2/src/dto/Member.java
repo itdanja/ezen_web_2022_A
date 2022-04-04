@@ -115,12 +115,12 @@ public class Member { // 데이터 모델
 		this.mpoint = mpoint;
 	}
 
-	public String getMcince() {
+	public String getMsince() {
 		return msince;
 	}
 
-	public void setMcince(String mcince) {
-		this.msince = mcince;
+	public void setMcince(String msince) {
+		this.msince = msince;
 	}
 	
 }

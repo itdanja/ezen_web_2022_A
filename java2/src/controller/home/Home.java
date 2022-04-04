@@ -34,7 +34,7 @@ public class Home implements Initializable {
 	@FXML
 	private BorderPane borderpane;
 	
-	@FXML// 회원탈퇴 레이블을 클릭했을때 이벤트
+	@FXML// 회원정보 레이블을 클릭했을때 이벤트
 	public void accinfo( MouseEvent e ) { loadpage("/view/home/info.fxml"); }
 	
 	public void loadpage( String page ) {
