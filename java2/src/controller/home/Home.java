@@ -32,10 +32,16 @@ public class Home implements Initializable {
 	@FXML
 	private Label lblinfo; // fxid가져오기
 	@FXML
+	private Label lblupdate; // fxid가져오기
+	@FXML
 	private BorderPane borderpane;
 	
 	@FXML// 회원정보 레이블을 클릭했을때 이벤트
 	public void accinfo( MouseEvent e ) { loadpage("/view/home/info.fxml"); }
+	
+	@FXML// 회원수정 레이블을 클릭했을때 이벤트
+	public void accupdate( MouseEvent e ) { loadpage("/view/home/update.fxml"); }
+	
 	
 	public void loadpage( String page ) {
 		try {

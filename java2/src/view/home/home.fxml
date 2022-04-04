@@ -57,7 +57,7 @@
             <Line endX="-47.0" layoutX="146.0" layoutY="505.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" />
             <Label fx:id="lblinfo" onMouseClicked="#accinfo" layoutX="105.0" layoutY="509.0" prefHeight="29.0" prefWidth="56.0" text="회원정보" textFill="WHITE" />
             <Label layoutX="44.0" layoutY="508.0" prefHeight="29.0" prefWidth="56.0" text="내가쓴글" textFill="WHITE" />
-            <Label layoutX="166.0" layoutY="508.0" prefHeight="29.0" prefWidth="56.0" text="회원수정" textFill="WHITE" />
+            <Label fx:id="lblupdate" onMouseClicked="#accupdate" layoutX="166.0" layoutY="508.0" prefHeight="29.0" prefWidth="56.0" text="회원수정" textFill="WHITE" />
             <Label fx:id="lbldelete" layoutX="224.0" layoutY="508.0" onMouseClicked="#delete" prefHeight="29.0" prefWidth="56.0" text="회원탈퇴" textFill="WHITE" />
             <Label layoutX="42.0" layoutY="543.0" prefHeight="29.0" prefWidth="68.0" text="관리자" textFill="WHITE">
                <font>
