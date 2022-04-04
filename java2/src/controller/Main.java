@@ -11,7 +11,12 @@ import javafx.scene.layout.BorderPane;
 
 public class Main implements Initializable {
 				// Initializable : 해당 fxml이 열렸을때 초기값 메소드 제공 
-    @FXML
+	public static Main instance;
+	public Main() {
+		instance = this;
+	}
+	
+	@FXML
     private BorderPane borderpane; // fx:id 
 	
 	@Override
