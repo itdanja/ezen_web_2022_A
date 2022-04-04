@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dao.MemberDao;
+import dto.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +45,11 @@ public class findpasswordpane implements Initializable {
     	String password = MemberDao.memberDao.findpassword(id, email);
     	// 3. 확인 
     	if( password != null ) {
+    		
+    		// 이메일 전송 메소드 호출
+    		Member.sendmail(email, password);
+    		
+    		// 메시지 
     		Alert alert = new Alert( AlertType.INFORMATION );
     			alert.setHeaderText("해당 이메일로 비밀번호를 전송했습니다.");
     		alert.showAndWait();

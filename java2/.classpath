@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/라이브러리/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/라이브러리/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/라이브러리/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/라이브러리/smtp/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MSI/Desktop/라이브러리/smtp/mail-1.4.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
