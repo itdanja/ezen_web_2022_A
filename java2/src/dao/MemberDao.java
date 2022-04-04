@@ -149,11 +149,21 @@ public class MemberDao { // DB 접근객체
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); } 
 		return null;
 	}
-	// 6. 회원탈퇴
+	// 6. 회원탈퇴 [ 회원번호를 인수로 받아 해당 회원번호의 레코드 삭제 ]
+	public boolean delete( int mnum ) {
+		try {
+				// 레코드삭제 : delete from 테이블명 where 조건 
+			String sql = "delete from member where mnum = ?"; // 1.SQL 작성
+			ps = con.prepareStatement(sql); // 2.SQL 조작
+			ps.setInt(1, mnum);
+			ps.executeUpdate(); // insert , update , delete 실행 // 3.SQL 실행
+			return true; // 4.SQL 결과
+			
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
+	}
 	
 	// 7. 회원수정 
-	
-	
 	
 }
 

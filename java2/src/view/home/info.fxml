@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="950.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="353.0" layoutY="156.0" prefHeight="63.0" prefWidth="224.0" text="회원정보">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Line endX="172.0" layoutX="454.0" layoutY="219.0" startX="-100.0" stroke="#0873ff" strokeWidth="5.0" />
+      <Label layoutX="352.0" layoutY="235.0" prefHeight="16.0" prefWidth="40.0" text="아이디" />
+      <Label layoutX="352.0" layoutY="255.0" prefHeight="32.0" prefWidth="274.0" text="QWEQWEQWEQWEQWE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="352.0" layoutY="297.0" prefHeight="16.0" prefWidth="40.0" text="이메일" />
+      <Label layoutX="352.0" layoutY="317.0" prefHeight="32.0" prefWidth="274.0" text="QWEQWE@QWEQWE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="361.0" prefHeight="16.0" prefWidth="40.0" text="주소" />
+      <Label layoutX="353.0" layoutY="381.0" prefHeight="32.0" prefWidth="274.0" text="안산시상록구상록동">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="425.0" prefHeight="16.0" prefWidth="40.0" text="포인트" />
+      <Label layoutX="353.0" layoutY="445.0" prefHeight="32.0" prefWidth="274.0" text="100">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="491.0" prefHeight="16.0" prefWidth="40.0" text="가입일" />
+      <Label layoutX="353.0" layoutY="511.0" prefHeight="32.0" prefWidth="274.0" text="2022-04-01">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
