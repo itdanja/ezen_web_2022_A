@@ -119,7 +119,47 @@ public class MemberDao { // DB 접근객체
 		return null;
 	}
 	
+	// 5. 아이디 인수 로 회원정보 호출 
+	public Member getmember( String id ) {
+		try {
+		// 1. SQL 작성
+			String sql = "select * from member where mid=?";
+		// 2. SQL 조작
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , id);
+		// 3. SQL 실행
+			rs = ps.executeQuery();
+		// 4. SQL 결과
+			if( rs.next() ) {
+				// 1. 객체 선언
+				Member member = new Member(
+						rs.getInt(1) ,
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4), 
+						rs.getString(5), 
+						rs.getInt(6), 
+						rs.getString(7) );
+				// rs.next() : 결과내 다음 레코드(줄,가로)
+				// rs.getInt( 필드순서번호 ) : 해당 필드의 자료형이 정수형으로 가져오기
+				// rs.getString( 필드순서번호 ) : 해당 필드의 자료형이 문자열로 가져오기
+				// 2. 반환
+				return member;
+			}
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); } 
+		return null;
+	}
+	// 6. 회원탈퇴
+	
+	// 7. 회원수정 
+	
+	
+	
 }
+
+
+
+
 
 
 

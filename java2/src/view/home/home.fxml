@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="controller.home.Home" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="328.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
@@ -18,9 +18,9 @@
                   <Image url="@/img/loginlogo.png" />
                </image>
             </ImageView>
-            <Label layoutX="41.0" layoutY="188.0" prefHeight="29.0" prefWidth="183.0" text="OOOOOO 님" textFill="WHITE" />
-            <Label layoutX="41.0" layoutY="217.0" prefHeight="29.0" prefWidth="183.0" text="포인트 : 123" textFill="WHITE" />
-            <Label layoutX="242.0" layoutY="199.0" prefHeight="33.0" prefWidth="75.0" text="로그아웃" textFill="WHITE" />
+            <Label fx:id="lblloginid" layoutX="41.0" layoutY="188.0" prefHeight="29.0" prefWidth="183.0" text="OOOOOO 님" textFill="WHITE" />
+            <Label fx:id="lblpoint" layoutX="41.0" layoutY="217.0" prefHeight="29.0" prefWidth="183.0" text="포인트 : 123" textFill="WHITE" />
+            <Label fx:id="lbllogout" onMouseClicked="#logout" layoutX="242.0" layoutY="199.0" prefHeight="33.0" prefWidth="75.0" text="로그아웃" textFill="WHITE" />
             <Line endX="207.0" layoutX="112.0" layoutY="639.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" />
             <Label layoutX="41.0" layoutY="650.0" prefHeight="16.0" prefWidth="68.0" text="고객센터" textFill="WHITE" />
             <Label layoutX="41.0" layoutY="674.0" prefHeight="18.0" prefWidth="114.0" text="010-1234-1234" textFill="WHITE" />
