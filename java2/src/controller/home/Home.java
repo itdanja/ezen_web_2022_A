@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 
 import controller.Main;
 import controller.login.Login;
+import dao.BoardDao;
 import dao.MemberDao;
+import dto.Board;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -62,6 +64,7 @@ public class Home implements Initializable {
 		Login.member = null;
 		// 2. 페이지 전환
 		Main.instance.loadpage("/view/login/login.fxml");
+		
 	}
 	@FXML// 회원탈퇴 레이블을 클릭했을때 이벤트
 	public void delete( MouseEvent e ) {
