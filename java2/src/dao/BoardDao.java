@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import dto.Board;
+import dto.Reply;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -89,8 +90,59 @@ public class BoardDao {
 		return false; 
 	}
 		// 4. 글 수정 메소드
-	public boolean update( int bnum , String title , String content ) { return false; }
+	public boolean update( int bnum , String title , String content ) {
+		try {
+		// 1. SQL 작성
+			String sql = "update board set btitle=? , bcontent=? where bnum=?";
+		// 2. SQL 조작
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , title );
+			ps.setString( 2 , content );
+			ps.setInt( 3 , bnum );
+		// 3. SQL 실행
+			ps.executeUpdate();
+		// 4. SQL 결과
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false; 
+	}
+	
+	// 5. 댓글 작성 메소드[ 회원가입, 글쓰기 유사 ]
+	public boolean rwrite( Reply reply ) {
+		try {
+			String sql = "insert into reply(rcontent,rwrite,bnum)values(?,?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , reply.getRcontent() );
+			ps.setString( 2 , reply.getRwrite() );
+			ps.setInt( 3 , reply.getBnum() );
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
+	}
+	
+	// 6. 댓글 호출 메소드 
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

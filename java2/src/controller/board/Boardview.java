@@ -8,6 +8,7 @@ import controller.home.Home;
 import controller.login.Login;
 import dao.BoardDao;
 import dto.Board;
+import dto.Reply;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,13 +59,53 @@ public class Boardview implements Initializable {
 
  
     @FXML
-    void rewrite(ActionEvent event) {
-
+    void rewrite(ActionEvent event) { // 댓글 작성 버튼 눌렀을떄
+    	
+    	// 1. 컨트롤에 입렫된 데이터 가져오기
+    	String rcontent = txtrecontent.getText();
+    	// 2. 현재 로그인된 정보에서 아이디 가져오기
+    	String rwrite = Login.member.getMid();
+    	// 3. 현재 테이블뷰에서 클릭된 게시물의 게시물번호 가져오기
+    	int bnum = controller.board.Board.board.getBnum();
+    	// 객체화
+    	Reply reply = new Reply(0, rcontent, rwrite, null , bnum);
+    	// db 처리
+    	boolean result = BoardDao.boardDao.rwrite(reply);
+    	if( result ) {
+    		Alert alert = new Alert( AlertType.INFORMATION);
+    			alert.setHeaderText("댓글 등록 성공");
+    		alert.showAndWait();
+    		// 댓글 입력창 초기화
+    		txtrecontent.setText("");
+    		
+    	}
     }
 
+    boolean upcheck = true; // 수정 버튼 스위치 변수
     @FXML
     void update(ActionEvent event) {
-
+    	Alert alert = new Alert( AlertType.INFORMATION );
+    	if( upcheck  ) { // 수정 시작
+	    	alert.setHeaderText("게시글 수정후 수정 완료 버튼 눌러주세요");
+	    	alert.showAndWait();
+	    	txttitle.setEditable(true);
+			txtcontent.setEditable(true);
+			btnupdate.setText("수정완료");
+			upcheck = false;
+    	}else { // 수정 완료
+    		// db처리
+    		BoardDao.boardDao.update(
+    				controller.board.Board.board.getBnum() ,
+    				txttitle.getText() ,
+    				txtcontent.getText() );
+    		
+    		alert.setHeaderText("수정이 완료 되었습니다.");
+	    	alert.showAndWait();
+	    	txttitle.setEditable(false);
+			txtcontent.setEditable(false);
+			btnupdate.setText("수정");
+			upcheck = true;
+    	}
     }
     @FXML
     void back(ActionEvent event) {
