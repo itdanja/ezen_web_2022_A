@@ -1,15 +1,20 @@
 package controller.board;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import controller.home.Home;
 import controller.login.Login;
+import dao.BoardDao;
 import dto.Board;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -68,18 +73,22 @@ public class Boardview implements Initializable {
 
     @FXML
     void delete(ActionEvent event) {
-    	
     	// 1. 경고 메시지 알림
-    	// 2. 확인 버튼 눌렀을때
-    	// 3. 삭제 처리
-    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION); // 확인 / 취소가 있는 버튼
+    		alert.setHeaderText("해당 게시물 삭제할까요?");
+    	Optional<ButtonType> optional = alert.showAndWait(); // showAndWait() 메소드의 반환타입 => 선택한 버튼
+    		// Optional 클래스 : null를 객체로 저장하는 클래스
+    	if( optional.get() == ButtonType.OK ) {  // 2. 확인 버튼 눌렀을때
+    		// 3. 삭제 처리 진행
+    		BoardDao.boardDao.delete( 
+    				controller.board.Board.board.getBnum()   );
+    		// 4. 페이지 전환
+    		Home.home.loadpage("/view/board/board.fxml");
+    	}
     }
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 		Board board = controller.board.Board.board; // board컨트롤내 테이블에서 선택된 객체 호출 
-		
 		// 각 컨트롤에 선택된 board의 데이터 설정하기 
 		lblwrite.setText( "작성자 : " + board.getBwrite() );
 		lbldate.setText( "작성일 : " + board.getBdate() );

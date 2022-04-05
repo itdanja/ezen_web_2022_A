@@ -78,7 +78,16 @@ public class BoardDao {
 		return null; // 실패시 null
 	}
 		// 3. 글 삭제 메소드
-	public boolean delete( int bnum ) { return false; }
+	public boolean delete( int bnum ) { 
+		try {
+			String sql = "delete from board where bnum=?"; // 1. SQL 작성
+			ps = conn.prepareStatement(sql); // 2. SQL 조작
+			ps.setInt( 1 , bnum);
+			ps.executeUpdate(); // 3. SQL 실행 
+			return true; // 4. SQL 결과
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false; 
+	}
 		// 4. 글 수정 메소드
 	public boolean update( int bnum , String title , String content ) { return false; }
 }
