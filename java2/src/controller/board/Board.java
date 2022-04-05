@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.home.Home;
+import dao.BoardDao;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,7 +28,28 @@ public class Board implements Initializable {
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+    	// * arraylist 가 아닌 ObservableList 사용하는 이유 [tableview가 ObservableList를 사용 ] 
+    	// 1. db에서 모든 게시글 가져오기
+    	ObservableList<dto.Board> boardlist = BoardDao.boardDao.list();
+    	System.out.println( boardlist.toString() );
+    	// 2. tableview 에 추가 
     	
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
