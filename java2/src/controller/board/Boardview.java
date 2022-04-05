@@ -9,6 +9,7 @@ import controller.login.Login;
 import dao.BoardDao;
 import dto.Board;
 import dto.Reply;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +18,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class Boardview implements Initializable {
 	
@@ -55,7 +58,28 @@ public class Boardview implements Initializable {
     private TextArea txtrecontent;
 
     @FXML
-    private TableView<?> replytable;
+    private TableView<Reply> replytable;
+    		// 테이블뷰에 넣을 자료형 
+    
+    // ** 댓글 테이블 메소드 [ 메소드화 시킨 이유 : 여러번 테이블 호출하기 위해 ]
+    public void replytableshow() {
+    	// 1. 현재 게시물 번호 
+    	int bnum = controller.board.Board.board.getBnum();
+    	// 2.
+    	ObservableList<Reply> replylist = BoardDao.boardDao.replylist( bnum );
+    	// 3. 
+    	TableColumn tc = replytable.getColumns().get(0);
+    	tc.setCellValueFactory( new PropertyValueFactory<>("rnum") );
+    	 tc = replytable.getColumns().get(1);
+    	tc.setCellValueFactory( new PropertyValueFactory<>("rwrite") );
+    	 tc = replytable.getColumns().get(2);
+    	tc.setCellValueFactory( new PropertyValueFactory<>("rdate") );
+    	 tc = replytable.getColumns().get(3);
+    	tc.setCellValueFactory( new PropertyValueFactory<>("rcontent") );
+    	
+    	// 4. 테이블뷰에 리스트 넣어주기 
+    	replytable.setItems(replylist);
+    }
 
  
     @FXML
@@ -77,7 +101,8 @@ public class Boardview implements Initializable {
     		alert.showAndWait();
     		// 댓글 입력창 초기화
     		txtrecontent.setText("");
-    		
+    		// 댓글 작성후 테이블 새로고침
+    		replytableshow();
     	}
     }
 
@@ -129,6 +154,9 @@ public class Boardview implements Initializable {
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		replytableshow();
+		
 		Board board = controller.board.Board.board; // board컨트롤내 테이블에서 선택된 객체 호출 
 		// 각 컨트롤에 선택된 board의 데이터 설정하기 
 		lblwrite.setText( "작성자 : " + board.getBwrite() );

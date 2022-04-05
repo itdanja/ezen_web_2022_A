@@ -121,8 +121,32 @@ public class BoardDao {
 		return false;
 	}
 	
-	// 6. 댓글 호출 메소드 
-	
+	// 6. 해당 게시물의 댓글들 호출 메소드 
+	public ObservableList<Reply> replylist( int bnum ){
+		
+		ObservableList<Reply> replylist = FXCollections.observableArrayList();
+		
+		try {
+			String sql = "select * from reply where bnum =? order by rnum desc";
+			ps = conn.prepareStatement(sql);
+			ps.setInt( 1 , bnum);
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				Reply reply = new Reply(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4), 
+						rs.getInt(5));
+				replylist.add(reply);
+			}
+			
+			return replylist;
+			
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+			return null;
+	}
 }
 
 
