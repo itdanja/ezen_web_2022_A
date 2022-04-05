@@ -50,7 +50,9 @@ public class BoardDao {
 		ObservableList<Board> boardlist = FXCollections.observableArrayList();
 		try {
 		// 1. SQL 작성
-			String sql = "select * from board";
+				// 정렬 : order by 필드명 asc   [ 해당 필드명 기준으로 오름차순 ]
+				//		 order by 필드명 desc	 [ 해당 필드명 기준으로 내림차순 ] 
+			String sql = "select * from board order by bnum desc";
 		// 2. SQL 조작
 			ps = conn.prepareStatement(sql);
 		// 3. SQL 실행
