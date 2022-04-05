@@ -1,6 +1,7 @@
 package controller.board;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.home.Home;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class Board implements Initializable {
 	
@@ -20,6 +22,8 @@ public class Board implements Initializable {
     private Button btnwrite;
     @FXML
     private TableView<dto.Board> boardtable; // 테이블에 넣을 자료형 선택 [ 테이블에 게시물 표시하기위해 ]
+    
+    public static dto.Board board; // 테이블에서 클릭한 객체를 저장하는 객체
 
     @FXML
     void accwrite(ActionEvent event) {
@@ -53,6 +57,22 @@ public class Board implements Initializable {
     	// 3. tableview 에 list 연결
     	boardtable.setItems(boardlist);;
     		// 테이블명(fxid).setItems( ObservableList );  // 테이블에 표시할 리스트(일반적arraylist X) 설정
+    	
+    	
+    	// * tableview 에서 해당 셀을 클릭했을때 이벤트
+    		//boardtable.setOnMouseClicked( 인수 -> { 실행코드 } ) : 테이블을 클릭했을때
+    	boardtable.setOnMouseClicked( e -> { 
+    		
+    		// 1. 테이블에서 클릭한 객체를 임시객체에 저장 
+    		board = boardtable.getSelectionModel().getSelectedItem() ; // 클릭된 board 객체 호출
+    		// 2. 조회수 증가
+    		// 3. 페이지 전환
+    		System.out.println( board.getBtitle() );
+    	});
+    	
+    	//  [일회용]  인수 -> 실행코드   : 람다식 ( 익명함수 : 이름이 없는 함수 [ 인수 와 실행코드만 존재 ] ) 
+    	//  vs
+    	//  [재활용]  void 함수명( 인수1 ) {  실행코드 }  : 함수
     	
     }
 
