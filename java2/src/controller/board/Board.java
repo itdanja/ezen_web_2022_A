@@ -67,7 +67,7 @@ public class Board implements Initializable {
     		board = boardtable.getSelectionModel().getSelectedItem() ; // 클릭된 board 객체 호출
     		// 2. 조회수 증가
     		// 3. 페이지 전환
-    		System.out.println( board.getBtitle() );
+    		Home.home.loadpage("/view/board/boardview.fxml");
     	});
     	
     	//  [일회용]  인수 -> 실행코드   : 람다식 ( 익명함수 : 이름이 없는 함수 [ 인수 와 실행코드만 존재 ] ) 
