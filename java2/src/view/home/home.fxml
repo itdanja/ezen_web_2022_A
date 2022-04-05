@@ -48,7 +48,7 @@
             </Label>
             <Line endX="-47.0" layoutX="145.0" layoutY="440.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" />
             <Label layoutX="43.0" layoutY="443.0" prefHeight="29.0" prefWidth="56.0" text="거래후기" textFill="WHITE" />
-            <Label layoutX="106.0" layoutY="443.0" prefHeight="29.0" prefWidth="56.0" text="자유게시" textFill="WHITE" />
+            <Label fx:id="lblboard" onMouseClicked="#accboard" layoutX="106.0" layoutY="443.0" prefHeight="29.0" prefWidth="56.0" text="자유게시" textFill="WHITE" />
             <Label layoutX="43.0" layoutY="476.0" prefHeight="29.0" prefWidth="68.0" text="정보" textFill="WHITE">
                <font>
                   <Font size="15.0" />

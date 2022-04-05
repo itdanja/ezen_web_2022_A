@@ -21,7 +21,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 public class Home implements Initializable {
-				// fxml 실행시 초기값 설정 인테페이스 
+				// fxml 실행시 초기값 설정 인테페이스
+	
+	public static Home home; // 객체 
+	
+	// * this : 현재 클래스의 메모리 호출
+	public Home() { home = this; }
+	
 	
 	@FXML
 	private Label lblloginid;
@@ -36,7 +42,13 @@ public class Home implements Initializable {
 	@FXML
 	private Label lblupdate; // fxid가져오기
 	@FXML
+	private Label lblboard; // fxid가져오기
+	
+	@FXML
 	private BorderPane borderpane;
+	
+	@FXML// 자유게시 레이블을 클릭했을때 이벤트
+	public void accboard( MouseEvent e ) { loadpage("/view/board/board.fxml"); }
 	
 	@FXML// 회원정보 레이블을 클릭했을때 이벤트
 	public void accinfo( MouseEvent e ) { loadpage("/view/home/info.fxml"); }
