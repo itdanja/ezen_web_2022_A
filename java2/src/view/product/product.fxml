@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="950.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.product.Productcontrol">
+   <children>
+      <Label layoutX="42.0" layoutY="29.0" prefHeight="63.0" prefWidth="224.0" text="중고 제품">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Line endX="172.0" layoutX="143.0" layoutY="92.0" startX="-100.0" stroke="#0873ff" strokeWidth="5.0" />
+      <Button fx:id="btnadd" layoutX="42.0" layoutY="101.0" mnemonicParsing="false" onAction="#accadd" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: #0873ff;" text="제품 등록" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <ScrollPane fx:id="scrollpane" layoutX="41.0" layoutY="151.0" prefHeight="553.0" prefWidth="874.0">
+         <content>
+            <VBox fx:id="vbox" prefHeight="546.0" prefWidth="869.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

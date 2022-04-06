@@ -43,9 +43,14 @@ public class Home implements Initializable {
 	private Label lblupdate; // fxid가져오기
 	@FXML
 	private Label lblboard; // fxid가져오기
+	@FXML
+	private Label lblproduct; // fxid가져오기
 	
 	@FXML
 	private BorderPane borderpane;
+	
+	@FXML// 자유게시 레이블을 클릭했을때 이벤트
+	public void accproduct( MouseEvent e ) { loadpage("/view/product/product.fxml"); }
 	
 	@FXML// 자유게시 레이블을 클릭했을때 이벤트
 	public void accboard( MouseEvent e ) { loadpage("/view/board/board.fxml"); }

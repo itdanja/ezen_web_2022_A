@@ -37,7 +37,7 @@
                </font>
             </Label>
             <Line endX="-47.0" layoutX="144.0" layoutY="372.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" />
-            <Label layoutX="42.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="남성의류" textFill="WHITE" />
+            <Label fx:id="lblproduct" onMouseClicked="#accproduct" layoutX="42.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="남성의류" textFill="WHITE" />
             <Label layoutX="105.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="여성의류" textFill="WHITE" />
             <Label layoutX="166.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="게임기기" textFill="WHITE" />
             <Label layoutX="224.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="생활용품" textFill="WHITE" />
