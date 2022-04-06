@@ -2,16 +2,21 @@ package controller.product;
 
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import controller.home.Home;
 import controller.login.Login;
 import dao.MemberDao;
+import dao.ProductDao;
 import dto.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -58,12 +63,18 @@ public class Productview implements Initializable {
 
     @FXML
     void delete(ActionEvent event) {
-
+    	Alert alert = new Alert( AlertType.CONFIRMATION );
+    		alert.setHeaderText("제품 삭제하시겠습니까?");
+    	Optional<ButtonType> optional =  alert.showAndWait();
+    	if( optional.get() == ButtonType.OK ) {
+    		ProductDao.productDao.delete( Productcontrol.select.getPnum() );
+    		Home.home.loadpage("/view/product/product.fxml");
+    	}
     }
 
     @FXML
     void update(ActionEvent event) {
-
+    	Home.home.loadpage("/view/product/productupdate.fxml");
     }
 	
 	@Override

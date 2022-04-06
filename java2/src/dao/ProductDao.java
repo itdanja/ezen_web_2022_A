@@ -45,7 +45,7 @@ public class ProductDao {
 	public ArrayList<Product> list(){
 		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
-			String sql = "select * from product";	// SQL 작성
+			String sql = "select * from product order by pnum desc";	// SQL 작성
 			ps = con.prepareStatement(sql);			// SQL 연결 
 			rs = ps.executeQuery();					// SQL 실행  
 			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
@@ -68,11 +68,55 @@ public class ProductDao {
 	// 3. 제품 조회
 	
 	// 4. 제품 삭제
-	
+	public boolean delete( int pnum ) {
+		try {
+			String sql = "delete from product where pnum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, pnum);
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
+	}
 	// 5. 제품 수정 
+	public boolean update( Product product ) {
+		
+		try {
+			String sql = "update product set pname=? , pimg=? , pcontent=?,pcategory=? , pprice=? where pnum=?";
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , product.getPname() );
+			ps.setString( 2 , product.getPimg() );
+			ps.setString( 3 , product.getPcontent() );
+			ps.setString( 4 , product.getPcategory() );
+			ps.setInt( 5 , product.getPprice() );
+			ps.setInt( 6 , product.getPnum() );
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
+		
+	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
