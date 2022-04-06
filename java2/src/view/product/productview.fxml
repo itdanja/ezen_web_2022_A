@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="950.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.product.Productview">
+   <children>
+      <Label layoutX="42.0" layoutY="29.0" prefHeight="63.0" prefWidth="224.0" text="중고 제품">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Line endX="172.0" layoutX="143.0" layoutY="92.0" startX="-100.0" stroke="#0873ff" strokeWidth="5.0" />
+      <Button fx:id="btnback" layoutX="41.0" layoutY="163.0" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #0873ff;" text="목록보기" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="41.0" layoutY="212.0" prefHeight="317.0" prefWidth="384.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <ImageView fx:id="img" fitHeight="303.0" fitWidth="371.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnupdate" layoutX="181.0" layoutY="163.0" mnemonicParsing="false" onAction="#update" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #0873ff;" text="수정" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btndelete" layoutX="318.0" layoutY="163.0" mnemonicParsing="false" onAction="#delete" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: #0873ff;" text="삭제" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtpname" layoutX="465.0" layoutY="253.0" prefHeight="39.0" prefWidth="450.0" />
+      <TextArea fx:id="txtpcontent" layoutX="465.0" layoutY="303.0" prefHeight="225.0" prefWidth="450.0" />
+      <Label fx:id="txtpprice" layoutX="465.0" layoutY="162.0" prefHeight="39.0" prefWidth="224.0" text="가격 : 00000원">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtpactivation" layoutX="122.0" layoutY="114.0" prefHeight="39.0" prefWidth="144.0" text="제품상태 : " textFill="#f50606">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtpdate" layoutX="465.0" layoutY="211.0" prefHeight="39.0" prefWidth="144.0" text="제품 등록일 : " />
+      <Label fx:id="txtmid" layoutX="705.0" layoutY="211.0" prefHeight="39.0" prefWidth="144.0" text="제품 등록회원 : " />
+      <TableView layoutX="42.0" layoutY="541.0" prefHeight="167.0" prefWidth="877.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

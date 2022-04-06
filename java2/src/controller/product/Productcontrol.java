@@ -68,11 +68,12 @@ public class Productcontrol implements Initializable {
 					// *버튼 클릭이벤트
 						//	button.setOnAction( e -> { } ); // 람다식 : 인수 -> { 실행코드 }
 					button.setOnAction( e -> { 
-						System.out.println( e.toString() );
 						// 1. 클릭한 버튼의 id 가져오기
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						// 2. 클릭한 제품 번호 저장 
 						select = productlist.get(id);
+						// 3. 화면 전환
+						Home.home.loadpage("/view/product/productview.fxml");
 					} );	
 				gridPane.add( button  , col , row); // 그리드내  해당 열번호 , 행번호 에 버튼 추가
 				
@@ -93,6 +94,7 @@ public class Productcontrol implements Initializable {
 					button.setOnAction( e -> { 
 						int id = Integer.parseInt(  e.toString().split(",")[0].split("=")[2] );
 						select = productlist.get(id);
+						Home.home.loadpage("/view/product/productview.fxml");
 					} );	
 				gridPane.add( button  , col , row+1 ); // 마지막행에 나머지값 만큼 버튼 추가해서 그리드에 추가
 				i++; //인덱스 증가
