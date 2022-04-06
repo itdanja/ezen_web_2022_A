@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import dto.Product;
 
@@ -40,8 +41,30 @@ public class ProductDao {
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return false;
 	}
-	// 2. 모든 제품 출력 
-	
+	// 2. 모든 제품 출력 [ tableview 사용x -> arraylist 사용o ] 
+	public ArrayList<Product> list(){
+		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
+		try {
+			String sql = "select * from product";	// SQL 작성
+			ps = con.prepareStatement(sql);			// SQL 연결 
+			rs = ps.executeQuery();					// SQL 실행  
+			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
+				Product product = new Product(  	// 해당 레코드를 객체화
+						rs.getInt(1) ,
+						rs.getString(2),
+						rs.getString(3), 
+						rs.getString(4), 
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getInt(7),
+						rs.getString(8),
+						rs.getInt(9));
+				productlist.add(product);			// 리스트에 객체 담기 
+			}	
+			return productlist;						// 리스트 반환
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return null; // 만약에 실패시 NULL 반환
+	}
 	// 3. 제품 조회
 	
 	// 4. 제품 삭제

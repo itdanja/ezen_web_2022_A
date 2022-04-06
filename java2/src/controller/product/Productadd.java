@@ -1,6 +1,8 @@
 package controller.product;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -118,6 +120,28 @@ public class Productadd implements Initializable {
     	// 6. 미리보기 이미지컨트롤에 띄우기
     	Image image = new Image( pimage ); // 해당 이미지의 경로 구분 이  / 구분 되어 있어야함 
     	img.setImage(image); // ImageView 에 해당 이미지 넣어주기
+    	
+    	// * 선택한 파일을 현재 프로젝트 폴더로 복사(이동) 해오기
+    	try {
+    	// 1. 파일 입력 스트림[ 이동 단위 : 바이트 ]
+    		FileInputStream inputStream = new FileInputStream(file); // file : fileChooser에서 선택된 파일 객체
+    	// 2. 파일 출력 스트림
+    		// 1. 새로운 경로 설정
+    		File copyfile = new File("C:/Users/MSI/git/ezen_web_2022_A/java2/src/img/" +file.getName() );
+    		FileOutputStream outputStream = new FileOutputStream( copyfile );
+    	// 3. 바이트 배열 선언 
+    		byte[] bytes = new byte[1024*1024*1024]; // 1바이트 -> 1024바이트 -> 1키로바이트 -> 1024키로바이트-> 1메가바이트
+    	// 4. 반복문을 이용한 inputStream의 파일 스트림 모두 읽어오기 
+    		int size;
+    		while(  ( size = inputStream.read( bytes ) ) > 0 ) { // 읽어온 바이트가 0보다 작으면 반복문 종료 [ 읽어올 바이트가 없을때까지 반복 ]
+    			outputStream.write(bytes , 0 , size ); // 읽어온 바이트만큼 내보내기
+    		}
+    	// 5. 용량 큰 경우에는 스트림 종료 필수!!!
+    		inputStream.close();
+    		outputStream.close();
+    	// * 복사된 파일의 경로를 db 저장
+    		pimage = copyfile.toURI().toString();
+    	}catch (Exception e) {System.out.println(e);}
     }
     
     @FXML
@@ -128,6 +152,10 @@ public class Productadd implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 }
+
+
+
+
 
 
 

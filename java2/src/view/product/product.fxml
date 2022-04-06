@@ -23,7 +23,7 @@
       </Button>
       <ScrollPane fx:id="scrollpane" layoutX="41.0" layoutY="151.0" prefHeight="553.0" prefWidth="874.0">
          <content>
-            <VBox fx:id="vbox" prefHeight="546.0" prefWidth="869.0" />
+            <VBox fx:id="vbox" prefHeight="546.0" prefWidth="869.0" style="-fx-background-color: #ffffff;" />
          </content>
       </ScrollPane>
    </children>
