@@ -3,6 +3,7 @@ package controller.product;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.home.Home;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +24,7 @@ public class Productcontrol implements Initializable {
 
     @FXML
     void accadd(ActionEvent event) {
-
+    	Home.home.loadpage("/view/product/productadd.fxml");
     }
 
 	@Override
@@ -31,3 +32,15 @@ public class Productcontrol implements Initializable {
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
