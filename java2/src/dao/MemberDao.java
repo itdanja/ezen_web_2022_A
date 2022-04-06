@@ -175,6 +175,19 @@ public class MemberDao { // DB 접근객체
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return false;
 	}
+	// 8. 해당 회원번호로 해당 id 찾기
+	public String getmid( int mnum ) {
+		try {
+			String sql ="select mid from member where mnum = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, mnum);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				return rs.getString(1);// 찾은 id 반환
+			}
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return null;
+	}
 	
 }
 
