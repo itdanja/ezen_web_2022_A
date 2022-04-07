@@ -42,11 +42,12 @@ public class ProductDao {
 		return false;
 	}
 	// 2. 모든 제품 출력 [ tableview 사용x -> arraylist 사용o ] 
-	public ArrayList<Product> list(){
+	public ArrayList<Product> list( String category ){
 		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
-			String sql = "select * from product order by pnum desc";	// SQL 작성
+			String sql = "select * from product where pcategory = ? order by pnum desc";	// SQL 작성
 			ps = con.prepareStatement(sql);			// SQL 연결 
+			ps.setString( 1 , category );
 			rs = ps.executeQuery();					// SQL 실행  
 			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
 				Product product = new Product(  	// 해당 레코드를 객체화
