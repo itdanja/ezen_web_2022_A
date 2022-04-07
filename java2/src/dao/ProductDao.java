@@ -42,12 +42,21 @@ public class ProductDao {
 		return false;
 	}
 	// 2. 모든 제품 출력 [ tableview 사용x -> arraylist 사용o ] 
-	public ArrayList<Product> list( String category ){
+	public ArrayList<Product> list( String category , String search  ){
 		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
-			String sql = "select * from product where pcategory = ? order by pnum desc";	// SQL 작성
-			ps = con.prepareStatement(sql);			// SQL 연결 
-			ps.setString( 1 , category );
+			String sql = null;
+			if( search == null ) { // 검색이 없을경우
+				sql  = "select * from product where pcategory = ? order by pnum desc";	// SQL 작성
+				ps = con.prepareStatement(sql);			// SQL 연결 
+				ps.setString( 1 , category );
+			}else { // 검색이 있을경우										//  필드명 = 값 [ = 비교연산자 ]  //  필드명 Like '%값%' [ 값이 포함된 ]
+				sql  = "select * from product where pcategory = ? and pname like '%"+search+"%' order by pnum desc";	// SQL 작성
+				ps = con.prepareStatement(sql);			// SQL 연결 
+				ps.setString( 1 , category );
+				// ps.setString( 2 , search ); SQL 문자열에 ? 대신에 직접 변수를 넣었기 때문에 생략합니다.~
+			}
+			
 			rs = ps.executeQuery();					// SQL 실행  
 			while( rs.next() ) {					// SQL 결과[ 레코드 단위 ]
 				Product product = new Product(  	// 해당 레코드를 객체화
