@@ -15,8 +15,9 @@ public class Client {
 	// 2.생성자 
 	public Client( Socket socket ) {
 		this.socket = socket;
+		recive(); // 서버와 연결된 클라이언트 객체가 생성될때 받기 메소드 
 	}
-	// 3. 서버로 메시지 받는 메소드 
+	// 3. 서버로 메시지 받는 메소드 [ 실행조건 : 서버와 클라이언트가 연결되었을때 ] 
 	public void recive() {
 		// 멀티스레드 [ Thread 클래스 vs  Runnable 인터페이스 ] 	// run 메소드를 필수적으로 구현해야함.
 		// 인터페이스는 추상메소드가 존재하기 때문에 구현필수[ 클래스에서 implements vs  익명 객체 ]
@@ -40,7 +41,7 @@ public class Client {
 		}; // 멀티스레드 구현 끝 
 		Server.threadpool.submit(runnable);  // 해당 멀티스레드를 스레드풀에 넣어주기 
 	}
-	// 4. 서버가 메시지 보내는 메소드 
+	// 4. 서버가 메시지 보내는 메소드  [ 실행조건 : 서버가 메시지를 받았을때 ]
 	public void send( String msg ) { 
 		Runnable runnable = new Runnable() {
 			@Override
