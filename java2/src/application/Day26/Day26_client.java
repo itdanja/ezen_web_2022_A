@@ -34,8 +34,7 @@ public class Day26_client {
 				byte[] bytes = new byte[1000];
 					// 3. 입력스트림으로 부터 바이트 가져오기
 				inputStream.read( bytes );
-				System.out.println("서버가 보낸 메시지 : " 
-								+ new String( bytes ));
+				System.out.println("서버가 보낸 메시지 : " + new String( bytes ));
 				
 			}
 		}catch (Exception e) {}
