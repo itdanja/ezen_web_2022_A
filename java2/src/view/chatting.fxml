@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="950.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Chatting">
+   <children>
+      <Label layoutX="32.0" layoutY="21.0" prefHeight="63.0" prefWidth="274.0" text="실시간 커뮤니티">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Line endX="172.0" layoutX="133.0" layoutY="84.0" startX="-100.0" stroke="#0873ff" strokeWidth="5.0" />
+      <Button fx:id="btnconnect" layoutX="186.0" layoutY="120.0" mnemonicParsing="false" onAction="#connect" prefHeight="42.0" prefWidth="438.0" style="-fx-background-color: #0873ff;" text="채팅방 입장" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="txtcontent" layoutX="186.0" layoutY="171.0" prefHeight="439.0" prefWidth="438.0" />
+      <TextField fx:id="txtmsg" layoutX="186.0" layoutY="620.0" prefHeight="42.0" prefWidth="325.0" />
+      <Button fx:id="btnsend" layoutX="522.0" layoutY="620.0" mnemonicParsing="false" onAction="#send" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #0873ff;" text="전송" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtname" layoutX="655.0" layoutY="284.0" prefHeight="32.0" prefWidth="227.0" />
+      <TextField fx:id="txtip" layoutX="655.0" layoutY="343.0" prefHeight="32.0" prefWidth="227.0" />
+      <TextField fx:id="txtport" layoutX="655.0" layoutY="403.0" prefHeight="32.0" prefWidth="227.0" />
+      <Label layoutX="655.0" layoutY="269.0" text="채팅방 닉네임" />
+      <Label layoutX="655.0" layoutY="329.0" text="서버 ip주소" />
+      <Label layoutX="655.0" layoutY="388.0" text="서버 port번호" />
+      <Label layoutX="656.0" layoutY="239.0" text="* 아래 3가지 입력시 입장이 가능합니다. *" />
+   </children>
+</AnchorPane>

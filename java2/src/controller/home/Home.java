@@ -97,6 +97,7 @@ public class Home implements Initializable {
 	
 	@Override // 실행 초기 메소드 
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		loadpage("/view/chatting.fxml");
 		lblloginid.setText( Login.member.getMid()+" 님" );
 		lblpoint.setText("포인트 : "+ Login.member.getMpoint()+" 점");
 	}

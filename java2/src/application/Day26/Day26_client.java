@@ -14,7 +14,7 @@ public class Day26_client {
 		Socket socket = new Socket();
 		try {
 			while( true ) { // 2. 서버소켓으로 연결하기 [ 서버소켓의 ip와 port 번호 넣어주기 ] 
-				socket.connect( new InetSocketAddress("127.168.102.50",5000));
+				socket.connect( new InetSocketAddress( "127.168.102.50",5000));
 				System.out.println("[[서버와 연결 성공]]");
 				
 				Scanner scanner = new Scanner(System.in);
