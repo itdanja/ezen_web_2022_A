@@ -58,5 +58,10 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
+      <Button fx:id="btnactivation" layoutX="705.0" layoutY="137.0" mnemonicParsing="false" onAction="#activation" prefHeight="29.0" prefWidth="196.0" style="-fx-background-color: #0873ff;" text="판매완료" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

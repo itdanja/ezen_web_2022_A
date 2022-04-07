@@ -37,10 +37,10 @@
                </font>
             </Label>
             <Line endX="-47.0" layoutX="144.0" layoutY="372.0" startX="-100.0" stroke="WHITE" strokeWidth="5.0" />
-            <Label fx:id="lblproduct" onMouseClicked="#accproduct" layoutX="42.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="남성의류" textFill="WHITE" />
-            <Label layoutX="105.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="여성의류" textFill="WHITE" />
-            <Label layoutX="166.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="게임기기" textFill="WHITE" />
-            <Label layoutX="224.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="생활용품" textFill="WHITE" />
+            <Label fx:id="lblproduct1" onMouseClicked="#accproduct1" layoutX="42.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="남성의류" textFill="WHITE" />
+            <Label fx:id="lblproduct2" onMouseClicked="#accproduct2" layoutX="105.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="여성의류" textFill="WHITE" />
+            <Label fx:id="lblproduct3" onMouseClicked="#accproduct3" layoutX="166.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="게임기기" textFill="WHITE" />
+            <Label fx:id="lblproduct4" onMouseClicked="#accproduct4" layoutX="224.0" layoutY="375.0" prefHeight="29.0" prefWidth="56.0" text="생활용품" textFill="WHITE" />
             <Label layoutX="42.0" layoutY="411.0" prefHeight="29.0" prefWidth="68.0" text="커뮤니티" textFill="WHITE">
                <font>
                   <Font size="15.0" />

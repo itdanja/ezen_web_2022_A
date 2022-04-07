@@ -94,7 +94,31 @@ public class ProductDao {
 			return true;
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return false;
-		
+	}
+	// 상태변경
+	public boolean activation( int pnum ) {
+		// 현재 제품의 상태
+		try {
+			String sql = "select pactivation from product where pnum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, pnum);
+			rs = ps.executeQuery();
+			if( rs.next() ) { // 검색결과가 존재하면 다음 레코드 가져오기
+					String upsql = null; 
+				if( rs.getInt(1) == 1  ) { //  현재 제품의상태가 1 이면 
+					upsql = "update product set pactivation=2 where pnum=?";
+				}else if ( rs.getInt(1) == 2 ) { // 현재 제품의상태가 2 이면 
+					upsql = "update product set pactivation=3 where pnum=?";
+				}else if ( rs.getInt(1) == 3 ) { // 현재 제품의상태가 3 이면 
+					upsql = "update product set pactivation=1 where pnum=?";
+				}
+				ps = con.prepareStatement(upsql); // 업데이트 upsql 설정  
+				ps.setInt( 1 , pnum);
+				ps.executeUpdate(); // sql 실행
+				return true;
+			}
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
 	}
 	
 	
