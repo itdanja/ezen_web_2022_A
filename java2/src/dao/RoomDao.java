@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import dto.Room;
+import dto.Roomlive;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
@@ -74,7 +76,38 @@ public class RoomDao {
 			return roomlist;
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 			return null;
-		
+	}
+	
+	// 4. 채팅방 접속 명단 추가 
+	public boolean addroomlive( Roomlive roomlive ) {
+		String sql ="insert into roomlive(ronum,mid)values(?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt( 1 , roomlive.getRonum()  );
+			ps.setString( 2 , roomlive.getMid() );
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+			return false;
+	}
+	// 5. 채팅방 접속된 모든 명단 호출
+	public ArrayList<Roomlive> getRoomlivelist( int ronum ){
+		ArrayList<Roomlive> roomlivelist = new ArrayList<>();
+		try {
+			String sql = "select * from roomlive where ronum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt( 1 , ronum );
+			rs= ps.executeQuery();
+			while( rs.next() ) {
+				Roomlive roomlive = new Roomlive(
+						rs.getInt(1),
+						rs.getInt(2),
+						rs.getString(3));
+				roomlivelist.add(roomlive);
+			}
+			return roomlivelist;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+			return null;
 	}
 	
 }

@@ -4,11 +4,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import controller.login.Login;
 import dao.RoomDao;
 import dto.Room;
+import dto.Roomlive;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,15 +75,13 @@ public class Chatting implements Initializable {
     	roomtable.setItems( roomlist );
     	// 6. 해당 테이블뷰를 클릭했을때.
     	roomtable.setOnMouseClicked( e -> { 
-    		// 7. 클릭된 객체 가져와서 객체에 저장
+    		// 7. 클릭된 객체(방) 가져와서 객체(방)에 저장
     		selectroom =  roomtable.getSelectionModel().getSelectedItem();
     		// 8. 레이블 표시 방 이름 표시 
     		lblselect.setText("현재 선택된 방 : "+selectroom.getRoname() );
     		// 9. 접속 버튼 사용 활성화
     		btnconnect.setDisable(false);
     	} );
-    	
-    	
     }
     
     @FXML
@@ -102,45 +102,39 @@ public class Chatting implements Initializable {
     	RoomDao.roomDao.roomadd(room);
     	// 4. 해당 방 서버 실행
     	server = new Server(); // 메모리할당
-    	// 서버 실행 [ 인수로 ip 와 port 넘기기 ]
-    	server.serverstart( 
-    			room.getRoip() , 
-    			RoomDao.roomDao.getroomnum() 
-    			); 
+    		// **서버 실행 [ 인수로 ip 와 port 넘기기 ]
+    	server.serverstart(  room.getRoip() ,  RoomDao.roomDao.getroomnum() ); 
     	
     	txtroomname.setText("");// 개설후 방이름 입력창 공백 처리
-    	show();
+    	
+    	show(); // 테이블 새로고침
     	
     	Alert alert = new Alert( AlertType.INFORMATION);
     		alert.setHeaderText("방 개설이 되었습니다 방번호 : "
     						+ RoomDao.roomDao.getroomnum());
     		alert.showAndWait();
-    		
     }
 
-    @FXML
-    void msg(ActionEvent event) {
 
-    }
     
     Socket socket;   // 1. 클라이언트 소켓 선언 
     
-    // 2. 클라이언트 실행 메소드
-    public void clientstart() {
+    // 2. 클라이언트 실행 메소드 // ip와 port번호를 인수로 받기
+    public void clientstart( String ip , int port ) { 
     	Thread thread = new Thread() { // 멀티스레드 
     		@Override
     		public void run() {
     			try {
-    				socket = new Socket("127.0.0.1",1234); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
+    				socket = new Socket( ip , port ); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
     				send( Login.member.getMid()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
     				receive(); // 접속과 동시에 받기 메소드는 무한루프
-    			}catch(Exception e ) {}
+    			}catch(Exception e ) { System.out.println( e );}
     		};
     	};// 멀티스레드 구현 끝
     	thread.start(); // 멀티스레드 실행
     }
     // 3. 클라이언트 종료 메소드 
-    public void clientstop() {  try{ socket.close(); }catch(Exception e ) {} }
+    public void clientstop() {  try{ socket.close(); }catch(Exception e ) { System.out.println( e );} }
     
     // 4. 서버에게 메시지 보내기 메소드 
     public void send( String msg ) {
@@ -151,7 +145,7 @@ public class Chatting implements Initializable {
     				OutputStream outputStream = socket.getOutputStream(); // 1. 출력 스트림
     				outputStream.write( msg.getBytes() ); // 2. 내보내기
     				outputStream.flush(); // 3. 스트림 초기화 [ 스트림 내 바이트 지우기 ]
-    			}catch( Exception e ) {} 
+    			}catch( Exception e ) { System.out.println( e );} 
     		}
     	};// 멀티스레드 구현 끝 
     	thread.start();
@@ -166,15 +160,51 @@ public class Chatting implements Initializable {
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
 	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
 	    	}
-    	}catch( Exception e ) {}
+    	}catch( Exception e ) { System.out.println( e );}
+    }
+    
+    
+    public void midshow() {
+    	ArrayList<Roomlive> roomlivelist 
+			= RoomDao.roomDao.getRoomlivelist( selectroom.getRonum() );
+		txtmidlist.setText("");
+		int i = 1; 
+		for( Roomlive temp : roomlivelist ) {
+			txtmidlist.appendText( i +"번 "+ temp.getMid() +"\n");
+			i++;
+		}
+    }
+    @FXML
+    void msg(ActionEvent event) { // 입력창에서 입력후 엔터를 눌렀을때
+    	String msg = Login.member.getMid()+" : "+ txtmsg.getText()+"\n";
+    	send( msg );
+    	txtmsg.setText("");
+    	txtmsg.requestFocus();
+    	midshow();
+    }
+    @FXML
+    void send(ActionEvent event) { // 전송 버튼을 눌렀을때
+    	String msg = Login.member.getMid()+" : "+ txtmsg.getText()+"\n"; // 보낼 메시지
+    	send( msg ); // 메시지 보내기 
+    	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
+    	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
+    	midshow();
     }
     
     @FXML
     void connect(ActionEvent event) {
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
-    		
-    		clientstart(); // 클라이언트 실행 메소드 
-    		
+    		// 테이블뷰에서 선택된 방의 ip 와 port 를 클라이언트시작 메소드에 넣어주기
+    		clientstart( selectroom.getRoip() , selectroom.getRonum() );
+    			// 현재 방 접속명단 추가  
+    			Roomlive roomlive 
+    				= new Roomlive( 0, 
+    						selectroom.getRonum() , 
+    						Login.member.getMid() );
+    			// db처리
+    			RoomDao.roomDao.addroomlive(roomlive);
+    			midshow();
+    			
     		txtcontent.appendText("---[채팅방 입장]---\n");
     		btnconnect.setText("채팅방 나가기");
     		
@@ -196,13 +226,7 @@ public class Chatting implements Initializable {
         	btnsend.setDisable(true); 		// 전송버튼 사용금지
     	}
     }
-    @FXML
-    void send(ActionEvent event) { // 전송 버튼을 눌렀을때
-    	String msg = txtmsg.getText()+"\n"; // 보낼 메시지
-    	send( msg ); // 메시지 보내기 
-    	txtmsg.setText(""); 	// 보내기 후 메시지입력창 지우기
-    	txtmsg.requestFocus();	// 보내기 후 메시지입력창으로 포커스(커서) 이동
-    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// 채팅fxml 열렸을때 초기값 메소드  	// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
