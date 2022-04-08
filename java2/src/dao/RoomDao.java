@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import dto.Room;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 
 public class RoomDao {
 	
@@ -43,12 +47,36 @@ public class RoomDao {
 			String sql ="select max(ronum) from room";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			if( rs.next() ) {
+			if( rs.next() ) {			
 				return rs.getInt(1); // 최근에 등록된 방번호 반환
 			}
 		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
 		return 0;
 	}
+	// 3. 모든 방 호출 메소드 [ tableview -> ObservableList ] 
+	public ObservableList<Room> roomlist (){
+		ObservableList<Room> roomlist = FXCollections.observableArrayList();
+		try {
+			String sql = "select * from room order by ronum desc";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();	// select -> executeQuery // insert,update,delete -> executeUpdate
+			// rs = Resultset 인터페이스 객체 : select의 결과 가져오기
+				// resultset ( 초기값 null )
+				// rs.next() : select 결과의 레코드 1개 가져오기
+				// rs(null)  -> rs.next() -> rs(결과의첫번째레코드) -> rs.next() -> rs(결과의두번째레코드 )
+			while( rs.next() ) {
+				Room room = new Room( rs.getInt( 1 ),
+						rs.getString(2),
+						rs.getString(3),
+						0 );
+				roomlist.add(room);
+			}
+			return roomlist;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+			return null;
+		
+	}
+	
 }
 
 
