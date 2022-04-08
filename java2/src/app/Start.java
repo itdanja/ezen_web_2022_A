@@ -1,9 +1,14 @@
 package app;
 
+import controller.Chatting;
+import controller.login.Login;
+import dao.RoomDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -35,6 +40,25 @@ public class Start extends Application {
 			Font.loadFont( getClass().getResourceAsStream("SANGJU Gotgam.ttf"), 15);
 			// 2. 현대 scene에 외부 스타일시트 적용
 			scene.getStylesheets().add( getClass().getResource("application.css").toExternalForm() );
+			
+		// * stage= 윈도우창에 x 버튼 눌렀을때 이벤트
+		stage.setOnCloseRequest( e ->{
+			
+			// 만약에 로그인이 되어있으면
+			if( Login.member != null ) {
+				// 만약에 방에 접속 되어 있는 상태이면
+				if( Chatting.selectroom != null ){
+					// 1. 방 접속명단 삭제
+					RoomDao.roomDao.roomlivedelete( Login.member.getMid() );
+					// 2. 방 삭제 
+					RoomDao.roomDao.roomdelete( Chatting.selectroom.getRonum() );
+				}
+				// 3. 선택 방 초기화
+				Chatting.selectroom = null;
+			}
+			
+		});
+		
 			
 		stage.setResizable(false); // 4. 스테이지 크기 변경 불가 
 		stage.setTitle("이젠마켓"); // 2.스테이지 창 이름

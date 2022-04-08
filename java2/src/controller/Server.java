@@ -29,8 +29,9 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 				@Override
 				public void run() { // 추상메소드 구현 
 					// 계속적으로 메시지 받는 상태 
-					try {
-						while(true) {
+				
+					while(true) {
+						try {
 							InputStream inputStream = socket.getInputStream(); // 1. 입력스트림 
 							byte[] bytes = new byte[1000]; 	// 2. 바이트 배열 선언 [ 스트림은 바이트단위 이기 때문에 ]
 							inputStream.read( bytes ); 		// 3. 입력스트림으로 바이트 읽어오기 
@@ -39,8 +40,13 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 							for( Client client   : clientlist ) {
 								client.send( msg ); // 받은 메시지를 서버에 접속된[ clientlist ] 모든 클라이언트에게 메시지 보내기
 							}
+					
+						}catch( Exception e ) { 
+							serverstop();
+							System.out.println("서버가 메시지 받기 실패:"+e); 
+							break;
 						}
-					}catch( Exception e ) { System.out.println("서버가 메시지 받기 실패:"+e); }
+					}
 					
 				}
 			}; // 멀티스레드 구현 끝 
@@ -54,7 +60,9 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 					try {
 						OutputStream outputStream = socket.getOutputStream(); 	// 1. 출력 스트림
 						outputStream.write( msg.getBytes() ); 					// 2. 내보내기
-					}catch( Exception e ) { System.out.println("서버가 메시지 보내기 실패:"+e); }
+					}catch( Exception e ) { 
+						serverstop();
+						System.out.println("서버가 메시지 보내기 실패:"+e); }
 				}
 			}; // 멀티스레드  구현 끝 
 			threadpool.submit(runnable); // 해당 멀티스레드를 스레드풀에 넣어주기 
@@ -79,7 +87,9 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
     	try {
 	    	serverSocket = new ServerSocket(); // 1. 서버소켓 메모리할당
 	    	serverSocket.bind( new InetSocketAddress( ip , port ) ); 	// 2. 서버소켓 바인딩 [ ip 와 port 설정 ] 
-    	}catch( Exception e ) { System.out.println("서버 생성 실패:"+e); }
+    	}catch( Exception e ) { 
+    		serverstop();
+    		System.out.println("서버 생성 실패:"+e); }
     		// 3. 클라이언트의 요청 대기  [ 멀티스레드 사용하는이유 : 1.연결 2.보내기 3.받기 동시 처리 ] 
     	Runnable runnable = new Runnable() {
 			@Override
@@ -89,7 +99,9 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 						Socket socket = serverSocket.accept(); // 1. 요청 수락후에 수락된 소켓을 저장
 						clientlist.add( new Client(socket) ); // 2. 연결된 클라이언트( 연결된소켓 ) 생성후 에 리스트에 저장 
 					}
-				}catch( Exception e ) { System.out.println("서버가 클라이언트 연결실패 :" + e);   }
+				}catch( Exception e ) { 
+					serverstop();
+					System.out.println("서버가 클라이언트 연결실패 :" + e);   }
 			}
 		};// 멀티스레드 구현 끝
 		

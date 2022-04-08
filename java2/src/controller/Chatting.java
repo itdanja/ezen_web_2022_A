@@ -56,7 +56,7 @@ public class Chatting implements Initializable {
     private Label lblselect;
     
     public Server server ;    // 서버소켓 선언  [ 모든 메소드에서 사용 ] 
-    public Room selectroom;   // 테이블뷰에서 선택된 방 객체
+    public static Room selectroom;   // 테이블뷰에서 선택된 방 객체
     
     public void show() { // 사용되는 곳 [ initialize , add 메소드 ]
     	// 1. DB에서 모든 방 목록 가져오기
@@ -126,7 +126,9 @@ public class Chatting implements Initializable {
     				socket = new Socket( ip , port ); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
     				send( Login.member.getMid()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
     				receive(); // 접속과 동시에 받기 메소드는 무한루프
-    			}catch(Exception e ) { System.out.println( e );}
+    			}catch(Exception e ) { 
+    				clientstop(); // 클라이언트 종료 메소드
+    				System.out.println( e );}
     		};
     	};// 멀티스레드 구현 끝
     	thread.start(); // 멀티스레드 실행
@@ -143,22 +145,30 @@ public class Chatting implements Initializable {
     				OutputStream outputStream = socket.getOutputStream(); // 1. 출력 스트림
     				outputStream.write( msg.getBytes() ); // 2. 내보내기
     				outputStream.flush(); // 3. 스트림 초기화 [ 스트림 내 바이트 지우기 ]
-    			}catch( Exception e ) { System.out.println( e );} 
+    			}catch( Exception e ) { 
+    				clientstop(); // 클라이언트 종료 메소드
+    				System.out.println( e );} 
     		}
     	};// 멀티스레드 구현 끝 
     	thread.start();
     }
     // 5. 서버에게 메시지 받기 메소드 
     public void receive() {
-    	try {
-	    	while(true) {
+    	
+    	while(true) {
+    		try {
 	    		InputStream inputStream = socket.getInputStream(); // 1. 입력 스트림
 	    		byte[] bytes = new byte[1000]; 	// 2. 바이트배열 선언 
 	    		inputStream.read(bytes);		// 3. 읽어오기 
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
 	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
+    		}
+	    	catch( Exception e ) { 
+	    		clientstop(); // 클라이언트 종료 메소드
+	    		System.out.println( e );
+	    		break;
 	    	}
-    	}catch( Exception e ) { System.out.println( e );}
+    	}
     }
     
     
@@ -251,9 +261,9 @@ public class Chatting implements Initializable {
         	lblselect.setText("현재 선택된 방 : ");
         	
         	show(); // 방목록 테이블 새로고침
+        	
     	}
     }
-
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// 채팅fxml 열렸을때 초기값 메소드  	// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
@@ -264,8 +274,8 @@ public class Chatting implements Initializable {
     	btnconnect.setDisable(true); 	// 입장버튼 사용금지
     	txtmidlist.setDisable(true);  	// 방접속회원 목록 사용금지 
     	show();
+
     }
-	
 }
 
 
