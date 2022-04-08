@@ -41,13 +41,8 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 								client.send( msg ); // 받은 메시지를 서버에 접속된[ clientlist ] 모든 클라이언트에게 메시지 보내기
 							}
 					
-						}catch( Exception e ) { 
-							serverstop();
-							System.out.println("서버가 메시지 받기 실패:"+e); 
-							break;
-						}
+						}catch( Exception e ) { }
 					}
-					
 				}
 			}; // 멀티스레드 구현 끝 
 			threadpool.submit(runnable);  // 해당 멀티스레드를 스레드풀에 넣어주기 
@@ -60,9 +55,7 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 					try {
 						OutputStream outputStream = socket.getOutputStream(); 	// 1. 출력 스트림
 						outputStream.write( msg.getBytes() ); 					// 2. 내보내기
-					}catch( Exception e ) { 
-						serverstop();
-						System.out.println("서버가 메시지 보내기 실패:"+e); }
+					}catch( Exception e ) { }
 				}
 			}; // 멀티스레드  구현 끝 
 			threadpool.submit(runnable); // 해당 멀티스레드를 스레드풀에 넣어주기 
@@ -99,14 +92,11 @@ public class Server{	// fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용 ]
 						Socket socket = serverSocket.accept(); // 1. 요청 수락후에 수락된 소켓을 저장
 						clientlist.add( new Client(socket) ); // 2. 연결된 클라이언트( 연결된소켓 ) 생성후 에 리스트에 저장 
 					}
-				}catch( Exception e ) { 
-					serverstop();
-					System.out.println("서버가 클라이언트 연결실패 :" + e);   }
+				}catch( Exception e ) {  }
 			}
 		};// 멀티스레드 구현 끝
-		
-		threadpool = Executors.newCachedThreadPool(); // 스레드풀에 메모리 초기화[할당]
-		threadpool.submit(runnable); // 위에서 구현된 멀티스레드를 스레드풀에 넣어주기 
+		threadpool = Executors.newCachedThreadPool(); 	// 스레드풀에 메모리 초기화[할당]
+		threadpool.submit(runnable); 					// 위에서 구현된 멀티스레드를 스레드풀에 넣어주기 
     }
     // 3. 서버종료 메소드
     public void serverstop() { 

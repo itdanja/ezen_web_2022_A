@@ -126,15 +126,13 @@ public class Chatting implements Initializable {
     				socket = new Socket( ip , port ); // 서버의 ip와 포트번호 넣어주기 [ 서버와 연결 ]
     				send( Login.member.getMid()+"님 입장했습니다\n"); // 접속과 동시에 입장메시지 보내기 
     				receive(); // 접속과 동시에 받기 메소드는 무한루프
-    			}catch(Exception e ) { 
-    				clientstop(); // 클라이언트 종료 메소드
-    				System.out.println( e );}
+    			}catch(Exception e ) { }
     		};
     	};// 멀티스레드 구현 끝
     	thread.start(); // 멀티스레드 실행
     }
     // 3. 클라이언트 종료 메소드 
-    public void clientstop() {  try{ socket.close(); }catch(Exception e ) { System.out.println( e );} }
+    public void clientstop() {  try{ socket.close(); }catch(Exception e ) { } }
     
     // 4. 서버에게 메시지 보내기 메소드 
     public void send( String msg ) {
@@ -145,9 +143,7 @@ public class Chatting implements Initializable {
     				OutputStream outputStream = socket.getOutputStream(); // 1. 출력 스트림
     				outputStream.write( msg.getBytes() ); // 2. 내보내기
     				outputStream.flush(); // 3. 스트림 초기화 [ 스트림 내 바이트 지우기 ]
-    			}catch( Exception e ) { 
-    				clientstop(); // 클라이언트 종료 메소드
-    				System.out.println( e );} 
+    			}catch( Exception e ) { } 
     		}
     	};// 멀티스레드 구현 끝 
     	thread.start();
@@ -163,11 +159,7 @@ public class Chatting implements Initializable {
 	    		String msg = new String(bytes);	// 4. 바이트열 -> 문자열 변환
 	    		txtcontent.appendText(msg); 	// 4. 받은 문자열을 메시지창에 띄우기 
     		}
-	    	catch( Exception e ) { 
-	    		clientstop(); // 클라이언트 종료 메소드
-	    		System.out.println( e );
-	    		break;
-	    	}
+	    	catch( Exception e ) { }
     	}
     }
     
@@ -254,13 +246,17 @@ public class Chatting implements Initializable {
         	boolean result = RoomDao.roomDao.roomdelete(  
         			selectroom.getRonum()
         			);
+        	System.out.println( result );
         	if( result ) { server.serverstop(); } 
+        	
         	// * 테이블뷰에서 선택된 방객체 초기화
         	selectroom = null;
         	// * 선택된 방 레이블 초기화
         	lblselect.setText("현재 선택된 방 : ");
         	
         	show(); // 방목록 테이블 새로고침
+        	
+        	// 방 나갈때 서버소켓내 접속된 소켓 리스트에서 소켓 제거 
         	
     	}
     }
@@ -286,7 +282,6 @@ public class Chatting implements Initializable {
 			}
 		}; 
 		thread.start();
-    	
     }
 }
 

@@ -67,10 +67,18 @@ public class RoomDao {
 				// rs.next() : select 결과의 레코드 1개 가져오기
 				// rs(null)  -> rs.next() -> rs(결과의첫번째레코드) -> rs.next() -> rs(결과의두번째레코드 )
 			while( rs.next() ) {
+				
+				// 방번호를 가지고 
+				String sql2 = "select count(*) from roomlive where ronum = "+ rs.getInt(1);
+				// roomlive 레코드 세기 
+				ps = con.prepareStatement(sql2);
+				ResultSet rs2  = ps.executeQuery();
+				int count = 0 ;
+				if( rs2.next() ) {  count = rs2.getInt(1); }
 				Room room = new Room( rs.getInt( 1 ),
 						rs.getString(2),
 						rs.getString(3),
-						0 );
+						count );
 				roomlist.add(room);
 			}
 			return roomlist;
