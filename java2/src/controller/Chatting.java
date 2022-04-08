@@ -273,8 +273,20 @@ public class Chatting implements Initializable {
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
     	btnconnect.setDisable(true); 	// 입장버튼 사용금지
     	txtmidlist.setDisable(true);  	// 방접속회원 목록 사용금지 
-    	show();
-
+    
+    	Thread thread = new Thread() { // 채팅방 목록 실시간 화면 처리
+			@Override
+			public void run() {
+				while( true ) { 
+					try {
+						show();
+						Thread.sleep(1000);
+					}catch( Exception e ) {} 
+				}
+			}
+		}; 
+		thread.start();
+    	
     }
 }
 
