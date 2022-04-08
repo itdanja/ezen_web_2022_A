@@ -55,11 +55,10 @@ public class Chatting implements Initializable {
     @FXML
     private Label lblselect;
     
-  
-    public Server server ;    // 서버소켓 생성  [ 모든 메소드에서 사용 ] 
-    public Room selectroom;   // 테이블뷰에서 선택된 방객체
+    public Server server ;    // 서버소켓 선언  [ 모든 메소드에서 사용 ] 
+    public Room selectroom;   // 테이블뷰에서 선택된 방 객체
     
-    public void show() {
+    public void show() { // 사용되는 곳 [ initialize , add 메소드 ]
     	// 1. DB에서 모든 방 목록 가져오기
     	ObservableList<Room> roomlist = RoomDao.roomDao.roomlist();
     	// 2. 테이블뷰의 첫번째 필드를 가져와서 방번호 필드로 설정 
@@ -102,21 +101,20 @@ public class Chatting implements Initializable {
     	RoomDao.roomDao.roomadd(room);
     	// 4. 해당 방 서버 실행
     	server = new Server(); // 메모리할당
-    		// **서버 실행 [ 인수로 ip 와 port 넘기기 ]
+    		// **서버 실행 [ 인수로 ip 와 port=방번호 넘기기 ]
     	server.serverstart(  room.getRoip() ,  RoomDao.roomDao.getroomnum() ); 
     	
     	txtroomname.setText("");// 개설후 방이름 입력창 공백 처리
     	
     	show(); // 테이블 새로고침
     	
+    	// 메시지 띄우기
     	Alert alert = new Alert( AlertType.INFORMATION);
     		alert.setHeaderText("방 개설이 되었습니다 방번호 : "
     						+ RoomDao.roomDao.getroomnum());
     		alert.showAndWait();
     }
 
-
-    
     Socket socket;   // 1. 클라이언트 소켓 선언 
     
     // 2. 클라이언트 실행 메소드 // ip와 port번호를 인수로 받기
@@ -164,12 +162,13 @@ public class Chatting implements Initializable {
     }
     
     
-    public void midshow() {
+    public void midshow() { // msg메소드:입력창에서 엔터 쳤을때 // send메소드 : 전송버튼 눌렀을때
+    	// 1. 테이블뷰에서 선택된 방 번호의 접속된 회원명단 가져오기 
     	ArrayList<Roomlive> roomlivelist 
 			= RoomDao.roomDao.getRoomlivelist( selectroom.getRonum() );
-		txtmidlist.setText("");
+		txtmidlist.setText(""); // 2.명단 초기화
 		int i = 1; 
-		for( Roomlive temp : roomlivelist ) {
+		for( Roomlive temp : roomlivelist ) { // 3.리스트내 모든 객체를 하나씩 명단에 추가
 			txtmidlist.appendText( i +"번 "+ temp.getMid() +"\n");
 			i++;
 		}
@@ -192,10 +191,12 @@ public class Chatting implements Initializable {
     }
     
     @FXML
-    void connect(ActionEvent event) {
+    void connect(ActionEvent event) { // 접속 버튼을 눌렀을떄
+    	
     	if( btnconnect.getText().equals("채팅방 입장") ) {// 만약에 버튼의 텍스트가 "채팅방 입장" 이면 
     		// 테이블뷰에서 선택된 방의 ip 와 port 를 클라이언트시작 메소드에 넣어주기
     		clientstart( selectroom.getRoip() , selectroom.getRonum() );
+    		
     			// 현재 방 접속명단 추가  
     			Roomlive roomlive 
     				= new Roomlive( 0, 
@@ -203,7 +204,6 @@ public class Chatting implements Initializable {
     						Login.member.getMid() );
     			// db처리
     			RoomDao.roomDao.addroomlive(roomlive);
-    			midshow();
     			
     		txtcontent.appendText("---[채팅방 입장]---\n");
     		btnconnect.setText("채팅방 나가기");
@@ -213,8 +213,13 @@ public class Chatting implements Initializable {
         	txtcontent.setDisable(false); 	// 채팅창 목록 사용가능
         	btnsend.setDisable(false); 		// 전송버튼 사용가능
         	txtmsg.requestFocus();  		// 채팅입력창으로 포커스[커서] 이동
-    		
+        	
+        	txtroomname.setDisable(true); 	// 채팅방이름 입력창 사용금지
+        	btnadd.setDisable(true); 		// 채팅 개설 버튼 사용금지
+        	roomtable.setDisable(true);   	// 채팅방 목록 사용금지 
+        	
     	}else {
+    		
     		clientstop(); // 클라이언트 종료 메소드 
     		
     		txtcontent.appendText("---[채팅방 퇴장]---\n");
@@ -224,6 +229,28 @@ public class Chatting implements Initializable {
         	txtmsg.setDisable(true); 		// 채팅입력창 사용금지 
         	txtcontent.setDisable(true); 	// 채팅창 목록 사용금지
         	btnsend.setDisable(true); 		// 전송버튼 사용금지
+        	btnconnect.setDisable(true);
+        	
+        	txtroomname.setDisable(false); 	// 채팅방이름 사용
+        	btnadd.setDisable(false);  		// 방개설 버트 사용 
+        	roomtable.setDisable(false); 	// 채팅방 목록 사용
+        	
+        	// 1. 방 접속 명단에서 제외[삭제] 하기
+        	RoomDao.roomDao.roomlivedelete( 
+        			Login.member.getMid()    
+        			);
+        	// 2. 만약에 방 접속 명단이 0명이면 방삭제 
+        		// 2-2. 만약에 방이 삭제되면서버소켓 종료
+        	boolean result = RoomDao.roomDao.roomdelete(  
+        			selectroom.getRonum()
+        			);
+        	if( result ) { server.serverstop(); } 
+        	// * 테이블뷰에서 선택된 방객체 초기화
+        	selectroom = null;
+        	// * 선택된 방 레이블 초기화
+        	lblselect.setText("현재 선택된 방 : ");
+        	
+        	show(); // 방목록 테이블 새로고침
     	}
     }
 

@@ -110,6 +110,39 @@ public class RoomDao {
 			return null;
 	}
 	
+	// 6. 채팅방 접속 명단 삭제 
+	public boolean roomlivedelete( String mid ) {
+		String sql = "delete from roomlive where mid = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , mid );
+			ps.executeUpdate();
+			return true;
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+			return false;
+	}
+	// 7. 채팅방 삭제 [ 조건 : 해당 채팅방에 접속명단이 0 이면= 해당 채팅방에 레코드가 없으면 ]
+	public boolean roomdelete( int ronum ) {
+		String sql = "select * from roomlive where ronum =?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt( 1 , ronum);
+			rs = ps.executeQuery();
+			if( rs.next() ) { // 결과가 존재하면 방삭제X
+				return false;
+			}else { // 결과가 없으면 방삭제처리O
+				String sql2 = "delete from room where ronum =? ";
+				ps = con.prepareStatement(sql2);
+				ps.setInt( 1 , ronum);
+				ps.executeUpdate();
+				return true; // 접속 명단이 없는 방 삭제 성공 
+			}
+		}catch(Exception e ) { System.out.println( "[SQL 오류]"+e  ); }
+		return false;
+	}
+	// rs.next() : 반환타입 [ 다음 레코드가 있으면 true ]
+	//					  [ 다음 레코드가 없으면 false ] 
+	
 }
 
 
