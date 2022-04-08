@@ -19,7 +19,7 @@ public class MemberDao { // DB 접근객체
 		try {
 			// DB연동 
 			Class.forName("com.mysql.cj.jdbc.Driver"); // 1. DB 드라이버 가져오기
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC",
 					"root","1234"); // 2. DB 주소 연결 
 		}
 		catch(Exception e ) { System.out.println( "[DB 연동 오류]"+e  ); }

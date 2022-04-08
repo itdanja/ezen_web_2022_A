@@ -23,7 +23,7 @@ public class BoardDao {
 	public BoardDao() { // 생성자에서 연동하는 이유 : 객체 생성시 바로 db연동하기 위해 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver"); // JDBC 드라이브 클래스 호출
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx?serverTimezone=UTC",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC",
 					"root","1234");
 		}catch( Exception e ) {}
 	}

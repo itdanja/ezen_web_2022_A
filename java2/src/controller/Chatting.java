@@ -7,10 +7,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.login.Login;
+import dao.RoomDao;
+import dto.Room;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -45,10 +49,39 @@ public class Chatting implements Initializable {
 
     @FXML
     private Label lblselect;
-
+    
+    // 서버소켓 생성  [ 모든 메소드에서 사용 ] 
+    public Server server ; 
+    
     @FXML
-    void add(ActionEvent event) {
-
+    void add(ActionEvent event) { // 방 개설 버튼을 눌렀을때
+    	// 1. 컨트롤에 입력된 방 이름 가져오기
+    	String roomname = txtroomname.getText();
+    	if( roomname.length() < 4 ) { 
+    		//만약에 방이름이 4글자 미만이면 방개설 실패
+    		txtroomname.setText("");// 개설후 방이름 입력창 공백 처리
+    		Alert alert = new Alert( AlertType.INFORMATION);
+    		alert.setHeaderText("방 개설 실패[방 4글자이상 작성]");
+    		alert.showAndWait();
+    		return;
+    	}
+    	// 2. 방 객체
+    	Room room = new Room( 0 , roomname, "127.0.0.1",0); 
+    	// 3. db 처리
+    	RoomDao.roomDao.roomadd(room);
+    	// 4. 해당 방 서버 실행
+    	server = new Server(); // 메모리할당
+    	// 서버 실행 [ 인수로 ip 와 port 넘기기 ]
+    	server.serverstart( 
+    			room.getRoip() , 
+    			RoomDao.roomDao.getroomnum() 
+    			); 
+    	txtroomname.setText("");// 개설후 방이름 입력창 공백 처리
+    	Alert alert = new Alert( AlertType.INFORMATION);
+    		alert.setHeaderText("방 개설이 되었습니다 방번호 : "
+    						+ RoomDao.roomDao.getroomnum());
+    		alert.showAndWait();
+    		
     }
 
     @FXML
@@ -138,12 +171,13 @@ public class Chatting implements Initializable {
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	// 채팅fxml 열렸을때 초기값 메소드 
-    		// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
+    	// 채팅fxml 열렸을때 초기값 메소드  	// * 채팅방 입장전에 아래 fxid를 사용못하게 금지 
     	txtmsg.setText("채팅방 입장후 사용가능");
     	txtmsg.setDisable(true); 		// 채팅입력창 사용금지 
     	txtcontent.setDisable(true); 	// 채팅창 목록 사용금지
     	btnsend.setDisable(true); 		// 전송버튼 사용금지
+    	btnconnect.setDisable(true); 	// 입장버튼 사용금지
+    	txtmidlist.setDisable(true);  	// 방접속회원 목록 사용금지 
     }
 	
 }
