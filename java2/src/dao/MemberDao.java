@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import dto.Member;
 
@@ -203,11 +204,13 @@ public class MemberDao { // DB 접근객체
 		}catch( Exception e ) {}
 		return 0;
 	}
-	// 10. 날짜별로 가입자 수 반환
-	public Map<String, Integer> datetotal( ){
+	// 10. ( 인수 : 테이블명 , 날짜필드명 )의 날짜별 레코드 전체 개수 반환
+	public Map<String, Integer> datetotal( String 테이블명 , String 날짜필드명 ){
+		Map<String, Integer> map  = new TreeMap<>();
 		
-		Map<String, Integer> map  = new HashMap<>();
-		String sql = "select msince , count(*) from member group by msince";
+		String sql = "select substring_index( "+날짜필드명+" , ' ' , 1 )  , count(*)"
+					+ " from "+테이블명
+					+ " group by substring_index( "+날짜필드명+" , ' ' , 1 )";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -218,23 +221,6 @@ public class MemberDao { // DB 접근객체
 			return map;
 		}catch( Exception e ) {} return null;
 	}
-	// 11. 날짜별로 게시물 등록수 반환
-	public Map<String, Integer > datetotal2(){
-		Map<String , Integer > map = new HashMap<String, Integer>();
-		String sql = "select substring_index( bdate , ' ' , 1 )  , count(*) from board group by substring_index( bdate , ' ' , 1 )";
-		try {
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
-			while( rs.next() ) {
-				map.put( rs.getString( 1 ) , rs.getInt( 2 ) );
-			}
-			return map;
-		}catch( Exception e ) {}  return null;
-	}
-	
-	
-	
-	
 	
 }
 

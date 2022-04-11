@@ -23,6 +23,9 @@ public class Record implements Initializable {
 	private BarChart mbc; // fxid 객체화
 	@FXML
 	private BarChart bbc; // fxid 객체화
+	@FXML
+	private BarChart pbc; // fxid 객체화
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -44,7 +47,7 @@ public class Record implements Initializable {
 		// 2. DB에서 데이터 가져오기 
 			// 날짜별로 회원가입 수체크 [ 2022-04-11  ,  3 ]
 			// Map 컬렉션 => 키(날짜) , 값(가입자 수) 으로 하나의 엔트리 구성 
-			Map<String, Integer> map = MemberDao.memberDao.datetotal();
+			Map<String, Integer> map = MemberDao.memberDao.datetotal("member" , "msince");
 		// 3. 데이터를 계열에 추가 
 			for( String key : map.keySet() ) { // 반목문 
 				// 3-1 : 데이터 계열 선언 ( 생성자 : key=날짜 , value=가입자수 )
@@ -58,7 +61,7 @@ public class Record implements Initializable {
 		// 1. 계열 생성
 		XYChart.Series series2 = new XYChart.Series<>();
 		Map<String, Integer> map2 
-					= MemberDao.memberDao.datetotal2();
+					= MemberDao.memberDao.datetotal( "board" , "bdate" );
 		for( String key : map2.keySet() ) {
 			// 2. 데이터 생성 
 			XYChart.Data data 
@@ -68,8 +71,44 @@ public class Record implements Initializable {
 		}
 		// 4. 차트에 계열 추가 
 		bbc.getData().add(series2);
-	}
 	
+		
+
+		// 1. 계열 생성 
+		XYChart.Series series3 = new XYChart.Series<>();
+		
+			series3.setName("국어점수"); // * 계열명 
+		
+			// 2. 데이터 선언 ( x축값 , y축값 )
+			XYChart.Data data = new XYChart.Data<>("신동엽" , 10);
+			// 3. 계열에 데이터 추가
+			series3.getData().add(data);
+			
+			XYChart.Data data2 = new XYChart.Data<>("강호동" , 20);
+			series3.getData().add(data2);
+			
+			XYChart.Data data3 = new XYChart.Data<>("유재석" , 15);
+			series3.getData().add(data3);
+			
+		// 4. 차트에 계열추가
+		pbc.getData().add(series3);
+			
+		XYChart.Series series4 = new XYChart.Series<>();
+			series4.setName("영어점수");
+
+			XYChart.Data data4 = new XYChart.Data<>("신동엽" , 25); // 2. 데이터 선언 ( x축값 , y축값 )
+			series4.getData().add(data4); // 3. 계열에 데이터 추가
+			
+			XYChart.Data data5 = new XYChart.Data<>("강호동" , 40);
+			series4.getData().add(data5);
+			
+			XYChart.Data data6 = new XYChart.Data<>("유재석" , 50);
+			series4.getData().add(data6);
+	
+		pbc.getData().add(series4);
+		
+	}
+		
 	
 }
 

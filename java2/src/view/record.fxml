@@ -40,7 +40,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart layoutX="398.0" layoutY="14.0" prefHeight="275.0" prefWidth="474.0">
+                        <BarChart fx:id="pbc" layoutX="398.0" layoutY="14.0" prefHeight="275.0" prefWidth="474.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
