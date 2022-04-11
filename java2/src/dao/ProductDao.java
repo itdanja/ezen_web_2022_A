@@ -19,7 +19,7 @@ public class ProductDao {
 	public ProductDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/javafx?serverTimezone=UTC",
 					"root","1234");
 		}catch(Exception e ) {}
 	}
@@ -46,7 +46,11 @@ public class ProductDao {
 		ArrayList<Product> productlist = new ArrayList<>(); // 리스트 선언 	
 		try {
 			String sql = null;
-			if( search == null ) { // 검색이 없을경우
+			if( category == null && search == null ) { // 모든 제품 빼오기 
+				sql = "select * from product";
+				ps = con.prepareStatement(sql);	
+			}
+			else if( search == null ) { // 검색이 없을경우
 				sql  = "select * from product where pcategory = ? order by pnum desc";	// SQL 작성
 				ps = con.prepareStatement(sql);			// SQL 연결 
 				ps.setString( 1 , category );

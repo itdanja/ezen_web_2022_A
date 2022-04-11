@@ -22,7 +22,7 @@ public class MemberDao { // DB 접근객체
 		try {
 			// DB연동 
 			Class.forName("com.mysql.cj.jdbc.Driver"); // 1. DB 드라이버 가져오기
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/javafx?serverTimezone=UTC",
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/javafx?serverTimezone=UTC",
 					"root","1234"); // 2. DB 주소 연결 
 		}
 		catch(Exception e ) { System.out.println( "[DB 연동 오류]"+e  ); }
@@ -192,9 +192,25 @@ public class MemberDao { // DB 접근객체
 		return null;
 	}
 	
+	// 11. 카테고리별 개수 
+	public Map<String, Integer> countcategory() {
+		Map<String, Integer> map = new HashMap<>();
+		String sql ="select pcategory , count(*) "
+				+ " from product "
+				+ " group by pcategory";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				map.put( rs.getString(1) , rs.getInt(2) );
+			}
+			return map;
+		}catch( Exception e ) {} return null;
+	}
+	
 	// 9. (인수 : 테이블명)의 레코드 전체 개수 반환
-	public int counttotal( String tname ) {
-		String sql = "select count(*) from " + tname;
+	public int counttotal( String 테이블명 ) {
+		String sql = "select count(*) from "+테이블명;
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -204,6 +220,7 @@ public class MemberDao { // DB 접근객체
 		}catch( Exception e ) {}
 		return 0;
 	}
+	
 	// 10. ( 인수 : 테이블명 , 날짜필드명 )의 날짜별 레코드 전체 개수 반환
 	public Map<String, Integer> datetotal( String 테이블명 , String 날짜필드명 ){
 		Map<String, Integer> map  = new TreeMap<>();

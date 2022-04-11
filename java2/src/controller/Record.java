@@ -1,13 +1,19 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import dao.MemberDao;
+import dao.ProductDao;
+import dto.Product;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
@@ -25,7 +31,8 @@ public class Record implements Initializable {
 	private BarChart bbc; // fxid 객체화
 	@FXML
 	private BarChart pbc; // fxid 객체화
-	
+    @FXML
+    private PieChart ppc;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -106,6 +113,29 @@ public class Record implements Initializable {
 			series4.getData().add(data6);
 	
 		pbc.getData().add(series4);
+		
+		// 원형차트 : 카테고리별 개수
+			// *  ObservableList 사용이유 : 원형차트에 리스트를 추가시
+		// 1. ObservableList< 원형차트 데이터 자료형 > 리스트명  선언 
+		ObservableList< PieChart.Data > list 
+			= FXCollections.observableArrayList();
+			
+		// 2. db에서 카테고리별 개수  
+		Map< String , Integer > map3 
+			= MemberDao.memberDao.countcategory();
+		
+		for( String key : map3.keySet() ) {
+			// 3. 원형차트 데이터 추가 
+			PieChart.Data temp 
+				= new PieChart.Data( key , map3.get(key) );
+			// * 데이터를 리스트에 추가 
+			list.add(temp);
+		}
+		// 4. 리스트를 원형차트에 추가
+		ppc.setData( list );
+		
+		
+		
 		
 	}
 		
