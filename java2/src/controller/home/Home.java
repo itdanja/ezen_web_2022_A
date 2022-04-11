@@ -51,6 +51,10 @@ public class Home implements Initializable {
 	private Label lblproduct3; // fxid가져오기
 	@FXML
 	private Label lblproduct4; // fxid가져오기
+	@FXML
+	private Label lblhome; // fxid가져오기
+	@FXML
+	private Label lblrecord; // fxid가져오기
 	
 	@FXML
 	private BorderPane borderpane;
@@ -78,6 +82,7 @@ public class Home implements Initializable {
 		category="생활용품";
 	}
 	
+	
 	@FXML// 자유게시 레이블을 클릭했을때 이벤트
 	public void accboard( MouseEvent e ) { loadpage("/view/board/board.fxml"); }
 	
@@ -86,6 +91,13 @@ public class Home implements Initializable {
 	
 	@FXML// 회원수정 레이블을 클릭했을때 이벤트
 	public void accupdate( MouseEvent e ) { loadpage("/view/home/update.fxml"); }
+	
+	@FXML// 회원수정 레이블을 클릭했을때 이벤트
+	public void acchome( MouseEvent e ) { loadpage("/view/chatting.fxml"); }
+	
+	@FXML// 회원수정 레이블을 클릭했을때 이벤트
+	public void accrecord( MouseEvent e ) { loadpage("/view/record.fxml"); }
+	
 	
 	
 	public void loadpage( String page ) {

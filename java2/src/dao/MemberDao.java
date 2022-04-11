@@ -189,6 +189,19 @@ public class MemberDao { // DB 접근객체
 		return null;
 	}
 	
+	// 9. (인수 : 테이블명)의 레코드 전체 개수 반환
+	public int counttotal( String tname ) {
+		String sql = "select count(*) from " + tname;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				return rs.getInt( 1 );
+			}
+		}catch( Exception e ) {}
+		return 0;
+	}
+	
 }
 
 

@@ -14,8 +14,8 @@
 	<classpathentry kind="lib" path="C:/Users/505-t/Downloads/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="C:/Users/505-t/Downloads/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="C:/Users/505-t/Downloads/openjfx-11_windows-x64_bin-sdk/javafx-sdk-11/lib/javafx-swt.jar"/>
-	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/mail-1.4.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar"/>
+	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/H/java/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/H/java/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/505-t/Desktop/H/java/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
