@@ -19,8 +19,8 @@ public class ProductDao {
 	public ProductDao() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/javafx?serverTimezone=UTC",
-					"root","1234");
+			con = DriverManager.getConnection("jdbc:mysql://database-1.cdjqopt1lnnx.ap-northeast-2.rds.amazonaws.com:3306/javafx?serverTimezone=UTC",
+					"admin","qw102030");;
 		}catch(Exception e ) {}
 	}
 	
