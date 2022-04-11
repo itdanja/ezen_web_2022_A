@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import dto.Member;
 
@@ -201,6 +203,38 @@ public class MemberDao { // DB 접근객체
 		}catch( Exception e ) {}
 		return 0;
 	}
+	// 10. 날짜별로 가입자 수 반환
+	public Map<String, Integer> datetotal( ){
+		
+		Map<String, Integer> map  = new HashMap<>();
+		String sql = "select msince , count(*) from member group by msince";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				map.put( rs.getString(1) , rs.getInt(2) );
+				// 결과의 해당 레코드의 첫번째필드[날짜]   , 두번째 필드[가입자수] 
+			}
+			return map;
+		}catch( Exception e ) {} return null;
+	}
+	// 11. 날짜별로 게시물 등록수 반환
+	public Map<String, Integer > datetotal2(){
+		Map<String , Integer > map = new HashMap<String, Integer>();
+		String sql = "select substring_index( bdate , ' ' , 1 )  , count(*) from board group by substring_index( bdate , ' ' , 1 )";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				map.put( rs.getString( 1 ) , rs.getInt( 2 ) );
+			}
+			return map;
+		}catch( Exception e ) {}  return null;
+	}
+	
+	
+	
+	
 	
 }
 

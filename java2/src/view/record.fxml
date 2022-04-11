@@ -24,7 +24,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart layoutX="381.0" layoutY="14.0" prefHeight="260.0" prefWidth="491.0">
+                        <BarChart fx:id="mbc" layoutX="381.0" layoutY="14.0" prefHeight="260.0" prefWidth="491.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -56,7 +56,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BarChart layoutX="328.0" layoutY="18.0" prefHeight="266.0" prefWidth="536.0">
+                        <BarChart fx:id="bbc" layoutX="328.0" layoutY="18.0" prefHeight="266.0" prefWidth="536.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
