@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 주석 -->
+	<!-- 
+		폼 form 양식 : 사용자에게 입력,선택 할수 있는 서식 
+			1. <input> : 입력 상자
+				* 속성
+				1. type : 입력타입[형식]
+					1. text 	: 문자 입력 상자
+					2. password : 비밀번호 입력 상자
+					3. radio	: 선택버튼[ 복수x ] 
+					4. checkbox : 선택버튼[ 복수o ]
+					5. button	: 버튼 [ 이벤트 ]
+					6. submit	: 폼에 입력된 데이터 전송
+					7. reset	: 폼에 입력된 데이터 초기화
+					8. color	: 색상 선택 상자
+					9. date		: 날짜 선택 상자
+					10.datetime-local : 날짜/시간 선택 상자
+					11. month	: 월 선택 상자
+					12. time	: 시간 선택 상자
+					13. week	: 주 선택 상자
+					14. email	: 이메일(@) 입력상자
+					15. number	: 숫자 입력상자 
+					16. range	: 범위 스크롤 상자
+					
+				2. value 		: 값 넣기 
+				3. readonly 	: 읽기 모드 
+				4. disabled 	: 사용 금지
+				5. placeholder 	: 가이드 입력
+				6. autofocus 	: 포커스[마우스커서] 사용
+				7. name 		: 태그 이름
+				8. checked		: 선택된 상태
+				9. list			: 리스트
+				
+			2. <select> : 목록상자
+				1. <option> : 목록 값 추가
+			3. <textarea> : 긴글 상자
+				1. rows : 가로 글자수 
+				2. cols : 세로 글자수
+			4. <datalist> : 리스트상자 값 목록
+				1. <option value="값">
+	 -->
+	 <form>	<!-- 입력 틀(양식) -->
+	 	이름 	: <input type="text" value="유재석" readonly="readonly"> <br>
+	 	아이디 	: <input type="text" placeholder="아이디 입력" autofocus="autofocus"> <br>
+	 	회원등급 	: <input type="text" value="일반" disabled="disabled"> <br>
+	 	비밀번호 	: <input type="password"> <br>
+	 	선택버튼(복수x) 	: 	<input type="radio" name="email" checked="checked"> 예 
+	 						<input type="radio" name="email"> 아니요	<br>	
+	 	선택버튼(복수o)	: 	<input type="checkbox" name="item1"> 뉴스 	
+	 						<input type="checkbox" name="item2" checked="checked"> 드라마
+	 						<input type="checkbox" name="item3"> 스포츠 <br>
+	 	목록상자	: <input type="text"> @ 
+	 				<select>
+	 					<option> 직접입력 </option>
+	 					<option> naver.com </option>
+	 					<option> nate.com </option>
+	 				</select> <br>
+	 	자기소개 	: <textarea rows="6" cols="50"></textarea> <br>
+	 	버튼		: 	<input type="button" 	value="버튼">
+	 				<input type="submit" 	value="폼 전송버튼">
+	 				<input type="reset" 	value="다시 쓰기"> <br>
+	 	색상		: <input type="color"> 			<br>
+	 	날짜		: <input type="date">			<br>
+	 	날짜/시간	: <input type="datetime-local"> <br>
+	 	이메일	: <input type="email">			<br>
+	 	월단위	: <input type="month"> 			<br>
+	 	시간단위	: <input type="time">			<br>
+	 	주단위	: <input type="week"> 			<br>
+	 	숫자범위	: <input type="number" min="0" max="10">			<br>
+	 	범위		: <input type="range" min="0" max="100" step="10">	<br>
+	 	리스트	: <input list="list">
+	 				<datalist id="list">
+	 					<option value="네이버">
+	 					<option value="다음">
+	 					<option value="네이트">
+	 				</datalist>
+	 </form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
