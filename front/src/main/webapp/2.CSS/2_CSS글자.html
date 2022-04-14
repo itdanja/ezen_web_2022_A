@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		/* 웹 폰트 = 눈누 홈페이지  */
+		@font-face {
+		    font-family: 'LeeSeoyun';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		@font-face {
+		    font-family: 'ROKAFSlabSerifBold';
+		    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts2201-3@1.0/ROKAFSlabSerifBold.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+	
+		/* css 주석처리 */
+		/*  선택자{  속성명  }  */
+		*{ 	/* 모든 태그에 적용 */
+			font-family: "궁서"; 	/*폰트*/
+			color: blue; 			/*폰트 색상*/
+		}
+		h3{ /* h3태그를 선택해서 꾸미기 */
+			font-family: LeeSeoyun;		/*폰트*/
+			text-decoration: overline line-through underline;	
+							/* 윗줄 */   /*취소선*/    /*밑줄*/
+			text-align: center;		/* 폰트 정렬 */
+			text-shadow: 3px 3px 3px orange; /*폰트 그림자*/
+					/*   x축  y축 깊이  색상 */
+		}
+		p{ /* p태그를 선택해서 꾸미기 */
+			font-family: ROKAFSlabSerifBold;
+			background-color: yellow;		/* 배경색 */
+			line-height: 150%; /* 줄간격 [ 기본값 : 100% ] */
+			font-size: 30px;	/* 폰트 크기 */
+			font-style: italic;	/* 폰트 기울기 */
+			font-weight: bold;	/* 폰트 굵게 */
+			letter-spacing: 2px;	/* 글자 간격 [자간] */
+			word-spacing: 5px;		/* 단어 가격 [어간] */
+		}
+		a{	/* a태그를 선택해서 꾸미기 */
+			text-decoration: none;	/* 밑줄 제거*/
+			color: black;	
+		}
+		a:hover{	/* a태그에 마우스를 올렸을때 */
+			color: orange;
+		}
+		a:visited {	/* a태그에 클릭한 기록이 있으면 */
+			color: blue;
+		}
+ 		a:active {	/* a태그 클릭했을때 */
+			color: green;
+		}
+	</style>
+	
+</head>
+<body>
+
+	<!-- 
+		선택자{ 속성명 = 값 }
+			1. font-family : 글꼴명	: 글꼴
+			2. color : 색상 			: 글색상
+			3. text-decoration
+				overline			: 윗줄
+				underline			: 밑줄
+				line-through 		: 취소선
+			4. text-align			: 텍스트 정렬 
+				center : 가운데 정렬
+				left : 왼쪽 정렬
+				right : 오른쪽 정렬
+			5. text-shadow : x축 y축 깊이 색상		: 글꼴 그림자
+			6. line-height : % 	: 줄간격
+			7. letter-spacing 	: 자간
+			8. word-spacing		: 어간
+			9. font-size 		: 글자 크기
+			10. font-style : italic		[ 글자 기울기 ]
+			11. font-weight : bold 		[ 글자 굵게 ]
+			12. a태그 이벤트 선택자
+				a:hover  	/* a태그에 마우스를 올렸을때 */
+				a:active 	/* a태그 클릭했을때 */
+				a:visited 	/* a태그에 클릭한 기록이 있으면 */
+	 -->
+	<h3> 강아지 - 웹폰트 </h3>
+	<p>개는 중형 동물이자 가장 널리 분포하며 개체 수가 가장 많은 지상 동물 중 하나이며,
+		<br> 학명은 Canis lupus familiaris이다. <p>
+	<p>개는 인류가 최초로 가축으로 삼은 동물로 알려져 있으며, 역사적으로 애완견, 사냥견으로서 길러 왔다.</p>
+	
+	<a href="http://www.naver.com">네이버</a>
+	<a href="http://www.google.com">구글</a>
+	
+</body>
+</html>
+
+
+
+
+
+
+
