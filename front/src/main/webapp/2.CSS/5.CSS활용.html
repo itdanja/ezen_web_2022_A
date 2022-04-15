@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		/* 선택자 여러 선택시 , 구분 */
+		/* 선택자명1 , 선택자명2 , 선택자명3 { } */
+		body{
+			background-image: url("패턴배경.jpg"); 
+			/* 배경이미지 : 자동채우기 */
+			color: white;
+		}
+		div , span{
+			border: solid 5px red;
+			width: 700px; /*가로 사이즈 => 기본값 : 100%*/
+			height: 300px; /* 세로 가이즈 */
+			/* span 태그에는 가로 세로 사이즈 적용x */
+		}
+		#t1{ background-color: orange; }
+		#t2{ background-color: green; }
+		#t3{ background-color: skyblue; }
+		
+		table , th , td {
+			border: solid 2px black;
+		}
+		table{
+			border-collapse: collapse; /*테두리 병합 */
+			margin: 50px;
+			/* div 태그 안에 속해있는 테이블 */
+			/* div 와 table 사이 여백 */
+			color: black;
+		}
+		th{
+			padding: 10px;
+			background-color: #eeeeee;
+		}
+		td{
+			padding: 10px;
+			text-align: cetner;
+			color: white;
+		}
+		.col1{ width: 50px; }
+		.col2 , .col3 { width: 100px; }
+		
+		
+		
+		
+		
+		
+		
+	</style>
+	
+
+</head>
+<body>
+
+	<h3> 배경 이미지 </h3>
+		<div id="t1">	<!-- 한줄차지 박스모델 -->
+			안녕하세요
+		</div>
+		
+	<h3> 테이블 </h3>
+		<div id="t2">
+			안녕하세요2
+			<table>
+				<tr>
+					<th class="col1"> 종류 </th> 	
+					<th class="col2"> 대인 </th>
+					<th class="col3"> 소인 </th>
+					<th class="col4"> 비고 </th>
+				</tr>
+				<tr>
+					<td> 주간권 </td> 	<td> 20,000원 </td>
+					<td> 10,000원 </td>
+					<td rowspan="3">
+						공원 입장 및 놀이공원 이용 <br>
+						(일부 놀이공원 별도 요금)
+					</td>
+				</tr>
+				<tr>
+					<td> 야간권 </td> 	<td> 30,000원 </td>
+					<td> 50,000원 </td>
+				</tr>
+				<tr>
+					<td> 2일권 </td> 	<td> 40,000원 </td>
+					<td> 30,000원 </td>
+				</tr>
+			</table>
+		</div>
+		<span id="t3">
+			안녕하세요3
+		</span>
+</body>
+</html>
+
+
+
+
+
+
+
