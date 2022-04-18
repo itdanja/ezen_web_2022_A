@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		*{ border: solid 1px red; text-align: center;}
+		#hd_top{ background-color: #eeeeee;  }
+		#hd_top_sub{ 
+			width: 1280px;
+			background-color: red; margin: 0 auto;
+		}
+		#hd_btm{
+			width: 1280px; margin: 0 auto;
+			background-color: #eeeeee;
+			
+		}
+		#hd_logo{
+			width: 280px; height: 50px;
+			float: left; /* 이전 박스권에 이어서 나열하기 */
+		}
+		#menu-main{
+			width: 750px; height: 50px;
+			float: left; /* 이전 박스권에 이어서 나열하기 */
+		}
+		#hd_search{ 
+			width: 220px; height: 50px;
+			float: left; /* 이전 박스권에 이어서 나열하기 */
+		}
+		#content{
+			clear: both; /* float 제거 */
+			width: 1280px; margin: 0 auto;
+		} 
+		#main_view{
+			width:  1000px;  height:500px; 
+			background-color: skyblue; 
+			float: left;
+		}
+		#main_ban{
+			width : 250px;	height:500px; 
+			background-color : orange;
+			float: right;
+		}
+		#main_sec02{
+			clear: both;
+		}
+		ul{ margin: 0px; padding: 0px; } 
+		/* ul에 여백 기본값 제거 */
+		li{ list-style-type: none; } /* 글머리 제거*/
+		#main_ban li{
+			width: 250px; height: 160px;	
+			background-color: green;
+		}
+		.box{
+			width: 315px;	height: 200px;
+			background-color: gray;
+			float: left;
+		}
+		#footer{
+			clear: both;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</style>
+
+</head>
+<body>
+	
+	<div id="header"> <!-- 헤더 -->  
+		<div id="hd_top"> <!-- 상단 헤더 -->
+			<div id="hd_top_sub">상단헤더</div>
+		</div>
+		<div id="hd_btm"> <!-- 하단 헤더 -->
+			<div id="hd_logo">로고</div>
+			<div id="menu-main">메뉴</div>
+			<div id="hd_search">검색창</div>
+		</div>
+	</div>
+	<div id="content"> 
+		<div id="main_sec01">
+			<div id="main_view"> 메인 이미지 </div>
+			<ul id="main_ban">
+				<li> <a href="#"> <img> 이미지1 </a>  </li>
+				<li> <a href="#"> <img> 이미지2 </a>  </li>
+				<li> <a href="#"> <img> 이미지3 </a>  </li>
+			</ul>
+		</div>
+		<div id="main_sec02">
+			<div class="box"> 박스권1 </div>
+			<div class="box"> 박스권2 </div>
+			<div class="box"> 박스권3 </div>
+			<div class="box"> 박스권4 </div>
+		</div>
+	</div>
+	<div id="footer"> 푸터 </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
