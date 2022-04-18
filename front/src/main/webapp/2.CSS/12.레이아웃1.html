@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		#box1 , #box2 , #box3{
+			width: 300px; border: solid 1px red;
+			margin: 0 auto; padding: 20px; /* 박스권 가운데정렬 : margin: 0 auto */
+		}
+		#box2{ text-align: right; }		/* 박스권 내용물 정렬 : text-align */
+		#box3{ text-align: center; }
+		
+		#a , #b , #c , #d{
+			width: 100px; 	height: 50px;
+			margin: 10px;	color: black;
+			text-align: center;
+			border: solid 1px red;
+		}
+		#a , #b{ background-color: green; }
+		#c{ float: right; 	background-color: blue; }
+		#d{ float: left; 	background-color: gray; }
+		#f{ float: left; }
+		h3{ clear: both; }
+		
+	</style>
+
+</head>
+<body>
+
+	<div id = "box1"> 안녕하세요1 </div>	
+	<div id = "box2"> 안녕하세요2 </div>
+	<div id = "box3"> <img alt="" src="패턴배경.jpg" width="100px;"> </div>
+	
+	<div id="a"> 요소 A </div>
+	<div id="b"> 요소 B </div>
+	<div id="c"> 요소 C </div>
+	<div id="d"> 요소 D </div>
+	<div id="f">
+		<img alt="" src="패턴배경.jpg" width="100px;">
+	</div>
+	<h3> 패턴이미지 </h3>
+	<p> 패턴이미지 입니다 </p>
+	
+	<!-- 
+		float : left  	왼쪽 배치 
+		float : right 	오른쪽 배치
+		clear : both   	float 제거 
+	 -->
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

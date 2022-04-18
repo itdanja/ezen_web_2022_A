@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		form{
+			width : 700px;		/* 가로 사이즈 */
+			margin: 0 auto;		/* 박스모델 가운데정렬 */
+		}
+		table{
+			width: 700px;	
+			border-top: solid 3px black;	/*위쪽 테두리*/
+		}
+		td{
+			border-bottom: solid 1px #eeeeee; /*아래쪽 테두리*/
+		}
+		input{
+			width: 500px;	/*입력상자 사이즈 */
+			height: 30px;	/*입력상자 높이 */
+		}
+		textarea {
+			width: 500px;
+			height: 100px;
+		}
+		.col1{
+			width: 100px;
+		}
+		#buttons{
+			width: 700px; 
+			text-align: right; /* 텍스트 or 버튼 or 이미지 */
+		}
+		#buttons button {
+			padding: 5px 20px;	/*안쪽여백 */
+			margin: 20px 10px;	/*바깥여백*/
+		}
+	</style>
+
+
+
+
+</head>
+<body>
+
+	<form> <!-- 폼양식 [ 데이터 전송시 ] -->
+		<table>	<!-- 테이블 태그 -->
+			<tr> <!-- 행 태그 -->
+				<td class="col1"> 이름 </td> <!-- 테이블 데이터 태그 -->
+				<td> 홍길동 </td> 
+			</tr>	<!-- 행 end  -->
+			<tr>
+				<td class="col1"> 제목 </td>
+				<td> <input type="text"> </td> <!-- 입력상자 -->
+			</tr>
+			<tr>
+				<td class="col1"> 내용 </td>
+				<td> <textarea></textarea> <!-- 긴글입력상자 -->
+			</tr>
+			<tr>
+				<td class="col1"> 첨부파일 </td>
+				<td> <input type="file"> </td> <!-- 첨부파일 -->
+			</tr>
+		</table>	<!--  테이블 end  -->
+		<div id="buttons"> <!-- 박스모델(구역) div display : block -->
+			<button>저장하기</button>
+			<button>목록보기</button>
+		</div> <!-- 박스모델 end  -->
+	</form> <!--  폼 end  -->
+
+</body>
+</html>
+
+
+
+
