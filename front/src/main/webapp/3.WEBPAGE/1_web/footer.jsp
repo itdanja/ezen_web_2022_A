@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 
 	<style type="text/css">
-		
+		#footer{
+			width: 100%;
+			height: 150px;
+			clear: both;	/* 앞 태그의 float 제거 */
+			background-color: #2c2a29;
+		}
 		#footer_box{
 			width: 1150px;
 			height: 150px;

@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 
 	<style type="text/css">
-		li{ list-style-type: none; }/*글머리 제거 */	
+		li{ list-style-type: none; }/*글머리 제거 */
+		#contents{
+			width: 1150px;
+			margin: 0px auto;
+		}	
 		#sub_menu{
 			width: 240px;	float: left;
 		}
@@ -34,10 +38,6 @@
 			margin: 20px 0px;
 		}
 		#main_contents li{ padding: 5px; }
-		
-		
-		
-	
 	
 	</style>
 

@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 
 	<style type="text/css">
+		#main_img{
+			width: 100%;	/* 반응형*/
+			height: 250px;
+		}
 		#main_img{ 
 			background-image: url("img/main_img.png"); 	/* 배경 이미지 */
 			background-position:top center;  			/*배경 이미지 위치*/
