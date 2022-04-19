@@ -29,7 +29,7 @@
 	
 	<div id="header">
 		<div id="logo"><!-- 로고 -->
-			<img alt="" src="img/logo.png">
+			<a href="#"> <img alt="" src="img/logo.png"> </a>
 		</div> 
 		<div id="menus">	<!-- 메뉴 -->
 			<div id="top_menu"> <!-- 상단 메뉴  -->
