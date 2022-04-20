@@ -26,7 +26,7 @@
 		#sidebar .list{ margin: 20px 0px; }
 		#sidebar .list li{ margin: 10px; }
 		
-		#left_main{ width: 400px; float: left;}
+		#left_main{ width: 400px; float: left; margin-left: 30px;}
 		#right_main{ width: 400px; float: right;}
 		
 		#left_main .title1{

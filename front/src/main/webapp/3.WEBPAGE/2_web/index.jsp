@@ -9,7 +9,7 @@
 	<style type="text/css">
 	
 		*{ margin: 0px; padding: 0px; }
-		*{ border: 1px solid red; background-color: #eeeeee;}	
+/* 		*{ border: 1px solid red; background-color: #eeeeee;} */	
 		
 	</style>
 
@@ -20,7 +20,8 @@
 	<%@include file="mainimage.jsp" %>
 	
 	<%@include file="main.jsp" %>
-	<div> г╙ем </div>
+	
+	<%@include file="footer.jsp" %>
 </body>
 </html>
 
