@@ -19,7 +19,7 @@
 	
 	<%@include file="mainimage.jsp" %>
 	
-	<div> ╦чюн </div>
+	<%@include file="main.jsp" %>
 	<div> г╙ем </div>
 </body>
 </html>

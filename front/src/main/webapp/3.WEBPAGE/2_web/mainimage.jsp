@@ -17,7 +17,10 @@
 			text-align: center;
 			padding: 200px 0 0 760px;
 		}
+	
 	</style>
+
+
 </head>
 <body>
 
