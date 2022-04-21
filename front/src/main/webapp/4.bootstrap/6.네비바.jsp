@@ -9,16 +9,13 @@
 <body>
 
 	<%@include file="1.설치.jsp" %>
-	<div class="container"> <!-- 박스권 -->
-		<div class="navbar navbar-expand-md"> <!-- 네비게이션 바 -->
-		
-			<!-- 메뉴 사이즈 작아지는 경우 -->
-			<button  type="button"
-				data-bs-toggle="collapse" data-bs-target="#navmenu" 
-				aria-controls="navbarcontents" aria-expanded="false">
-				 <span class="navbar-toggler-icon"></span>
-			</button>
-			
+	
+		<div class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container">
+		    <button class="navbar-toggler" type="button" 
+		    	data-bs-toggle="collapse" data-bs-target="#navmenu" >
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
 			<div class="collapse navbar-collapse" id="navmenu"> <!-- 760px 이하로 되면 메뉴 사라짐   -->
 				
 				<a href="#" class="navbar-brand">로고</a>
