@@ -1,0 +1,20 @@
+
+
+/* 기본값 여백 제거 */
+*{padding: 0px;margin: 0px;}
+/* 링크 기본값 제거 */
+a{ text-decoration: none; color: black;}
+a:hover { color: orange; }
+
+@font-face { /* 웹폰트*/
+    font-family: 'SANGJUGyeongcheonIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANGJUGyeongcheonIsland.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{ font-family: 'SANGJUGyeongcheonIsland'; }
+
+.header_logo{
+	font-size: 30px;
+}
