@@ -36,7 +36,46 @@
 			<span class="carousel-control-next-icon"></span>
 		</button>
 		
+	</div> <!-- 캐러셀 end  -->
+	<br><br>
+	
+	<div class="container text-center">
+		<hr> <!-- 실선 태그 -->
+			<h3> New ARRIVAL </h3>
+			<p> 신상품 </p>
 	</div>
+	
+	<div class="container">
+		<div class="row">
+			<% for( int i = 0 ; i<8 ; i++ ){ %>
+				<div class="col-md-3 col-sm-6">	<!-- col-md-3 : col-md: 760px; 이상일경우   col-sm : 570px 이상일경우 --> 
+					<div class="card"> <!-- 카드형식 -->
+						<img class="card-img-top" alt="" src="img/item1.gif"> <!-- 이미지 -->
+						<div class="card-body">
+							<p class="item">
+								<span class="title"></span>
+								<br>
+								<span class="content">
+								[1+1] 맞춤기장 히든밴딩 슬림진
+								(±S/M/L/XL/2XL/3XL)
+								700건 후기 인증! 데님 판매 1위!
+								</span>
+								<br>
+								<span class="price1"> 79,900원 </span>  
+								<span class="price2"> 75,900원 </span>
+								<br>
+								<span class="badge bg-warning text-dark my-3"> 주문 폭주 </span>
+								<span class="badge bg-danger text-dark my-3" > 품절 입박 </span>
+							</p>
+						</div>
+					</div>
+				</div>
+			<% } %>
+				
+		</div>
+	</div>
+	
+	
 	
 	
 	

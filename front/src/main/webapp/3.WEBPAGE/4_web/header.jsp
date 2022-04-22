@@ -13,7 +13,7 @@
 	<!-- 폰트어썸[ 아이콘 ]  -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
 </head>
-<body>
+<body>	
 	<div class="fixed-top bg-white">
 		<div class="container"> <!-- 박스권 형성 -->
 			<div class="py-3"> <!-- 상단 메뉴 -->

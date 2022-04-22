@@ -21,6 +21,22 @@ a:hover { color: orange; }
 .carousel-item img{
 	width: 100%;
 }
+.item .title{
+	font-size: 18px;
+}
+.item .content{
+	font-size: 12px;
+	margin-bottom: 50px;
+}
+.item .price1{
+	color: gray;
+	text-decoration: line-through;
+}
+.item .price2{
+	font-size: 20px;
+}
+
+
 
 
 
