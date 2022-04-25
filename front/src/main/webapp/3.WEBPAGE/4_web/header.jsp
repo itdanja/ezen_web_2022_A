@@ -28,8 +28,8 @@
 					</div>
 					<div class="col-md-4 d-flex justify-content-end"> <!-- 상단 메뉴  -->
 						<ul class="nav"> <!-- nav : 가로배치 -->
-							<li> <a href="#">로그인</a> | </li>
-							<li> <a href="#">회원가입</a> | </li>
+							<li> <a href="login.jsp">로그인</a> | </li>
+							<li> <a href="signup.jsp">회원가입</a> | </li>
 							<li> <a href="#">장바구니</a></li>
 						</ul>
 					</div>
