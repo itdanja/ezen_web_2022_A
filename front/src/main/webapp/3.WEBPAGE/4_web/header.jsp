@@ -59,7 +59,7 @@
 						<li class="nav-item"> <a href="#" class="nav-link">æ«ººªÁ∏Æ</a> </li>
 						<li class="nav-item"> <a href="#" class="nav-link">Ω∫≈∏¿œ</a> </li>
 						<li class="nav-item"> <a href="#" class="nav-link">∏Æ∫‰</a> </li>	
-						<li class="nav-item"> <a href="#" class="nav-link">∞Ì∞¥ºæ≈Õ</a> </li>	
+						<li class="nav-item"> <a href="boardlist.jsp" class="nav-link">∞Ì∞¥ºæ≈Õ</a> </li>	
 						<li class="nav-item"> <a href="#" class="nav-link"> <i class="fas fa-search"></i> </a> </li>	
 					</ul>
 				</div>

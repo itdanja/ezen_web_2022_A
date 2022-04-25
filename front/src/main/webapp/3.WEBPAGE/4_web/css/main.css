@@ -36,6 +36,15 @@ a:hover { color: orange; }
 	font-size: 20px;
 }
 
+.titleline{
+	border-bottom: solid 5px orange;
+	width: 200px; 
+	margin: 0 auto;
+}
+.form-control{
+	background-color: white !important; /* 중복일경우 !important : 우선 적용*/
+}
+
 
 
 

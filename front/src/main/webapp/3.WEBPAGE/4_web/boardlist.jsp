@@ -16,7 +16,6 @@
 	
 	<div class="container"> <!-- container : 박스권 -->
 		
-		
 		<h3> 고객센터 </h3>
 		
 		<div class="col-md-5 offset-7 row g-0 my-4"> <!-- 그리드 [ 박스권 세로 12조각 -->
@@ -75,12 +74,10 @@
 				</ul>
 			</div>
 			<div class="col-md-2 offset-2 my-3">
-				<button class="form-control">문의하기</button>
+				<a href="boardwrite.jsp"> <button class="form-control">문의하기</button> </a>
 			</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br>
-	
 	<!-- 푸터[파일] 가져오기 -->
 	<%@include file="footer.jsp" %>
 </body>
