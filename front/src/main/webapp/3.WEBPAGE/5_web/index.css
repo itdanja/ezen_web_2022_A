@@ -1,0 +1,17 @@
+*{
+	font-family: "Nanum Gothic";
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a:hover{
+	color: #eeeeee;
+}
+
+.tophead{ 
+	font-size: 12px; 
+	margin-left: 20px;
+}
+
+
