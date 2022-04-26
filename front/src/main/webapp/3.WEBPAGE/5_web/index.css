@@ -9,9 +9,18 @@ a:hover{
 	color: #eeeeee;
 }
 
-.tophead{ 
+.tophead{  /* 상단 메뉴 */
 	font-size: 12px; 
 	margin-left: 20px;
+}
+
+.sidemenu{ /*사이드바*/
+	position: fixed; /*고정*/
+	left: 10px;
+	margin-top: 80px;
+}
+.content{ /* 본문*/
+	margin-top: 80px;
 }
 
 
