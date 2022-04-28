@@ -21,7 +21,7 @@
 			<option value="red"> 빨강 </option>
 			<option value="orange"> 오렌지 </option>
 			<option value="black"> 검정 </option>
-		</select>
+		</select>  
 		<!-- select : 선택상자 -->
 		반복횟수 : <input type="text" name="number"> <br> 
 		
