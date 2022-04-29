@@ -12,12 +12,22 @@
 	<a href="signup.jsp"><button>회원가입</button></a>
 	<a href="write.jsp"><button>글쓰기</button></a>
 	
-	<form>
-		<input type="text" name="id">
-		<input type="password" name="passowrd">
-		<input type="submit" value="로그인"> 
-	</form>
-	
+	<%
+		String loginid = (String)session.getAttribute("loginid");
+		if( loginid != null  ){ // 세션이 있으면 로그인 성공
+	%>
+		<div> <%=loginid %>님 안녕하세요 ~ </div>
+	<%
+		}else{ // 세션이 없으면 로그인 실패 
+	%>
+		<form  action="logincontroller.jsp" method="post">
+			<input type="text" name="id">
+			<input type="password" name="password">
+			<input type="submit" value="로그인"> 
+		</form>
+	<%	
+		}
+	%>
 	<table>
 		<tr>
 			<th> 번호 </th>  <th> 작성일 </th> 
