@@ -5,15 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import Dto.Board;
 import Dto.Member;
 
-public class MemberDao {
+public class Dao {
 	
 	private Connection con;	// db연결 클래스 
 	private PreparedStatement ps;  // db조작 인터페이스
 	private ResultSet rs; // db결과 인터페이스
 	
-	public MemberDao() {
+	public Dao() {
 		// jdbc 
 			// 1. 프로젝트내 build path 에 mysqljdbc.jar 추가
 			// 2. 프로젝트내 webapp -> web-inf-lib -> mysqljdbc.jar 추가
@@ -57,6 +58,19 @@ public class MemberDao {
 			rs = ps.executeQuery();
 			if( rs.next() )return true;
 		}catch (Exception e) { System.out.println( e );} return false;
+	}
+	
+	public boolean write( Board board ) {
+		String sql = "insert into board( btitle,bcontent,bwriter,bdate)values(?,?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , board.getBtitle() );
+			ps.setString( 2 , board.getBcontent() );
+			ps.setString( 3 , board.getBwriter() );
+			ps.setString( 4 , board.getBdate() );
+			ps.executeUpdate(); // insert -> executeUpdate
+			return true;
+		}catch (Exception e) {} return false;
 	}
 	
 	
