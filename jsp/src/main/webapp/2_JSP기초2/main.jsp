@@ -17,6 +17,8 @@
 		if( loginid != null  ){ // 세션이 있으면 로그인 성공
 	%>
 		<div> <%=loginid %>님 안녕하세요 ~ </div>
+		<a href="logout.jsp"><button>로그아웃</button> </a>
+		<a href="delete.jsp"><button>회원탈퇴</button> </a>
 	<%
 		}else{ // 세션이 없으면 로그인 실패 
 	%>

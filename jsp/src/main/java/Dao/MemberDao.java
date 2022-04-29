@@ -53,7 +53,8 @@ public class MemberDao {
 		String sql = "select * from member where mid=? and mpassword=?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString( 1 , id ); ps.setString( 2 , password );  rs = ps.executeQuery();
+			ps.setString( 1 , id ); ps.setString( 2 , password );  
+			rs = ps.executeQuery();
 			if( rs.next() )return true;
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
