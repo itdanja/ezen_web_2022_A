@@ -20,7 +20,7 @@
 		<div> <%=loginid %>님 안녕하세요 ~ </div>
 		<a href="write.jsp"><button>글쓰기</button></a>
 		<a href="logout.jsp"><button>로그아웃</button> </a>
-		<a href="delete.jsp"><button>회원탈퇴</button> </a>
+		<a href="deletecontroller.jsp"><button>회원탈퇴</button> </a>
 	<%
 		}else{ // 세션이 없으면 로그인 실패 
 	%>
@@ -42,13 +42,16 @@
 		<%
 			Dao dao = new Dao();
 			ArrayList<Board> boardlist = dao.list();
-			for( int i = 0 ; i<boardlist.size() ; i++ ){
+			for( Board temp : boardlist ){ 
 		%>
 			<tr>
-				<td> <%=boardlist.get(i).getBno() %> </td>
-				<td> <%=boardlist.get(i).getBdate() %> </td>
-				<td> <%=boardlist.get(i).getBwriter() %> </td>
-				<td> <%=boardlist.get(i).getBtitle() %> </td>
+				<td> <%=temp.getBno() %> </td>
+				<td> <%=temp.getBdate() %> </td>
+				<td> <%=temp.getBwriter() %> </td>
+				<td> <a href="view.jsp?bno=<%=temp.getBno()%>">
+						<%=temp.getBtitle() %></a>
+				</td>
+					<!-- href="파일명?변수명=값" get방식 -->
 			</tr>
 		<%
 			}

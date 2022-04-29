@@ -28,7 +28,7 @@ public class Dao {
 		}catch(Exception e ){ System.out.println("연동 실패 ");}
 		
 	}
-	
+	// 1. 회원가입
 	public boolean signup( Member member) {
 		
 		// 1. SQL 작성
@@ -50,7 +50,7 @@ public class Dao {
 		}
 		return false;
 	}
-	
+	// 로그인
 	public boolean login( String id , String password) {
 		String sql = "select * from member where mid=? and mpassword=?";
 		try {
@@ -60,7 +60,7 @@ public class Dao {
 			if( rs.next() )return true;
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
-	
+	// 글쓰기
 	public boolean write( Board board ) {
 		String sql = "insert into board( btitle,bcontent,bwriter,bdate)values(?,?,?,?)";
 		try {
@@ -73,7 +73,7 @@ public class Dao {
 			return true;
 		}catch (Exception e) {} return false;
 	}
-	
+	// 모든 글 조회
 	public ArrayList<Board> list(){
 		ArrayList<Board> boardlist = new ArrayList<Board>(); // 리스트 선언 [ 여러개 게시물 저장 ]
 		String sql = "select * from board order by bno desc"; // 조건없는 모든 레코드 출력 
@@ -90,7 +90,26 @@ public class Dao {
 			}
 			return boardlist;
 		}catch (Exception e) {} return null;
-		
+	}
+	
+	// 개별 글 조회
+	public Board get( int bno ) {
+		String sql = "select * from board "
+				+ "where bno=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt( 1 , bno );
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				Board board = new Board(
+						rs.getInt(1), 
+						rs.getString(2) , 
+						rs.getString(3), 
+						rs.getString(4) ,
+						rs.getString(5));
+				return board;
+			}
+		}catch (Exception e) {} return null;
 		
 	}
 	
