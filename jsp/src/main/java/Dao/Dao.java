@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import Dto.Board;
 import Dto.Member;
@@ -71,6 +72,26 @@ public class Dao {
 			ps.executeUpdate(); // insert -> executeUpdate
 			return true;
 		}catch (Exception e) {} return false;
+	}
+	
+	public ArrayList<Board> list(){
+		ArrayList<Board> boardlist = new ArrayList<Board>(); // 리스트 선언 [ 여러개 게시물 저장 ]
+		String sql = "select * from board order by bno desc"; // 조건없는 모든 레코드 출력 
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				Board board = new Board(
+						rs.getInt(1) , rs.getString(2) , 
+						rs.getString(3) , rs.getString(4) , 
+						rs.getString(5) 
+						);
+				boardlist.add(board);
+			}
+			return boardlist;
+		}catch (Exception e) {} return null;
+		
+		
 	}
 	
 	

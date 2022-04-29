@@ -1,3 +1,6 @@
+<%@page import="Dto.Board"%>
+<%@page import="Dao.Dao"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,12 +36,23 @@
 	<table>
 		<tr>
 			<th> 번호 </th>  <th> 작성일 </th> 
-			<th>작성자</th> 	<th> 제목 </th> <th> 내용 </th>
+			<th>작성자</th> 	<th> 제목 </th>
 		</tr>
-		<!-- 반복문 -->
-		<tr>
-		
-		</tr>
+		<!-- 반복문위치 -->
+		<%
+			Dao dao = new Dao();
+			ArrayList<Board> boardlist = dao.list();
+			for( int i = 0 ; i<boardlist.size() ; i++ ){
+		%>
+			<tr>
+				<td> <%=boardlist.get(i).getBno() %> </td>
+				<td> <%=boardlist.get(i).getBdate() %> </td>
+				<td> <%=boardlist.get(i).getBwriter() %> </td>
+				<td> <%=boardlist.get(i).getBtitle() %> </td>
+			</tr>
+		<%
+			}
+		%>
 	</table>
 	
 </body>
