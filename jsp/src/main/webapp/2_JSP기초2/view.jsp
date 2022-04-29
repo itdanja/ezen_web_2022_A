@@ -24,7 +24,7 @@
 						// null  값은 equals 불가능 
 	%>
 		<a href="bupdate.jsp"> <button>수정</button>  </a>
-		<a href="bdeletecontroller.jsp"> <button>삭제</button>  </a>
+		<a href="bdeletecontroller.jsp?bno=<%=bno%>"> <button>삭제</button>  </a>
 	<%
 		}
 	%>

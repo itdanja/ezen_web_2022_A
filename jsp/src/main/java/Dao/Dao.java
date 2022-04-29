@@ -110,8 +110,20 @@ public class Dao {
 				return board;
 			}
 		}catch (Exception e) {} return null;
-		
 	}
+	
+	// 게시물 삭제 ( 준비물 : 게시물번호 )
+	public boolean ddelete( int bno ) {
+		String sql = "delete from board where bno =? ";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1 , bno);
+			ps.executeUpdate();
+			return true; // 성공시
+		}catch (Exception e) {} return false; // 실패시
+	}
+	
+	
 	
 	
 	
