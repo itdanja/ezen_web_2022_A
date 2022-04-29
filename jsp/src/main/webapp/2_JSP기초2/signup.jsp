@@ -11,7 +11,7 @@
 	<form action="signupcontroller.jsp" method="post">
 		<!-- action="이동경로(파일)"  method -->
 		<input type="text" name="id">
-		<input type="text" name="passowrd">
+		<input type="text" name="password">
 		<input type="text" name="name">
 		<input type="submit" value="전송">
 	</form>
