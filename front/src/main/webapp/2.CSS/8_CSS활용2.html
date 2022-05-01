@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+		div{  background-color: gray; }
+		span{ color: white; border: solid 1px red; }
+		
+		#s1{ display: inline; 		height: 50px; width: 50px; margin: 25px; }
+		#s2{ display: block;  		height: 50px; width: 50px; margin: 25px; }
+		#s3{ display: inline-block; height: 50px; width: 50px; }
+		#s4{ display: none; }
+		
+		#b1{
+			width: 100px; height: 100px; margin: 20px;
+			background-color: orange;
+			display: inline;	/* 한줄 */
+		}
+		#b2{
+			width: 100px; height: 100px; margin: 20px;
+			background-color: orange;
+			display: block;		/* 한줄차지 */
+		}
+		#b3{
+			width: 100px; height: 100px; margin: 20px;
+			background-color: orange;
+			display: inline-block;
+		}
+		#b4{ margin: 0 auto;  text-align: center; width: 300px;}
+		
+		
+	</style>
+</head>
+<body>	
+	<h1> display 속성 </h1>
+		<!-- 
+			display : inline		[ 해당 태그 한줄로 표시 ( 가로세로길이 적용x ) ]
+			display : block			[ 해당 태그 한줄 차지  ( 가로세로길이 적용o ) ]
+			display : inline-block	[ 해당 태그 한줄로 표시 ( 가로세로길이 적용o ) ] 
+			display : none			[ 해당 태그 숨기기 ]
+			
+			1. HTML 태그중에 기본값을 display:block
+				- div , p , ul , li 등
+				1. 박스의 크기(가로세로길이) 조절 가능
+				2. 여백 적용O
+			2. HTML 태그중에 기본값을 display:inline
+				- span , a , img 등 
+				1. 박스의 크기 조절 불가능 
+				2. 바깥여백 위/아래 조절 불가능
+			
+			*박스 모델 가운데 정렬 [  margin : 0 auto ] 	
+		 -->
+	
+	<div> 글자1 <span id="s1">안녕하세요</span> 글자2 </div>
+	<div> 글자1 <span id="s2">안녕하세요</span> 글자2 </div>
+	<div> 글자1 <span id="s3">안녕하세요</span> 글자2 </div>
+	<div> 글자1 <span id="s4">안녕하세요</span> 글자2 </div>
+	
+	글자1 <span id="b1">box1</span> 글자2 <br>
+	글자1 <span id="b2">box2</span> 글자2 <br>
+	글자1 <span id="b3">box3</span> 글자2 <br>
+	
+	<div id="b4">
+		가로가이즈 오토[auto]
+	</div>
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

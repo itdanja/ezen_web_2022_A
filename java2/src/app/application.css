@@ -3,8 +3,3 @@
 *{
 	-fx-font-family : "SANGJU Gotgam";
 }
-
-.table-view .table-cell{
-	-fx-font-weight:bold;
-	-fx-font-size:30px;     
-}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+
+	<style type="text/css">
+	
+	#a, #b, #c,#d,#e,#f,#g,#h,#i,#g2,#h2,#i2,#k{
+		width: 100px;	height: 60px; 
+		background-color: yellow; border: solid 1px red;
+	}
+	#b{ position: relative; left: 50px; top:30px; }
+		/* 상대 위치 : 현 div 시작점 기준 */
+	#e{ position: absolute; left: 50px; top: 30px; }
+		/* 절대 위치 : body 시자점 기준 */ 
+	#parent{
+		width: 350px; height: 200px;
+		border: solid 1px red;
+		position: relative; left: 200px; top: 60px; 
+	}
+	#h{ position: absolute; left: 30px; top: 40px; }
+		/* 상위태그가 relative 인경우 상위태그 기준으로 절대위치 */
+	#parent2{
+		width: 350px; height: 200px;
+		border: solid 1px red;
+		position: absolute; left:  200px; top: 60px;
+	}
+	#h2{ position: absolute; left: 30px; top: 40px; }
+	#k { position: fixed; top: 30px; right: 50px;}
+	</style>
+
+</head>
+<body>
+
+	<!-- 
+		float : left; [ 앞태그 왼쪽에 붙이기 ]
+		float : right; [ 앞태그 오른쪽에 붙이기 ]
+		clear : both; [ 플로팅 제거 ]
+		
+		position : relative; [ 상대 위치 ]
+			현 위치 기준으로 시작점
+		position : absolute;	[ 절대 위치 ]
+			상위 태그 기준으로 시작점 
+		position : fixed;	[ 위치 고정 ]
+	 -->
+
+	<h3> 상대 위치 지정 </h3>
+		<div id="a"> 요소 A </div>
+		<div id="b"> 요소 B </div>
+		<div id="c"> 요소 C </div>
+	<h3> 절대 위치 지정 </h3>
+		<div id="d"> 요소 d </div>
+		<div id="e"> 요소 e </div>
+		<div id="f"> 요소 f </div>
+	<h3> 부모 : 상대위치( relative ) 일경우 절대위치 </h3>
+	<div id="parent">
+		<div id="g"> 요소 g </div>
+		<div id="h"> 요소 h </div>
+		<div id="i"> 요소 i </div>
+	</div>
+	<h3> 부모 : 상대위치( absolute ) 일경우 절대위치 </h3>
+	<div id="parent2">
+		<div id="g2"> 요소 g2 </div>
+		<div id="h2"> 요소 h2 </div>
+		<div id="i2"> 요소 i2 </div>
+	</div>
+	
+	<div id="k"> 위치 고정 </div>
+	
+</body>
+</html>
+
+
+
+
+
