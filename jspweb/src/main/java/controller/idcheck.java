@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.MemberDao;
+
 /**
  * Servlet implementation class idcheck
  */
@@ -34,6 +36,8 @@ public class idcheck extends HttpServlet {
 			System.out.println( mid ); // JS에서 데이터 가져오기 확인
 		
 		// 1. dao를 통해 동일한 아이디가 있는지 체크 
+		MemberDao.getmemberDao();
+		
 		// 2. 만약에 동일한 아이디가 있으면 1 없으면 2 
 		response.getWriter().print( 1 );
 		//response.getWriter().print( 2 );
