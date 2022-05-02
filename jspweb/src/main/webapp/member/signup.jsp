@@ -33,7 +33,6 @@
 			<input type="text" id="sample4_detailAddress" placeholder="상세주소">
 			<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 		<br>
-		
 		<button onclick="signup()" type="button">가입하기</button>
 	</form>
 </div>
