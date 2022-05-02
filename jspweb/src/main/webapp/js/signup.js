@@ -27,20 +27,13 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 			// $.ajax({ 속성 = 속성값 , 속성 = 속성값 }) // jquery 에서 제공해주는 메소드 
 			// 중복체크 
 			$.ajax({
-				// 보내는 위치 [ 서블릿 경로 ]
-				url : "../idcheck" ,
-				// 보내는 데이터  { "변수명" : 값 }
-				data : { "mid" : mid } ,
-				// 통신 성공 했을경우 (  result = 받은 값 변수 )
-				success : function( result ){
-					 	// 통신 확인 
-					alert("java와 통신");
-						// 받은 데이터 확인 
-					alert("java에서 받은 데이터 : " + result );
+				url : "../idcheck" , // 보내는 위치 [ 서블릿 경로 ]
+				data : { "mid" : mid } , // 보내는 데이터  { "변수명" : 값 }
+				success : function( result ){ // 통신 성공 했을경우 (  result = 받은 값 변수 )
 					if( result == 1 ){ // 만약에 받은 데이터가 1이면
 						idcheck.innerHTML="사용중인 아이디 입니다.";
 					}else{ // 만약에 받은 데이터가 1이 아니면
-						idcheck.innerHTML="사용가능한 아이디 입니다.";
+						idcheck.innerHTML="사용가능한 아이디2 입니다.";
 					}
 				}
 			});
