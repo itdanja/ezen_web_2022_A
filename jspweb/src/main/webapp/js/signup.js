@@ -10,7 +10,7 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		// 1. HTML 태그내 값 가져오기 
 		let mid=document.getElementById("mid").value;
 		// 2. HTML 태그id 가져오기
-		let idchack = document.getElementById("idchack");
+		let idcheck = document.getElementById("idcheck");
 		// 정규표현식 : 특정한 규칙을 가지는 문자열의 집합 언어
 		let idj = /^[a-zA-Z0-9]{5,15}$/;	// 한글을 제외한 영문+숫자 5~15 사이 문자열
 			// /^ : 정규표현식 시작
@@ -38,15 +38,15 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 						// 받은 데이터 확인 
 					alert("java에서 받은 데이터 : " + result );
 					if( result == 1 ){ // 만약에 받은 데이터가 1이면
-						idchack.innerHTML="사용중인 아이디 입니다.";
+						idcheck.innerHTML="사용중인 아이디 입니다.";
 					}else{ // 만약에 받은 데이터가 1이 아니면
-						idchack.innerHTML="사용가능한 아이디 입니다.";
+						idcheck.innerHTML="사용가능한 아이디 입니다.";
 					}
 				}
 			});
 			
 		}else{
-			idchack.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";
+			idcheck.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";
 		}
 	}); // keyup end 
 	
@@ -61,12 +61,12 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		if( passswordj.test( mpassword ) ){ // 정규표현식 같으면
 			if( mpassword != mpasswordcheck ){ // 비밀번호 와 비밀번호체크 와 다르면
 				// equals(x)  //  != ( o )
-			$("#passwordchack").html("패스워드가 서로 다릅니다.");
+			$("#passwordcheck").html("패스워드가 서로 다릅니다.");
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");
+				$("#passwordcheck").html("사용 가능한 비밀번호 입니다.");
 			}
 		}else{ // 정규현식 다르면
-			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");
+			$("#passwordcheck").html("영소문자 5~15 사이로 입력해주세요!");
 		}
 	}); // keyup end 
 	
@@ -81,12 +81,12 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		if( passswordj.test( mpasswordcheck ) ){ // 정규표현식 같으면
 			if( mpassword != mpasswordcheck ){ // 비밀번호 와 비밀번호체크 와 다르면
 				// equals(x)  //  != ( o )
-			$("#passwordchack").html("패스워드가 서로 다릅니다.");
+			$("#passwordcheck").html("패스워드가 서로 다릅니다.");
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");
+				$("#passwordcheck").html("사용 가능한 비밀번호 입니다.");
 			}
 		}else{ // 정규현식 다르면
-			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");
+			$("#passwordcheck").html("영소문자 5~15 사이로 입력해주세요!");
 		}
 	}); // keyup end 
 	
@@ -95,9 +95,9 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		let mname = $("#mname").val(); // 해당 id의 데이터 가져오기
 		let namej = /^[가-힣]{2,10}$/;	// 한글만 2~10 정규표현식
 		if( namej.test(mname) ){
-			$("#namechack").html( "사용가능한 이름입니다." );
+			$("#namecheck").html( "사용가능한 이름입니다." );
 		}else{
-			$("#namechack").html( "한글 2~10 사이만 가능합니다." );
+			$("#namecheck").html( "한글 2~10 사이만 가능합니다." );
 		}
 	 }); // keyup end 
 	 
@@ -106,9 +106,9 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		let mphone = $("#mphone").val();
 		let phonej = /^([0-9]{2,3})-([0-9]{3,4})-([0-9]{3,4})$/;
 		if( phonej.test(mphone) ){
-			$("#phonechack").html( "사용가능한 번호 입니다." );
+			$("#phonecheck").html( "사용가능한 번호 입니다." );
 		}else{
-			$("#phonechack").html( "지역번호-0000-0000 형식으로 입력해주세요." );
+			$("#phonecheck").html( "지역번호-0000-0000 형식으로 입력해주세요." );
 		}
 	}); // keyup end 
 	 

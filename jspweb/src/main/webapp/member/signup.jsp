@@ -11,17 +11,17 @@
 	<h3> 회원 페이지 </h3>
 	<form>
 		아이디 : <input type="text" id="mid" placeholder="user id">
-		<span id="idchack"></span> 
+		<span id="idcheck"></span> 
 		<br>
 		비밀번호 : <input type="password" id="mpassword" placeholder="user password"> 
-		비밀번호 확인 : <input type="password" id="mpasswordcheck" placeholder="password chack">
-		<span id="passwordchack"></span>
+		비밀번호 확인 : <input type="password" id="mpasswordcheck" placeholder="password check">
+		<span id="passwordcheck"></span>
 		<br>
 		이름 <input type="text" id="mname" placeholder="user name">
-		<span id="namechack"></span>
+		<span id="namecheck"></span>
 		<br>
 		연락처 : <input type="text" id="mphone" placeholder="user phone">
-		<span id="phonechack"></span>
+		<span id="phonecheck"></span>
 		<br>
 		이메일 : <input type="text" id="memail" placeholder="user email">
 		<br>
