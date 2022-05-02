@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3> 자바스크립트의 작성 위치 : body태그   / css: head태그  </h3>
+
+	<!-- 1. HTML 직접 작성할 경우  -->
+	<script type="text/javascript">
+		var 메시지1 ="자바스크립트 var변수";			// 변수 선언
+		const 메시지2 = "자바스크립트 const변수"; 	// 변수 선언 
+		let 메시지3 = "자바스크립트 let변수"; 		// 변수 선언 
+		alert( 메시지1 ); // alert("알림메시지");  	// 알림 메시지 메소드
+		document.write(메시지1); // 문서(html)에 작성하기
+		for( var i = 0 ; i<5 ; i++ ){
+			document.write(메시지2 + "<br>");
+		}
+	</script>
+	
+	<p> js에서 작성된 변수 :  <span id="spantag1"> </span> 입니다 </p>
+	
+	
+	
+	<!-- 2. JS파일 HTML에 첨부할경우  -->
+	<script src="test.js" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
+
+
+
