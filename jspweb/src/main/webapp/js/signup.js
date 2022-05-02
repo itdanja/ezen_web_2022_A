@@ -21,7 +21,30 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 			// { 최소길이 , 최대길이 } : 문자 최소길이~최대길이 까지만 입력
 				// 정규표현식.test( 변수 ) : 해당 변수가 정규표현식에 동일하면 true 다르면 false
 		if( idj.test( mid) ){ // 정규표현식과 같으면
-			idchack.innerHTML = "가능한 아이디 입니다."
+			
+			// 아이디 중복체크
+				// 비동기식 통신 [ 목적 : 페이지 전환이 없이 java (Controller) 통신 ]
+			// $.ajax({ 속성 = 속성값 , 속성 = 속성값 }) // jquery 에서 제공해주는 메소드 
+			// 중복체크 
+			$.ajax({
+				// 보내는 위치 [ 서블릿 경로 ]
+				url : "../idcheck" ,
+				// 보내는 데이터  { "변수명" : 값 }
+				data : { "mid" : mid } ,
+				// 통신 성공 했을경우 (  result = 받은 값 변수 )
+				success : function( result ){
+					 	// 통신 확인 
+					alert("java와 통신");
+						// 받은 데이터 확인 
+					alert("java에서 받은 데이터 : " + result );
+					if( result == 1 ){ // 만약에 받은 데이터가 1이면
+						idchack.innerHTML="사용중인 아이디 입니다.";
+					}else{ // 만약에 받은 데이터가 1이 아니면
+						idchack.innerHTML="사용가능한 아이디 입니다.";
+					}
+				}
+			});
+			
 		}else{
 			idchack.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";
 		}
@@ -89,8 +112,6 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		}
 	}); // keyup end 
 	 
-	
-	
 }); // 문서 열리면 해당 코드가 종료 
 
 
