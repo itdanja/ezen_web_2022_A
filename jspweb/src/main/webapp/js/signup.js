@@ -79,7 +79,7 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 				// equals(x)  //  != ( o )
 			$("#passwordcheck").html("패스워드가 서로 다릅니다.");		pass[2] = false;
 			}else{
-				$("#passwordcheck").html("사용 가능한 비밀번호 입니다.");	pass[2] = true;  pass[1] = true
+				$("#passwordcheck").html("사용 가능한 비밀번호 입니다.");	pass[2] = true;  pass[1] = true;
 			}
 		}else{ // 정규현식 다르면
 			$("#passwordcheck").html("영소문자 5~15 사이로 입력해주세요!"); pass[2] = false;
@@ -176,7 +176,6 @@ function signup(){
 	let check = true;
 	for( let i = 0 ; i<pass.length ; i++ ){
 		if( pass[i] == false ) check = false;
-		alert( pass[i] );
 	}
 	// js에서 form 전송하는 방법**
 	if( check ) document.getElementById("signupform").submit();

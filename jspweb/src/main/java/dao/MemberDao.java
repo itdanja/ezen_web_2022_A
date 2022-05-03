@@ -1,5 +1,7 @@
 package dao;
 
+import dto.Member;
+
 public class MemberDao extends Dao {
 	// 자식클래스로 객체 생성시 ( 부모 클래스의 생성자 호출 )	
 	public MemberDao() {
@@ -26,9 +28,29 @@ public class MemberDao extends Dao {
 		try {  ps = con.prepareStatement(sql); rs= ps.executeQuery(); if( rs.next() ) return true;
 		}catch (Exception e) {} return false;
 	}
+	// 회원가입 메소드 
+	public boolean signup( Member member ) {
+		String sql ="insert into member(mid,mpassword,mname,mphone,memail,maddress) "
+				+ "value(?,?,?,?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , member.getMid() ); 	ps.setString( 2 , member.getMpassword() ); 
+			ps.setString( 3 , member.getMname() );	ps.setString( 4 , member.getMphone() ); 
+			ps.setString( 5 , member.getMemail()); 	ps.setString( 6 , member.getMaddress());
+			ps.executeUpdate(); return true;
+		}catch (Exception e) {} return false;
+	}
 	
 	
 }
+
+
+
+
+
+
+
+
 
 
 
