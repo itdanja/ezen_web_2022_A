@@ -53,8 +53,7 @@ public class signup extends HttpServlet {
 			String address = address1+"_"+address2+"_"+address3+"_"+address4;
 			
 		Member member = new Member(0, mid, mpassword, mname, mphone, email , address , 0, null);
-		
-		System.out.println( member.toString() ); // 객체 정보 -> 주소값  // .toString() : Object클래스[최상위클래스] 의 객체 주소 반환 메소드 
+			//System.out.println( member.toString() ); // 객체 정보 -> 주소값  // .toString() : Object클래스[최상위클래스] 의 객체 주소 반환 메소드 
 		boolean result = MemberDao.getmemberDao().signup( member );
 		if( result ) { response.sendRedirect("/jspweb/member/signupsuccess.jsp"); }
 		else { response.sendRedirect("/jspweb/error.jsp"); } 

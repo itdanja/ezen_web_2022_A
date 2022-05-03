@@ -12,19 +12,19 @@ public class MemberDao extends Dao {
 	
 	// 아이디 중복체크 메소드
 	public boolean idcheck( String mid ) {
-		String sql = "select * from member where mid="+mid;
+		String sql = "select * from member where mid = '"+mid+"'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();	
 			// 동일한 아이디가 존재하면 
 			if( rs.next() ) { return true; } 
-		}catch (Exception e) { } 
+		}catch (Exception e) { System.out.println( e );} 
 		// 동일한 아디디가 존재하지 않으면
 		return false;
 	}
 	// 이메일 중복체크 메소드 
 	public boolean emailcheck( String email ) {
-		String sql = "select * from member where memail = "+email;
+		String sql = "select * from member where memail = '"+email+"'";
 		try {  ps = con.prepareStatement(sql); rs= ps.executeQuery(); if( rs.next() ) return true;
 		}catch (Exception e) {} return false;
 	}
