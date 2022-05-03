@@ -9,7 +9,7 @@
 <%@include file = "../header.jsp" %>
 <div class="container">
 	<h3> 회원 페이지 </h3>
-	<form>
+	<form id="signupform" action="signup" method="post">
 		아이디 : <input type="text" id="mid" placeholder="user id">
 		<span id="idcheck"></span> 
 		<br>
@@ -23,7 +23,14 @@
 		연락처 : <input type="text" id="mphone" placeholder="user phone">
 		<span id="phonecheck"></span>
 		<br>
-		이메일 : <input type="text" id="memail" placeholder="user email">
+		이메일 : <input type="text" id="memail" placeholder="user email">@
+		<select>
+			<option> 직접입력 </option>
+			<option> naver.com </option>
+			<option> nate.com </option>
+			<option> daum.com </option>
+		</select>
+		<span id="emailcheck"></span>
 		<br>
 			<input type="text" id="sample4_postcode" placeholder="우편번호">
 			<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -33,6 +40,7 @@
 			<input type="text" id="sample4_detailAddress" placeholder="상세주소">
 			<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 		<br>
+		<span id="addresscheck"></span>
 		<button onclick="signup()" type="button">가입하기</button>
 	</form>
 </div>

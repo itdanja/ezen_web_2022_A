@@ -10,7 +10,6 @@ public class MemberDao extends Dao {
 	
 	// 아이디 중복체크 메소드
 	public boolean idcheck( String mid ) {
-		
 		String sql = "select * from member where mid="+mid;
 		try {
 			ps = con.prepareStatement(sql);
@@ -20,7 +19,6 @@ public class MemberDao extends Dao {
 		}catch (Exception e) { } 
 		// 동일한 아디디가 존재하지 않으면
 		return false;
-		
 	}
 	
 	
