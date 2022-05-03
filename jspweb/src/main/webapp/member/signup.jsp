@@ -23,12 +23,14 @@
 		연락처 : <input type="text" id="mphone" placeholder="user phone">
 		<span id="phonecheck"></span>
 		<br>
-		이메일 : <input type="text" id="memail" placeholder="user email">@
-		<select>
-			<option> 직접입력 </option>
-			<option> naver.com </option>
-			<option> nate.com </option>
-			<option> daum.com </option>
+		이메일 : <input type="text" id="memail" placeholder="user email">
+		@
+		<input type="text" id="memailaddress" >
+		<select id="emailselect">
+			<option value=""> 직접입력 </option>
+			<option value="naver.com"> naver.com </option>
+			<option value="nate.com"> nate.com </option>
+			<option value="daum.com"> daum.com </option>
 		</select>
 		<span id="emailcheck"></span>
 		<br>
@@ -38,7 +40,6 @@
 			<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 			<span id="guide" style="color:#999;display:none"></span>
 			<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-			<input type="text" id="sample4_extraAddress" placeholder="참고항목">
 		<br>
 		<span id="addresscheck"></span>
 		<button onclick="signup()" type="button">가입하기</button>
@@ -47,6 +48,9 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/signup.js" type="text/javascript"></script>
 <%@include file = "../footer.jsp" %>
+
+
+
 
 </body>
 </html>

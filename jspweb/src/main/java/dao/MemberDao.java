@@ -20,6 +20,17 @@ public class MemberDao extends Dao {
 		// 동일한 아디디가 존재하지 않으면
 		return false;
 	}
+	// 이메일 중복체크 메소드 
+	public boolean emailcheck( String email ) {
+		String sql = "select * from member where memail = "+email;
+		try {  ps = con.prepareStatement(sql); rs= ps.executeQuery(); if( rs.next() ) return true;
+		}catch (Exception e) {} return false;
+	}
 	
 	
 }
+
+
+
+
+
