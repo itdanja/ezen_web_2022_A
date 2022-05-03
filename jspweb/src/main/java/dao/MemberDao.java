@@ -41,6 +41,18 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {} return false;
 	}
 	
+	// 로그인 메소드 
+	public int login( String mid , String mpassowrd ) {
+		 String sql = "select * from member where mid = '"+mid+"' and mpassword = '"+mpassowrd+"'";
+		// String sql = "select * from member where mid = ? and mpassword = ?";
+		try {
+			ps = con.prepareStatement(sql); 
+			//ps.setString(1, mid); ps.setString(2, mpassowrd ); // ? 사용시 ?에 데이터 대입
+			rs = ps.executeQuery(); if( rs.next() ) return 1; // 동일한 값이 있으면 1성공 
+			return 2; // 동일한 값이 없으면 2실패 
+		}catch (Exception e) {} return 3; // DB오류이면 3실패
+	}
+	
 	
 }
 
