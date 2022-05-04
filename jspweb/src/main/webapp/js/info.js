@@ -14,19 +14,51 @@ function passwordcheck(  mid  ){
 		data : { "mid": mid , "mpassword" : mpassword }, // 보낼 데이터 
 		type : "POST" , // HTTP요청방식 정의 [ GET=기본값 , POST ]
 		success : function( result ){ // 받을 데이터 
-			alert("하하하" + result )
 			if( result == 1 ){
-				alert("같다");
 				$("#checkmsg").html("정말 탈퇴하시겠습니까?");
 				$("#mpassword").css("display" , "none"); // 제이쿼리 css 적용  [ .css( "속성명" , "속성값") ]
 				$("#btndelete").css("display" , "block");
+				$("#btncofirm").css("display" , "none");
 			}else{
-				alert("다르다");
 				$("#checkmsg").html("동일한 패스워드가 아닙니다.");
+				$("#mpassword").val("");
 			}
 		}
 	});	
 }
+
+function mdelete( mid ){
+	$.ajax({
+		url : "../delete",
+		data : { "mid" : mid } , 
+		success : function( result ){
+			if( result == 1 ){
+				alert("회원탈퇴 완료 되었습니다.");
+				// js에서 하이퍼링크 [ 페이지연결 ]
+				// <a href="경로">
+				// location.href="경로">
+				location.href="/jspweb/logout"; // 서블릿 
+			}else{
+				location.href="/jspweb/error.jsp"; // 페이지
+			}
+		}
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -84,6 +84,13 @@ public class MemberDao extends Dao {
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
 	
+	// 회원 삭제 메소드 
+	public boolean delete( String mid ) {
+		String sql ="delete from member where mid = '"+mid+"'";
+		try { ps=con.prepareStatement(sql); ps.executeUpdate(); return true; }
+		catch (Exception e) { System.out.println(e); } return false;
+	}
+	
 	
 }
 

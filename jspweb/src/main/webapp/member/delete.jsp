@@ -19,10 +19,12 @@
 			</div>	
 			<div class="col-md-9"> <!-- 본문 -->
 				<h3> 회원탈퇴 확인 </h3>
-					<input type="password" id=mpassword name="mpassword">
-					<button onclick="passwordcheck('<%=mid%>')">확인</button>
-					<span id="checkmsg"></span>
-					<button id="btndelete" style="display: none;" oncancel="mdelete('<%=mid%>')">탈퇴승인</button>
+			
+				<input type="password" id=mpassword name="mpassword">
+				<button id="btncofirm"onclick="passwordcheck('<%=mid%>')">확인</button>
+				<span id="checkmsg"></span>
+				<button id="btndelete" style="display: none;" onclick="mdelete('<%=mid%>')">탈퇴승인</button>
+			
 			</div>
 		</div>
 	</div>
