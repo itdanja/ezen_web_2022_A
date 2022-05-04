@@ -74,6 +74,16 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {} return null;
 	}
 	
+	// 패스워드 확인 메소드 
+	public boolean passwordcheck( String mid , String mpassword ) {
+		
+		String sql = "select * from member where mid = '"+mid+"' and mpassword = '"+mpassword+"'";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery(); if( rs.next() ) return true;
+		}catch (Exception e) { System.out.println( e );} return false;
+	}
+	
 	
 }
 
