@@ -25,24 +25,31 @@
 			</div>	
 			<div class="col-md-9"> <!-- 본문 -->
 				<%
-					if( request.getParameter("result") != null 
-							&& request.getParameter("result").equals("1") ){
+					if( request.getParameter("result") != null  && request.getParameter("result").equals("1") ){
 				%>
 					<div> 회원정보가 수정 되었습니다.!!! </div>
 				<%
-					}else if( request.getParameter("result") != null 
-					&& request.getParameter("result").equals("2")  ){
+					}else if( request.getParameter("result") != null  && request.getParameter("result").equals("2")  ){
 				%>	
 					<div> 회원정보가 실패!! 관리자에게문의 </div>
 				<% 	
+					}else if( request.getParameter("result") != null  && request.getParameter("result").equals("3")  ){
+				%>
+					<div> 회원정보가 실패!! 기존 비밀번호가 다릅니다. </div>
+				<%
 					}
-				
 				%>
 				<h3>회원수정</h3>
 				<form action="../update" method="post"> <!-- update 서블릿 파일로 post 전송 -->
 					<input type="hidden" name="mno" value="<%=member.getMno()%>" > <!-- 수정할 대상[pk] -->
 					아이디 : <%=member.getMid() %> <br>
-					비밀번호 : <button type="button"> 비밀번호 변경 </button> <br>
+					비밀번호 : <button type="button" onclick="passwordchange()"> 비밀번호 변경 </button> <br>
+					
+						<div id="passwordbox" style="display: none;">
+							기존 비밀번호 : <input type="password" name="oldpassword"><br>
+							새온 비밀번호 : <input type="password" name="newpassword">	
+						</div>
+						
 					이름 : <input type="text" name="mname" value="<%=member.getMname()%>"> <br>
 					연락처 : <input type="text" name="mphone" value="<%=member.getMphone()%>"> <br>
 					이메일 : 
