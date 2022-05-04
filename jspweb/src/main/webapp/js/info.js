@@ -35,8 +35,8 @@ function mdelete( mid ){
 			if( result == 1 ){
 				alert("회원탈퇴 완료 되었습니다.");
 				// js에서 하이퍼링크 [ 페이지연결 ]
-				// <a href="경로">
-				// location.href="경로">
+				// html :  <a href="경로">
+				// js : location.href="경로">
 				location.href="/jspweb/logout"; // 서블릿 
 			}else{
 				location.href="/jspweb/error.jsp"; // 페이지

@@ -91,8 +91,36 @@ public class MemberDao extends Dao {
 		catch (Exception e) { System.out.println(e); } return false;
 	}
 	
+	// 회원 수정 메소드 
+	public boolean update( Member member ) {
+		String sql ="update member set mname=? , mphone=? , memail=?,"
+				+ "maddress = ? where mno=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , member.getMname() );
+			ps.setString( 2 , member.getMphone() );
+			ps.setString( 3 , member.getMemail() );
+			ps.setString( 4 , member.getMaddress() );
+			ps.setInt( 5 , member.getMno() );
+			ps.executeUpdate(); return true;
+		}catch (Exception e) {} return false;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
