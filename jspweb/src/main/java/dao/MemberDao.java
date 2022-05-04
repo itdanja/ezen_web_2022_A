@@ -53,6 +53,27 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {} return 3; // DB오류이면 3실패
 	}
 	
+	// 개별 회원정보 출력 [ 인수 : 세션에 저장된 회원id ]
+	public Member getmember( String mid ) {
+		//String sql = "select * from member where mid = ?";
+		String sql = "select * from member where mid = '"
+						+mid+"'";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				// 패스워드(보안상)를 제외한 검색된 레코드의 모든 필드의 값을 객체화
+				Member member = new Member(
+						rs.getInt(1), rs.getString(2), 
+						null, rs.getString(4), 
+						rs.getString(5), rs.getString(6), 
+						rs.getString(7),rs.getInt(8), 
+						rs.getString(9) );
+				return member; // 검색된 객체 반환
+			}
+		}catch (Exception e) {} return null;
+	}
+	
 	
 }
 
