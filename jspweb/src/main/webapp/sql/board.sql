@@ -2,7 +2,7 @@ create table jspweb.board( /* 테이블 생성 */
 
 	bno int primary key auto_increment , /* 게시물번호 */
     btitle varchar(50) , 				/* 게시물제목 */
-    bcontent varchar(1000) ,			/* 게시물내용 */
+    bcontent LONGTEXT ,			/* 게시물내용 */
     mno int ,							/* 작성자 = member테이블 mno 관계 */
     bfile varchar(1000) ,				/* 게시물첨부파일 */
     bview int default 0 ,				/* 게시물 조회수 */
