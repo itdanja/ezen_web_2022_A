@@ -45,7 +45,7 @@
 			<a href="/jspweb/logout">로그아웃</a>
 			<a href="/jspweb/member/myshopping.jsp">나의쇼핑</a>
 		<%} %>
-		<a href="#">고객센터</a>
+		<a href="/jspweb/board/boardlist.jsp">자유게시판</a>
 		
 	</div>
 	<!-- 부트스트랩 js cdn -->
