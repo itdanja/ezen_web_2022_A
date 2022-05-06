@@ -10,7 +10,9 @@
 
 	<div class="container">
 		<h3> 자유게시판 </h3>
+		
 		<a href="boardwrite.jsp"> 글쓰기 </a>
+		
 		<table class="table"> <!-- 테이블 -->
 			<tr>
 				<th> 번호 </th> <th> 제목 </th> <th> 작성자 </th> 

@@ -14,7 +14,16 @@ public class BoardDao extends Dao {
 	public static BoardDao getBoardDao() { return boardDao; }
 	
 	// 1. 게시물 쓰기 메소드 	[ 인수 : 작성된 데이터들 = dto  ]
-	public boolean write( Board board ) { return false; }
+	public boolean write( Board board ) { 
+		
+		String sql = "insert into board( btitle , bcontent , mno , bfile )values(?,?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , board.getBtitle() );	ps.setString( 2 , board.getBcontent() );
+			ps.setInt( 3 , board.getMno() );		ps.setString( 4 , board.getBfile() );
+			ps.executeUpdate(); return true;
+		}catch (Exception e) { System.out.println( e ); }	return false; 
+	}
 	// 2. 모든 게시물 출력 메소드 [ 인수 : x  // 추후기능 = 검색 : 조건 ]
 	public ArrayList<Board> getboardlist() { return null; }
 	// 3. 개별 게시물 출력 메소드 [ 인수 : 게시물번호 ]
