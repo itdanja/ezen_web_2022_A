@@ -25,7 +25,25 @@ public class BoardDao extends Dao {
 		}catch (Exception e) { System.out.println( e ); }	return false; 
 	}
 	// 2. 모든 게시물 출력 메소드 [ 인수 : x  // 추후기능 = 검색 : 조건 ]
-	public ArrayList<Board> getboardlist() { return null; }
+	public ArrayList<Board> getboardlist() { 
+		ArrayList<Board> boardlist = new ArrayList<Board>();
+		// 내림차순 
+		String sql = "select * from board order by bno desc";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				Board board = new Board( 
+						rs.getInt(1),rs.getString(2), 
+						rs.getString(3),rs.getInt(4),
+						rs.getString(5), rs.getInt(6),
+						rs.getString(7), null );
+				boardlist.add(board);
+			}
+			return boardlist;
+		}catch (Exception e) { System.out.println( e );} return null; 
+		
+	}
 	// 3. 개별 게시물 출력 메소드 [ 인수 : 게시물번호 ]
 	public Board getboard() { return null; }
 	// 4. 게시물 수정 메소드 	[ 인수 : 수정할 게시물번호  / 수정된 내용 ]
