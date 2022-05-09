@@ -63,7 +63,6 @@ public class filedown extends HttpServlet {
 				// response : (서블릿)웹 응답 객체
 			BufferedOutputStream fout = new BufferedOutputStream( response.getOutputStream() );
 			fout.write(bytes);
-		
 		// 3. 스트림 닫기 ( 기록 제거 )
 			fin.close();
 			fout.close();
