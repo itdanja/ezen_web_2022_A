@@ -65,8 +65,14 @@ public class BoardDao extends Dao {
 	}
 	// 4. 게시물 수정 메소드 	[ 인수 : 수정할 게시물번호  / 수정된 내용 ]
 	public boolean update( Board board ) { return false; }
+	
 	// 5. 게시물 삭제 메소드 	[ 인수 : 삭제할 게시물번호 
-	public boolean delete( int bno ) { return false; }
+	public boolean delete( int bno ) { 
+		String sql = "delete from board where bno="+bno;
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
+		catch (Exception e) {} return false;
+	}
+	
 	// 6. 게시물 조회 증가 메소드 	[ 인수 : 증가할 게시물번호 ]
 	public boolean increview( int bno ) { return false; }
 	// 7. 댓글 작성 메소드 		[ 인수 : 작성된 데이터들 = dto ]

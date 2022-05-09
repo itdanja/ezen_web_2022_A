@@ -15,16 +15,15 @@
 	<div class="container">
 		<h3> 게시물 상세 </h3>
 		<% 
-			int bno = Integer.parseInt( request.getParameter("bno") );	
-			Board board =  BoardDao.getBoardDao().getboard(bno);
-			
-			String mid = (String)session.getAttribute("login"); 	// 세션 
-			if( board.getMno() == MemberDao.getmemberDao().getmno(mid) ){
+			int bno = Integer.parseInt( request.getParameter("bno") );		// 게시물번호
+			Board board =  BoardDao.getBoardDao().getboard(bno); 			// 게시물번호로 게시물 dto 가져오기 
+			String mid = (String)session.getAttribute("login"); 			// 세션 = 로그인된 아이디 
+			if( board.getMno() == MemberDao.getmemberDao().getmno(mid) ){ 	// 아이디로 회원번호 가져와서 비교 
 		%>
-		<a href="delete"> <button>삭제</button> </a>
-		<a href="update.jsp"> <button>수정</button> </a>
+				<a href="delete?bno=<%=board.getBno()%>"> <button>삭제</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
+				<a href="update.jsp"> <button>수정</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
 		<%} %>
-		<a href="boardlist.jsp"> <button>목록</button> </a>
+				<a href="boardlist.jsp"> <button>목록</button> </a> <!-- 무조건 보이는 버튼 -->
 		<table>
 			<tr> <td>번호</td> <td><%=board.getBno() %></td> <td>작성자</td> <td><%=board.getMid() %></td> <td>작성일</td> <td><%=board.getBdate() %></td> </tr>
 			<tr> <td>제목</td> <td><%=board.getBtitle() %></td> </tr>
