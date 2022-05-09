@@ -64,7 +64,18 @@ public class BoardDao extends Dao {
 		
 	}
 	// 4. 게시물 수정 메소드 	[ 인수 : 수정할 게시물번호  / 수정된 내용 ]
-	public boolean update( Board board ) { return false; }
+	public boolean update( Board board ) { 
+		String sql = "update board set btitle=? , bcontent=? , bfile=? where bno = ?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , board.getBtitle() );
+			ps.setString( 2 , board.getBcontent() );
+			ps.setString( 3 , board.getBfile() );
+			ps.setInt( 4 , board.getBno() );
+			ps.executeUpdate(); return true;
+		}
+		catch (Exception e) { System.out.println( e );} return false;
+	}
 	
 	// 5. 게시물 삭제 메소드 	[ 인수 : 삭제할 게시물번호 
 	public boolean delete( int bno ) { 

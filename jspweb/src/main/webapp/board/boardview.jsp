@@ -21,7 +21,7 @@
 			if( board.getMno() == MemberDao.getmemberDao().getmno(mid) ){ 	// 아이디로 회원번호 가져와서 비교 
 		%>
 				<a href="delete?bno=<%=board.getBno()%>"> <button>삭제</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
-				<a href="update.jsp"> <button>수정</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
+				<a href="update.jsp?bno=<%=board.getBno()%>"> <button>수정</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
 		<%} %>
 				<a href="boardlist.jsp"> <button>목록</button> </a> <!-- 무조건 보이는 버튼 -->
 		<table>

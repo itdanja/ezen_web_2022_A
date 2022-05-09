@@ -29,9 +29,7 @@
 			<!-- for 문 -->
 			<%
 				// 1. 모든 게시물  호출 
-				ArrayList<Board> boardlist = 
-					BoardDao.getBoardDao().getboardlist();
-					System.out.println( boardlist);
+				ArrayList<Board> boardlist = BoardDao.getBoardDao().getboardlist();
 				for( Board board : boardlist ){
 					System.out.println( board.toString() );
 			%>

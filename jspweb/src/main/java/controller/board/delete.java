@@ -46,11 +46,10 @@ public class delete extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8"); // 응답 파일타입 = HTML 
 		PrintWriter out = response.getWriter();	// HTML 내보내기 메소드 사용
 		if( result ) {
-			// * 삭제 성공시 해당 파일도 서버에서 지우기 
+			// * DB삭제 성공시 해당 파일도 서버에서 지우기 
 			String uploadpath = request.getSession().getServletContext().getRealPath("/board/upload/"+bfile ); // 파일 경로 찾기 
 			File file = new File(uploadpath); // 해당 파일 객체화 
 			file.delete(); // 파일 삭제하기 ( file클래스내 제공되는 delete() 메소드 = 파일삭제시 사용 )
-			
 			// 1. HTML 내보내기 
 //			out.println( "<html>");
 //			out.println( "<body>");
