@@ -31,15 +31,19 @@ public class Board {
 		
 		// 작성일이 오늘이면 시간만 표시 // 아니면 날짜만 표시 
 			// 현재 날짜 : LocalDate.now() 
-		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // 날짜 형식 변환 설정 
-		String today = dateformat.format( LocalDate.now() ) ; // 오늘날짜를 문자열 변환
-		String boardday = bdate.split(" ")[0];	// 날짜만 
-		String boardtime = bdate.split(" ")[1]; // 시간만 
-							// db에 저장된 게시물 등록날짜의 날짜 시간 중에 split 분리후 앞에 있는 날짜만 가져오기 
-		// 현재날짜와 게시물등록날짜와 동일하면 
-		if( today.equals(boardday) ) { this.bdate = boardtime;}
-		// 동일하지 않으면 
-		else { this.bdate = boardday; }
+		if( bdate != null ) { 
+			
+			DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // 날짜 형식 변환 설정 
+			String today = dateformat.format( LocalDate.now() ) ; // 오늘날짜를 문자열 변환
+			String boardday = bdate.split(" ")[0];	// 날짜만 
+			String boardtime = bdate.split(" ")[1]; // 시간만 
+								// db에 저장된 게시물 등록날짜의 날짜 시간 중에 split 분리후 앞에 있는 날짜만 가져오기 
+			// 현재날짜와 게시물등록날짜와 동일하면 
+			if( today.equals(boardday) ) { this.bdate = boardtime;}
+			// 동일하지 않으면 
+			else { this.bdate = boardday; }
+			
+		}else { this.bdate = bdate; }
 		
 		// mno를 가지고 mid출력
 		this.mid = MemberDao.getmemberDao().getmid(mno);

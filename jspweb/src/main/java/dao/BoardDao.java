@@ -91,7 +91,12 @@ public class BoardDao extends Dao {
 	}
 	
 	// 6. 게시물 조회 증가 메소드 	[ 인수 : 증가할 게시물번호 ]
-	public boolean increview( int bno ) { return false; }
+	public boolean increview( int bno ) { 
+		String sql ="update board set bview = bview+1 where bno = "+bno;
+		try { ps=con.prepareStatement(sql); ps.executeUpdate(); return true; } 
+		catch (Exception e) {}	return false; 
+		
+	}
 	// 7. 댓글 작성 메소드 		[ 인수 : 작성된 데이터들 = dto ]
 	public boolean replywrite() { return false; }
 	// 8. 댓글 출력 메소드 		[ 인수 : x ]

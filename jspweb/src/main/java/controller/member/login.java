@@ -61,6 +61,7 @@ public class login extends HttpServlet {
 			session.setAttribute("login", mid ); // 2. 세션에 값 저장 
 								// 세션명 , 데이터
 			response.sendRedirect("/jspweb/main.jsp");  // 페이지 전환
+			
 		}
 		else if( result == 2 ) { // 아이디 혹은 비밀번호 다름
 			response.sendRedirect("/jspweb/member/login.jsp?result=2"); 
