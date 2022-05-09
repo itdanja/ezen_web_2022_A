@@ -31,7 +31,6 @@
 				// 1. 모든 게시물  호출 
 				ArrayList<Board> boardlist = BoardDao.getBoardDao().getboardlist();
 				for( Board board : boardlist ){
-					System.out.println( board.toString() );
 			%>
 				<!-- 
 					행을 클릭했을때[ js ]   

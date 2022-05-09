@@ -10,3 +10,19 @@
 	  });
 });
 
+
+
+function filedelete(){
+	alert("파일만삭제");
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package controller.board;
 
+import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,19 @@ public class update extends HttpServlet {
 		String btitle = multi.getParameter("btitle");
 		String bcontent = multi.getParameter("bcontent");
 		String bfile = multi.getFilesystemName("bfile");
+		
+			//기존파일명
+			Board temp = BoardDao.getBoardDao().getboard(bno);
+			String oldfile = temp.getBfile();
+			if( bfile == null ) {// 새로운 첨부파일 없다 . 
+				bfile = oldfile;
+			}else { // 새로운 첨부파일 있다. 
+				// * 기존파일은 서버내에서 삭제처리
+				String upload = request.getSession().getServletContext().getRealPath("/board/upload/"+oldfile);
+				File file = new File(upload);
+				file.delete();
+			}
+		
 			//객체화 
 		Board board = new Board(bno, btitle, bcontent, 0, bfile, 0, null, null);
 			// DB

@@ -27,8 +27,12 @@
 		<form action="../board/update?bno=<%=board.getBno() %>" method="post" enctype="multipart/form-data" >
 			제목 : <input type="text" name="btitle" value="<%=board.getBtitle()%>"> <br>
 			<textarea name="bcontent" id="summernote"><%=board.getBcontent()%></textarea>
-			첨부파일 : <input type="file" name="bfile"> <br>
-			<input type="submit" value="등록"><input type="reset" value="취소">
+			
+			첨부파일 : <%=board.getBfile() %>  <button type="button" onclick="filedelete()">파일삭제</button>
+			 <br>
+			<input type="file" name="bfile"> <br>
+			
+			<input type="submit" value="수정"><input type="reset" value="취소">
 		</form>
 	</div>
 	
