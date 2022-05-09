@@ -29,10 +29,13 @@
 			제목 : <input type="text" name="btitle" value="<%=board.getBtitle()%>"> <br>
 			<textarea name="bcontent" id="summernote"><%=board.getBcontent()%></textarea>
 			
-			첨부파일 : <%=board.getBfile() %>
-			<button type="button" onclick="filedelete(<%=board.getBno()%>)">파일삭제</button>
-			<br>
-			<input type="file" name="bfile"> <br>
+			<% if( board.getBfile() != null ){ %>
+				첨부파일 : <%=board.getBfile() %>
+				<button type="button" onclick="filedelete(<%=board.getBno()%>)">파일삭제</button>
+				<br>
+			<%} %>
+			
+				<input type="file" name="bfile"> <br>
 			
 			<input type="submit" value="수정"><input type="reset" value="취소">
 		</form>

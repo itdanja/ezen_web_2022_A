@@ -1,4 +1,7 @@
-package dto; 
+package dto;
+
+import dao.MemberDao;
+
 // dto 데이터 교환 객체
 public class Member {
 	
