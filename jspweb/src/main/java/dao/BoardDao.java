@@ -83,6 +83,12 @@ public class BoardDao extends Dao {
 		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
 		catch (Exception e) {} return false;
 	}
+	// 5-2 첨부파일만 삭제( null로 변경 ) 메소드 
+	public boolean filedelete( int bno ) {
+		String sql = "update board set bfile = null where bno = "+bno;
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true; }
+		catch (Exception e) {} return false;
+	}
 	
 	// 6. 게시물 조회 증가 메소드 	[ 인수 : 증가할 게시물번호 ]
 	public boolean increview( int bno ) { return false; }
