@@ -30,8 +30,25 @@ function filedelete( bno ){
 		}
 		
 	});
+}
+
+function replywrite( bno ){
+	let rcontent = $("#rcontent").val();
+	$.ajax({
+		url: "replywrite" ,
+		data: { "bno":bno , "rcontent" : rcontent  } ,
+		success : function( result ){
+			if( result == 1 ){ alert("댓글작성 되었습니다."); }
+			else{ alert("댓글작성이 실패했습니다."); }
+		}
+	});
 	
 }
+
+
+
+
+
 
 
 

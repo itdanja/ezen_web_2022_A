@@ -48,8 +48,15 @@
 			<% } %>
 			
 		</table>
+		
+		<h4>댓글</h4>
+		<input type="text" id="rcontent">
+		<button onclick="replywrite(<%=bno%> )">등록</button>
 	</div>
+	<script src="/jspweb/js/board.js" type="text/javascript"></script>
+	
 	<%@include file ="../footer.jsp" %>
+
 
 </body>
 </html>
