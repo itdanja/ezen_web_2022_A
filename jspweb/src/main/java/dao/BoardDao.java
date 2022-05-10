@@ -147,7 +147,16 @@ public class BoardDao extends Dao {
 	// 9. 댓글 수정 메소드 		[ 인수 : 수정할 댓글 번호 ]
 	public boolean replyupdate() { return false; }
 	// 10. 댓글 삭제 메소드 		[ 인수 : 삭제할 댓글 번호 ] 
-	public boolean replydelete() { return false; }
+	public boolean replydelete( int rno) { 
+		String sql ="delete from reply "
+				+ "where rno = "+rno+" or rindex = "+rno;
+		try { 
+			ps = con.prepareStatement(sql); 
+			ps.executeUpdate();
+			return true;
+		}
+		catch( Exception e ) {} return false;
+	}
 }
 
 

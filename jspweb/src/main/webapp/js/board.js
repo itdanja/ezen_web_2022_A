@@ -52,9 +52,10 @@ function replywrite( bno ){
 
 function rereplyview( rno , bno , mid ){ // 대댓글 입력창 표시 메소드 
 	// ' '  or " "	: 문자처리 	// '문자열' + 변수 + '문자열'
-	if( mid == null ){ // 로그인 안되어 있으면
+	alert(mid + "테스트2");
+	if( mid == "null" ){ // 로그인 안되어 있으면
 		alert("로그인후 작성이 가능합니다."); return;
-	} 
+	}
 	// JS 작성 공간 에서는 HTML 작성 불가능 --> HTML 문자처리 
 	
 	$("#"+rno).html(
@@ -80,6 +81,20 @@ function rereplywrite( rno , bno ){ // 대댓글 쓰기 메소드
 				 $("#replytable").load( location.href+" #replytable"); // 특정 태그 새로고침
 			}
 			else{ alert("대댓글작성이 실패했습니다."); }
+		}
+	});
+}
+
+function replydelete( rno ){
+	$.ajax({
+		url : "replydelete" , 
+		data : { "rno" : rno } , 
+		success : function( result ){
+			if( result == 1 ){
+				alert("댓글 삭제 되었습니다.");
+				$("#replytable").load( location.href+" #replytable"); // 특정 태그 새로고침
+			}
+			else{ alert("삭제 실패(관리자에게 문의)"); } 
 		}
 	});
 }

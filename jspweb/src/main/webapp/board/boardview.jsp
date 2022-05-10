@@ -101,10 +101,11 @@
 					<%=reply.getRcontent() %> <br> 
 				<% if( mid !=null && mid.equals( reply.getMid() ) ){ // 본인 작성한 댓글이면 %>
 					<button class="btn replybtn"> 수정 </button>
-					<button class="btn replybtn"> 삭제 </button>
+					<button type="button" class="btn replybtn" onclick="replydelete(<%=reply.getRno()%>)"> 삭제 </button>
 				<%} %>
 					<button class="btn replybtn" 
-					onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , <%=mid%> )"> 
+						onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , <%=mid%> )"> 
+																	<!-- js메소드에 인수 넣을때 문자열 ' '처리 //  숫자형 제외 -->
 					댓글 
 					</button>
 				</td>
@@ -124,12 +125,11 @@
 						<%=rereply.getMid() %> <br> 
 						<span class="replydate"> <%=rereply.getRdate() %> </span>
 					</td>
-					
 					<td width="80%">
 						<%=rereply.getRcontent() %> <br> 
 					<% if( mid != null && mid.equals( rereply.getMid() ) ){ %>
-						<a href="#"><button class="btn replybtn"> 수정 </button></a>
-						<a href="#"><button class="btn replybtn"> 삭제 </button></a>
+						<button class="btn replybtn"> 수정 </button>
+						<button class="btn replybtn" onclick="replydelete(<%=rereply.getRno()%>)"> 삭제 </button>
 					<%} %>
 					</td>
 				</tr>
