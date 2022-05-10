@@ -50,9 +50,11 @@ function replywrite( bno ){
 	
 }
 
-function rereplyview( rno , bno ){ // 대댓글 입력창 표시 메소드 
+function rereplyview( rno , bno , mid ){ // 대댓글 입력창 표시 메소드 
 	// ' '  or " "	: 문자처리 	// '문자열' + 변수 + '문자열'
-	
+	if( mid == null ){ // 로그인 안되어 있으면
+		alert("로그인후 작성이 가능합니다."); return;
+	} 
 	// JS 작성 공간 에서는 HTML 작성 불가능 --> HTML 문자처리 
 	
 	$("#"+rno).html(

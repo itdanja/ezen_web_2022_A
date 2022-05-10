@@ -103,7 +103,10 @@
 					<button class="btn replybtn"> 수정 </button>
 					<button class="btn replybtn"> 삭제 </button>
 				<%} %>
-					<button class="btn replybtn" onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> )"> 댓글 </button>
+					<button class="btn replybtn" 
+					onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , <%=mid%> )"> 
+					댓글 
+					</button>
 				</td>
 			</tr>
 			
