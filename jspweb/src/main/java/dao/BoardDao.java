@@ -127,6 +127,23 @@ public class BoardDao extends Dao {
 			return replylist;
 		}catch (Exception e) { System.out.println( e ); } return null; 
 	}
+	// 8-2 대댓글 출력 메소드 
+	public ArrayList<Reply> rereplylist( int bno , int  rno ){
+		ArrayList<Reply> rereplylist = new ArrayList<Reply>();
+		String sql = "select * from reply where bno = "+bno+" and rindex = "+rno;
+		try { 
+			ps = con.prepareStatement(sql); rs= ps.executeQuery();
+			while( rs.next() ) {
+				Reply reply = new Reply(
+						rs.getInt(1) , rs.getString(2),
+						rs.getString(3), rs.getInt(4), 
+						rs.getInt(5), rs.getInt(6), null);
+				rereplylist.add(reply);
+			}
+			return rereplylist;
+		}catch (Exception e) { System.out.println(e); } return null;
+		
+	}
 	// 9. 댓글 수정 메소드 		[ 인수 : 수정할 댓글 번호 ]
 	public boolean replyupdate() { return false; }
 	// 10. 댓글 삭제 메소드 		[ 인수 : 삭제할 댓글 번호 ] 

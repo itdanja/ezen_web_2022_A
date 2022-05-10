@@ -74,7 +74,19 @@
 				<td id=<%=reply.getRno() %> > </td>   <!-- 해당 태그의 id값을 변수로 설정 = 댓글번호 ( 댓글 한개당 1개씩 ) -->
 			</tr>
 			
-			<%} %>
+			<!-- 대댓글 출력창  -->
+			<%ArrayList<Reply> rereplylist = BoardDao.getBoardDao().rereplylist( bno , reply.getRno() );
+				for( Reply rereply : rereplylist ){%>
+				<tr>
+					<td></td>
+					<td><%=rereply.getMid() %> <br> <%=rereply.getRdate() %></td>
+					<td>
+						<%=rereply.getRcontent() %> <br> 
+						<button> 수정 </button>
+						<button> 삭제 </button>
+					</td>
+				</tr>
+			<%  }  } %>
 		</table>
 		
 		

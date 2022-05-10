@@ -71,7 +71,6 @@ function rereplywrite( rno , bno ){ // 대댓글 쓰기 메소드
 			else{ alert("대댓글작성이 실패했습니다."); }
 		}
 	});
-	
 }
 
 
