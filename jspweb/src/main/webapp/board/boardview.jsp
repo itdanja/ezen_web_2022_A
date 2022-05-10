@@ -32,7 +32,7 @@
 		%>
 	
 	
-		<h2 class="boardview_title"><%=board.getBtitle() %></h2>
+		<h4 class="boardview_title"><%=board.getBtitle() %></h4>
 		
 		<table class="table"> <!-- table : 부스트랩 테이블 클래스 -->
 			<tr> 
