@@ -15,7 +15,6 @@
 
 	<%@include file ="../header.jsp" %>
 	<div class="container">
-		<h3> 게시물 상세 </h3>
 		<% 
 			int bno = Integer.parseInt( request.getParameter("bno") );		// 게시물번호
 			String mid = (String)session.getAttribute("login"); 			// 세션 = 로그인된 아이디 
@@ -36,21 +35,32 @@
 				<a href="update.jsp?bno=<%=board.getBno()%>"> <button>수정</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
 		<%} %>
 				<a href="boardlist.jsp"> <button>목록</button> </a> <!-- 무조건 보이는 버튼 -->
-		<table>
-			<tr> <td>번호</td> <td><%=board.getBno() %></td> <td>작성자</td> <td><%=board.getMid() %></td> 
-				<td>작성일</td> <td><%=board.getBdate() %></td>  <td>조회수</td> <td><%=board.getBview() %></td> 
+		
+		<h2 class="boardview_title"><%=board.getBtitle() %></h2>
+		
+		<table class="table"> <!-- table : 부스트랩 테이블 클래스 -->
+			<tr> 
+				<td width="25%">번호 : <%=board.getBno() %></td> <!-- td 가로길이 : width속성 -->
+				<td width="25%">작성자 : <%=board.getMid() %></td> 
+				<td width="25%">작성일 : <%=board.getBdate() %></td>  
+				<td width="25%">조회수 : <%=board.getBview() %></td> 
 			</tr>
-			<tr> <td>제목</td> <td><%=board.getBtitle() %></td> </tr>
-			<tr> <td>내용</td> <td><%=board.getBcontent() %></td> </tr>
+			<tr> 
+				<td colspan="4"> <!-- colspan : 열 병합 // rowspan : 행 병합  -->
+					<div class="boardview_content">	
+						<%=board.getBcontent() %>
+					</div>
+				</td> 
+			</tr>
+			
 			<% if( board.getBfile() == null ){ // 첨부파일이 없을경우 %> 
-				<tr> <td>첨부파일<td> <td> - </td> </tr> <!-- 첨부파일 다운로드 -->
+				<tr> <td colspan="4"> 첨부파일 :  - </td> </tr> <!-- 첨부파일 다운로드 -->
 			<%	}else{ // 첨부파일이 있을경우 %>
-				<tr> <td>첨부파일<td> <td> <a href="filedown?bfile=<%=board.getBfile()%>">
+				<tr> <td colspan="4"> 첨부파일 : <a href="filedown?bfile=<%=board.getBfile()%>">
 					<%=board.getBfile() %></a> </td> </tr> <!-- 첨부파일 다운로드 -->
 			<% } %>
 			
 		</table>
-		
 		<h4>댓글</h4>
 		<input type="text" id="rcontent">
 		<button onclick="replywrite(<%=bno%> )">등록</button>
