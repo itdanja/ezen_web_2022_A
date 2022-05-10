@@ -23,6 +23,27 @@ a{ text-decoration: none; color: black;}
 .boardview_content{
 	min-height: 400px; /*최소높이*/	
 }
+textarea {
+	resize: none;	/* 크기변경 불가능 */
+}
+.replywriter{
+	font-size: 14px;
+}
+.replybtn{
+	font-size: 10px;
+}
+.replydate{
+	font-size: 7px;
+}
+
+
+
+
+
+
+
+
+
 
 
 
