@@ -104,7 +104,7 @@
 					<button type="button" class="btn replybtn" onclick="replydelete(<%=reply.getRno()%>)"> 삭제 </button>
 				<%} %>
 					<button class="btn replybtn" 
-						onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , <%=mid%> )"> 
+						onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , '<%=mid%>' )"> 
 																	<!-- js메소드에 인수 넣을때 문자열 ' '처리 //  숫자형 제외 -->
 					댓글 
 					</button>

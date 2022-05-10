@@ -52,22 +52,21 @@ function replywrite( bno ){
 
 function rereplyview( rno , bno , mid ){ // 대댓글 입력창 표시 메소드 
 	// ' '  or " "	: 문자처리 	// '문자열' + 변수 + '문자열'
-	alert(mid + "테스트2");
 	if( mid == "null" ){ // 로그인 안되어 있으면
-		alert("로그인후 작성이 가능합니다."); return;
+		alert("로그인후 작성이 가능합니다."); 
+		return;
 	}
 	// JS 작성 공간 에서는 HTML 작성 불가능 --> HTML 문자처리 
-	
-	$("#"+rno).html(
-		'<div class="row">'+
-			'<div class="col-md-10">'+
-				'<textarea id="rrcontent" class="form-control" rows=3></textarea>'+
-			'</div>'+
-			'<div class="col-md-2">'+
-				'<button class="form-control py-4 my-1" onclick="rereplywrite('+rno+','+bno+')">대댓글 등록</button>'+
-			'</div>'+
-		'</div>'
-	);	
+		$("#"+rno).html(
+			'<div class="row">'+
+				'<div class="col-md-10">'+
+					'<textarea id="rrcontent" class="form-control" rows=3></textarea>'+
+				'</div>'+
+				'<div class="col-md-2">'+
+					'<button class="form-control py-4 my-1" onclick="rereplywrite('+rno+','+bno+')">대댓글 등록</button>'+
+				'</div>'+
+			'</div>'
+		);	
 }
 function rereplywrite( rno , bno ){ // 대댓글 쓰기 메소드 
 	let rrcontent = $("#rrcontent").val();
