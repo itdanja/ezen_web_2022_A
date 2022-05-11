@@ -25,11 +25,20 @@ public class BoardDao extends Dao {
 			ps.executeUpdate(); return true;
 		}catch (Exception e) { System.out.println( e ); }	return false; 
 	}
+	// 2-2 게시물 전체 개수출력 메소드 
+	public int gettotalrow() {
+		String sql ="select count(*) from board";
+		try { ps = con.prepareStatement(sql); rs = ps.executeQuery(); 
+			if( rs.next() ) return rs.getInt(1); 
+		}
+		catch( Exception e ) {} return 0;
+	}
+	
 	// 2. 모든 게시물 출력 메소드 [ 인수 : x  // 추후기능 = 검색 : 조건 ]
-	public ArrayList<Board> getboardlist() { 
+	public ArrayList<Board> getboardlist( int startrow , int listsize ) { 
 		ArrayList<Board> boardlist = new ArrayList<Board>();
 		// 내림차순 
-		String sql = "select * from board order by bno desc";
+		String sql = "select * from board order by bno desc limit "+startrow+","+listsize; /* limit 시작 인덱스 , 표시 개수 */
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
