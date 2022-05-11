@@ -2,7 +2,7 @@ CREATE TABLE reply(
 	rno int primary key auto_increment ,
     rcontent varchar(1000) ,
     rdate datetime default now() ,
-    rindex int ,
+    rindex int , /*상위 댓글번호 */
     bno int ,
     mno int ,
     foreign key( bno ) references board( bno ) on delete cascade ,

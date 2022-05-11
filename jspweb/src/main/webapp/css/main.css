@@ -63,6 +63,19 @@ textarea {
 	display: block;
 }
 
+.boardlist_title{
+	width : 20%;
+	border-bottom: 1px solid black;
+	padding: 20px;
+	margin: 100px 0px 50px 0px;
+}
+.boardlist_topbtn{
+	margin: 20px 0px;	
+}
+.pagenum{
+	color: black;
+	font-size: 12px;
+}
 
 
 

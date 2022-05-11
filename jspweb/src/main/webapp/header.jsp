@@ -69,8 +69,10 @@
 				<li class="nav-item"> <a href="#"> 트레이닝 </a> </li>
 				<li class="nav-item"> <a href="#" style="color: #FFBB00;"> 모델처러입자 </a> </li>
 				<li class="nav-item"> <a href="#" style="color: #FF0000;"> 50% 할인 </a> </li>
-				<li class="nav-item"> <input type="text" class="header_input" size="13"> </li>
-				<li class="nav-item"> <a href="#"> <i class="fas fa-search"></i> </a> </li>	
+				<li class="nav-item"> 
+					<input type="text" class="header_input" size="13"> 
+					<a href="#"><i class="fas fa-search"></i></a>
+				</li>
 				<li class="nav-item"> <a href="#">장바구니<span class="shoppingbox">3</span></a></li>
 			</ul>
 		</div> <!-- 본 메뉴 끝 -->
