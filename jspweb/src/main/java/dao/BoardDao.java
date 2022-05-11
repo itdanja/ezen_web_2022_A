@@ -25,22 +25,28 @@ public class BoardDao extends Dao {
 			ps.executeUpdate(); return true;
 		}catch (Exception e) { System.out.println( e ); }	return false; 
 	}
-	// 2-2 게시물 전체 개수출력 메소드 
-	public int gettotalrow() {
-		String sql ="select count(*) from board";
+	// 2-2 게시물 전체/검색 개수 출력 메소드 
+	public int gettotalrow( String key , String keyword  ) {
+		
+		String sql = null;
+		if( key.equals("") && keyword.equals("") ) { sql ="select count(*) from board";} //검색이 없을경우 
+		else { sql ="select count(*) from board where "+key+" like '%"+keyword+"%'";} // 검색이 있을경우
+		
 		try { ps = con.prepareStatement(sql); rs = ps.executeQuery(); 
 			if( rs.next() ) return rs.getInt(1); 
 		}
-		catch( Exception e ) {} return 0;
+		catch( Exception e ) { System.out.println( e );} return 0;
 	}
 	
 	// 2. 모든 게시물 출력 메소드 [ 인수 : x  // 추후기능 = 검색 : 조건 ]
 	public ArrayList<Board> getboardlist(int startrow , int listsize , String key , String keyword ) { 
 		ArrayList<Board> boardlist = new ArrayList<Board>();
-		// 내림차순 
-		//String sql = "select * from board order by bno desc limit "+startrow+","+listsize; /* limit 시작 인덱스 , 표시 개수 */
-		String sql ="select * from board where "+key+" like '%"+keyword+"%'";
-		
+		String sql =  null;
+		if( key.equals("") && keyword.equals("") ) { //검색이 없을경우 
+			sql = "select * from board order by bno desc limit "+startrow+","+listsize; /* limit 시작 인덱스 , 표시 개수 */
+		}else {
+			sql ="select * from board where "+key+" like '%"+keyword+"%' order by bno desc limit "+startrow+","+listsize;
+		}
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();

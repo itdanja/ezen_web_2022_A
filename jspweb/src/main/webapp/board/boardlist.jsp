@@ -21,12 +21,23 @@
 	// 검색에서 입력받은 데이터 요청하기  
 	String key = request.getParameter("key");
 	String keyword = request.getParameter("keyword");
+	
+	// 세션을 이용한 검색처리 저장 
+	// 검색이 있을경우
+ 	if( key !=null && keyword != null ){
+		session.setAttribute( "key", key ); // 세션 설정 [ 세션명 , 세션데이터 ]
+		session.setAttribute( "keyword", keyword );
+	}else{ // 검색이 없을경우 
+		key = (String)session.getAttribute("key");	// 세션 호출 [ 세션명 -> 세션데이터 ]
+		keyword = (String)session.getAttribute("keyword");
+	} 
+	
 %>
 		
 <!-------------------------------- 페이징 계산 처리 ------------------------------------>
 <%
 	// 1. 게시물 전체 개수
-	int totalrow = BoardDao.getBoardDao().gettotalrow();
+	int totalrow = BoardDao.getBoardDao().gettotalrow( key , keyword);
 	// 2. 현재 페이지번호 
 	int currentpage = 1;
 		// *요청받은 페이지번호 
@@ -74,7 +85,7 @@
 <!------------------------- 전체글 / 인기글  버튼 구역 -------------------------- -->
 		<div class="row boardlist_topbtn">
 			<div class="col-md-1 offset-10">
-				<button class="form-control">전체글</button>
+				<a href="boardlist.jsp?key=&keyword="> <button class="form-control">전체글</button>  </a>
 			</div>
 			<div class="col-md-1">
 				<button class="form-control">인기글</button>
@@ -139,14 +150,14 @@
 			
 			<!-- 다음 버튼 --> 
 			 <%if( currentpage == lastpage  ){ // 현재페이지가 마지막페이지 이면 마지막페이지 이상으로 요청 못하게 제한두기  %>
-			 	<li class="page-item"> <a class="page-link pagenum" href="boardlist.jsp?pagenum=<%=currentpage%> ">다음</a></li>
+			 	<li class="page-item"> <a class="page-link pagenum" href="boardlist.jsp?pagenum=<%=currentpage%>">다음</a></li>
 			 <%}else{ %>
-			 	<li class="page-item"> <a class="page-link pagenum" href="boardlist.jsp?pagenum=<%=currentpage+1%> ">다음</a></li>
+			 	<li class="page-item"> <a class="page-link pagenum" href="boardlist.jsp?pagenum=<%=currentpage+1%>">다음</a></li>
 			 <%} %>
 			 </ul>
 		</div>
 <!-- ---------------------- 검색 입력 구역  -------------------------- -->		
-		<form action="boardlist.jsp" class="col-md-4 offset-4 d-flex justify-content-center">
+		<form action="boardlist.jsp?pagenum=<%=currentpage %>" class="col-md-4 offset-4 d-flex justify-content-center">
 			<div class="col-md-3">  <!-- 키 선택  -->
 				<select class="form-select" name="key">
 					<option value="btitle"> 제목 </option> 	<!-- key = 필드명 -->
