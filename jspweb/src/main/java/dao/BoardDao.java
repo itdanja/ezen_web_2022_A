@@ -181,6 +181,7 @@ public class BoardDao extends Dao {
 		catch( Exception e ) {} return false;
 	}
 	
+//////////////////////// day49_teamchatting /////////////////////////////////
 	public boolean send( String nicname , String content , String ip , String file  )  {
 		String sql = "insert into teamchatting(cnicname , ccontent ,ip,file )values(?,?,?,?)";
 		try {
@@ -206,6 +207,7 @@ public class BoardDao extends Dao {
 			return receive;
 		}catch (Exception e) {} return null;
 	}
+////////////////////////////////////////////////// /////////////////////////////////
 }
 
 
