@@ -9,19 +9,26 @@
 <body>
 
 	<%@include file = "header.jsp" %>
-	<div class="container">
+	<div class="container my-5">
 		<h3> 비회원제 실시간 채팅 페이지[ 소켓X 게시판형식O] </h3>
-		
-		<div style="width: 500px; height: 500px; border: 1px solid black; margin: 0 auto;">
-		
+		<div class="col-md-4 offset-4">
+			
+			<div id="contents" style="border: 2px dotted red; height: 500px; overflow-y:scroll">
+				* 채팅 내용이 표시되는 구역
+			</div>
+			
+			<div class="row g-0">
+				<div class="col-md-3">
+					<input type="text" class="form-control" placeholder="닉네임" size="10">
+				</div>
+				<div class="col-md-7">
+					<input type="text" class="form-control" placeholder="내용" size="20">
+				</div>
+				<div class="col-md-2">
+					<button type="submit" class="form-control">입력</button>
+				</div>
+			</div>
 		</div>
-		
-		<div style="width: 500px; margin: 0 auto;">
-			<input type="text" placeholder="닉네임">
-			<input type="text" placeholder="내용">
-			<button type="button">입력</button>
-		</div>
-		
 	</div>
 	<%@include file = "footer.jsp" %>
 
