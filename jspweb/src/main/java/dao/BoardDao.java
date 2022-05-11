@@ -35,10 +35,12 @@ public class BoardDao extends Dao {
 	}
 	
 	// 2. 모든 게시물 출력 메소드 [ 인수 : x  // 추후기능 = 검색 : 조건 ]
-	public ArrayList<Board> getboardlist( int startrow , int listsize ) { 
+	public ArrayList<Board> getboardlist(int startrow , int listsize , String key , String keyword ) { 
 		ArrayList<Board> boardlist = new ArrayList<Board>();
 		// 내림차순 
-		String sql = "select * from board order by bno desc limit "+startrow+","+listsize; /* limit 시작 인덱스 , 표시 개수 */
+		//String sql = "select * from board order by bno desc limit "+startrow+","+listsize; /* limit 시작 인덱스 , 표시 개수 */
+		String sql ="select * from board where "+key+" like '%"+keyword+"%'";
+		
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
