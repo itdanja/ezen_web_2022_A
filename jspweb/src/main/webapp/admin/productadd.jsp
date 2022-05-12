@@ -20,7 +20,7 @@
 			</button> 
 		<br>
 		
-		<div id="categotyinput">
+		<div id="categoryinput">
 			
 		</div>
 		

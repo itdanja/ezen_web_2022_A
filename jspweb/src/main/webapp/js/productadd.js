@@ -1,7 +1,7 @@
 /* -------- 카테고리 버튼 눌렀을때 함수(이벤트) ------- */
 function categorybtn(){
 	// 특정태그의 HTML 넣기 
-	$("#categotyinput").html(
+	$("#categoryinput").html(
 		'<input type="text" id="cname">'+
 		'<button onclick="categoryadd()" type="button">등록</button>'
 	)
