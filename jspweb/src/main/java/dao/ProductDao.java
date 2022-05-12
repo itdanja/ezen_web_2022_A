@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import controller.board.rereplywrite;
 import dto.Category;
 import dto.Product;
 import dto.Stock;
@@ -18,7 +19,13 @@ public class ProductDao extends Dao {
 			// 반환타입이 기본자료형이면 -> false , 0  , 2 , 0.1  
 ///////////////////////////////////  카테고리 ////////////////////////
 	// 1. 카테고리 등록 [ C ]
-	public boolean csave() { return false; }
+	public boolean csave( String cname) { 
+		String sql = "insert into category(cname)values('"+cname+"')";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate(); return true;
+		}catch (Exception e) {} return false;
+	}
 	// 2. 카테고리 호출 [ R ] 
 	public ArrayList<Category> getcategorylist(){ return null; }
 	// 3. 카테고리 수정 [ U ] 
