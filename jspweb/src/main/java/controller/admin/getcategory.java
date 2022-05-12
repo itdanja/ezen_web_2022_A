@@ -41,7 +41,7 @@ public class getcategory extends HttpServlet {
 		String html = ""; // 응답할 문자열 ~~
 		for( Category temp  : arrayList  ) {
 			html += 
-			"<input type=\"radio\" name=\"cname\" value=\""+temp.getCno()+"\">"+temp.getCname();
+			"<input type=\"radio\" name=\"cno\" value=\""+temp.getCno()+"\">"+temp.getCname();
 		}
 		//  java에서 " " : 문자열 인식용 	//  		\"  : " 표시(출력)
 		out.print( html ); // 해당 문자열 응답~~ 

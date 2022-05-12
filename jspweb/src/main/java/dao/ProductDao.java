@@ -44,7 +44,16 @@ public class ProductDao extends Dao {
 	// 4. 카테고리 삭제 [ D ]
 ///////////////////////////////////  제품 ////////////////////////////////	
 	// 1. 제품 등록 
-	public boolean psave() { return false; }
+	public boolean psave( Product product ) {
+		String sql = "insert into product(pname,pprice,pdiscount,pimg,cno ) "
+				+ "values(?,?,?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString( 1 , product.getPname() );		ps.setInt( 2 , product.getPprice() );
+			ps.setFloat( 3 , product.getPdiscount() );	ps.setString( 4 , product.getPimg() );
+			ps.setInt( 5 , product.getCno() );ps.executeUpdate(); return true;
+		}catch (Exception e) {System.out.println(e);}return false; 
+	}
 	// 2. 제품 모든 호출
 	public ArrayList<Product> getproductlist() { return null; }
 	// 3. 제품 개별 호출 

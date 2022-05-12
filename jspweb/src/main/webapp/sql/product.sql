@@ -7,7 +7,7 @@ create table product(
     pname varchar(1000) ,  /* 제품 명 */
     pprice int ,  /* 제품 가격 */
     pdiscount float ,  /* 제품 할인율 = float = 실수 자료형*/
-    pactive int ,  /* 제품 상태 */
+    pactive int default 0,  /* 제품 상태 [ 0:준비중(기본값)  1:판매중  2:재고준비중 */
 	pimg varchar(1000) ,  /* 제품 이미지 */
     cno int , /* 제품 카테고리 */
     foreign key( cno ) references category(cno) on update cascade 
