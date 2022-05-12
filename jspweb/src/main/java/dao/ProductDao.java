@@ -27,7 +27,19 @@ public class ProductDao extends Dao {
 		}catch (Exception e) {} return false;
 	}
 	// 2. 카테고리 호출 [ R ] 
-	public ArrayList<Category> getcategorylist(){ return null; }
+	public ArrayList<Category> getcategorylist(){ 
+		ArrayList<Category> list = new ArrayList<Category>();
+		String sql = "select * from category";
+		try {
+			ps =con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) { // 1개 호출시 if // 여러개 호출시 while
+				Category category = new Category( rs.getInt(1) , rs.getString(2) );
+				list.add(category);
+			}
+			return list;
+		}catch (Exception e) {} return null; 
+	}
 	// 3. 카테고리 수정 [ U ] 
 	// 4. 카테고리 삭제 [ D ]
 ///////////////////////////////////  제품 ////////////////////////////////	

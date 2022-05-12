@@ -23,3 +23,37 @@ function categoryadd(){
 	});
 }
 /* -------- -------------------------- ------- */
+/* -------- 카테고리 호출---- ------- */
+	// $( 함수(){ 실행코드 }); : js 열람시 실행되는 함수 
+$( function getcategory(){
+	$.ajax({ 
+		url : "getcategory" , 
+		success : function( re ){
+			$("#categorybox").html(re);
+		}
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
