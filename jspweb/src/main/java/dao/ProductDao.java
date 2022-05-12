@@ -1,0 +1,51 @@
+package dao;
+
+import java.util.ArrayList;
+
+import dto.Category;
+import dto.Product;
+import dto.Stock;
+
+public class ProductDao extends Dao {
+	// 부모클래스의 생성자 호출 -> db 연결 
+	public ProductDao() {  super(); }
+	// 외부클래스에서 접근 객체 
+	private static ProductDao productDao = new ProductDao();
+	public static ProductDao getProductDao() { return productDao; }
+	
+	// 메소드는 반환타입 에 따른 return 값 설정
+			// 반환타입이 클래스이면 -> null , 객체명
+			// 반환타입이 기본자료형이면 -> false , 0  , 2 , 0.1  
+///////////////////////////////////  카테고리 ////////////////////////
+	// 1. 카테고리 등록 [ C ]
+	public boolean csave() { return false; }
+	// 2. 카테고리 호출 [ R ] 
+	public ArrayList<Category> getcategorylist(){ return null; }
+	// 3. 카테고리 수정 [ U ] 
+	// 4. 카테고리 삭제 [ D ]
+///////////////////////////////////  제품 ////////////////////////////////	
+	// 1. 제품 등록 
+	public boolean psave() { return false; }
+	// 2. 제품 모든 호출
+	public ArrayList<Product> getproductlist() { return null; }
+	// 3. 제품 개별 호출 
+	public Product getproduct() { return null; }
+	// 4. 제품 수정 
+	// 5. 제품 삭제 
+///////////////////////////////////  재고 ////////////////////////////////	
+	// 1. 제품의 재고 등록 
+	public boolean ssvae() { return false; }
+	// 2. 제품의 재고 호출 
+	public Stock getStock() { return null; }
+	// 3. 제품의 재고 수정 
+	// 4. 제품의 재고 삭제
+//////////////////////////////////////////////////////////////////////////
+	
+}
+
+
+
+
+
+
+
