@@ -59,8 +59,8 @@ public class productadd extends HttpServlet {
 		
 		boolean result =  ProductDao.getProductDao().psave(product);
 		
-		if( result ) { response.sendRedirect("/jspweb/admin/dashboard.jsp");}
-		else { response.sendRedirect("/jspweb/admin/dashboard.jsp");}
+		if( result ) { response.getWriter().print(1);}
+		else { response.getWriter().print(2);}
 		
 		
 		
