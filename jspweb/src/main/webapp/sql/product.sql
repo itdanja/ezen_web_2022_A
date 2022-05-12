@@ -15,7 +15,7 @@ create table product(
     /* on update cascade : pk 레코드가 수정 되면 fk 레코드 도 같이 수정된다 */
 );
 
-create table3 stock( 
+create table stock( 
 	sno int primary key auto_increment , /* 재고 번호 */
     scolor varchar(100) ,  /* 재고 색상 */
     ssize varchar(100) ,   /* 재고 색상 */
