@@ -55,7 +55,21 @@ public class ProductDao extends Dao {
 		}catch (Exception e) {System.out.println(e);}return false; 
 	}
 	// 2. 제품 모든 호출
-	public ArrayList<Product> getproductlist() { return null; }
+	public ArrayList<Product> getproductlist() { 
+		ArrayList<Product> products = new ArrayList<Product>();
+		String sql = "select * from product";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Product product = new Product(
+						rs.getInt(1),rs.getString(2), 
+						rs.getInt(3), rs.getFloat(4), 
+						rs.getInt(5), rs.getString(6), rs.getInt(7) );
+				products.add(product);
+			} return products;
+		}catch(Exception e ) {} return null;
+	}
 	// 3. 제품 개별 호출 
 	public Product getproduct() { return null; }
 	// 4. 제품 수정 

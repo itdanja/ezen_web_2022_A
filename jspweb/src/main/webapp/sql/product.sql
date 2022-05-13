@@ -34,6 +34,71 @@ create table stock(
 
 
 
+select pno , pimg from product;
+/* pno 와 pimg 표시 */
+
+select * from product;
+ /* 모든 필드 표시 */
+
+select * from product where pprice >= 20000; 
+/* 가격이 2만원이상인 레코드 검색( 모든필드 표시 ) */
+
+select pname from product where pprice >=20000 and pprice <30000;
+/* 가격이 2만원대 인 레코드 검색 ( 제품이름만 표시 )*/
+
+select * from product order by pprice desc; 
+/* 가격 내림차순 모든 필드 검색*/
+
+select * from product order by pprice desc limit 0 , 3 ;  
+/* 가격이 상위 3개 검색 */
+
+select * from product group by cno;
+/*카테고리가 동일하면 레코드 그룹 */
+
+select * , count(*) as categorycount from product group by cno;
+/* 모든필드 표시 , 그룹개수 표시  */
+
+select * from product join stock on product.pno = stock.pno;
+/* 제품 테이블과 재고 테이블 조인  */
+
+/* DML
+	select : 검색
+		select 필드명1 필드명2 from 테이블 : 특정 필드를 검색
+        select * from 테이블 : 모든 필드를 검색 
+        select 새로운필드명 as 별칭명 from 테이블
+			as : 별칭 ( 해당 필드명을 별명으로 표시 하기 )
+    insert : 추가 
+		insert into 테이블명 values( 값1 , 값2 , 값3 )
+    update : 수정
+		update 테이블명 set 필드명1 = 값1 , 필드명2 = 값2 
+    delete : 삭제 
+		delete from 테이블 ;
+	
+    조건 : where 필드명 = 값 
+		and / or 
+    정렬 : order by 필드명 asc / desc
+    제한 : limit 시작인덱스 , 개수 
+    그룹 : group by 필드명 
+    조인 : 두개 이상의 테이블 합치기 [ 필수조건 : 동일한 데이터 존재 ]
+			select * from 테이블명1 join 테이블명2 ;
+			select * from 테이블명1 join 테이블명2 on 테이블명1.pk = 테이블명2.fk; 		
+    
+    SQL함수 
+		// 집계 함수
+		count( 필드명 ) : 해당 필드의 레코드 개수 [ NULL 제외 ]  
+        count( * ) : 레코드 개수  [ NULL 포함 ] 
+        sum( 필드명 ) : 합계
+        avg( 필드명 ) : 평균
+        max( 필드명 ) : 최댓값
+        min( 필드명 ) : 최솟값 
+/*	
+
+
+
+
+
+
+
 
 
 
