@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import dto.Board;
 import dto.Reply;
+import teamchatting.도시;
+import teamchatting.접속유저;
 
 public class BoardDao extends Dao {
 	
@@ -208,6 +210,61 @@ public class BoardDao extends Dao {
 		}catch (Exception e) {} return null;
 	}
 ////////////////////////////////////////////////// /////////////////////////////////
+
+	public ArrayList<도시> get도시(){
+		ArrayList<도시> list = new ArrayList<도시>();
+		String sql = "select * from 도시";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				도시 도시 = new 도시();
+				도시.도시번호 = rs.getInt(1);
+				도시.도시명 = rs.getString(2);
+				도시.구매자 = rs.getString(3);
+				도시.건축비 = rs.getInt(4);
+				도시.위치 = rs.getInt(5);
+				list.add(도시);
+			}
+			return list;
+		}catch (Exception e) {} return null;
+	}
+	
+	public boolean 게임접속( String mid) {
+		String sql = "insert into 플레이어(돈,턴,현재위치,회원아이디) values(?,?,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt( 1 , 10000 );
+			ps.setInt( 2 , 0 );
+			ps.setInt( 3 , 1 );
+			ps.setString( 4 , mid ); ps.executeUpdate();
+		}catch (Exception e) {
+			System.out.println( e );
+		}
+		return false;
+	}
+	
+	public ArrayList<접속유저> 접속명단호출( ) {
+		
+		ArrayList<접속유저> list = new ArrayList<접속유저>();
+		String sql = "select * from 플레이어";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				접속유저 접속유저 = new 접속유저();
+				접속유저.플레이어번호 = rs.getInt(1);
+				접속유저.돈 = rs.getInt(2);
+				접속유저.턴 = rs.getInt(3);
+				접속유저.현재위치 = rs.getInt(4);
+				접속유저.회원아이디 = rs.getString(5);
+				list.add(접속유저);
+			}
+			return list;
+		}catch (Exception e) {System.out.println( e );} return null;
+		
+	}
+
 }
 
 

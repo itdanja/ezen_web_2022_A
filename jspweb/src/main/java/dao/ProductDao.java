@@ -72,7 +72,13 @@ public class ProductDao extends Dao {
 	}
 	// 3. 제품 개별 호출 
 	public Product getproduct() { return null; }
-	// 4. 제품 수정 
+	// 4. 제품 수정
+	// 4-2 제품 상태 변경 
+	public boolean activechange( int pno , int active  ) {
+		String sql = "update product set pactive = "+active+" where pno="+pno;
+		try { ps=con.prepareStatement(sql); ps.executeUpdate(); return true; }
+		catch (Exception e) {} return false;
+	}
 	// 5. 제품 삭제 
 ///////////////////////////////////  재고 ////////////////////////////////	
 	// 1. 제품의 재고 등록 

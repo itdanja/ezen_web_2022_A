@@ -76,10 +76,6 @@
 	<script type="text/javascript" src="/jspweb/js/teamchatting.js"></script>
 	<%@include file = "footer.jsp" %>
 
-
-
-
-
 </body>
 </html>
 
