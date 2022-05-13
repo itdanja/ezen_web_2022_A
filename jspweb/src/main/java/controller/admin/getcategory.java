@@ -39,9 +39,16 @@ public class getcategory extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out =  response.getWriter(); // HTML 에게 전송 객체생성
 		String html = ""; // 응답할 문자열 ~~
+		
+		int i = 1;
 		for( Category temp  : arrayList  ) {
 			html += 
-			"<input type=\"radio\" name=\"cno\" value=\""+temp.getCno()+"\">"+temp.getCname();
+			"<input type=\"radio\" name=\"cno\" value=\""+
+			temp.getCno()+"\">"+temp.getCname();
+			
+			if( i % 6 == 0 ) html += "<br>"; // 만약에 카테고리가 개수 6배수마다 줄바꿈처리 
+			
+			i++;
 		}
 		//  java에서 " " : 문자열 인식용 	//  		\"  : " 표시(출력)
 		out.print( html ); // 해당 문자열 응답~~ 

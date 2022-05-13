@@ -1,0 +1,38 @@
+
+/*
+	식별자 
+		HTML 태그 id 호출 : #id명{ }
+		HTML 태그 class호출 : .class명{} 
+		HTML 태그 호출 : 태그명{ }
+		* { }
+	하위 식별자
+		식별자 하위식별자{  } 
+	복수 식별자 
+		식별자 , 식별자 {  } 
+*/
+
+#addform{
+	font-size: 20px;
+}
+
+.admin_title{
+	margin: 70px 0px;
+	padding : 10px;
+	text-align: cetner;
+	border-bottom: 2px orange solid;
+}
+#categorybox input{
+	margin : 5px 20px;
+}
+.row{
+	margin: 30px 0px;
+}
+
+
+
+
+
+
+
+
+
