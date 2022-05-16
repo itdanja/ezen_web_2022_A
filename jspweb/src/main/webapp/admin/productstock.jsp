@@ -23,7 +23,7 @@
 	</form>
 	
 	재고 목록 
-	<table id="stocklistbox"> 
+	<table class="table" id="stocklistbox"> 
 	
 	</table>
 	

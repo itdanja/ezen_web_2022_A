@@ -1,3 +1,7 @@
+<%@page import="java.util.Set"%>
+<%@page import="java.util.TreeSet"%>
+<%@page import="javax.print.attribute.HashPrintJobAttributeSet"%>
+<%@page import="java.util.HashSet"%>
 <%@page import="dto.Stock"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="dto.Product"%>
@@ -24,6 +28,16 @@
 		<%
 			ArrayList<Product> products = ProductDao.getProductDao().getproductlist();
 			for( Product p : products  ){ // 모든 제품 반복문
+				
+				////---------    제품별 칼라 / 사이즈 중복제거 set 선언
+				ArrayList<Stock> stocks = ProductDao.getProductDao().getStock( p.getPno() ); 
+					Set<String> colors = new TreeSet<String>();
+					Set<String> sizes = new TreeSet<String>();
+				for( Stock s : stocks ){
+					colors.add( s.getScolor() );
+					sizes.add( s.getSsize() );
+				}
+				//////////////////////////////////////////////////
 		%>
 			<tr>
 				<th><%=p.getPno() %></th>		<th><img width="100%" src="/jspweb/admin/productimg/<%=p.getPimg()%>"></th> 	
@@ -33,19 +47,16 @@
 				
 				<th> <!-- 색상 선택 [  id값을 제품별 select 식별id = '문자'+제품번호	// select 변경되면 이벤트 발생 -->
 					<select id="colorbox<%=p.getPno()%>" onchange="getamount( <%=p.getPno()%> )"> 
-					<%  ArrayList<Stock> stocks = ProductDao.getProductDao().getStock( p.getPno() ); 
-						
-						for( Stock s : stocks ){
-					%>
-						<option><%=s.getScolor()%></option>
+					<%	for( String c : colors){ // colors 값 호출  %> 
+						<option><%=c%></option>
 					<% } %>
 					</select> 
 				</th>				
 				
 				<th> 	<!--  사이즈 선택 -->
 					<select id="sizebox<%=p.getPno()%>" onchange="getamount( <%=p.getPno()%> )"> 
-					<% for( Stock s : stocks ){ %>
-						<option><%=s.getSsize()%></option>
+					<% for( String s : sizes ){  // sizes 값 호출   %> 
+						<option><%=s%></option> 
 					<% } %>
 					</select> 
 				 </th>	
@@ -121,7 +132,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">  <!-- 모달 내용  -->
-	      	<table id="stocklistbox">
+	      	<table class="table" id="stocklistbox">
 	      		
 	      	</table>
 	      	<div id="updatebox" style="display: none;">

@@ -94,7 +94,7 @@ public class ProductDao extends Dao {
 	public ArrayList< Stock >  getStock( int pno) { 
 		ArrayList<Stock> list = new ArrayList<Stock>();
 		try {
-			String sql = "select * from stock where pno = "+pno;
+			String sql = "select * from stock where pno = "+pno+" order by scolor asc , ssize desc ";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
