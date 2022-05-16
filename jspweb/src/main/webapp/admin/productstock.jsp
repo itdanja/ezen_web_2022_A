@@ -15,9 +15,27 @@
 	제품 목록
 	<select id="productbox"> <!-- 제품명이 출력되는 부분  -->
 	</select>
+	<form id="stockaddform" style="display: none;">
+		색상 <input type="text" id="scolor">
+		사이즈 <input type="text" id="ssize">
+		수량 <input type="text" id="samount">
+		<button type="button" onclick="stockadd()"> 재고 추가 </button>
+	</form>
+	
+	재고 목록 
+	<div>
+		
+	</div>
 	
 	<!-- 스크립트 추가 -->
 	<script src="/jspweb/js/productstock.js" type="text/javascript"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
