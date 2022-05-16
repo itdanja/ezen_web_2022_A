@@ -3,6 +3,7 @@
 function pnomove( pno ){
 	$("#modelinput").val(pno);
 }
+
 /* ----------------------------------*/
 /* -------------- 상태변경 비동식 처리 --------------------*/
 function activechange( active ){

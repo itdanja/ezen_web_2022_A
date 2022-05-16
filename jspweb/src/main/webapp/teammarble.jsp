@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	
-		<table class="table my-5">
+		<table class="table my-5" id="게임상자">
 		<%
 			ArrayList<도시> list = BoardDao.getBoardDao().get도시();
 			int 위치 = 1;
@@ -55,7 +55,7 @@
 					}
 					else{ 
 			%>
-						<td width="20%" id=<%=위치 %> > 
+						<td onClick="도시클릭(<%=list.get(위치-1).도시번호 %>)" width="20%" id=<%=위치 %> > 
 							<h1> <%=list.get(위치-1).도시명 %> </h1>
 							<div id="말위치"> 말1 , 말2 , 말3 </div>
 						</td>

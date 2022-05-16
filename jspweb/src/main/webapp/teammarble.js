@@ -16,8 +16,10 @@ function 게임접속( mid ){
 		success : function( result ){
 		}
 	});
-	
-	
+}
+
+function 도시클릭( 도시번호 ){
+	alert( 도시번호 + " 를 클릭했습니다.");ㅣ
 }
 
 
@@ -29,6 +31,7 @@ $(function() {
 	        cache : false,
 	        success : function ( re ) {
 		        $("#접속명단").html( re );
+		        $('#게임상자').load(location.href+' #게임상자');
 	        }
 	    });
 	    }, 1500);
