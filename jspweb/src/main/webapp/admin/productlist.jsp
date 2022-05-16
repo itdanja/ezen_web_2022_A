@@ -53,7 +53,7 @@
 				<th> <!-- 색상과 사이즈에 따른 재고량 표시  -->
 					<% if( !stocks.isEmpty() ){ // 재고리스트가 비어 있지 않으면 %>
 						<% if(stocks.get(0).getSamount() == 0 ){ // 재고리스트의 첫번쨰 재고정보가 0이면 %>
-						<span id='amountbox<%=p.getPno()%>'> 해당 사이즈색상에 재고없음 </span> 
+						<span id='amountbox<%=p.getPno()%>'> 해당 사이즈색상 <br> 재고없음 </span> 
 						<% }else{ %>
 						<span id='amountbox<%=p.getPno()%>'> <%=stocks.get(0).getSamount() %></span> 
 					<% }%>
@@ -63,7 +63,16 @@
 				</th> 			
 				
 				<th>  <!-- 색상과 사이즈에 따른 재고 수정일 표시  -->
-					<span> </span> 
+				<% if( !stocks.isEmpty() ){ // 재고리스트가 비어 있지 않으면 %>
+						<% if(stocks.get(0).getSamount() == 0 ){ // 재고리스트의 첫번쨰 재고정보가 0이면 %>
+							<span id="datebox<%=p.getPno()%>"> - </span> 
+						<% }else{ %>
+							<span id="datebox<%=p.getPno()%>"> <%=stocks.get(0).getUpdatedate() %> </span> 
+					<% }%>
+					<%}else{ // 재고리스트가 비어 있으면 %>
+							<span id="datebox<%=p.getPno()%>"> - </span> 
+					<%} %>
+					
 				</th>
 				
 				<th> 

@@ -106,7 +106,7 @@ public class ProductDao extends Dao {
 				list.add(stock);
 			}
 			return list;
-		}catch (Exception e) { System.out.println( e ); }return null; 
+		}catch (Exception e) { System.out.println( e ); } return null; 
 	}
 
 	// 3. 제품의 재고 수정 

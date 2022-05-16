@@ -50,7 +50,8 @@ public class getstock extends HttpServlet {
 			for( Stock temp : list ) {
 				if( temp.getScolor().equals(scolor) && 
 						temp.getSsize().equals(ssize) ) {
-					out.print( temp.getSamount() );
+					out.print( temp.getSamount()+","+temp.getUpdatedate() );
+							//  재고량 , 수정날짜
 				}
 			}
 		}else { // 제품재고 페이지에서 사용되는 제품별 재고정보 출력 구역 

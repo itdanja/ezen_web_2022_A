@@ -34,9 +34,13 @@ function getamount( pno ){
 					"scolor" : scolor , "ssize" : ssize } ,
 		success : function( re ){
 			if( re == ""){ 
-				$("#amountbox"+pno).html('재고없음');
+				$("#amountbox"+pno).html('해당 사이즈색상 <br> 재고없음');
+				$("#datebox"+pno).html( "" );
 			}
-			else{ $("#amountbox"+pno).html( re +'개' ); }
+			else{ 
+				$("#amountbox"+pno).html( re.split(',')[0] +'개' );	// 문자열분해함수 문자열.split('기준문자')
+				$("#datebox"+pno).html( re.split(',')[1] );
+			 }
 		}
 	});
 };
