@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.ArrayList;
-
 import controller.board.rereplywrite;
 import dto.Category;
 import dto.Product;
@@ -92,7 +91,24 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { System.out.println( e ); }return false; 
 	}
 	// 2. 제품의 재고 호출 
-	public Stock getStock() { return null; }
+	public ArrayList< Stock >  getStock( int pno) { 
+		ArrayList<Stock> list = new ArrayList<Stock>();
+		try {
+			String sql = "select * from stock where pno = "+pno;
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				Stock stock = new Stock( 
+						rs.getInt(1), rs.getString(2),
+						rs.getString(3), rs.getInt(4),
+						rs.getString(5), rs.getString(6),
+						rs.getInt(7));
+				list.add(stock);
+			}
+			return list;
+		}catch (Exception e) { System.out.println( e ); }return null; 
+	}
+
 	// 3. 제품의 재고 수정 
 	// 4. 제품의 재고 삭제
 //////////////////////////////////////////////////////////////////////////

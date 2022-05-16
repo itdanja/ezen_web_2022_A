@@ -24,10 +24,12 @@ $("#categorybox").change( function(){
 			}else{ 
 				$("#productbox").html( re );
 				$("#stockaddform").css('display' ,'block');
+				getstock();
 			}
 		}
 	})
 });
+
 /* 제품 재고 추가 */
 function stockadd(){
 	let pno = $("#productbox").val(); // 제품번호 
@@ -49,10 +51,22 @@ function stockadd(){
 			}
 		}
 	});
-	
 }
+/* 제품명 목록 select 값이 변경 될때마다 .*/
+$("#productbox").change( function(){
+	getstock();
+});
 
-
+function getstock(){
+	let pno = $("#productbox").val();
+	$.ajax({
+		url : 'getstock' ,
+		data : { "pno" : pno } ,
+		success : function( re ){
+			$("#stocklistbox").html(re);
+		}
+	});
+}
 
 
 
