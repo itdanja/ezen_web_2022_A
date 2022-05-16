@@ -1,3 +1,5 @@
+<%@page import="dto.Stock"%>
+<%@page import="java.util.Arrays"%>
 <%@page import="dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.ProductDao"%>
@@ -21,15 +23,49 @@
 		</tr>
 		<%
 			ArrayList<Product> products = ProductDao.getProductDao().getproductlist();
-			for( Product p : products  ){
+			for( Product p : products  ){ // 모든 제품 반복문
 		%>
 			<tr>
 				<th><%=p.getPno() %></th>		<th><img width="100%" src="/jspweb/admin/productimg/<%=p.getPimg()%>"></th> 	
 				<th><%=p.getPname() %></th> 	<th><%=p.getPprice()%></th>
 				<th><%=p.getPdiscount() %></th>	<th><%=p.getPprice()*p.getPdiscount() %></th>		
 				<th><%=p.getPactive() %></th> 	<th><%=p.getCno() %></th>
-				<th> 색상 </th>				<th> 사이즈 </th>		
-				<th>재고수량 </th> 			<th>수정일</th>
+				
+				<th> <!-- 색상 선택 [  id값을 제품별 select 식별id = '문자'+제품번호	// select 변경되면 이벤트 발생 -->
+					<select id="colorbox<%=p.getPno()%>" onchange="getamount( <%=p.getPno()%> )"> 
+					<%  ArrayList<Stock> stocks = ProductDao.getProductDao().getStock( p.getPno() ); 
+						
+						for( Stock s : stocks ){
+					%>
+						<option><%=s.getScolor()%></option>
+					<% } %>
+					</select> 
+				</th>				
+				
+				<th> 	<!--  사이즈 선택 -->
+					<select id="sizebox<%=p.getPno()%>" onchange="getamount( <%=p.getPno()%> )"> 
+					<% for( Stock s : stocks ){ %>
+						<option><%=s.getSsize()%></option>
+					<% } %>
+					</select> 
+				 </th>	
+				 
+				<th> <!-- 색상과 사이즈에 따른 재고량 표시  -->
+					<% if( !stocks.isEmpty() ){ %>
+						<% if(stocks.get(0).getSamount() == 0 ){ %>
+						<span id='amount<%=p.getPno()%>'> 해당 사이즈색상에 재고없음 </span> 
+						<% }else{ %>
+						<span id='amount<%=p.getPno()%>'> <%=stocks.get(0).getSamount() %></span> 
+					<% }%>
+					<%}else{ %>
+						<span id='amount<%=p.getPno()%>'> 재고없음 </span> 
+					<%} %>
+				</th> 			
+				
+				<th>  <!-- 색상과 사이즈에 따른 재고 수정일 표시  -->
+					<span> </span> 
+				</th>
+				
 				<th> 
 					<button class="">제품 삭제</button> 
 					<button class="">제품 수정</button> 

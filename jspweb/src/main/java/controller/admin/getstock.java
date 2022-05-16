@@ -35,21 +35,37 @@ public class getstock extends HttpServlet {
 		
 		int pno 
 			= Integer.parseInt(request.getParameter("pno"));
-		ArrayList<Stock> list 
-			=  ProductDao.getProductDao().getStock(pno);
+		
+		String field =  request.getParameter("field");
+		
+		ArrayList<Stock> list =  ProductDao.getProductDao().getStock(pno);
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		String html = "";
-		for( Stock temp : list ) {
-			html += 
-				"<tr>" +
-					"<td> "+temp.getScolor()+" <td>" +
-					"<td> "+temp.getSsize()+" <td>" +
-					"<td> "+temp.getSamount()+" <td>" +
-					"<td> 비고 <td>" +
-				"</tr>";
+		
+		// 제품리스트 페이지에서 선택된 색상과 사이즈에 해당하는 재고량 출력 구역 
+		if( field != null && field.equals("amount") ) {
+			String scolor = request.getParameter("scolor");
+			String ssize = request.getParameter("ssize");
+			for( Stock temp : list ) {
+				if( temp.getScolor().equals(scolor) && 
+						temp.getSsize().equals(ssize) ) {
+					out.print( temp.getSamount() );
+				}
+			}
+		}else { // 제품재고 페이지에서 사용되는 제품별 재고정보 출력 구역 
+			for( Stock temp : list ) {
+				html += 
+					"<tr>" +
+						"<td> "+temp.getScolor()+" <td>" +
+						"<td> "+temp.getSsize()+" <td>" +
+						"<td> "+temp.getSamount()+" <td>" +
+						"<td> 비고 <td>" +
+					"</tr>";
+			}
+			out.print(html);
 		}
-		out.print(html);
+		
 	}
 
 	/**
