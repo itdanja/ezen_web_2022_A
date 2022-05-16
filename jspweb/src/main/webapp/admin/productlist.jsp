@@ -79,7 +79,7 @@
 					<button class="">제품 삭제</button> 
 					<button class="">제품 수정</button> 
 					<button onclick="pnomove(<%=p.getPno() %>)" data-bs-toggle="modal" data-bs-target="#activemodal">상태 변경</button> 
-					<button class="">재고 변경</button> 
+					<button onclick="getstock(<%=p.getPno() %>)" data-bs-toggle="modal" data-bs-target="#stockmodal" >재고 변경</button> 
 				</th>
 			</tr>
 		<%
@@ -88,7 +88,6 @@
 		%>
 		
 	</table>
-	
 	
 	<!-- 상태변경 부트스트랩 - 모달구역  -->
 	<div class="modal" tabindex="-1" id="activemodal">
@@ -108,6 +107,31 @@
 	      		<button type="button" class="btn btn-primary" onclick="activechange(2)">품절</button>
 	      		<button type="button" class="btn btn-primary" onclick="activechange(3)">중단</button>
 	        	<button id="modalclosebtn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- 재고변경 - 모달구역  -->
+	<div class="modal" tabindex="-1" id="stockmodal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">  <!-- 모달 제목 -->
+	        <h5 class="modal-title"> 제품 재고 변경 </h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">  <!-- 모달 내용  -->
+	      	<table id="stocklistbox">
+	      		
+	      	</table>
+	      	<div id="updatebox" style="display: none;">
+	      		재고번호 : <input type="hidden" id="sno"> 
+	      		재고수량 : <input type="text" id="samount">
+	      	</div>
+	      </div>
+	      <div class="modal-footer"> <!-- 모달 버튼 -->
+	      		<button type="button" class="btn btn-primary" onclick="stockupdate()"> 수정 처리</button>
+	        	<button id="modalclosebtn2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 	      </div>
 	    </div>
 	  </div>

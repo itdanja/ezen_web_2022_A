@@ -44,6 +44,38 @@ function getamount( pno ){
 		}
 	});
 };
+/******  선택한 제품의 재고 변경  ******** */
+function getstock( pno ){
+	$.ajax({ 
+		url : 'getstock',
+		data : { 'pno' : pno } ,
+		success:function( re ){
+			$('#stocklistbox').html(re);
+		}
+	});
+}
+
+function showupdate( sno ){
+	
+	$("#updatebox").css("display","block"); // 재고수량 수정 입력창 열기 
+	$("#sno").val(sno); // 수정할 재고번호 넣어주기 
+}
+function stockupdate( ){
+	let sno = $("#sno").val();
+	let samount = $("#samount").val();
+	
+	$.ajax({
+		url : 'stockupdate' ,
+		data :  { 'sno' : sno , 'samount' : samount} ,
+		success : function( re ){
+			$("#modalclosebtn2").click(); // 모달 닫기 버튼를 강제로 클릭이벤트 실행 
+			$("#mainbox").load('modalclosebtn2ㅋ.jsp'); // 페이지 재로드 
+		}
+	});
+	
+}
+
+
 
 
 
