@@ -21,8 +21,13 @@
 		int pno =  Integer.parseInt( request.getParameter("pno") ); // 제품번호 요청
 		Product p = ProductDao.getProductDao().getproduct(pno); // 제품 호출
 		ArrayList<Stock> stocks =  ProductDao.getProductDao().getStock(pno); // 해당 제품의 재고
+		
 		Set<String> sizelist  = new TreeSet<>(); // 사이즈목록 선언   = 중복제거(set컬렉션) 
 		for( Stock s : stocks ){ sizelist.add(s.getSsize() ); } // 사이즈 목록 만들기 
+		
+		Set<String> colorlist  = new TreeSet<>(); // 칼라목록 선언   = 중복제거(set컬렉션) 
+		for( Stock s : stocks ){ colorlist.add(s.getScolor() ); } // 칼라 목록 만들기 
+		
 		DecimalFormat df = new DecimalFormat("###,###원"); // 천단위 구분 쉼표
 		Float price = p.getPprice() - ( p.getPprice()*p.getPdiscount() ) ; 	// 할인된금액 계산 
 		Float point = price * 0.01f ; // java 기본타입 : 정수형=int 실수=double	// 포인금액 계산 
@@ -54,20 +59,23 @@
 							<% } %>
 						 </span>
 					</div>
-					
+					<input type="hidden" value="<%=pno%>" id="pno">
 					<table class="table info_t my-5">
 						<tr> <td width="20%"> DELVERY </td> <td> 2,500원 (70,000원 이상 구매시 무료 ) </tr>
 						<tr> <td> SAVE </td> <td> <%=df.format( point )%>(1%)</td> </tr>
 						<tr>
 							<td> COLOR </td>
-							<td>  <select class="form-select info_t">
-										<option>-[필수]옵션 선택-</option>
+							<td>  <select id="color_select" class="form-select info_t">
+										<option value="">-[필수]옵션 선택-</option>
+									<% for( String c  : colorlist ){ %>
+										<option value=<%=c %> ><%=c %></option>
+									<%} %>
 									</select> </td>
 						</tr>
 						<tr>
 							<td> SIZE </td> 
-							<td>  <select class="form-select info-t">
-										<option>-[필수]옵션 선택-</option>
+							<td>  <select id="size_select" class="form-select info-t">
+										<option value="">-[필수]옵션 선택-</option>
 									</select> </td>
 						</tr>
 					</table>
@@ -117,6 +125,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="/jspweb/js/productview.js" type="text/javascript"></script>
 	<%@include file = "../footer.jsp" %>
 
 </body>
