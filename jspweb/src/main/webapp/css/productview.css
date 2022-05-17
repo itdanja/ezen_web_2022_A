@@ -52,7 +52,13 @@ img{
 .total_price{
 	text-align: right;
 }
-
+.pointbox{
+	font-size: 9px;
+	color: #999999;
+}
+.pricebox{
+	font-size: 12px;
+}
 
 
 
