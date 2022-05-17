@@ -25,7 +25,12 @@ $("#color_select").change( function(){
 	});
 });
 
- /* 사이즈 목록이 변경되었을때  */
+	// js 배열 
+		// let 배열명 = [  ]
+		// 추가 : push() 	-> 배열내 마지막인덱스에 뒤에 추가 
+		// 제거 : pop() : > 배열내 마지막인덱스에 삭제 
+let 선택한목록 = [ ];	// js 배열 
+/* 사이즈 목록이 변경되었을때  */
 $("#size_select").change( function(){
 	let pname = $("#pname").html();	// 제품이름 
 	let color = $("#color_select").val();// 선택한 색상 
@@ -33,7 +38,13 @@ $("#size_select").change( function(){
 	let amount = $("#amount").val(); // 구매 수량
 	if( $("#amount").val() == null ) amount = 1;	// input 생성되기전 이면 기본값 1 
 	let pprice =  $("#pprice").val(); // 제품 가격 
-	// 만약에 이미 있는 칼라/색상이면 중지
+	
+	let 중복체크 = color+size; /* 옵션 - 식별용 */
+	for( let i = 0 ; i<선택한목록.length ; i++ ){ // 만약에 배열에 이미있는 옵션이면 중지
+		if( 선택한목록[i] == 중복체크 ) {  alert("이미 선택한 옵션입니다."); return; }
+				// js = 문자열 비교 ==   // java =  문자열 비교 x -> equals 메소드 
+	}
+	선택한목록.push( 중복체크 ); // 배열 추가 
 	$("#select_table").append(
 		'<tr>'+
 			'<td> <span>'+pname+'</span> <br>  <span class="pointbox">- '+color+'/'+size+'</span>'+
