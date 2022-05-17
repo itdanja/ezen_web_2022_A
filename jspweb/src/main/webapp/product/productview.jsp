@@ -42,7 +42,7 @@
 		<!-------------------- 상품의 정보----------------------------- -->
 			<div class="col-md-6">  
 				<div class="infobox">
-					<h5 class="view_title"> <%=p.getPname() %> </h5>
+					<h5 id="pname" class="view_title"><%=p.getPname()%></h5>
 					<div class="price_box">
 						<% if( p.getPdiscount() == 0 ){ %> <!-- 할인이 없을때 -->
 							<span class="price_dis"> <%= df.format(p.getPprice() ) %></span>
@@ -59,7 +59,10 @@
 							<% } %>
 						 </span>
 					</div>
+					<!-- 제품번호  -->
 					<input type="hidden" value="<%=pno%>" id="pno">
+					<input type="hidden" value="<%=price%>" id="pprice">
+					
 					<table class="table info_t my-5">
 						<tr> <td width="20%"> DELVERY </td> <td> 2,500원 (70,000원 이상 구매시 무료 ) </tr>
 						<tr> <td> SAVE </td> <td> <%=df.format( point )%>(1%)</td> </tr>
@@ -79,39 +82,14 @@
 									</select> </td>
 						</tr>
 					</table>
-					<table class="table my-5">
+					<table id="select_table" class="table my-5">
 						<tr>
 							<td width="60%"> 상품명 </td>
 							<td width="25%"> 상품수 </td>
 							<td width="15%"> 가격 </td>
 						</tr>
-						<tr>
-							<td> <span>AC 데님 오버핏 셔츠</span>
-								<br> 
-								<span class="pointbox">- 블루/FREE[95-120] </span>
-							</td>
-							<td>
-								<div class="row g-0"> <!-- g-0 : div간 여백제거 -->
-									<div class="col-md-7">
-										<input value="1" type="text" 
-										class="form-control fc amount_input">
-									</div>
-									<div class="col-md-4">
-										<button class="amount_btn">▲</button>
-										<button class="amount_btn">▼</button>
-									</div>
-									<div class="col-md-1">
-										<button class="cancel_btn">x</button>
-									</div>
-								</div>
-							</td>
-							<td>
-								<span class="pricebox">54,900원</span>
-								<br> 
-								<span class="pointbox">(적)549원 </span>
-							</td>
-						</tr>
 					</table>
+					
 					<div class="row my-5">
 						<div class="col-md-6"> 총 상품금액  </div>
 						<div class="col-md-6 total_price" > 54,900원(1개)  </div>

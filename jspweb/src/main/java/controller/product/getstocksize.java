@@ -42,7 +42,7 @@ public class getstocksize extends HttpServlet {
 		// 제품별 사이즈와 재고 [ 1.문자열 , 2.컬렉션 , 3.json 등 ] 
 			// LIST 컬렉션 : 중복O [ 인덱스 ] 
 			// SET 컬렉션 : 중복X  [ 인덱스X ] 
-			// MAP 컬렉션 : key(set=중복x) : value => entry엔트리 
+			// MAP 컬렉션 : key(set=중복) : value => entry엔트리 
 		Map< String , String> map = new TreeMap<>();
 		for( Stock s : list  ) {
 			if( s.getScolor().equals(scolor) ) {
@@ -54,7 +54,7 @@ public class getstocksize extends HttpServlet {
 			}
 		}
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().print( map ); 
+		response.getWriter().print( map );
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
