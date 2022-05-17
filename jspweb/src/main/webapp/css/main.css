@@ -77,6 +77,53 @@ textarea {
 	font-size: 12px;
 }
 
+/* 메인 */
+
+.adbox{
+	margin: 50px 10px 50px 0px;
+}
+.main_box{
+	margin-bottom: 70px;
+}
+.main_title{
+	text-align:  center;
+	font-size: 23px;
+	margin: 20px;
+}
+.best_box img{
+	width: 100%;
+}
+.p_item{ margin: 10px; }
+.p_title{ font-size: 15px; }
+.p_size{ 
+	color: #999999; 
+	font-size: 12px; 
+	border-bottom: 1px solid #999999 ;
+	padding-bottom: 5px;
+}
+.p_discount{
+	font-size: 12px;
+	color: #999999;
+	text-decoration: line-through; /*취소선*/
+}
+.p_price{ font-size: 12px; }
+.p_review{ font-size: 12px; color: #999999; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
