@@ -38,7 +38,7 @@ $("#color_select").change( function(){
 		// 호출 [ .연산자 ] 
 			// 객체명.필드명 
 			
-let 선택한목록 = [ ];	// js 배열 
+let selectlist = [ ];	// js 배열 
 /* 사이즈 목록이 변경되었을때 선택값을 객체화해서 배열에 저장   */
 $("#size_select").change( function(){
 	let pname = $("#pname").html();	// 제품이름 
@@ -52,36 +52,37 @@ $("#size_select").change( function(){
 	let amount = $("#amount").val(); // 구매 수량
 		if( $("#amount").val() == null ) amount = 1;	// input 생성되기전 이면 기본값 1 
 	let pprice =  $("#pprice").val(); // 제품 가격 
-	let 중복체크 = color+size; /* 옵션 - 식별용 */
+	let overcheck = color+size; /* 옵션 - 식별용 */
 	
-	let 객체 = {  	// js 객체 선언 
+	let product = {  	// js 객체 선언 
 		pname : pname , 	// 필드명(속성명) : 데이터 
 		color : color ,  
 		size : size , 
 		amount : amount , 
 		pprice : pprice ,
-		중복체크 : 중복체크 
+		overcheck : overcheck 
 	}
 	
-	for( let i = 0 ; i<선택한목록.length ; i++ ){ // 만약에 배열에 이미있는 옵션이면 중지
-		if( 선택한목록[i].중복체크 == 중복체크 ) {  alert("이미 선택한 옵션입니다."); return; }
+	for( let i = 0 ; i<selectlist.length ; i++ ){ // 만약에 배열에 이미있는 옵션이면 중지
+		if( selectlist[i].overcheck == overcheck ) {  alert("이미 선택한 옵션입니다."); return; }
 		// 배열내 i번째 객체의 필드[중복체크]호출 
 				// js = 문자열 비교 ==   // java =  문자열 비교 x -> equals 메소드 
 	}
-	선택한목록.push( 객체 ); // 배열에 객체 추가 
+	selectlist.push( product ); // 배열에 객체 추가 
 	
-	옵션출력();
+	optionprint();
 	
 });
 
-function 옵션출력(){
+/* 배열내 모든 객체를 테이블에 출력하는 함수 */
+function optionprint(){
 	 /* 테이블에 추가할 내용물 */
 	let html ='<tr><th width="60%"> 상품명 </th> <th width="25%"> 상품수 </th> <th width="15%"> 가격 </th> </tr>';
 	/* 배열내 모든 객체의 정보를 html 화 하기 */
-	for( let i = 0 ; i<선택한목록.length ; i++ ){
+	for( let i = 0 ; i<selectlist.length ; i++ ){
 		html += 
 		'<tr>'+
-			'<td> <span>'+선택한목록[i].pname+'</span> <br>  <span class="pointbox">- '+선택한목록[i].color+'/'+선택한목록[i].size+'</span>'+
+			'<td> <span>'+selectlist[i].pname+'</span> <br>  <span class="pointbox">- '+selectlist[i].color+'/'+selectlist[i].size+'</span>'+
 			'</td>'+
 			'<td> <div class="row g-0">'+
 					'<div class="col-md-7">'+
@@ -97,17 +98,18 @@ function 옵션출력(){
 				'</div>'+
 			'</td>'+
 			'<td>'+
-				'<span class="pricebox">'+(선택한목록[i].amount*선택한목록[i].pprice)+'</span> <br>' +
-				'<span class="pointbox">(적)'+(선택한목록[i].amount*선택한목록[i].pprice)*0.01+'</span>'+
+				'<span class="pricebox">'+(selectlist[i].amount*selectlist[i].pprice)+'</span> <br>' +
+				'<span class="pointbox">(적)'+(selectlist[i].amount*selectlist[i].pprice)*0.01+'</span>'+
 			'</td>'+
 		'</tr>'
 	}
 	$("#select_table").html( html );
 }
-/* 해당 인덱스를 배열내 제거  */
+
+/* 해당 인덱스를 배열내 제거 함수  */
 function optioncancel( i ){
-	선택한목록.splice( i , 1 ); // i번째 인덱스부터 1개의 인덱스 삭제 
-	옵션출력();	// 삭제후 옵션목록 다시 출력
+	selectlist.splice( i , 1 ); // i번째 인덱스부터 1개의 인덱스 삭제 
+	optionprint();	// 삭제후 옵션목록 다시 출력
 }
 
 
