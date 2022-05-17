@@ -56,7 +56,9 @@ public class ProductDao extends Dao {
 	// 2. 제품 모든 호출
 	public ArrayList<Product> getproductlist() { 
 		ArrayList<Product> products = new ArrayList<Product>();
+		
 		String sql = "select * from product";
+		
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
