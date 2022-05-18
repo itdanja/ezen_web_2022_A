@@ -36,9 +36,10 @@ $("#color_select").change( function(){
 	// js 배열 
 		// let 배열명 = [  ]
 		// 추가 : push() 	-> 배열내 마지막인덱스에 뒤에 추가 
-		// 제거 : pop() : > 배열내 마지막인덱스에 삭제 
+		// 제거 : pop() : 	-> 배열내 마지막인덱스에 삭제 
 		// 특정인덱스 삭제 : splice( 시작인덱스 , 개수 ) -> 특정 시작인덱스부터 개수만큼 삭제 
-		
+			// 배열내 중간인덱스 삭제시 빈공간 인덱스 당기기  -> java 리스트 클래스 동일 
+				// 예) 3번 인덱스 삭제시 : 4번 인덱스-> 3번인덱스 당겨짐 
 	// js 객체 선언 -> object = {   }
 		// let 객체명 = {  필드명1 : 값  , 필드명2 : 값 , 필드명3 : 값  }
 		// 호출 [ .연산자 ] 
@@ -93,11 +94,13 @@ function optionprint(){
 			'</td>'+
 			'<td> <div class="row g-0">'+
 					'<div class="col-md-7">'+
-						'<input id="amount" value="1" type="text" class="form-control amount_input">'+
+						// 수량 입력상자-> readonly : 읽기전용 //  값 : 객체내 수량 
+						'<input readonly id="amount" value='+selectlist[i].amount+' type="text" class="form-control amount_input">'+
 					'</div>'+
 					'<div class="col-md-4">'+
-						'<button class="amount_btn">▲</button>'+
-						'<button class="amount_btn">▼</button>'+
+						// 구매수량 증가/감소 버튼 -> 클릭이벤트 -> i번째 인덱스 전달 
+						'<button onclick="amountincre('+i+')" class="amount_btn">▲</button>'+
+						'<button onclick="amountdecre('+i+')" class="amount_btn">▼</button>'+
 					'</div>'+
 					'<div class="col-md-1"> <button onclick="optioncancel('+i+')" class="cancel_btn">x</button>'+
 									// x 버튼을 눌렀을때 이벤트 -> 클릭한 인덱스 i값 인수 전달 => i : 배열내 객체 인덱스 
@@ -111,6 +114,15 @@ function optionprint(){
 		'</tr>'
 	}
 	$("#select_table").html( html );
+	/* 객체내 총합계 */
+	let total_price = 0;
+	let total_amount =  0;
+	for( let i = 0 ; i<selectlist.length; i++  ){
+		total_price += (selectlist[i].amount*selectlist[i].pprice);
+		total_amount += selectlist[i].amount;
+	}
+	$("#total_price").html( total_price + '('+ total_amount +'개)' );
+	
 }
 
 /* 해당 인덱스를 배열내 제거 함수  */
@@ -118,6 +130,39 @@ function optioncancel( i ){
 	selectlist.splice( i , 1 ); // i번째 인덱스부터 1개의 인덱스 삭제 
 	optionprint();	// 삭제후 옵션목록 다시 출력
 }
+/* 해당 인덱스의 상품수 증가 함수  */
+function amountincre( i ) {
+	// 만약에 재고보다 상품수 더 크면 함수 종료 
+	let pno = $("#pno").val();
+	$.ajax({
+		url : "getamount", 
+		data : { 'pno' : pno , 'color' : selectlist[i].color , 'size' : selectlist[i].size },
+		success : function( maxamount ){
+			if( selectlist[i].amount >= maxamount ){ alert('재고가 부족합니다.'); return; }
+			selectlist[i].amount++; // 선택한 객체들이 모여있는 배열 // 해당 인덱스의 객체내 수량 1증가 
+			optionprint();	// 변경후 옵션목록 새로고침
+		}
+	});
+}
+/* 해당 인덱스의 상품수 감소 함수 */
+function amountdecre( i ){
+	// 만약에 수량이 1 이면 함수 종료 
+	if( selectlist[i].amount == 1 ) { alert('최소 수량 입니다.');  return; }
+	selectlist[i].amount --; // 해당 인덱스의 객체내 수량 1감소 
+	optionprint();	// 변경후 옵션목록 새로고침
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
