@@ -91,13 +91,15 @@
 						<div class="col-md-6"> 총 상품금액  </div>
 						<div id="total_price" class="col-md-6 total_price" ></div>
 					</div>
+					<% 
+						String mid = (String)session.getAttribute("login");
+						int mno = MemberDao.getmemberDao().getmno(mid);
+					%>
 					<div id="btnbox" class="btnbox">
 						<button id="btn1">바로 구매하기</button>
-						<button id="btn2">장바구니 담기</button>
-						<%
-							String mid = (String)session.getAttribute("login");
-							int mno = MemberDao.getmemberDao().getmno(mid);
-							// 만약에 로그인이 있고 관심등록이 되어있으면 
+						<button onclick="savecart(<%=mno %>)" id="btn2">장바구니 담기</button>
+						
+						<% // 만약에 로그인이 있고 관심등록이 되어있으면 
 							if( mid !=null && ProductDao.getProductDao().getplike(pno, mno ) ){
 						%>
 							<button id="btn3" onclick="saveplike('<%=mid %>')" > ♥</button>
