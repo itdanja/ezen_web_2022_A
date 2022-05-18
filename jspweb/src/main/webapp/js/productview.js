@@ -85,7 +85,10 @@ $("#size_select").change( function(){
 	
 });
 
-	/* 천단위 구분 쉼표 -> 정규표현식(언어) */
+	/* 천단위 구분 쉼표 -> 정규표현식(언어)  
+			vs js( 내장메소드 : toLocaleString() )
+					데이터.toLocaleString( undefinde , { maximumFractionDigits : 소수점 표시단위 } ) 
+	*/
 		/*
 			\d{3} : 정수 3자리 패턴 
 			(\d{3})+ : 앞 표현식 반복 대응 
@@ -115,7 +118,7 @@ function optionprint(){
 	/* 배열내 모든 객체의 정보를 html 화 하기 */
 	for( let i = 0 ; i<selectlist.length ; i++ ){
 		
-		// 총금액 / 포인트 금액 최신화
+		// 총금액 / 포인트 금액 최신
 		selectlist[i].totalprice =  selectlist[i].pprice *  selectlist[i].amount ;
 		selectlist[i].point =  selectlist[i].totalprice * 0.01 ;
 		
@@ -139,7 +142,7 @@ function optionprint(){
 				'</div>'+
 			'</td>'+
 			'<td>'+
-				'<span class="pricebox">'+selectlist[i].totalprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+'원</span><br>'+
+				'<span class="pricebox">'+selectlist[i].totalprice.toLocaleString()+'원</span><br>'+
 				'<span class="pointbox">(적)'+selectlist[i].point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+'원</span>'+
 			'</td>'+
 		'</tr>'
@@ -181,6 +184,21 @@ function amountdecre( i ){
 	if( selectlist[i].amount == 1 ) { alert('최소 수량 입니다.');  return; }
 	selectlist[i].amount --; // 해당 인덱스의 객체내 수량 1감소 
 	optionprint();	// 변경후 옵션목록 새로고침
+}
+
+/* 관심등록 버튼을 눌렀을때 함수 -> mno(mid) , pno */
+function saveplike( mid ){
+	if( mid == 'null' ){ alert('로그인후 등록 가능합니다.'); return;}
+	let pno = $("#pno").val();
+	$.ajax({
+		url : "saveplike",
+		data : { 'mid' : mid , 'pno' : pno } , 
+		success : function( re ){
+			if( re == 1 ){ alert('관심 등록 했습니다. ');  }
+			else if( re == 2 ){ alert('관심 취소 했습니다. ');  }
+			else if( re == 3 ){ alert('오류발생[관리자에게문의]. ');  }
+		}
+	});
 }
 
 

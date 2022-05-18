@@ -92,7 +92,10 @@
 					<div class="row my-5">
 						<div class="col-md-4"><button class="form-control p-4" style="background-color: black; color: white;">바로 구매하기</button></div>
 						<div class="col-md-4"><button class="form-control p-4">장바구니 담기</button></div>
-						<div class="col-md-4"><button class="form-control p-4">관심상품 등록</button></div>
+						<%
+							String mid = (String)session.getAttribute("login");
+						%>
+						<div class="col-md-4"><button onclick="saveplike('<%=mid %>')" class="form-control p-4">관심상품 등록♡</button></div>
 					</div>
 				</div>
 			</div>

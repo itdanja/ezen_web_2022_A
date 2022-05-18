@@ -32,6 +32,14 @@ create table stock(
 
 /* 한 명령어( ; 기준 = 커서위치 ) 씩 실행단축키 = ctrl+엔터 */
 
+create table plike(
+	plikeno int primary key auto_increment , 
+    pno int ,
+    mno int ,
+    foreign key(pno) references product(pno) on delete cascade ,
+    foreign key(mno) references member(mno) on delete cascade 
+)
+
 
 
 select pno , pimg from product;
