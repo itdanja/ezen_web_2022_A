@@ -1,4 +1,6 @@
 
+
+
 /* 칼라 select 목록이 변경 되었을때 */
 $("#color_select").change( function(){
 	
@@ -27,6 +29,10 @@ $("#color_select").change( function(){
 	});
 });
 
+	// js 메모리는 스크립트파일 재호출시[F5] 메모리 초기화
+	
+	// js 자료형  -> x 
+		// let=변수 const=상수 
 	// js 배열 
 		// let 배열명 = [  ]
 		// 추가 : push() 	-> 배열내 마지막인덱스에 뒤에 추가 
@@ -39,6 +45,7 @@ $("#color_select").change( function(){
 			// 객체명.필드명 
 			
 let selectlist = [ ];	// js 배열 
+
 /* 사이즈 목록이 변경되었을때 선택값을 객체화해서 배열에 저장   */
 $("#size_select").change( function(){
 	let pname = $("#pname").html();	// 제품이름 
@@ -82,7 +89,7 @@ function optionprint(){
 	for( let i = 0 ; i<selectlist.length ; i++ ){
 		html += 
 		'<tr>'+
-			'<td> <span>'+selectlist[i].pname+'</span> <br>  <span class="pointbox">- '+selectlist[i].color+'/'+selectlist[i].size+'</span>'+
+			'<td> <span>'+selectlist[i].pname+'</span> <br> <span class="pointbox">- '+selectlist[i].color+'/'+selectlist[i].size+'</span>'+
 			'</td>'+
 			'<td> <div class="row g-0">'+
 					'<div class="col-md-7">'+
