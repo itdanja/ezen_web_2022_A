@@ -71,7 +71,7 @@
 							<td>  <select id="color_select" class="form-select info_t">
 										<option value="">-[필수]옵션 선택-</option>
 									<% for( String c  : colorlist ){ %>
-										<option value=<%=c %> ><%=c %></option>
+										<option value=<%=c%>><%=c %></option>
 									<%} %>
 									</select> </td>
 						</tr>
