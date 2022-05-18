@@ -151,6 +151,13 @@ public class ProductDao extends Dao {
 			}
 		}catch (Exception e) { System.out.println(e); } return 3; // DB오류 
 	}
+// 해당 제품 찜하기 여부 확인 메소드 
+	public boolean getplike( int pno , int mno ) {
+		String sql = "select * from plike where pno = "+pno+" and mno ="+mno;
+		try { ps = con.prepareStatement(sql); rs = ps.executeQuery();
+			if( rs.next() ) return true;
+		}catch (Exception e) { System.out.println( e );} return false;
+	}
 }
 
 

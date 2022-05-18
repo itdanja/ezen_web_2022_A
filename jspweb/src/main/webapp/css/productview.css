@@ -60,8 +60,20 @@ img{
 	font-size: 12px;
 }
 
-
-
+.btnbox button{ /*btn 꾸미기 */
+	background-color: white;
+	border:  1px solid #999999;
+	width: 30%;
+	padding: 20px 10px;
+	margin-right: 10px;
+}
+#btn1{
+	background-color: black;
+	color: white;
+}
+#btn3{
+	color: red;
+}
 
 
 
