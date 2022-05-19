@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 import controller.board.rereplywrite;
+import dto.Cart;
 import dto.Category;
 import dto.Product;
 import dto.Stock;
@@ -158,7 +159,45 @@ public class ProductDao extends Dao {
 			if( rs.next() ) return true;
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
+//////////////////////////장바구니/////////////////////////////////////////
+	public boolean savecart( Cart cart ) {
+		try {
+			String sql = "select cartno from cart where sno = "+cart.getSno()+" and mno = "+cart.getMno();
+			ps = con.prepareStatement(sql); rs=ps.executeQuery();
+			if( rs.next() ) { // 1. 장바구니내 동일한 제품이 존재하면 수량 업데이트 처리
+				sql = "update cart set samount = samount + "+cart.getSamount()+
+						" where cartno = " + rs.getInt(1);
+				ps = con.prepareStatement(sql);	ps.executeUpdate(); return true;
+				
+			}else { // 2. 존재하지 않으면 등록
+				sql ="insert into cart( samount , totalprice , sno , mno ) values( ?,?,?,? )";
+				ps = con.prepareStatement(sql);
+				ps.setInt( 1 ,  cart.getSamount() );
+				ps.setInt( 2 ,  cart.getTotalprice() );
+				ps.setInt( 3 ,  cart.getSno() );
+				ps.setInt( 4 ,  cart.getMno() ); ps.executeUpdate(); return true;
+			}
+		
+		}catch (Exception e) { System.out.println( e ); } return false; 
+	}
+	
+	
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

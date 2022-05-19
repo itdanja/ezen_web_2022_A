@@ -48,7 +48,9 @@ public class savecart extends HttpServlet {
 			JSONArray jsonArray = new JSONArray( data );
 			////  [ { 0 } , { 1 } , { 2 } , { 3 } ~~ ] 문자열 -> JSONArray
 			// 2. 반복문 이용한 jsonarray에서 jsonobject 호출 
-			for( int i = 0 ; i<jsonArray.length(); i++ ) {
+				int error = -1; // 여러개 DB처리중 오류 여부 저장 [ -1 : 인덱스 없다. ]
+				int i = 0;
+			for(  i = 0 ; i<jsonArray.length(); i++ ) {
 				// 3. jsonarray 배열내 i번째 객체 호출 
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
 				// 4. 해당 객체에 키 를 이용한 값 호출 
@@ -77,7 +79,13 @@ public class savecart extends HttpServlet {
 				}
 				Cart cart = new Cart( 0 , amount, totalprice, sno , mno );
 				System.out.println( "json->dto : "+ cart.toString()  ); // 테스트 확인 
-			}
+				
+				boolean re = ProductDao.getProductDao().savecart(cart); // DB처리 
+				if( re == false ) error = i ;	//만일 하나라도 오류가 발생하면 eroor변수에 true;
+			} // Jsonarray end 
+			if( error == -1 ) response.getWriter().print( -1 ); // 오류가 없으면 -1 응답 
+			else { response.getWriter().print( i ); }  // 만약에 i번째 오류가 있으면 인덱스 응답 
+			
 		}catch (Exception e) {}
 		
 	}
