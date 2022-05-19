@@ -192,13 +192,17 @@ public class ProductDao extends Dao {
 				+ "	A.cartno as 장바구니번호 , "
 				+ "    A.samount as 구매수량 , "
 				+ "    A.totalprice as 총가격 , "
-				+ "    B.scolor as 색상 , "			
+				+ "    B.scolor as 색상 ,  "
 				+ "    B.ssize as 사이즈 , "
-				+ "    B.pno as 제품번호 "
+				+ "    B.pno as 제품번호 ,	 "
+				+ "    C.pname as 제품명 , "
+				+ "    C.pimg as 제품이미지 "
 				+ "from cart A "
 				+ "join stock B "
 				+ "on A.sno = B.sno "
-				+ "where mno = " + mno;
+				+ "join product C "
+				+ "on B.pno = C.pno "
+				+ "where A.mno ="+mno;
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -211,6 +215,8 @@ public class ProductDao extends Dao {
 				object.put( "scolor" , rs.getString(4) );
 				object.put( "ssize" , rs.getString(5) );
 				object.put( "pno" , rs.getInt(6) );
+				object.put( "pname" , rs.getString(7) );
+				object.put( "pimg" , rs.getString(8) );
 				// 하나씩 json객체를 json배열에 담기 
 				jsonArray.put( object );
 			}
