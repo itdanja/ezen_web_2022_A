@@ -10,7 +10,8 @@
 
 	<%@include file = "../header.jsp" %>
 		<div class="container">
-			장바구니
+			<table class="table" id=carttable>
+			</table>
 		</div>
 	<script type="text/javascript" src="/jspweb/js/productcart.js"></script>
 	<%@include file = "../footer.jsp" %>
