@@ -220,7 +220,7 @@ function savecart( mno ){
 			
 	$.ajax({ // 전송 인코딩 기본타입 -> 문자열 //
 		url : 'savecart' , 
-		data : { 'json' : JSON.stringify( selectlist ) },
+		data : { 'json' : JSON.stringify( selectlist ) , 'pno' : $("#pno").val() },
 							// js배열을 json형으로 변환하기 
 		success: function( re ){
 			alert('서블릿과 통신 ');
