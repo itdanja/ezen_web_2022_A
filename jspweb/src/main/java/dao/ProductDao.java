@@ -1,7 +1,11 @@
 package dao;
 
 import java.util.ArrayList;
-import controller.board.rereplywrite;
+import java.util.Arrays;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import dto.Cart;
 import dto.Category;
 import dto.Product;
@@ -160,12 +164,14 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
 //////////////////////////장바구니/////////////////////////////////////////
+	// 장바구니 등록 메소드 
 	public boolean savecart( Cart cart ) {
 		try {
 			String sql = "select cartno from cart where sno = "+cart.getSno()+" and mno = "+cart.getMno();
 			ps = con.prepareStatement(sql); rs=ps.executeQuery();
-			if( rs.next() ) { // 1. 장바구니내 동일한 제품이 존재하면 수량 업데이트 처리
+			if( rs.next() ) { // 1. 장바구니내 동일한 제품이 존재하면 수량/가격 업데이트 처리
 				sql = "update cart set samount = samount + "+cart.getSamount()+
+								" , totalprice = totalprice + " + cart.getTotalprice() +
 						" where cartno = " + rs.getInt(1);
 				ps = con.prepareStatement(sql);	ps.executeUpdate(); return true;
 				
@@ -177,12 +183,41 @@ public class ProductDao extends Dao {
 				ps.setInt( 3 ,  cart.getSno() );
 				ps.setInt( 4 ,  cart.getMno() ); ps.executeUpdate(); return true;
 			}
-		
 		}catch (Exception e) { System.out.println( e ); } return false; 
 	}
-	
-	
-
+	// 장바구니 출력 메소드 [  
+	public JSONArray getcart( int mno ) {
+		JSONArray jsonArray = new JSONArray(); // json배열 선언 
+		String sql = "select "
+				+ "	A.cartno as 장바구니번호 , "
+				+ "    A.samount as 구매수량 , "
+				+ "    A.totalprice as 총가격 , "
+				+ "    B.scolor as 색상 , "			
+				+ "    B.ssize as 사이즈 , "
+				+ "    B.pno as 제품번호 "
+				+ "from cart A "
+				+ "join stock B "
+				+ "on A.sno = B.sno "
+				+ "where mno = " + mno;
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				// 결과내 하나씩 모든 레코드를 -> 하나씩 json객체 변환  
+				JSONObject object = new JSONObject();
+				object.put( "cartno" , rs.getInt(1) );
+				object.put( "samount" , rs.getInt(2) );
+				object.put( "totalprice" , rs.getInt(3) );
+				object.put( "scolor" , rs.getString(4) );
+				object.put( "ssize" , rs.getString(5) );
+				object.put( "pno" , rs.getInt(6) );
+				// 하나씩 json객체를 json배열에 담기 
+				jsonArray.put( object );
+			}
+			return jsonArray;
+		}catch (Exception e) { System.out.println( e );}  return null; 
+		
+	}
 }
 
 

@@ -83,6 +83,7 @@ public class savecart extends HttpServlet {
 				boolean re = ProductDao.getProductDao().savecart(cart); // DB처리 
 				if( re == false ) error = i ;	//만일 하나라도 오류가 발생하면 eroor변수에 true;
 			} // Jsonarray end 
+			
 			if( error == -1 ) response.getWriter().print( -1 ); // 오류가 없으면 -1 응답 
 			else { response.getWriter().print( i ); }  // 만약에 i번째 오류가 있으면 인덱스 응답 
 			
