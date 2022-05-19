@@ -40,16 +40,24 @@ create table plike(
     foreign key(mno) references member(mno) on delete cascade 
 )
 
-
+create table porderdetail(
+	orderdetailno int primary key auto_increment , 	/* 주문상세 번호 */
+    orderdetailactive  int ,   /* 주문상세 상태 */
+	sno int , 				/* 재고번호 */
+    samount int , 			/* 수량 */ 
+    totalprice	int , 		/* 총결제액 */
+	orderno int ,  			/* 주문번호 */ 
+    foreign key( sno ) references stock( sno ) on update cascade , 
+    foreign key( orderno ) references porder( orderno) on update cascade 
+);
 create table cart(
 	cartno int primary key auto_increment , 	/* 카트 번호 */
-    scolor varchar(100) , /* 색상 */
-    ssize varchar(100) ,  /* 사이즈 */
     samount int , 			/* 수량 */ 
+    sno int , 				/* 재고번호 */
     totalprice	int , 		/* 총결제액 */
     pno int ,				/* 제품번호 */
 	mno int , 				/* 회원번호 */ 
-    foreign key ( pno ) references product(pno) on update cascade ,
+    foreign key( sno ) references stock( sno ) on update cascade , 
     foreign key ( mno ) references member(mno) on update cascade 
 );
 create table porder(
@@ -65,18 +73,10 @@ create table porder(
     mno int , 				/* 회원번호 */ 
     foreign key ( mno ) references member(mno) on update cascade 
 );
-create table porderdetail(
-	orderdetailno int primary key auto_increment , 	/* 주문상세 번호 */
-    orderdetailactive  int ,   /* 주문상세 상태 */
-    scolor varchar(100) , 	/* 색상 */
-    ssize varchar(100) ,  	/* 사이즈 */
-    samount int , 			/* 수량 */ 
-    totalprice	int , 		/* 총결제액 */
-    pno int ,				/* 제품번호 */
-	orderno int ,  			/* 주문번호 */ 
-    foreign key( pno ) references product( pno ) on update cascade , 
-    foreign key( orderno ) references porder( orderno) on update cascade 
-);
+
+
+
+
 
 
 
