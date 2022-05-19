@@ -61,7 +61,9 @@ create table porder(
     ordertotalpay int ,   /* 주문 총 결제액  */
     orderactive int ,   /* 주문 상태 */
     orderrequest varchar(100) ,   /* 주문 요청사항 */
-    orderdeliverno int   /* 배송 번호  */
+    orderdeliverno int ,   /* 배송 번호  */
+    mno int , 				/* 회원번호 */ 
+    foreign key ( mno ) references member(mno) on update cascade 
 );
 create table porderdetail(
 	orderdetailno int primary key auto_increment , 	/* 주문상세 번호 */
@@ -75,6 +77,10 @@ create table porderdetail(
     foreign key( pno ) references product( pno ) on update cascade , 
     foreign key( orderno ) references porder( orderno) on update cascade 
 );
+
+
+
+
 
 
 
