@@ -34,8 +34,10 @@ public class savecart extends HttpServlet {
 		System.out.println( data );
 		// json형식 문자열 -> json형식 객체로 변환
 		try {
+			//  [ { } , { } , { } , { } ] 문자열 -> JSONArray
 			// 1. 통신한 데이터를 JSONArray형으로 형변환
 			JSONArray jsonArray = new JSONArray( data );
+			////  [ { 0 } , { 1 } , { 2 } , { 3 } ~~ ] 문자열 -> JSONArray
 			// 2. 반복문 이용한 jsonarray에서 jsonobject 호출 
 			for( int i = 0 ; i<jsonArray.length(); i++ ) {
 				// 3. jsonarray 배열내 i번째 객체 호출 

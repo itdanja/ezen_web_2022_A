@@ -46,7 +46,7 @@ $("#color_select").change( function(){
 		// 호출 [ .연산자 ] 
 			// 객체명.필드명 
 			
-let selectlist = [ ];	// js 배열 
+let selectlist = [ ];	// js 배열  ->  [ { } , { } , { } , { } ];
 
 /* 사이즈 목록이 변경되었을때 선택값을 객체화해서 배열에 저장   */
 $("#size_select").change( function(){
@@ -218,7 +218,7 @@ function savecart( mno ){
 			// 여러개 JSONobject -> JSONarray 	// [  {   키1:값 , 키2:값 , 키2:값  } , {   키1:값 , 키2:값 , 키2:값  }  ]
 			//  키 : value( JSONarray )
 			
-	$.ajax({ 
+	$.ajax({ // 전송 인코딩 기본타입 -> 문자열 //
 		url : 'savecart' , 
 		data : { 'json' : JSON.stringify( selectlist ) },
 							// js배열을 json형으로 변환하기 

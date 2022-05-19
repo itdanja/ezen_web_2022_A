@@ -41,6 +41,47 @@ create table plike(
 )
 
 
+create table cart(
+	cartno int primary key auto_increment , 	/* 카트 번호 */
+    scolor varchar(100) , /* 색상 */
+    ssize varchar(100) ,  /* 사이즈 */
+    samount int , 			/* 수량 */ 
+    totalprice	int , 		/* 총결제액 */
+    pno int ,				/* 제품번호 */
+	mno int , 				/* 회원번호 */ 
+    foreign key ( pno ) references product(pno) on update cascade ,
+    foreign key ( mno ) references member(mno) on update cascade 
+);
+create table porder(
+	orderno	 int primary key auto_increment , 	/* 주문 번호 */
+    orderdate datetime default now() , /* 주문 날짜 */
+    ordername varchar(20) , /* 받는사람 성명 */
+    orderphone varchar(20) , /* 받는사람 연락처 */ 
+    orderaddress varchar(100) , /* 받는사람 주소 */
+    ordertotalpay int ,   /* 주문 총 결제액  */
+    orderactive int ,   /* 주문 상태 */
+    orderrequest varchar(100) ,   /* 주문 요청사항 */
+    orderdeliverno int   /* 배송 번호  */
+);
+create table porderdetail(
+	orderdetailno int primary key auto_increment , 	/* 주문상세 번호 */
+    orderdetailactive  int ,   /* 주문상세 상태 */
+    scolor varchar(100) , 	/* 색상 */
+    ssize varchar(100) ,  	/* 사이즈 */
+    samount int , 			/* 수량 */ 
+    totalprice	int , 		/* 총결제액 */
+    pno int ,				/* 제품번호 */
+	orderno int ,  			/* 주문번호 */ 
+    foreign key( pno ) references product( pno ) on update cascade , 
+    foreign key( orderno ) references porder( orderno) on update cascade 
+);
+
+
+
+
+
+
+
 
 select pno , pimg from product;
 /* pno 와 pimg 표시 */
