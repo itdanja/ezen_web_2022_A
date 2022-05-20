@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.table th{
+	text-align: center
+}
+.pnamebox{
+	padding: 2%;
+}
+.optionbox{
+	padding: 2%;
+	border-top : solid 1px #999999;
+	color: #999999;
+	font-size: 12px;
+}
+.amount_btn{
+	display: block;
+	background-color: white;
+	font-size: 5px;
+	border: 1px #ced4da solid;
+	padding: 0px 10px;
+}
+.pricebox{
+	text-align: right;
+}
+.deletebox button{
+	background-color: white;
+	margin-left: 30px;
+	border: none;
+	color: #999999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
