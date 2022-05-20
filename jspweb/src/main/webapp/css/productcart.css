@@ -1,5 +1,36 @@
 @charset "UTF-8";
 
+.processbox{
+	margin: 100px 0px 50px 0px;
+	text-align: right;
+}
+.processbox span{
+	color: #999999;
+	margin-left: 20px;
+}
+#process_active{
+	color: black;
+	font-size: 25px;
+}
+.paybox{
+	text-align: center;
+	border: 2px solid #999999;
+	padding: 50px 20px;
+	margin : 50px 0px;
+}
+.paybox span{
+	margin-right: 10px;
+}
+#totalpay{
+	color: red;
+	font-size: 30px;
+}
+.pointbox{
+	color: #999999;
+	font-size: 15px;
+	margin-top: 20px;
+}
+
 .table th{
 	text-align: center
 }

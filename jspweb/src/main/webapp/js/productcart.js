@@ -1,8 +1,11 @@
-$( function(){  
-	$.ajax({
-		url : 'getcart' ,
-		success : function( jsonarray ){
-			// js : json 객체내 key값 이용한 value 추출 
+
+/* JSON 형식의 변수를 선언 */
+let jsonarray;
+
+
+/* 테이블에 데이터를 넣어주는 함수 */
+function tableview(){
+		// js : json 객체내 key값 이용한 value 추출 
 				// 객체명[key] -> value 호출 
 				// jsonarray[i][key] -> json배열내 i번째 객체의 key 값 호출 
 			let tr = '<tr> <!-- 헤더 -->'+
@@ -42,13 +45,43 @@ $( function(){
 '					<td class="align-middle"> <!--  가격 -->'+
 '						<div class="row g-0">'+
 '							<div class="col-md-8 pricebox">'+jsonarray[i]["totalprice"].toLocaleString()+'원</div>'+
-'							<div class="col-md-4 deletebox"><button>X</button></div>'+
+'							<div class="col-md-4 deletebox"><button onclick="cancel('+i+')">X</button></div>'+
 '						</div>'+
 '					</td>'+
 '				</tr>';
-
 			}
 			$("#carttable").html( tr );
+}
+
+/* json배열내 특정 인덱스 삭제 */
+function cancel( i ){
+	jsonarray.splice( i , 1 ); // i번째 부터 1개를 삭제 
+	tableview();	// 테이블 새로고침
+}
+
+/* 자바스크립트 열리면 무조건 실행되는 메소드 */
+$( function(){  
+	$.ajax({
+		url : 'getcart' ,
+		success : function( json ){
+			jsonarray = json;	/* 응답받은 데이터를 전역변수에 넣어주기 */
+			tableview();	/* 테이블 출력 메소드 호출  */
 		}
 	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
