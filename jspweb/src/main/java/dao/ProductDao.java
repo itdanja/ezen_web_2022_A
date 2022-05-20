@@ -222,7 +222,19 @@ public class ProductDao extends Dao {
 			}
 			return jsonArray;
 		}catch (Exception e) { System.out.println( e );}  return null; 
-		
+	}
+	
+	// 장바구니 업데이트[수정]메소드 
+	public boolean updatecart( int cartno , int samount , int tatalprice ) {
+		String sql ="update cart set samount = "+samount+" , totalprice = "+tatalprice+" where cartno ="+cartno;
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
+		catch (Exception e) { System.out.println( e ); } return false;
+	}
+	// 장바구니 삭제 메소드 
+	public boolean deletecart( int cartno ) {
+		String sql = "delete from cart where cartno="+cartno;
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
+		catch (Exception e) { System.out.println( e ); } return false;
 	}
 }
 

@@ -7,7 +7,27 @@ let deliverypay = 0; // 배송비 변수 선언
 let totalpay = 0; // 총주문액 변수 선언 
 let point = 0; // 포인트 변수 선언 
 
-/* 테이블에 데이터를 넣어주는 함수 */
+/* 1. 자바스크립트 열리면 무조건 실행되는 메소드 */
+$( function(){  
+	getcart();
+});
+/* 8. 장바구니 삭제 처리 메소드 */
+function deletecart( i ){
+	
+}
+/* 2.  장바구니 데이터 호출 메소드 */
+function getcart(){
+	$.ajax({
+		url : 'getcart' ,
+		success : function( json ){
+			jsonarray = json;	/* 응답받은 데이터를 전역변수에 넣어주기 */
+			tableview();	/* 테이블 출력 메소드 호출  */
+		}
+	});
+}
+
+
+/* 3. 테이블에 데이터를 넣어주는 함수 */
 function tableview(){
 
 		// js : json 객체내 key값 이용한 value 추출 
@@ -86,7 +106,18 @@ function tableview(){
 			
 			$("#carttable").html( tr );
 }
-/* 수량 증가 메소드 */
+/* 4. json상태 업데이트 처리 메소드 */
+function updatecart(){
+	$.ajax({
+		url : "updatecart" ,
+		data : { "json" : JSON.stringify(jsonarray) } , // 현재 jsonarray 상태 전송
+		success : function ( json ){
+			getcart();
+		}
+	});
+}
+
+/* 5. 수량 증가 메소드 */
 function amountincre(i){
 	// 재고의 최대값 가져오기 -> productview.js 사용된 서블릿 재사용 
 	$.ajax({
@@ -100,23 +131,20 @@ function amountincre(i){
 			let price = parseInt ( (  jsonarray[i]['totalprice'] / jsonarray[i]['samount'] ) ); // 제품 하나의 금액
 			jsonarray[i]['samount']++; // 수량증가 
 			jsonarray[i]['totalprice'] = price * jsonarray[i]['samount']; // 증가된 수량의 총금액 업데이트
-			
-			tableview();
+			updatecart();
 		}
 	});
 }
-/* 수량 감소 메소드 */
+/* 6. 수량 감소 메소드 */
 function amountdecre(i){
 	if( jsonarray[i]["samount"] == 1  ){ alert("최소 수량입니다."); return }
-	
 	let price = parseInt ( (  jsonarray[i]['totalprice'] / jsonarray[i]['samount'] ) ); // 제품 하나의 금액
 	jsonarray[i]['samount']--; // 수량감소 
 	jsonarray[i]['totalprice'] = price * jsonarray[i]['samount']; // 증가된 수량의 총금액 업데이트
-	
-	tableview();
+	updatecart();
 }
 
-/* json배열내 특정 인덱스 / 전체 인덱스=-1 삭제 */
+/* 7. json배열내 특정 인덱스 / 전체 인덱스=-1 삭제 */
 function cancel( i ){
 	if( i == -1 ){  // 만약에 i가 -1 이면 전체 삭제 
 		if( confirm('전체 삭제하시겠습니까?') ){
@@ -132,16 +160,8 @@ function cancel( i ){
 	tableview();	// 테이블 새로고침
 }
 
-/* 자바스크립트 열리면 무조건 실행되는 메소드 */
-$( function(){  
-	$.ajax({
-		url : 'getcart' ,
-		success : function( json ){
-			jsonarray = json;	/* 응답받은 데이터를 전역변수에 넣어주기 */
-			tableview();	/* 테이블 출력 메소드 호출  */
-		}
-	});
-});
+
+
 
 
 
