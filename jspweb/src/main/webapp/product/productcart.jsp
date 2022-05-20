@@ -55,17 +55,9 @@
 					</a>
 				</div>
 			</div>
-			
-			
 		</div>
-		
-		
 	<script type="text/javascript" src="/jspweb/js/productcart.js"></script>
 	<%@include file = "../footer.jsp" %>
 	
-	
-	
-	
-
 </body>
 </html>
