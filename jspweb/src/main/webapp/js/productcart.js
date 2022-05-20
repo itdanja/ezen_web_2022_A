@@ -1,10 +1,15 @@
 
-/* JSON 형식의 변수를 선언 */
-let jsonarray;
 
+let jsonarray; // JSON 형식의 변수를 선언
+	
+let sumprice = 0; //상품 총가격 변수 선언 
+let deliverypay = 0; // 배송비 변수 선언 
+let totalpay = 0; // 총주문액 변수 선언 
+let point = 0; // 포인트 변수 선언 
 
 /* 테이블에 데이터를 넣어주는 함수 */
 function tableview(){
+
 		// js : json 객체내 key값 이용한 value 추출 
 				// 객체명[key] -> value 호출 
 				// jsonarray[i][key] -> json배열내 i번째 객체의 key 값 호출 
@@ -13,7 +18,15 @@ function tableview(){
 '					<th width="20%">수량</th> 		'+
 '					<th width="20%">가격</th> '+
 '				</tr>';
+
+			sumprice = 0; /*상품 총가격 */
+			deliverypay = 0; // 배송비 
+			totalpay = 0; // 총주문액 
+			
 			for( let i = 0 ; i<jsonarray.length; i++ ){
+				
+				sumprice += jsonarray[i]["totalprice"]; // 누적합계
+				
 				tr += 
 				'<tr>'+
 '					<td> <!--  상품정보 열 -->'+
@@ -37,8 +50,8 @@ function tableview(){
 '							</div>'+
 '							'+
 '							<div class="col-sm-2">'+
-'								<button class="amount_btn"> ▲ </button>'+
-'								<button class="amount_btn"> ▼ </button>'+
+'								<button onclick="amountincre('+i+')" class="amount_btn"> ▲ </button>'+
+'								<button onclick="amountdecre('+i+')" class="amount_btn"> ▼ </button>'+
 '							</div>'+
 '						</div>'+
 '					</td>'+
@@ -50,11 +63,71 @@ function tableview(){
 '					</td>'+
 '				</tr>';
 			}
+			// 만약에 총가격이 7만원 이상이면 배송비 무료
+			if( sumprice >= 70000 ){ deliverypay = 0;}
+			else{ deliverypay = 2500; }
+			
+			// 만약에 장바구니에 상품이 없으면 
+			if( jsonarray.length == 0 ){
+				tr += '<td style="text-align: center" colspan="3">'+ 
+						'상품이 없습니다. '+
+						'</td>';
+				deliverypay = 0; 
+			}
+			// 총주문금액 = 총가격 + 배송비 
+			totalpay = sumprice + deliverypay;
+			// 포인트 
+			point = parseInt( sumprice * 0.01 ); /* js : parseInt( 데이터 ) : -> 정수형 변환 */
+			// 출력 
+			$("#sumprice").html( sumprice.toLocaleString()+'원' );
+			$("#deliverypay").html( deliverypay.toLocaleString()+'원' );
+			$("#totalpay").html( totalpay.toLocaleString()+'원' );
+			$("#point").html( point.toLocaleString() );
+			
 			$("#carttable").html( tr );
 }
+/* 수량 증가 메소드 */
+function amountincre(i){
+	// 재고의 최대값 가져오기 -> productview.js 사용된 서블릿 재사용 
+	$.ajax({
+		url : "getamount" , 
+		data : { "pno" : jsonarray[i]['pno'] ,
+		 "color" :  jsonarray[i]['scolor'] , 
+		 "size" : jsonarray[i]['ssize'] } ,
+		success : function ( maxamount ){
+			if( jsonarray[i]['samount'] >= maxamount ){ alert("재고가 부족합니다. "); return; }
+			// 총금액 업데이트 
+			let price = parseInt ( (  jsonarray[i]['totalprice'] / jsonarray[i]['samount'] ) ); // 제품 하나의 금액
+			jsonarray[i]['samount']++; // 수량증가 
+			jsonarray[i]['totalprice'] = price * jsonarray[i]['samount']; // 증가된 수량의 총금액 업데이트
+			
+			tableview();
+		}
+	});
+}
+/* 수량 감소 메소드 */
+function amountdecre(i){
+	if( jsonarray[i]["samount"] == 1  ){ alert("최소 수량입니다."); return }
+	
+	let price = parseInt ( (  jsonarray[i]['totalprice'] / jsonarray[i]['samount'] ) ); // 제품 하나의 금액
+	jsonarray[i]['samount']--; // 수량감소 
+	jsonarray[i]['totalprice'] = price * jsonarray[i]['samount']; // 증가된 수량의 총금액 업데이트
+	
+	tableview();
+}
 
-/* json배열내 특정 인덱스 삭제 */
+/* json배열내 특정 인덱스 / 전체 인덱스=-1 삭제 */
 function cancel( i ){
+	if( i == -1 ){  // 만약에 i가 -1 이면 전체 삭제 
+		if( confirm('전체 삭제하시겠습니까?') ){
+			// confirm("내용") : 확인/취소 버튼 알림창 
+				// 만약에 확인 눌렀을떄 - true  // 취소 -> false;
+			jsonarray.splice( 0 , jsonarray.length );
+				// 0번 인덱스부터 마지막인덱스까지 삭제 
+			tableview();
+		}
+		return;
+	}
 	jsonarray.splice( i , 1 ); // i번째 부터 1개를 삭제 
 	tableview();	// 테이블 새로고침
 }

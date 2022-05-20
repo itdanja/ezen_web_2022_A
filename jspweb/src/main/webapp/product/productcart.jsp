@@ -27,7 +27,7 @@
 			</table>
 			
 			<div class="col-sm-2"> <!-- 전체 삭제 버튼 -->
-				<button class="form-control"> 상품 전체삭제 </button>
+				<button onclick="cancel(-1)" class="form-control"> 상품 전체삭제 </button>
 			</div>
 			
 			<div class="paybox">  <!-- 사용자정의 css만 사용되는 구역  -->
