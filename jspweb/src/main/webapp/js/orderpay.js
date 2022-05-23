@@ -6,23 +6,40 @@ let deliverypay = 0; // 배송비 변수 선언
 let totalpay = 0; // 총주문액 변수 선언 
 let point = 0; // 포인트 변수 선언 
 
+let member;	// 회원정보 json 객체 [ 비밀번호 제외한 ]
+let mpoint; // 회원이 사용하는 포인트
+
 /* 1. 자바스크립트 열리면 무조건 실행되는 메소드 */
 $( function(){  // $(document).ready( function(){});  // 문서내에서 대기상태 이벤트
 	
-	getcart();	// 제품 출력 메소드 불러오기
+	// 회원 정보 출력  
+	$.ajax({
+		url : "/jspweb/member/getmember" , 
+		success : function( json ){
+			member = json;	
+			getcart();	// 제품 출력 메소드 불러오기
+		}
+	});
 	
 	// 받는사람 정보가 기존 회원과 동일 버튼눌렀을때
 	$("#checkbox").change( function(){	
 		// 체크박스가 변경 되었을때 이벤트 
 		if( $("#checkbox").is(":checked") ){
 			//만약에 체크박스가 체크가 되어 있으면
-			$("#ordername").val("유재석");
-			$("#orderphone").val("010-4444-4444");
-			$("#orderaddress").val("안산시 ㅋㅋㅋㅋㅋ");
+			$("#ordername").val( member['mname']);
+			$("#orderphone").val(member['mphone']);
+			$("#sample4_postcode").val(member['maddress'].split('_')[0] );
+			$("#sample4_roadAddress").val(member['maddress'].split('_')[1]);
+			$("#sample4_jibunAddress").val(member['maddress'].split('_')[2]);
+			$("#sample4_detailAddress").val(member['maddress'].split('_')[3]);
 		}else{
 			$("#ordername").val("");
 			$("#orderphone").val("");
 			$("#orderaddress").val("");
+			$("#sample4_postcode").val("");
+			$("#sample4_roadAddress").val("");
+			$("#sample4_jibunAddress").val("");
+			$("#sample4_detailAddress").val("");
 		}
 	});
 	
@@ -91,12 +108,15 @@ function cartview(){
 						'</td>';
 				deliverypay = 0; 
 			}
-			// 총주문금액 = 총가격 + 배송비 
-			totalpay = sumprice + deliverypay;
+			// 총주문금액 = 총가격 + 배송비 - 사용포인트 
+			totalpay = sumprice + deliverypay - mpoint;
 			// 포인트 
 			point = parseInt( sumprice * 0.01 ); /* js : parseInt( 데이터 ) : -> 정수형 변환 */
 			// 출력 
 			$("#carttable").html( tr );
+			$("#mpoint").html( member["mpoint"] );
+			$("#pointbox").html( mpoint );
+			$("#totalpay").html( totalpay );
 }
 /* 아임포트 API = 결제API */
 function payment(){
@@ -108,11 +128,11 @@ function payment(){
 	    merchant_uid: "ORD20180131-0000011", // 주문번호[별도]
 	    name: "EZEN SHOP", // 결제창에 나오는 결제이름
 	    amount: totalpay,	// 결제금액
-	    buyer_email: "gildong@gmail.com",
-	    buyer_name: '임시이름',
-	    buyer_tel: '임시번호',
-	    buyer_addr: '임시주소',
-	    buyer_postcode: '임시우편번호',	// 우편번호
+	    buyer_email: member["mid"],
+	    buyer_name: member["mname"],
+	    buyer_tel: member["mphone"],
+	    buyer_addr: member["maddress"],
+	    buyer_postcode: member["maddress"].split("_")[0],	// 우편번호
 		  }, function (rsp) { // callback
 		      if (rsp.success) { // 결제 성공했을때 -> 주문 완료 페이지로 이동 []
 		      } else {
@@ -129,6 +149,27 @@ function saveorder(){
 			alert("DB처리 성공")
 		}
 	});
+}
+
+function pointbtn(){
+	
+	// 만약에 포인트가 5000이상이 아니면
+	mpoint = $("#pointinput").val();
+	if( mpoint == 0  ){
+		mpoint = 0;
+	}else if( mpoint < 5000 ){
+		alert('최소 5000부터 사용가능합니다. ');
+		mpoint = 0; 
+		$("#pointinput").val(0);
+		return;
+	}else if( mpoint > member["mpoint"] ){
+		alert('포인트가 부족합니다. ');
+		mpoint = 0; 
+		$("#pointinput").val(0);
+		return;
+	}
+	
+	cartview(); // 새로고침
 }
 
 

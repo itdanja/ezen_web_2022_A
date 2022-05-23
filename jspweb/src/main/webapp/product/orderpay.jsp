@@ -31,7 +31,15 @@
 						<form>
 							성명 <input id="ordername"> <br>
 							연락처 <input id="orderphone"> <br>
-							주소 <input id="orderaddress"> <br>
+							주소 		
+							<br>
+								<input type="text" id="sample4_postcode" name="address1" placeholder="우편번호">
+								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="text" id="sample4_roadAddress" name="address2" placeholder="도로명주소">
+								<input type="text" id="sample4_jibunAddress" name="address3" placeholder="지번주소">
+								<span id="guide" style="color:#999;display:none"></span>
+								<input type="text" id="sample4_detailAddress" name="address4" placeholder="상세주소">
+							<br>
 							배송 요청사항 <input id="orderrequest"> <br>
 						</form>
 					</div>
@@ -42,14 +50,16 @@
 					<div class="paybox">
 						<div> <!-- 포인트 사용 -->
 							* 5000포인트 이상부터 사용가능합니다.
-							포인트 : <input> <button>사용</button>
+							<br>
+							보유 포인트 : <span id="mpoint"></span>
+							포인트 : <input value="0" id="pointinput"><button onclick="pointbtn()">사용</button>
 						</div>
 						<div> <!-- 결제 정보 -->
 							<div>
 								총 상품금액 : <span> 29,000원 </span>  <br>
 								배송비 : <span> 3,000원 </span>  <br>
-								포인트사용 : <span> 0 원 </span> <br>
-								총 결제액 : <span> 32,000 원 </span> <br>
+								포인트사용 : <span id="pointbox"> </span> <br>
+								총 결제액 : <span id="totalpay"> </span> <br>
 							</div>
 							
 							<div> 결제 수단
