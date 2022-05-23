@@ -254,10 +254,20 @@ public class ProductDao extends Dao {
 			ps.executeUpdate();		
 			rs = ps.getGeneratedKeys(); // pk 값 호출 
 			if( rs.next() ) {
-				System.out.println( "방금 생성된 pk값:"+ rs.getInt(1) );
+				int pk = rs.getInt(1);
+				// cart -> porderdetail 
+				sql = "insert into porderdetail( samount ,totalprice,orderno,sno )"
+						+ "select samount , totalprice , "+pk+" , sno from cart where mno = "+order.getMno();
+				ps = con.prepareStatement(sql);
+				ps.executeUpdate();
+				
+				// cart : delete 
+				sql ="delete from cart where mno = "+order.getMno();
+				ps = con.prepareStatement(sql);
+				ps.executeUpdate();
+				return true;
 			}
-		}catch (Exception e) {}
-		
+		}catch (Exception e) { System.out.println( e ); }		
 		return false;
 	}
 	

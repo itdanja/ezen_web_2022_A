@@ -52,9 +52,10 @@ public class saveorder extends HttpServlet {
 					0 , orderrequest, 0 , mno);
 			
 			// 1. 주문 DB처리 [ PK ]	
-			ProductDao.getProductDao().saveorder( order );
+			boolean result =  ProductDao.getProductDao().saveorder( order );
+			// 2. js 응답처리
+			response.getWriter().print( result );
 			
-		
 		}catch (Exception e) { System.out.println( e );}
 		
 	}

@@ -145,7 +145,39 @@ select * from product join stock on product.pno = stock.pno;
         avg( 필드명 ) : 평균
         max( 필드명 ) : 최댓값
         min( 필드명 ) : 최솟값 
-/*	
+
+
+--- 
+-- 검색된 결과를 다른 테이블에 추가 
+-- 1.-- 테이블 생성 
+create table A(	
+	필드1 int
+);
+-- 2. 테이블에 레코드 추가 
+insert into A value( 3 );
+-- 3. 테이블 검색
+select * from A;
+
+-- 4. -- 테이블 생성 
+create table B(
+	필드1 int 
+);
+select * from b;
+-- 5. A테이블에 데이터를 B테이블 추가하기 [ 필드명 동일해야 함 ] 
+insert into B select * from A;
+-- 6.확인 
+select * from B;
+-- -------------------------------------------------------
+-- 적용 : cart 테이블 ----> porderdetail 
+--  	mno 				samount ,  totalprice , orderno[x] , sno
+-- 1. 특정 회원의 cart 찾기 [ 회원번호 2 번 인 회원의 카트 ] 
+select * from cart where mno = 2;
+-- 2. 특정 회원의 cart 찾기 -> 특정 필드만 표시 [ ]
+select samount , totalprice , 1 , sno from cart where mno = 2;
+-- 3. 검색 결과를 porderdetail 추가하기
+insert into porderdetail( samount , totalprice , orderno , sno )
+select samount , totalprice , 1 , sno from cart where mno = 2;
+
 
 
 

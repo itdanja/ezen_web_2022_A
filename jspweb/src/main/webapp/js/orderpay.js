@@ -155,13 +155,15 @@ function payment(){
 	    buyer_postcode: member["maddress"].split("_")[0],	// 우편번호
 		  }, function (rsp) { // callback
 		      if (rsp.success) { // 결제 성공했을때 -> 주문 완료 페이지로 이동 []
-		      } else {
+		      	alert("주문 취소");
+		      } else {	// 결제 실패했을때 
 				saveorder(); // 결제 실패 했을때 -> 테스트 할시에는 이부분 활용
 		      }
 	  });
 }
 // 6. 주문 처리 메소드 
 function saveorder(){
+	// 주문 정보 호출 
 	let ordername = $("#ordername").val();
 	let orderphone = $("#orderphone").val();
 	let orderaddress = 
@@ -172,7 +174,7 @@ function saveorder(){
 	let ordertotalpay = totalpay;
 	let orderrequest = $("#orderrequest").val();
 	
-	let orderjson = {	// 객체화 
+	let orderjson = {	// 주문 정보 객체화 
 		ordername : ordername  ,
 		orderphone : orderphone , 
 		orderaddress : orderaddress ,
@@ -184,7 +186,12 @@ function saveorder(){
 		url : "saveorder",		
 		data : { 'orderjson' : JSON.stringify(orderjson) } , // 객체 -> json형 변환
 		success : function( re ){
-			alert("DB처리 성공")
+			// request , response 객체는 별다른 타입 설정이 없으면 문자열 타입 
+			if( re == "true") { // 만약에 주문db처리 성공이면 성공페이지 이동
+				location.href = "/jspweb/product/ordersuccess.jsp" ;
+			}else{
+				alert("오류 발생 [ 관리자에게 문의 ]")
+			}
 		}
 	});
 }
