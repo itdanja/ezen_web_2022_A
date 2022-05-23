@@ -162,9 +162,27 @@ function payment(){
 }
 // 6. 주문 처리 메소드 
 function saveorder(){
-	alert("DB처리시작");
+	let ordername = $("#ordername").val();
+	let orderphone = $("#orderphone").val();
+	let orderaddress = 
+			$("#sample4_postcode").val() + "_"+
+			$("#sample4_roadAddress").val() + "_"+
+			$("#sample4_jibunAddress").val() + "_"+
+			$("#sample4_detailAddress").val();
+	let ordertotalpay = totalpay;
+	let orderrequest = $("#orderrequest").val();
+	
+	let orderjson = {	// 객체화 
+		ordername : ordername  ,
+		orderphone : orderphone , 
+		orderaddress : orderaddress ,
+		ordertotalpay : ordertotalpay , 
+		orderrequest : orderrequest 
+	}
+	
 	$.ajax({
-		url : "saveorder",
+		url : "saveorder",		
+		data : { 'orderjson' : JSON.stringify(orderjson) } , // 객체 -> json형 변환
 		success : function( re ){
 			alert("DB처리 성공")
 		}
