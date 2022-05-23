@@ -7,7 +7,9 @@ let totalpay = 0; // 총주문액 변수 선언
 let point = 0; // 포인트 변수 선언 
 
 let member;	// 회원정보 json 객체 [ 비밀번호 제외한 ]
-let mpoint; // 회원이 사용하는 포인트
+let mpoint = 0; // 회원이 사용하는 포인트
+
+let pay_method;	// 결제수단을 저장하는 변수 
 
 /* 1. 자바스크립트 열리면 무조건 실행되는 메소드 */
 $( function(){  // $(document).ready( function(){});  // 문서내에서 대기상태 이벤트
@@ -113,18 +115,32 @@ function cartview(){
 			// 포인트 
 			point = parseInt( sumprice * 0.01 ); /* js : parseInt( 데이터 ) : -> 정수형 변환 */
 			// 출력 
-			$("#carttable").html( tr );
-			$("#mpoint").html( member["mpoint"] );
-			$("#pointbox").html( mpoint );
-			$("#totalpay").html( totalpay );
+			$("#carttable").html( tr );	// 테이블 상품 출력 
+			$("#mpoint").html( member["mpoint"] ); // 사용가능 포인트 출력 
+			$("#pointbox").html( mpoint );	// 사용할 포인트 출력 
+			$("#totalpay").html( totalpay ); // 총주문금액 출력 
+			$("#sumprice").html( sumprice );	// 총상품 출력 
+			$("#deliverypay").html( deliverypay ); // 배송비 출력 
 }
-/* 아임포트 API = 결제API */
+
+// 4. 결제수단 선택 메소드 
+function paymethod( method ){
+	$("#paymethod").html( method ); // html에 인수 출력 
+	pay_method = method; // 결제수단 변수에 인수 넣기
+}
+
+// 5. 아임포트 실행 메소드 /* 아임포트 API = 결제API */
 function payment(){
+	
+	if( pay_method == null ){ // 만약에 결제수단을 선택를 안했으면
+		alert('결제수단을 선택해주세요.!'); return;
+	}
+	
 	var IMP = window.IMP; 
 	IMP.init("imp35631338"); // [본인]관리자 식별코드 [ 관리자 계정마다 다름] 
     IMP.request_pay({ // 결제 요청변수 
 	    pg: "html5_inicis",	// pg사 [ 아임포트 관리자페이지에서 선택한 pg사 ]
-	    pay_method: 'card',	// 결제방식
+	    pay_method: pay_method,	// 결제방식
 	    merchant_uid: "ORD20180131-0000011", // 주문번호[별도]
 	    name: "EZEN SHOP", // 결제창에 나오는 결제이름
 	    amount: totalpay,	// 결제금액
@@ -140,7 +156,7 @@ function payment(){
 		      }
 	  });
 }
-// 주문 처리 메소드 
+// 6. 주문 처리 메소드 
 function saveorder(){
 	alert("DB처리시작");
 	$.ajax({
@@ -151,24 +167,23 @@ function saveorder(){
 	});
 }
 
+// 7.포인트 사용 메소드  
 function pointbtn(){
 	
-	// 만약에 포인트가 5000이상이 아니면
 	mpoint = $("#pointinput").val();
-	if( mpoint == 0  ){
+	if( mpoint == 0  ){ // 만약에 포인트가 0 이 아니면
 		mpoint = 0;
-	}else if( mpoint < 5000 ){
+	}else if( mpoint < 5000 ){ // 만약에 포인트가 5000미만 이 아니면
 		alert('최소 5000부터 사용가능합니다. ');
 		mpoint = 0; 
 		$("#pointinput").val(0);
 		return;
-	}else if( mpoint > member["mpoint"] ){
+	}else if( mpoint > member["mpoint"] ){  // 만약에 포인트가 보유 포인트보다 많으면
 		alert('포인트가 부족합니다. ');
 		mpoint = 0; 
 		$("#pointinput").val(0);
 		return;
 	}
-	
 	cartview(); // 새로고침
 }
 

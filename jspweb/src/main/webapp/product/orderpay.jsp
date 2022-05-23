@@ -51,23 +51,23 @@
 						<div> <!-- 포인트 사용 -->
 							* 5000포인트 이상부터 사용가능합니다.
 							<br>
-							보유 포인트 : <span id="mpoint"></span>
+							보유 포인트 : <span id="mpoint"></span> <br>
 							포인트 : <input value="0" id="pointinput"><button onclick="pointbtn()">사용</button>
 						</div>
 						<div> <!-- 결제 정보 -->
 							<div>
-								총 상품금액 : <span> 29,000원 </span>  <br>
-								배송비 : <span> 3,000원 </span>  <br>
-								포인트사용 : <span id="pointbox"> </span> <br>
-								총 결제액 : <span id="totalpay"> </span> <br>
+								총 상품금액 : <span id="sumprice"></span>  <br>
+								배송비 : <span id="deliverypay"></span>  <br>
+								포인트사용 : <span id="pointbox"></span> <br>
+								총 주문액 : <span id="totalpay"></span> <br>
 							</div>
 							
-							<div> 결제 수단
-								<button> 삼성페이 </button>
-								<button> 카드 </button>
-								<button> 계좌이체 </button>
-								<button> 무통장 </button>
-								<button> 핸드폰 </button>
+							<div> 결제 수단 : <span id ="paymethod"></span>
+								<button onclick="paymethod('samsung')"> 삼성페이 </button>
+								<button onclick="paymethod('card')"> 카드 </button>
+								<button onclick="paymethod('trans')"> 계좌이체 </button>
+								<button onclick="paymethod('vbank')"> 무통장 </button>
+								<button onclick="paymethod('phone')"> 핸드폰 </button>
 							</div>
 							<div class="row">
 								<div class="col-sm-6">
