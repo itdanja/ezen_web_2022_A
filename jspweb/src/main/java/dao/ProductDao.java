@@ -294,8 +294,12 @@ public class ProductDao extends Dao {
 			rs = ps.executeQuery(); 
 			// 1. json 사용하는 이유 -> js로 전송하기위해 
 			// 2. Arraylist 사용하는 이유 -> jsp로 사용할려면 
-			JSONArray jsonArray = new JSONArray();
+			JSONArray jsonArray = new JSONArray(); 
 			while( rs.next() ) {
+				
+				// 동일한 주문번호 끼리 묶음 처리 
+				//   {  키 : 값  }		
+				//   {  "orderno" : [  키 : 값  , 키 : 값   ]   , "orderno" : [  키 : 값  , 키 : 값   ]  } 
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put( "orderno" , rs.getInt( 1 ) ) ;
 				jsonObject.put( "orderdate" , rs.getString( 2 ) ) ;
