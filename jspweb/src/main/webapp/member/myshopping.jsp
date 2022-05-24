@@ -17,6 +17,7 @@
 			</div>
 		</div>
 	</div>
+	<script src="/jspweb/js/myshopping.js" type="text/javascript"></script>
 	<%@include file = "../footer.jsp" %>
 
 </body>
