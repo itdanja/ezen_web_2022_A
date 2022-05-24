@@ -294,12 +294,15 @@ public class ProductDao extends Dao {
 			rs = ps.executeQuery(); 
 			// 1. json 사용하는 이유 -> js로 전송하기위해 
 			// 2. Arraylist 사용하는 이유 -> jsp로 사용할려면 
-			JSONArray jsonArray = new JSONArray(); 
+			
+			JSONArray parentlist = new JSONArray();  // 상위 리스트 [ 여러개의 하위 리스트 ] 
+			
+			JSONArray childlist = new JSONArray();	// 하위 리스트 
+			
+			int oldorderno = -1; // 이전 데이터의 주문번호 변수 
+			
 			while( rs.next() ) {
-				
-				// 동일한 주문번호 끼리 묶음 처리 
-				//   {  키 : 값  }		
-				//   {  "orderno" : [  키 : 값  , 키 : 값   ]   , "orderno" : [  키 : 값  , 키 : 값   ]  } 
+				// 데이터 json 객체
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put( "orderno" , rs.getInt( 1 ) ) ;
 				jsonObject.put( "orderdate" , rs.getString( 2 ) ) ;
@@ -312,9 +315,20 @@ public class ProductDao extends Dao {
 				jsonObject.put( "pno" , rs.getInt( 9 ) ) ;
 				jsonObject.put( "pname" , rs.getString( 10 ) ) ;
 				jsonObject.put( "pimg" , rs.getString( 11 ) ) ;
-				jsonArray.put(jsonObject);
+				
+				// 동일한 주문번호 이면 동일한 리스트에 담기 
+				//   {  키 : 값  }		
+				//   { 키 : [  ]  ,  키 : [  ]  , 키  , [ ] }
+				if( oldorderno == rs.getInt( 1 ) ){ // 이전 주문번호와 현재 주문번호 동일하면
+					childlist.put( jsonObject ); // 하위 리스트에 데이터 담기 
+				}else { // 동일하지 않으면
+					childlist = new JSONArray(); // 하위 리스트 초기화 
+					childlist.put( jsonObject ); // 하위 리스트에 데이터 담기 
+					parentlist.put( childlist ); // 상위 리스트에 하위 리스트 추가 
+				}
+				oldorderno = rs.getInt( 1 ); // 이전 주문번호 변수에 현재 주문번호 넣기 
 			}
-			return jsonArray;
+			return parentlist;
 		}catch (Exception e) { System.out.println( e );} return null;
 	}
 	
