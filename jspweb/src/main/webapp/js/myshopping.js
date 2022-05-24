@@ -37,35 +37,43 @@ $(window).scroll( function(){
 
 // 제품리스트를 출력하는 메소드 
 function view(){
-	let html ;
+	// let html;	// 초기값 안넣을때 [ undefined 문자가 들어감 ]
+	let html = "";	// 초기값이 있을때 [ "" 문자가 들어감 ]
+	
 	for( let i = 0 ; i<parentlist.length ; i++ ){	// count 개수만큼 제품 수 출력
 		if( i == viewcount ) break; // 만약에 i가 화면에 표시할 주문수와 동일하면 출력 금지 
 		html += 
-			'<div class="row"> '+
-				'<div class="col-sm-3">'+  /* 주문 정보 출력 구역 */
-					'<span> '+parentlist[i][0]["orderno"]+' </span>'+
-					'<span> '+parentlist[i][0]["orderdate"]+' </span>'+
+				'<div class="orderinfo"> '+
+					'<span> 주문 </span> <span> '+parentlist[i][0]["orderno"]+' </span> ' +
+					'<span> '+parentlist[i][0]["orderdate"]+' </span> '+
+					'<a href="#"> <span> 주문 상세보기 </span> </a>'+
 				'</div>'+
-				'<div class="col-sm-9"> '; 
+				'<div class="orderdetailbox col-sm-10">'; 
 				
 		for( let j = 0 ; j<parentlist[i].length ; j++ ){ /* 주문상세 출력 구역 */ 
 			let childlist = parentlist[i];	// 상위리스트에 하나씩 하위리스트 꺼내기
 			html += 
-				'<div class="row"> '+
-						'<div class="col-sm-8">'+
-							'<span> <img width="100%" alt="" src="/jspweb/admin/productimg/'+childlist[j]["pimg"]+'"></span>'+
-							'<span> '+childlist[j]["pname"]+' </span>'+
-							'<span> '+childlist[j]["scolor"]+'/'+childlist[j]["ssize"]+'</span>'+
+				'<div class="row orderdetailbox mx-3">'+
+					'<div class="col-sm-2"> <!-- 이미지 -->'+
+						'<img alt="" src="/jspweb/admin/productimg/'+childlist[j]["pimg"]+'" width="100%">'+
+					'</div>'+
+					'<div class="col-sm-7 my-4"> <!-- 정보 -->'+
+						'<div class="row">'+
+							'<div class="pname">'+childlist[j]["pname"]+'</div>'+
+							'<div class="poption">'+childlist[j]["scolor"]+'/'+childlist[j]["ssize"]+' · '+childlist[j]["samount"]+'개 </div>'+
+							'<div class="orderbuttonbox">'+
+								'<button onclick=""> 배송조회 </button>'+
+								'<button onclick=""> 취소신청 </button>'+
+								'<button onclick=""> 리뷰작성 </button>'+
+							'</div>'+
 						'</div>'+
-						'<div class="col-sm-4">'+
-							'<button> 배송조회 </button>'+
-							'<button> 교환 , 반품 신청 , 취소 신청 </button>'+
-							'<button> 리뷰 작성하기 </button>'+
-						'</div>'+
-					'</div>';
+					'</div>'+
+					'<div class="col-sm-3">'+
+						'<span> 상품 준비중 </span>'+
+					'</div>'+
+				'</div>';
 		}			
 			html += 
-				'</div>'+
 			'</div>';
 	}
 	$("#orderbox").html(html);

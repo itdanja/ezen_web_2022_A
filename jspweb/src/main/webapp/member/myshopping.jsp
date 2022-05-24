@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<link href="/jspweb/css/myshopping.css" rel="stylesheet">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

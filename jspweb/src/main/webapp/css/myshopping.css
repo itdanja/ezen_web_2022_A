@@ -1,0 +1,38 @@
+
+.orderbox{
+	margin: 50px 10px;
+}
+.orderinfo{
+	padding: 20px;
+}
+.orderinfo span{
+	font-size: 20px;
+}
+.orderlink{
+	text-align: right;
+}
+.orderdetailbox{
+	margin-left : 50px;
+	padding: 20px;
+	border: 1px solid gray;
+	border-radius: 20px;
+}
+.pname{
+	padding: 5px;
+	border-bottom: 1px solid #999999;
+}
+.poption{
+	padding: 5px;
+	font-size: 13px;
+	color: #999999;
+	margin-bottom: 20px;
+}
+.orderbuttonbox button{
+	background-color: white;
+	border: solid 1px #999999;
+	padding: 5px 30px;
+	border-radius: 10px;
+	margin-right: 10px;
+}
+
+
