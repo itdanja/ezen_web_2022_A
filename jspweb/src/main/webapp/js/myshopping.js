@@ -5,7 +5,13 @@
 
 let parentlist ;  // 주문 제품 리스트 
 
-$( function(){ // 문서가 열렸을때 
+// 1.  // 문서가 열렸을때 실행되는 메소드 
+$( function(){
+	getorder();
+}); 
+
+// 2. 주문 목록 가져오기 
+function getorder(){
 	$.ajax({ // 비동기로 주문 제품 리스트 가져오기 
 		url : "../product/getorder" , 
 		success : function( result ){
@@ -13,11 +19,10 @@ $( function(){ // 문서가 열렸을때
 			view();
 		}
 	});
-}); 
+}
 
-// 브라우저내 스크롤 사용 이벤트 
+// 3. 브라우저내 스크롤 사용 이벤트 
 	//	$(window).scroll( function(){ alert("스크롤사용"); });
-
 let viewcount = 2; // 현재 화면에 보이는 주문 개수 
 
 // 스크롤 이벤트 
@@ -34,7 +39,7 @@ $(window).scroll( function(){
 	}
 });
 
-// 제품리스트를 출력하는 메소드 
+// 4. 제품리스트를 출력하는 메소드 
 function view(){
 	// let html;	// 초기값 안넣을때 [ undefined 문자가 들어감 ]
 	let html = "";	// 초기값이 있을때 [ "" 문자가 들어감 ]
@@ -73,15 +78,17 @@ function view(){
 							'<div class="poption">'+childlist[j]["scolor"]+'/'+childlist[j]["ssize"]+' · '+childlist[j]["samount"]+'개 </div>'+
 							'<div class="orderbuttonbox">'+
 								'<button onclick=""> 배송조회 </button>'+
-								'<button  onclick="cancelbtn('+childlist[j]["orderdetailno"]+')" data-bs-toggle="modal" data-bs-target="#cancelmodal"> 취소신청 </button>'+
+								'<button onclick="cancelbtn('+childlist[j]["orderdetailno"]+')" data-bs-toggle="modal" data-bs-target="#cancelmodal"> 취소신청 </button>'+
 								'<button onclick=""> 리뷰작성 </button>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
-					'<div class="col-sm-3">'+
-						'<span> '+active+' </span>'+
+					'<div class="col-sm-3 py-5">'+
+						'<div class="activetitle"> 주문상태 </div>'+
+						'<div class="activecontent"> '+active+' </div>'+
 					'</div>'+
 				'</div>';
+				
 		}			
 			html += 
 			'</div>';
@@ -93,16 +100,17 @@ let orderdetailno = -1; // 선택한 버튼의 모달에 넣을 주문상세번�
 
 function cancelbtn( no ){ orderdetailno = no; } // 선택한 버튼의 인수값을 변수에 대입 메소드 
 
-// 취소 모달에서 취소를 처리하는 메소드 
+// 5. 취소 모달에서 취소를 처리하는 메소드 
 function cancel(){  
 	$.ajax({ 
 		url : "/jspweb/product/updateorderdetail"  , 
 		data : {  "orderdetailno" : orderdetailno , "active" : 4  } , 
 		success : function(re){
 			if( re == "1"){
-				view(); 
 				alert("취소 요청 성공"); 
 				$("#modalcolse").click(); // 특정 버튼의 강제 클릭이벤트
+				$("#cancelconfirm").val();	// 사유 입력창 초기화
+				getorder(); 
 			}
 			else{ alert("취소 요청 실패"); }
 		}

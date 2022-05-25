@@ -29,15 +29,18 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <h5 class="modal-title" id="exampleModalLabel"> 주문 취소 </h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        ...
+	      
+	       	<h5> 주문 취소 요청 사유 </h5>
+	       	<textarea id="cancelconfirm" rows="" cols="" class="form-control"></textarea>
+	       	
 	      </div>
 	      <div class="modal-footer">
-	        <button id="modalcolse" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	        <button onclick="cancel()" type="button" class="btn btn-primary">Save changes</button>
+	        <button id="modalcolse" type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+	        <button onclick="cancel()" type="button" class="btn btn-primary"> 주문 취소 요청</button>
 	      </div>
 	    </div>
 	  </div>

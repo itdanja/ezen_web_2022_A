@@ -339,6 +339,10 @@ public class ProductDao extends Dao {
 			ps = con.prepareStatement(sql); ps.executeUpdate(); return true;
 		}catch (Exception e) { System.out.println( e ); } return false;
 	}
+	
+	public JSONArray getchart() {
+		return null;
+	}
 }
 
 
