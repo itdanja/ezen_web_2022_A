@@ -33,7 +33,6 @@ public class getchart extends HttpServlet {
 		
 		JSONArray jsonArray 
 			= ProductDao.getProductDao().getchart();
-		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		response.getWriter().print( jsonArray );
