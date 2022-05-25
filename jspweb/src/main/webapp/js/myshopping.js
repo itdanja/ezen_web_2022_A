@@ -15,7 +15,6 @@ $( function(){ // 문서가 열렸을때
 	});
 }); 
 
-
 // 브라우저내 스크롤 사용 이벤트 
 	//	$(window).scroll( function(){ alert("스크롤사용"); });
 
@@ -48,10 +47,21 @@ function view(){
 					'<span> '+parentlist[i][0]["orderdate"]+' </span> '+
 					'<a href="#"> <span> 주문 상세보기 </span> </a>'+
 				'</div>'+
-				'<div class="orderdetailbox col-sm-10">'; 
+				'<div class="col-sm-10 mb-5">'; 
 				
 		for( let j = 0 ; j<parentlist[i].length ; j++ ){ /* 주문상세 출력 구역 */ 
 			let childlist = parentlist[i];	// 상위리스트에 하나씩 하위리스트 꺼내기
+			
+			// 상태 한글처리
+			let active ;
+			if( childlist[j]["orderdetailactive"] == 0 ) active = "상품준비중";
+			else if (  childlist[j]["orderdetailactive"] == 1) active = "배송중";
+			else if (  childlist[j]["orderdetailactive"] == 2) active = "배송완료";
+			else if (  childlist[j]["orderdetailactive"] == 3) active = "구매확정";
+			else if (  childlist[j]["orderdetailactive"] == 4) active = "취소요청";
+			else if (  childlist[j]["orderdetailactive"] == 5) active = "취소완료";
+			else{  active = "재고확인중";   }
+			
 			html += 
 				'<div class="row orderdetailbox mx-3">'+
 					'<div class="col-sm-2"> <!-- 이미지 -->'+
@@ -63,13 +73,13 @@ function view(){
 							'<div class="poption">'+childlist[j]["scolor"]+'/'+childlist[j]["ssize"]+' · '+childlist[j]["samount"]+'개 </div>'+
 							'<div class="orderbuttonbox">'+
 								'<button onclick=""> 배송조회 </button>'+
-								'<button onclick=""> 취소신청 </button>'+
+								'<button  onclick="cancelbtn('+childlist[j]["orderdetailno"]+')" data-bs-toggle="modal" data-bs-target="#cancelmodal"> 취소신청 </button>'+
 								'<button onclick=""> 리뷰작성 </button>'+
 							'</div>'+
 						'</div>'+
 					'</div>'+
 					'<div class="col-sm-3">'+
-						'<span> 상품 준비중 </span>'+
+						'<span> '+active+' </span>'+
 					'</div>'+
 				'</div>';
 		}			
@@ -78,6 +88,39 @@ function view(){
 	}
 	$("#orderbox").html(html);
 }
+
+let orderdetailno = -1; // 선택한 버튼의 모달에 넣을 주문상세번호 변수 
+
+function cancelbtn( no ){ orderdetailno = no; } // 선택한 버튼의 인수값을 변수에 대입 메소드 
+
+// 취소 모달에서 취소를 처리하는 메소드 
+function cancel(){  
+	$.ajax({ 
+		url : "/jspweb/product/updateorderdetail"  , 
+		data : {  "orderdetailno" : orderdetailno , "active" : 4  } , 
+		success : function(re){
+			if( re == "1"){
+				view(); 
+				alert("취소 요청 성공"); 
+				$("#modalcolse").click(); // 특정 버튼의 강제 클릭이벤트
+			}
+			else{ alert("취소 요청 실패"); }
+		}
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
