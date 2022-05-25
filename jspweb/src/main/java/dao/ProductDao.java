@@ -340,21 +340,39 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { System.out.println( e ); } return false;
 	}
 	
-	public JSONArray getchart() {
-		String sql ="SELECT "
+	public JSONArray getchart( int type  ) {
+		String sql ="";
+		JSONArray ja = new JSONArray();
+		
+		if( type == 1 ) { // 일별 매출 
+			sql ="SELECT "
 				+ "	substring_index( orderdate , ' ' , 1 ) AS 날짜 , "
 				+ "	sum( ordertotalpay ) "
 				+ "FROM porder "
 				+ "GROUP BY 날짜 ORDER BY 날짜 DESC";
+		}else if( type == 2 ) { // 카테고리별 전체 판매량 
+			sql = "select  "
+					+ "	sum( A.samount )  ,  "
+					+ "    D.cname "
+					+ "from porderdetail A, stock B , product C , category D  "
+					+ "where A.sno = B.sno and B.pno = C.pno and C.cno = D.cno  "
+					+ "group by D.cname "
+					+ "order by orderdetailno desc";
+		}
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			JSONArray ja = new JSONArray();
 			while( rs.next() ) {
 				JSONObject jo = new JSONObject();
-				jo.put("date", rs.getString( 1 ) );
-				jo.put("value", rs.getString(2) );
-				ja.put(jo);
+				if( type == 1 ) {
+					jo.put("date", rs.getString( 1 ) );
+					jo.put("value", rs.getString(2) );
+					ja.put(jo);
+				}else if( type == 2 ) {
+					jo.put("value", rs.getInt( 1 ) );
+					jo.put("category", rs.getString(2) );
+					ja.put(jo);
+				}
 			}
 			return ja;
 		}catch (Exception e) { System.out.println( e );} return null;

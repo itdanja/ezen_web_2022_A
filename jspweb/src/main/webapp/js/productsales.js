@@ -1,19 +1,25 @@
 
-let jsonlist;
+let jsonlist1; // 차트1 사용될 json 
+let jsonlist2; // 차트2 사용될 json
 
 $( function(){ 
+	
+	// -- type 1 : 일별 매출차트 데이터 
+	// -- type 2 : 카테고리별 전체 판매수량 데이터 
+	
 	$.ajax({
 		url : "/jspweb/admin/getchart",
+		data : { "type" : 1 } , 
 		success : function( re ){
 			console.log( re );
-			jsonlist = re;
+			jsonlist1 = re;
 			
-			//////////////////////////////////////  에이엠차트 ///////////////////////////////////
+			//////////////////////////////////////  AM차트 ///////////////////////////////////
 				am5.ready(function() {
 				
 				// Create root element
 				// https://www.amcharts.com/docs/v5/getting-started/#Root_element
-				var root = am5.Root.new("chartdiv");
+				var root = am5.Root.new("chartdiv1");
 				
 				// Set themes
 				// https://www.amcharts.com/docs/v5/concepts/themes/
@@ -46,11 +52,11 @@ $( function(){
 				function generateData(i) {
 				  // 1. i번째 객체에서 값 가져오기 
 				  	// * 문자열 -> 정수형식  [  parseInt( "문자열" )   ]
-				  let value = parseInt( jsonlist[i]["value"] );
+				  let value = parseInt( jsonlist1[i]["value"] );
 				  // 2. i번째 객체에서 날짜 가져오기 
 				  	// * 문자열 -> 날짜형식  [  new Date( "문자열" );  ]
 				  	
-				  let date = new Date( jsonlist[i]["date"] );
+				  let date = new Date( jsonlist1[i]["date"] );
 				  
 				  date.setHours(0, 0, 0, 0);
 				  
@@ -109,7 +115,7 @@ $( function(){
 				  orientation: "horizontal"
 				}));
 				
-				var data = generateDatas( jsonlist.length ); // 1. 차트에 들어가는 데이터 [ 인수 : 객체수 ]
+				var data = generateDatas( jsonlist1.length ); // 1. 차트에 들어가는 데이터 [ 인수 : 객체수 ]
 				series.data.setAll(data);
 				
 				
@@ -120,10 +126,92 @@ $( function(){
 				
 				}); // end am5.ready()
 				//////////////////////////////////////////////////////////////////////////////////////
-							
 			
-		}
-	});
+				
+	$.ajax({
+		url : "/jspweb/admin/getchart",
+		data : { "type" : 2 } , 
+		success : function( re ){
+			console.log( re );
+			jsonlist2 = re;
+		//////////////////////////////////////////////////////////////////////////////////////	
+				am5.ready(function() {
+					// Create root element
+					// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+					var root = am5.Root.new("chartdiv2");
+					
+					
+					// Set themes
+					// https://www.amcharts.com/docs/v5/concepts/themes/
+					root.setThemes([
+					  am5themes_Animated.new(root)
+					]);
+					
+					
+					// Create chart
+					// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+					var chart = root.container.children.push(am5percent.PieChart.new(root, {
+					  layout: root.verticalLayout,
+					  innerRadius: am5.percent(50)
+					}));
+					
+					
+					// Create series
+					// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+					var series = chart.series.push(am5percent.PieSeries.new(root, {
+					  valueField: "value",
+					  categoryField: "category",
+					  alignLabels: false
+					}));
+					
+					series.labels.template.setAll({
+					  textType: "circular",
+					  centerX: 0,
+					  centerY: 0
+					});
+					
+					
+					// Set data
+					// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+					series.data.setAll( jsonlist2 );
+					
+					
+					// Create legend
+					// https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+					var legend = chart.children.push(am5.Legend.new(root, {
+					  centerX: am5.percent(50),
+					  x: am5.percent(50),
+					  marginTop: 15,
+					  marginBottom: 15,
+					}));
+					
+					legend.data.setAll(series.dataItems);
+					
+					
+					// Play initial series animation
+					// https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+					series.appear(1000, 100);
+				
+				}); // end am5.ready()
+			//////////////////////////////////////////////////////////////////////////////////////	
+					}
+				}); // ajax2 end 
+			
+		} // ajax1  success end 
+	}); // ajax1 end 
+
+	
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
