@@ -203,9 +203,15 @@ $( function(){
 
 function getchart( sno ){
 	
-	alert( sno ); 
+	$.ajax({  
+		url : "getchart" , 
+		data : { "type" : 3 , "value" : sno }  , 
+		success : function( re ){
+			console.log( re );
+		}
+	}); 
 	
-	// 제품별  판매수량 추이
+	// 날짜별 특정제품의 판매추이 
 	
 	am5.ready(function() {
 
