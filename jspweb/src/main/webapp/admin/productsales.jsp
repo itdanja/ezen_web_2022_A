@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 
 	<style type="text/css">
-		#chartdiv1 , #chartdiv2{
+		#chartdiv1 , #chartdiv2 , #chartdiv3 {
 		  width: 100%;
 		  height: 500px;
 		}

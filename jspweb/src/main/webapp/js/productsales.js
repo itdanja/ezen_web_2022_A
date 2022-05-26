@@ -1,11 +1,14 @@
 
 let jsonlist1; // 차트1 사용될 json 
 let jsonlist2; // 차트2 사용될 json
+let jsonlist3; // 차트3 사용될 json
 
+
+// 1. 페이지가 열렸을때 실행되는 메소드
 $( function(){ 
-	
 	// -- type 1 : 일별 매출차트 데이터 
 	// -- type 2 : 카테고리별 전체 판매수량 데이터 
+	// -- type 3 : 날짜별 특정 제품의 판매수량 데이터 
 	
 	$.ajax({
 		url : "/jspweb/admin/getchart",
@@ -13,8 +16,42 @@ $( function(){
 		success : function( re ){
 			console.log( re );
 			jsonlist1 = re;
+			막대차트();
 			
-			//////////////////////////////////////  AM차트 ///////////////////////////////////
+	$.ajax({
+		url : "/jspweb/admin/getchart",
+		data : { "type" : 2 } , 
+		success : function( re ){
+			console.log( re );
+			jsonlist2 = re;
+			도넛차트();
+				}  // ajax2 success end
+			}); // ajax2 end 
+		} // ajax1  success end 
+	}); // ajax1 end 
+});
+
+ // 2. 테이블에서 제품을 선택했을때
+function getchart( sno ){ 
+	
+	// 날짜별 특정제품의 판매추이 
+	$.ajax({  
+		url : "getchart" , 
+		data : { "type" : 3 , "value" : sno }  , 
+		success : function( re ){
+			console.log( re );
+			jsonlist3 = re;
+			선차트();
+		}
+	}); 
+}
+
+
+
+
+
+function 막대차트(){
+		//////////////////////////////////////  AM차트 ///////////////////////////////////
 				am5.ready(function() {
 				
 				// Create root element
@@ -127,14 +164,10 @@ $( function(){
 				}); // end am5.ready()
 				//////////////////////////////////////////////////////////////////////////////////////
 			
-				
-	$.ajax({
-		url : "/jspweb/admin/getchart",
-		data : { "type" : 2 } , 
-		success : function( re ){
-			console.log( re );
-			jsonlist2 = re;
-		//////////////////////////////////////////////////////////////////////////////////////	
+	
+}
+function 도넛차트(){
+			//////////////////////////////////////////////////////////////////////////////////////	
 				am5.ready(function() {
 					// Create root element
 					// https://www.amcharts.com/docs/v5/getting-started/#Root_element
@@ -194,24 +227,8 @@ $( function(){
 				
 				}); // end am5.ready()
 			//////////////////////////////////////////////////////////////////////////////////////	
-					
-					}  // ajax2 success end
-				}); // ajax2 end 
-		} // ajax1  success end 
-	}); // ajax1 end 
-});
-
-function getchart( sno ){
-	
-	$.ajax({  
-		url : "getchart" , 
-		data : { "type" : 3 , "value" : sno }  , 
-		success : function( re ){
-			console.log( re );
-		}
-	}); 
-	
-	// 날짜별 특정제품의 판매추이 
+}
+function 선차트(){
 	
 	am5.ready(function() {
 
@@ -246,13 +263,15 @@ function getchart( sno ){
 		cursor.lineY.set("visible", false);
 		
 		
-		// Generate random data
-		var date = new Date();
-		date.setHours(0, 0, 0, 0);
-		var value = 100;
-		
-		function generateData() {
-		  value = Math.round((Math.random() * 10 - 5) + value);
+		function generateData( i ) {
+		   let value = parseInt( jsonlist3[i]["value"] );
+			  // 2. i번째 객체에서 날짜 가져오기 
+			  	// * 문자열 -> 날짜형식  [  new Date( "문자열" );  ]
+			  	
+		  let date = new Date( jsonlist3[i]["date"] );
+		  
+		  date.setHours(0, 0, 0, 0);
+		  
 		  am5.time.add(date, "day", 1);
 		  return {
 		    date: date.getTime(),
@@ -263,11 +282,10 @@ function getchart( sno ){
 		function generateDatas(count) {
 		  var data = [];
 		  for (var i = 0; i < count; ++i) {
-		    data.push(generateData());
+		    data.push(generateData( i ));
 		  }
 		  return data;
 		}
-		
 		
 		// Create axes
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
@@ -284,7 +302,6 @@ function getchart( sno ){
 		var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 		  renderer: am5xy.AxisRendererY.new(root, {})
 		}));
-		
 		
 		// Add series
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/series/
@@ -308,7 +325,7 @@ function getchart( sno ){
 		
 		
 		// Set data
-		var data = generateDatas(1200);
+		var data = generateDatas( jsonlist3.length );
 		series.data.setAll(data);
 		
 		
@@ -318,14 +335,7 @@ function getchart( sno ){
 		chart.appear(1000, 100);
 		
 		}); // end am5.ready()
-	
-	
 }
-
-
-
-
-
 
 
 

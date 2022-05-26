@@ -180,6 +180,50 @@ select samount , totalprice , 1 , sno from cart where mno = 2;
 
 
 
+-- 필드 as 별칭 *	//  테이블 별칭 띄어쓰기 
+-- where 에서는 별칭 사용 불가능 -- 그룹은 별칭 사용가능
+-- now() : 오늘날짜  // sum ()  , count()  , avg() , max() , min() 
+select 
+	A.* , substring_index( B.orderdate , ' ' , 1 ) as 날짜 
+from  porderdetail A , porder B 
+where A.orderno = B.orderno
+and substring_index( B.orderdate , ' ' , 1 ) = substring_index( now() , ' ' , 1 )
+and  A.orderdetailactive = 3;
+
+-- 1. 제품별 판매수량 
+select 
+	B.pno , 
+    sum( A.samount )
+from porderdetail A , stock B  
+where A.sno = B.sno 
+group by B.pno;
+
+-- 2. 날짜별(그룹) 특정제품의 판매수량
+	-- 1. sno가 34 인 제품번호 찾기 
+    select pno from stock where sno = 34; -- 재고번호가 34인 pno 검색 
+	-- 2. 서브쿼리 ( select 안에 select )
+    --  특정 재고의 제품번호의 
+    select * from stock where pno = ( select pno from stock where sno = 34 );
+	-- 3. 3개 테이블의 교집합 [ pk -> fk  / pk -> pk ] 
+    select 
+		* 
+	from porder A , porderdetail B , stock C
+    where A.orderno = B.orderno and B.sno = C.sno;
+    -- 4. 
+    select 
+		A.orderdate , 
+        C.pno , 
+        B.samount
+	from porder A , porderdetail B , stock C
+    where A.orderno = B.orderno and B.sno = C.sno and C.pno =  ( select pno from stock where sno = 34 );
+    -- 5. 날짜 그룹하기 
+select 
+	substring_index(  A.orderdate , ' ' , 1 ) as 날짜, 
+	sum( B.samount ) as 총판매수량 
+from porder A , porderdetail B , stock C
+where A.orderno = B.orderno and B.sno = C.sno and C.pno =  ( select pno from stock where sno = 34 )
+group by 날짜 order by 날짜 desc;
+
 
 
 
