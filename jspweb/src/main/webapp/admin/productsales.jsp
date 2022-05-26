@@ -1,3 +1,6 @@
+<%@page import="dto.Ordertail"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,11 +25,43 @@
 			<div id="chartdiv1"></div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6"> <!-- 일 매출 테이블  -->
-				주문확정 리스트
+			<div class="col-sm-6"> <!-- 일 매출 막태 차트  -->
+				
+				<%
+					ArrayList<Ordertail> list = 
+					ProductDao.getProductDao().getordertail();
+					
+				%>
+				
+				<table class="table table-hover">
+					<tr>
+						<th> 주문상세번호 </th>
+						<th> 주문수량 </th>
+						<th> 주문가격 </th>
+						<th> 주문번호 </th>
+						<th> 재고번호 </th>
+					</tr>	
+					<%
+						for( Ordertail ordertail : list ){
+					%>	
+						<tr onclick="getchart(<%=ordertail.getSno()%>)">
+							<td> <%=ordertail.getOrderdetailno() %> </td>
+							<td> <%=ordertail.getSamount() %> </td>
+							<td> <%=ordertail.getTotalprice() %> </td>
+							<td> <%=ordertail.getOrderno() %> </td>
+							<td> <%=ordertail.getSno() %> </td>
+						</tr>	
+					<% 	
+						}
+					%>
+				</table>
+				
 			</div>
-			<div class="col-sm-6"> <!-- 카테고리별 차트  -->
+			<div class="col-sm-6"> <!-- 카테고리별 도넛차트  -->
 				<div id="chartdiv2"></div>
+			</div>
+			<div> <!-- 제품별 판매추이 선차트  -->
+				<div id="chartdiv3"></div>
 			</div>
 		</div>
 	</div>
@@ -34,3 +69,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+

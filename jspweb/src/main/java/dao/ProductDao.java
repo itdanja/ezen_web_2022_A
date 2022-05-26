@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import dto.Cart;
 import dto.Category;
 import dto.Order;
+import dto.Ordertail;
 import dto.Product;
 import dto.Stock;
 
@@ -376,6 +377,35 @@ public class ProductDao extends Dao {
 			}
 			return ja;
 		}catch (Exception e) { System.out.println( e );} return null;
+	}
+	
+	// 1. 오늘 주문상세 호출 
+	public ArrayList<Ordertail> getordertail(){
+		
+		String sql = "select "
+				+ "	A.* , substring_index( B.orderdate , ' ' , 1 ) as 날짜 "
+				+ "from  porderdetail A , porder B "
+				+ "where A.orderno = B.orderno "
+				+ "and substring_index( B.orderdate , ' ' , 1 ) = substring_index( now() , ' ' , 1 ) "
+				+ "and  A.orderdetailactive = 3";
+		try {
+			ps = con.prepareStatement(sql);
+			rs  = ps.executeQuery();
+			ArrayList<Ordertail> list = new ArrayList<Ordertail>();
+			while( rs.next() ) {
+				Ordertail ordertail = new Ordertail();
+				ordertail.setOrderdetailno(  rs.getInt(1)  );
+				ordertail.setOrderdetailactive( rs.getInt(2) );
+				ordertail.setSamount(rs.getInt(3) );
+				ordertail.setTotalprice(rs.getInt(4));
+				ordertail.setOrderno(rs.getInt(5));
+				ordertail.setSno(rs.getInt(6));
+				
+				list.add(ordertail);
+			}
+			return list;
+		}catch (Exception e) {} return null;
+		
 	}
 }
 
