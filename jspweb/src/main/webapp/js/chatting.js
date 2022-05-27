@@ -46,7 +46,7 @@ function onmessage( e ){
 		
 	let msg = JSON.parse( e.data );	 // 문자열 -> json
 	
-	if( msg["type"] != "1"){ // 메시지 이면 
+	if( msg["type"] != "1"){ // 메시지가 접속명단 타입 이면 
 		let html = "";
 		for( let i = 0 ; i<msg.length ; i++){
 		html +=
@@ -64,7 +64,7 @@ function onmessage( e ){
 				'</div>';
 		}
 		$("#enterlist").html( html );
-	}else{  // 접속자명단 
+	}else{ // 메시지가 메시지 타입 이면 
 		let from = msg["from"];	// json 키를 통한 value 호출
 		let content = msg["content"];	// json 키를 통한 value 호출
 		let img = msg["img"];	// json 키를 통한 value 호출
