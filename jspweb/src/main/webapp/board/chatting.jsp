@@ -21,32 +21,8 @@
 				<div class="col-sm-4">		<!-- 접속자 목록 표시 구역  -->
 					<h5 class="enter_title"> 접속자 목록 </h5>
 					
-					<div class="row p-2"> <!-- 접속자 정보 표시 구역 = js -->
-						<div class="col-sm-4"> <!-- 프로필 이미지 표시 구역 -->
-							<img alt="" src="../img/프로필1.jpg" class="rounded-circle" width="100%" >
-						</div>
-						
-						<div class="col-sm-8"> <!-- 접속자 이름 , 기능  -->
-							<div class="member_name"> 유재석 </div>
-							<div class="btnbox">
-								<span > 귓말 </span>
-								<span > 친추 </span>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row p-2"> <!-- 접속자 정보 표시 구역 = js -->
-						<div class="col-sm-4"> <!-- 프로필 이미지 표시 구역 -->
-							<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
-						</div>
-						
-						<div class="col-sm-8"> <!-- 접속자 이름 , 기능  -->
-							<div class="member_name"> 강호동 </div>
-							<div class="btnbox">
-								<span > 귓말 </span>
-								<span > 친추 </span>
-							</div>
-						</div>
+					<div id="enterlist">  
+						<!-- 접속된 정보 표시 -->
 					</div>
 					
 				</div>
