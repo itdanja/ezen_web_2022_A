@@ -43,7 +43,6 @@ function onOpen( e ){
 function onmessage( e ){
 	// e : 메소드 이벤트 실행정보가 담겨있는 객체
 		// e.data : 메시지 내용이 담겨있는 필드 
-		
 	let msg = JSON.parse( e.data );	 // 문자열 -> json
 	
 	if( msg["type"] != "1"){ // 메시지가 접속명단 타입 이면 
