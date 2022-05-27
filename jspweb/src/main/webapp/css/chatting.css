@@ -48,8 +48,10 @@
 	margin: 0 auto;	/* div 가운데 배치 */
 	width: 70%;
 }
+/* 부트스트랩 css 충돌 */
+/* css 적용 우선순위 : !important > id > class > tag > *   */ 
 .sendbtn{
-	background-color: #a9bdce;
+	background-color: #ffeb33 !important;
 }
 
 

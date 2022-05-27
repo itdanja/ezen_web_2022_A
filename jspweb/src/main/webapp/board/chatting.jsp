@@ -81,11 +81,16 @@
 					
 					<div class="row g-0"> <!--  입력 상자 혹은 전송 버튼 -->
 						<div class="col-sm-10"> <!--  입력창 -->
-							<textarea rows="3" cols="" class="form-control" onkeyup=""></textarea>
+							<textarea id="incontent" rows="3" cols="" class="form-control" onkeyup="enterkey()"></textarea>
 						</div>
 						<div class="col-sm-2"> <!--  전송 버튼 -->
-							<button class="sendbtn" onclick="">전송</button>
+							<button class="form-control sendbtn" onclick="sendbtn()">전송</button>
 						</div>
+					</div>
+					
+					<div class="btnbox">
+						<span>이모티콘</span>		
+						<span>첨부파일</span>	
 					</div>
 					
 				</div>
