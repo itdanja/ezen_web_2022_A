@@ -52,34 +52,9 @@
 				</div>
 				
 				<div class="col-sm-8">		<!-- 채팅창 구역  -->
-					<div id="contentbox" class="contentbox">	<!-- 메시지 표시 구역 -->	
-						
-						<div class="secontent my-3">	<!-- 보낼때 메시지 구역 -->
-							<span class="date"> 오전 10:07 </span>
-							<span class="content"> 안녕하세요 </span>
-						</div>
-						
-						<div class="alarm">				<!--  알람 메시지 구역 -->
-							<span> 강호동 님이 입장 하셨습니다. </span>
-						</div>
-						
-						
-						<div class="row g-0 my-3"> <!--받을때 구역 --> <!-- g-0 : div간 여백제거 --> 
-							<div class="col-sm-1 mx-2">
-								<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
-							</div>
-							
-							<div class="col-sm-9">
-								<div class="recontent">	 <!-- 받을때 메시지 구역 -->
-									<div class="member_name"> 강호동 </div>
-									<span class="content"> 안녕하세요 </span>
-									<span class="date"> 오전 10:07 </span>
-								</div>
-							</div>
-						</div>
-						
+					<div id="contentbox" class="contentbox" >	
+						<!-- 메시지 표시 구역 -->	
 					</div>
-					
 					<%
 						String mid = (String)session.getAttribute("login");
 					%>
@@ -109,6 +84,35 @@
 	
 	<!-- js --><script type="text/javascript" src="/jspweb/js/chatting.js"></script>
 	<%@include file = "../footer.jsp" %>
+	
+	<!-- 
+			
+						<div class="secontent my-3">	 보낼때 메시지 구역
+							<span class="date"> 오전 10:07 </span>
+							<span class="content"> 안녕하세요 </span>
+						</div>
+						
+						<div class="alarm">				알람 메시지 구역
+							<span> 강호동 님이 입장 하셨습니다. </span>
+						</div>
+						
+						
+						<div class="row g-0 my-3">    받을때 구역  g-0 : div간 여백제거 
+							<div class="col-sm-1 mx-2">
+								<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
+							</div>
+							
+							<div class="col-sm-9">
+								<div class="recontent">	  받을때 메시지 구역
+									<div class="member_name"> 강호동 </div>
+									<span class="content"> 안녕하세요 </span>
+									<span class="date"> 오전 10:07 </span>
+								</div>
+							</div>
+						</div>
+	
+	
+	 -->
 
 </body>
 </html>

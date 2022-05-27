@@ -74,6 +74,10 @@ function onmessage( e ){
 	}
 	
 	$("#contentbox").html( html ); // 추가된 html 넣어주기
+	// 스크롤 하단으로 내리기 
+	$("#contentbox").scrollTop( $("#contentbox")[0].scrollHeight );
+		// $("#contentbox").scrollTop : 현재 스크롤의 상단 위치 
+		// $("#contentbox")[0].scrollHeight : 현재 스크롤의 전체 길이 
 }
 function send( mid ){
 	
