@@ -1,0 +1,108 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	 <!-- css --><link href="/jspweb/css/chatting.css" rel="stylesheet">
+
+</head>
+<body>
+	
+	<%@include file = "../header.jsp" %>
+	
+	<div class="container my-5"> <!-- 박스권 -->
+	
+		<div class="col-sm-6 offset-3 chattingbox"> <!-- 채팅 관련 구역  -->
+		
+			<div class="row"> <!-- 하위 태그 가로배치 -->
+				<div class="col-sm-4">		<!-- 접속자 목록 표시 구역  -->
+					<h5 class="enter_title"> 접속자 목록 </h5>
+					
+					<div class="row p-2"> <!-- 접속자 정보 표시 구역 = js -->
+						<div class="col-sm-4"> <!-- 프로필 이미지 표시 구역 -->
+							<img alt="" src="../img/프로필1.jpg" class="rounded-circle" width="100%" >
+						</div>
+						
+						<div class="col-sm-8"> <!-- 접속자 이름 , 기능  -->
+							<div class="member_name"> 유재석 </div>
+							<div class="btnbox">
+								<span > 귓말 </span>
+								<span > 친추 </span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row p-2"> <!-- 접속자 정보 표시 구역 = js -->
+						<div class="col-sm-4"> <!-- 프로필 이미지 표시 구역 -->
+							<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
+						</div>
+						
+						<div class="col-sm-8"> <!-- 접속자 이름 , 기능  -->
+							<div class="member_name"> 강호동 </div>
+							<div class="btnbox">
+								<span > 귓말 </span>
+								<span > 친추 </span>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="col-sm-8">		<!-- 채팅창 구역  -->
+					<div class="contentbox">	<!-- 메시지 표시 구역 -->	
+						
+						<div class="secontent my-3">	<!-- 보낼때 메시지 구역 -->
+							<span class="date"> 오전 10:07 </span>
+							<span class="content"> 안녕하세요 </span>
+						</div>
+						
+						<div class="alarm">				<!--  알람 메시지 구역 -->
+							<span> 강호동 님이 입장 하셨습니다. </span>
+						</div>
+						
+						<div class="row g-0 my-3"> <!--받을때 구역 --> <!-- g-0 : div간 여백제거 --> 
+						
+							<div class="col-sm-1 mx-2">
+								<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
+							</div>
+							
+							<div class="col-sm-9">
+								<div class="recontent">	 <!-- 받을때 메시지 구역 -->
+									<div class="member_name"> 강호동 </div>
+									<span class="content"> 안녕하세요 </span>
+									<span class="date"> 오전 10:07 </span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row g-0"> <!--  입력 상자 혹은 전송 버튼 -->
+						<div class="col-sm-10"> <!--  입력창 -->
+							<textarea rows="3" cols="" class="form-control" onkeyup=""></textarea>
+						</div>
+						<div class="col-sm-2"> <!--  전송 버튼 -->
+							<button class="sendbtn" onclick="">전송</button>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<!-- js --><script type="text/javascript" src="/jspweb/js/chatting.js"></script>
+	<%@include file = "../footer.jsp" %>
+
+</body>
+</html>
+
+
+
+
+
+
