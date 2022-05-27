@@ -21,9 +21,7 @@ public class Chatting {	// 서버소켓 사용할 클래스
 	// 1. 소켓 오픈
 	@OnOpen
 	public void OnOpen( Session session ) { 
-		System.out.println( session +" 님이 서버소켓 으로 들어왔습니다.");
 		clients.add(session); // 해당 세션를 접속 명단에 추가 
-		System.out.println(" 현재 들어온 세션들 : " + clients.toString() );
 	}
 	// 2. 소켓 닫기 
 	@OnClose
@@ -33,7 +31,6 @@ public class Chatting {	// 서버소켓 사용할 클래스
 	// 3. 소켓 메시지 받는다 -> 모든 유저에게 보내기
 	@OnMessage
 	public void OnMessage( String msg , Session session) throws IOException {
-		System.out.println( session+" 가 "+ msg +" 보냄 ");
 		
 		for( Session s : clients ) { // 리스트에 존재하는 세션들에게 메시지 보내기
 			s.getBasicRemote().sendText(msg);

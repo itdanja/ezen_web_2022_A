@@ -52,7 +52,7 @@
 				</div>
 				
 				<div class="col-sm-8">		<!-- 채팅창 구역  -->
-					<div class="contentbox">	<!-- 메시지 표시 구역 -->	
+					<div id="contentbox" class="contentbox">	<!-- 메시지 표시 구역 -->	
 						
 						<div class="secontent my-3">	<!-- 보낼때 메시지 구역 -->
 							<span class="date"> 오전 10:07 </span>
@@ -63,8 +63,8 @@
 							<span> 강호동 님이 입장 하셨습니다. </span>
 						</div>
 						
-						<div class="row g-0 my-3"> <!--받을때 구역 --> <!-- g-0 : div간 여백제거 --> 
 						
+						<div class="row g-0 my-3"> <!--받을때 구역 --> <!-- g-0 : div간 여백제거 --> 
 							<div class="col-sm-1 mx-2">
 								<img alt="" src="../img/프로필2.png" class="rounded-circle" width="100%" >
 							</div>
@@ -77,14 +77,21 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
+					
+					<%
+						String mid = (String)session.getAttribute("login");
+					%>
+					
+					<input type="hidden" value="<%=mid%>" id="mid">
 					
 					<div class="row g-0"> <!--  입력 상자 혹은 전송 버튼 -->
 						<div class="col-sm-10"> <!--  입력창 -->
-							<textarea id="incontent" rows="3" cols="" class="form-control" onkeyup="enterkey()"></textarea>
+							<textarea id="incontent" rows="3" cols="" class="form-control" onkeyup="enterkey('<%=mid%>')"></textarea>
 						</div>
 						<div class="col-sm-2"> <!--  전송 버튼 -->
-							<button class="form-control sendbtn" onclick="sendbtn()">전송</button>
+							<button class="form-control sendbtn" onclick="sendbtn('<%=mid%>')">전송</button>
 						</div>
 					</div>
 					
