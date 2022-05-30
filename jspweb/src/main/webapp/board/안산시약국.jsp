@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalTime"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="org.json.JSONArray"%>
@@ -55,14 +56,26 @@
 			<th> 일요일운영 </th>	<th> 월요일운영 </th>
 		</tr>
 	<%
-		// 영업여부 [ 자바에서 요일 구하기  ]
+		// 영업여부
+		// 1.[ 자바에서 요일 구하기  ]
 			// 1. Calendar : 달력 클래스 [ 현재 날짜/시간 클래스 ]
 		Calendar calendar = Calendar.getInstance();
 			// 2. 요일 배열 선언 
 		String[] 요일 = {"일","월","화","수","목","금","토"};
 			// 3. 현재 요일 구하기 
 		String 현재요일 = 요일[  calendar.get( Calendar.DAY_OF_WEEK)-1  ]  ;
-	
+		
+		// 2. 현재 시간 구하기 
+			// LocalTime : 시간 클래스 
+				// 1. LocalTime.of( 시 , 분 , 초 ) : 시간형식으로 형변환
+				// 2. LocalTime.now() : 현재 시간 구하기 
+		int hour = calendar.get( Calendar.HOUR_OF_DAY );	// HOUR : 01시  // HOUR_OF_DAY: 13시
+		int minute = calendar.get( Calendar.MINUTE );
+		LocalTime 현재시간 =  LocalTime.of( hour , minute  ,  0 ); // 현재 시간 
+		
+		// LocalTime localTime2 = LocalTime.now();
+		// System.out.println(  localTime2  );
+		
 		// JSON 출력
 		for( int i = 0 ; i<array.length() ; i++ ){ 
 			JSONObject jo = array.getJSONObject(i); // i번째 json객체	
@@ -91,7 +104,32 @@
 			for( String key : keys ){
 				// 4. 만약에 해당 key가 현재 요일 과 같으면서 -(영업시간없다.) 아니면
 				if( key.equals(현재요일+"요일 운영") && !jo.getString(key).equals("-") ){
-					영업여부 = jo.getString(key); // 5. 영업여부에 시간 넣어주기 
+					
+					String[] 영업시간 = jo.getString(key).split("~");	//  ~ 기준으로 open , close
+					System.out.println( 영업시간[0]  +" , " + 영업시간[1] );
+					
+					if(  Integer.parseInt(  영업시간[1].split(":")[0] ) <= 24 ){
+						LocalTime 여는시간 =  LocalTime.of(  
+								Integer.parseInt( 영업시간[0].split(":")[0] )    , 
+								Integer.parseInt( 영업시간[0].split(":")[1] ) , 0 );
+						
+						LocalTime 닫는시간 =  LocalTime.of(  
+								Integer.parseInt( 영업시간[1].split(":")[0] )    , 
+								Integer.parseInt( 영업시간[1].split(":")[1] ) , 0 );
+						
+						if( 현재시간.isAfter(여는시간) ){ // 현재시간이 여는시간보다 이후이면 
+							영업여부 = "영업중:"+jo.getString(key); // 5. 영업여부에 시간 넣어주기 
+							// 닫는시간 
+							if( 현재시간.isAfter(닫는시간) ){ // 현재시간이 닫는시간보다 이후이면
+								System.out.println( 닫는시간 );
+								영업여부 = "[영업종료]";
+							}
+						}else{
+							영업여부 = "[영업종료]";
+						}
+						
+					}
+					
 				}
 			}
 			
