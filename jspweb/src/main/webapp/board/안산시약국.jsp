@@ -1,3 +1,5 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="org.json.JSONArray"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.io.InputStreamReader"%>
@@ -53,6 +55,14 @@
 			<th> 일요일운영 </th>	<th> 월요일운영 </th>
 		</tr>
 	<%
+		// 영업여부 [ 자바에서 요일 구하기  ]
+			// 1. Calendar : 달력 클래스 [ 현재 날짜/시간 클래스 ]
+		Calendar calendar = Calendar.getInstance();
+			// 2. 요일 배열 선언 
+		String[] 요일 = {"일","월","화","수","목","금","토"};
+			// 3. 현재 요일 구하기 
+		String 현재요일 = 요일[  calendar.get( Calendar.DAY_OF_WEEK)-1  ]  ;
+	
 		// JSON 출력
 		for( int i = 0 ; i<array.length() ; i++ ){ 
 			JSONObject jo = array.getJSONObject(i); // i번째 json객체	
@@ -63,8 +73,30 @@
 				int index =  jo.get("주소").toString().indexOf(keyword);
 				if( index == -1 ){ continue; }	// -1 인덱스는 없다는 의미  // for문 , while문 : 1.break : 반복문종료  / 2. continue : 반복문 재실행
 			}
+			// iterator : 인덱스가 없는 (set) 리스트를 순회하는 인터페이스 
+			/* Iterator<JSONObject> iterator = jo.keys();
+			while( iterator.hasNext() ){ // 무한루프에 걸림
+				String key = (String)jo.keys().next();
+				if( key.equals(현재요일+"요일 운영") ){
+					jo.put( "영업여부", jo.get(key) );
+				}
+			}*/
+			// 1. JSONObject.getNames( json객체 ) : 해당 json객체내 모든 key 호출
+			String[] keys =  JSONObject.getNames( jo );
+			
+			// 2. 영업여부 저장하는 변수 선언 
+			String 영업여부 = "[영업종료]";
+			
+			// 3. 모든 key 반복문 돌려기 
+			for( String key : keys ){
+				// 4. 만약에 해당 key가 현재 요일 과 같으면서 -(영업시간없다.) 아니면
+				if( key.equals(현재요일+"요일 운영") && !jo.getString(key).equals("-") ){
+					영업여부 = jo.getString(key); // 5. 영업여부에 시간 넣어주기 
+				}
+			}
+			
 	%>
-		<tr style="font-size: 8px;" onclick="map()">
+		<tr style="font-size: 8px;" onclick="map('<%=jo.get("주소")%>' , '<%=jo.get("약국명")%>' , '<%=영업여부%>' )">
 			<td> <%=jo.get("약국명") %> </td>		<td> <%=jo.get("대표전화") %> </td>	<td> <%=jo.get("주소") %> </td>
 			<td> <%=jo.get("월요일 운영") %> </td>	<td> <%=jo.get("화요일 운영") %> </td>	<td> <%=jo.get("수요일 운영") %> </td>
 			<td> <%=jo.get("목요일 운영") %> </td>	<td> <%=jo.get("금요일 운영") %> </td>	<td> <%=jo.get("토요일 운영") %> </td>
@@ -74,7 +106,12 @@
 	</table>	
 	
 	</div>
+	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f&libraries=services,clusterer,drawing"></script>
+	
+	<!-- kakao 지도 api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b7c0acb1395b016fc6b2661dad73840f"></script>
+	
 	<script type="text/javascript" src="/jspweb/js/kakaomap.js"></script>
 	<%@include file = "../footer.jsp" %>
 	
