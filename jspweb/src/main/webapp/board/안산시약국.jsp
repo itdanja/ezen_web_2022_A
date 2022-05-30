@@ -53,7 +53,7 @@
 			<th> 약국명 </th>		<th> 대표전화 </th>	<th> 주소 </th>
 			<th> 월요일운영 </th>	<th> 화요일운영 </th>	<th> 수요일운영 </th>
 			<th> 목요일운영 </th>	<th> 금요일운영 </th>	<th> 토요일운영 </th>
-			<th> 일요일운영 </th>	<th> 월요일운영 </th>
+			<th> 일요일운영 </th>	<th> 공휴일운영 </th>
 		</tr>
 	<%
 		// 영업여부
@@ -106,7 +106,6 @@
 				if( key.equals(현재요일+"요일 운영") && !jo.getString(key).equals("-") ){
 					
 					String[] 영업시간 = jo.getString(key).split("~");	//  ~ 기준으로 open , close
-					System.out.println( 영업시간[0]  +" , " + 영업시간[1] );
 					
 					if(  Integer.parseInt(  영업시간[1].split(":")[0] ) <= 24 ){
 						LocalTime 여는시간 =  LocalTime.of(  
@@ -121,15 +120,12 @@
 							영업여부 = "영업중:"+jo.getString(key); // 5. 영업여부에 시간 넣어주기 
 							// 닫는시간 
 							if( 현재시간.isAfter(닫는시간) ){ // 현재시간이 닫는시간보다 이후이면
-								System.out.println( 닫는시간 );
 								영업여부 = "[영업종료]";
 							}
 						}else{
 							영업여부 = "[영업종료]";
 						}
-						
 					}
-					
 				}
 			}
 			
